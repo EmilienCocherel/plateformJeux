@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kmad-model SYSTEM "file:KMADModelJT.dtd">
+<kmad-model version="1.4">
+    <project classkmad="project.Project" id-project-information="K2" idkmad="K1">
+        <projectinformation classkmad="project.GeneralInformation" idkmad="K2">
+            <projectinformation-compagny>IUT</projectinformation-compagny>
+        </projectinformation>
+    </project>
+    <task classkmad="tache.Task" id-task-point="K3" id-task-subtasks-list="K7 K10 " idkmad="K4">
+        <task-name>Sélection Rapport</task-name>
+        <task-numero>Racine   </task-numero>
+        <task-observation/>
+        <task-executant>ABS</task-executant>
+        <task-modality>COGN</task-modality>
+        <task-optional>false</task-optional>
+        <task-interruptible>false</task-interruptible>
+        <task-decomposition>SEQ</task-decomposition>
+        <task-precondition>true</task-precondition>
+        <task-effetsdebord>void</task-effetsdebord>
+        <task-iteration>[1]</task-iteration>
+        <point classkmad="tache.Point" idkmad="K3">
+            <point-x>363</point-x>
+            <point-y>28</point-y>
+        </point>
+        <task classkmad="tache.Task" id-task-point="K6" idkmad="K7">
+            <task-name>Rédiger un rapport</task-name>
+            <task-numero>1</task-numero>
+            <task-observation/>
+            <task-executant>ABS</task-executant>
+            <task-modality>COGN</task-modality>
+            <task-optional>false</task-optional>
+            <task-interruptible>false</task-interruptible>
+            <task-decomposition>LEAF</task-decomposition>
+            <task-precondition>true</task-precondition>
+            <task-effetsdebord>void</task-effetsdebord>
+            <task-iteration>[1]</task-iteration>
+            <point classkmad="tache.Point" idkmad="K6">
+                <point-x>171</point-x>
+                <point-y>202</point-y>
+            </point>
+        </task>
+        <task classkmad="tache.Task" id-task-point="K9" id-task-subtasks-list="K16 K13 " idkmad="K10">
+            <task-name>Lire un rapport</task-name>
+            <task-numero>2</task-numero>
+            <task-observation/>
+            <task-executant>ABS</task-executant>
+            <task-modality>COGN</task-modality>
+            <task-optional>false</task-optional>
+            <task-interruptible>false</task-interruptible>
+            <task-decomposition>LEAF</task-decomposition>
+            <task-precondition>true</task-precondition>
+            <task-effetsdebord>void</task-effetsdebord>
+            <task-iteration>[1]</task-iteration>
+            <point classkmad="tache.Point" idkmad="K9">
+                <point-x>540</point-x>
+                <point-y>202</point-y>
+            </point>
+            <task classkmad="tache.Task" id-task-point="K15" idkmad="K16">
+                <task-name>Nom de la tâche</task-name>
+                <task-numero>2.1</task-numero>
+                <task-observation/>
+                <task-executant>USER</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>LEAF</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K15">
+                    <point-x>459</point-x>
+                    <point-y>354</point-y>
+                </point>
+            </task>
+            <task classkmad="tache.Task" id-task-point="K12" idkmad="K13">
+                <task-name>Affiche rapport</task-name>
+                <task-numero>2.2</task-numero>
+                <task-observation/>
+                <task-executant>SYS</task-executant>
+                <task-modality>COGN</task-modality>
+                <task-optional>false</task-optional>
+                <task-interruptible>false</task-interruptible>
+                <task-decomposition>LEAF</task-decomposition>
+                <task-precondition>true</task-precondition>
+                <task-effetsdebord>void</task-effetsdebord>
+                <task-iteration>[1]</task-iteration>
+                <point classkmad="tache.Point" idkmad="K12">
+                    <point-x>684</point-x>
+                    <point-y>354</point-y>
+                </point>
+            </task>
+        </task>
+    </task>
+</kmad-model>
