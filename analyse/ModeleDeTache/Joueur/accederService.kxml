@@ -31,7 +31,7 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K6">
-                <point-x>4</point-x>
+                <point-x>0</point-x>
                 <point-y>274</point-y>
             </point>
         </task>
@@ -51,7 +51,7 @@
                 <point-x>474</point-x>
                 <point-y>274</point-y>
             </point>
-            <task classkmad="tache.Task" id-task-point="K12" id-task-subtasks-list="K16 " idkmad="K13">
+            <task classkmad="tache.Task" id-task-point="K12" id-task-subtasks-list="K16 K81 K83 " idkmad="K13">
                 <task-name>Accéder à la liste des parties en cours</task-name>
                 <task-numero>2.1</task-numero>
                 <task-observation/>
@@ -59,19 +59,19 @@
                 <task-modality>COGN</task-modality>
                 <task-optional>false</task-optional>
                 <task-interruptible>false</task-interruptible>
-                <task-decomposition>LEAF</task-decomposition>
+                <task-decomposition>ALT</task-decomposition>
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K12">
-                    <point-x>0</point-x>
-                    <point-y>546</point-y>
+                    <point-x>19</point-x>
+                    <point-y>545</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K15" idkmad="K16">
-                    <task-name>Jouer une partie</task-name>
+                    <task-name>Continuer une partie</task-name>
                     <task-numero>2.1.1</task-numero>
                     <task-observation/>
-                    <task-executant>ABS</task-executant>
+                    <task-executant>INT</task-executant>
                     <task-modality>COGN</task-modality>
                     <task-optional>false</task-optional>
                     <task-interruptible>false</task-interruptible>
@@ -80,12 +80,46 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K15">
-                        <point-x>72</point-x>
-                        <point-y>750</point-y>
+                        <point-x>4</point-x>
+                        <point-y>741</point-y>
+                    </point>
+                </task>
+                <task classkmad="tache.Task" id-task-point="K80" idkmad="K81">
+                    <task-name>Accéder au profil d'un adversaire</task-name>
+                    <task-numero>2.1.2</task-numero>
+                    <task-observation/>
+                    <task-executant>INT</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K80">
+                        <point-x>131</point-x>
+                        <point-y>741</point-y>
+                    </point>
+                </task>
+                <task classkmad="tache.Task" id-task-point="K82" idkmad="K83">
+                    <task-name>Accéder au profil d'un jeu</task-name>
+                    <task-numero>2.1.3</task-numero>
+                    <task-observation/>
+                    <task-executant>INT</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K82">
+                        <point-x>348</point-x>
+                        <point-y>741</point-y>
                     </point>
                 </task>
             </task>
-            <task classkmad="tache.Task" id-task-point="K9" idkmad="K10">
+            <task classkmad="tache.Task" id-task-point="K9" id-task-subtasks-list="K87 K85 " idkmad="K10">
                 <task-name>Accéder à la liste des parties terminées</task-name>
                 <task-numero>2.2</task-numero>
                 <task-observation/>
@@ -93,14 +127,48 @@
                 <task-modality>COGN</task-modality>
                 <task-optional>false</task-optional>
                 <task-interruptible>false</task-interruptible>
-                <task-decomposition>LEAF</task-decomposition>
+                <task-decomposition>ALT</task-decomposition>
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K9">
-                    <point-x>354</point-x>
-                    <point-y>581</point-y>
+                    <point-x>440</point-x>
+                    <point-y>523</point-y>
                 </point>
+                <task classkmad="tache.Task" id-task-point="K86" idkmad="K87">
+                    <task-name>Accéder au profil d'un adversaire</task-name>
+                    <task-numero>2.2.1</task-numero>
+                    <task-observation/>
+                    <task-executant>INT</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K86">
+                        <point-x>519</point-x>
+                        <point-y>741</point-y>
+                    </point>
+                </task>
+                <task classkmad="tache.Task" id-task-point="K84" idkmad="K85">
+                    <task-name>Accéder au profil d'un jeu</task-name>
+                    <task-numero>2.2.2</task-numero>
+                    <task-observation/>
+                    <task-executant>INT</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K84">
+                        <point-x>751</point-x>
+                        <point-y>741</point-y>
+                    </point>
+                </task>
             </task>
         </task>
         <task classkmad="tache.Task" id-task-point="K25" id-task-subtasks-list="K29 K31 " idkmad="K26">
@@ -281,7 +349,7 @@
             <task-modality>COGN</task-modality>
             <task-optional>false</task-optional>
             <task-interruptible>false</task-interruptible>
-            <task-decomposition>LEAF</task-decomposition>
+            <task-decomposition>ALT</task-decomposition>
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
