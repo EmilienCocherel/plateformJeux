@@ -82,8 +82,8 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K41">
-                <point-x>883</point-x>
-                <point-y>220</point-y>
+                <point-x>777</point-x>
+                <point-y>237</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K29" idkmad="K30">
                 <task-name>Vérifier les informations</task-name>
@@ -98,7 +98,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K29">
-                    <point-x>731</point-x>
+                    <point-x>700</point-x>
                     <point-y>386</point-y>
                 </point>
             </task>
@@ -115,7 +115,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K29">
-                    <point-x>731</point-x>
+                    <point-x>700</point-x>
                     <point-y>386</point-y>
                 </point>
             </task>
@@ -132,7 +132,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K66">
-                    <point-x>930</point-x>
+                    <point-x>1095</point-x>
                     <point-y>386</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K53" idkmad="K54">
@@ -148,8 +148,8 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K53">
-                        <point-x>699</point-x>
-                        <point-y>559</point-y>
+                        <point-x>863</point-x>
+                        <point-y>565</point-y>
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K58" idkmad="K59">
@@ -165,8 +165,8 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K58">
-                        <point-x>931</point-x>
-                        <point-y>559</point-y>
+                        <point-x>1095</point-x>
+                        <point-y>565</point-y>
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K56" idkmad="K57">
@@ -182,8 +182,8 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K56">
-                        <point-x>1084</point-x>
-                        <point-y>559</point-y>
+                        <point-x>1262</point-x>
+                        <point-y>565</point-y>
                     </point>
                 </task>
             </task>
@@ -200,7 +200,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K32">
-                    <point-x>1084</point-x>
+                    <point-x>1368</point-x>
                     <point-y>386</point-y>
                 </point>
             </task>
@@ -217,7 +217,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K32">
-                    <point-x>1084</point-x>
+                    <point-x>1368</point-x>
                     <point-y>386</point-y>
                 </point>
             </task>
