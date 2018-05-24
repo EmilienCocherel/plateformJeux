@@ -26,7 +26,7 @@
             <task-modality>COGN</task-modality>
             <task-optional>false</task-optional>
             <task-interruptible>false</task-interruptible>
-            <task-decomposition>SEQ</task-decomposition>
+            <task-decomposition>ENT</task-decomposition>
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
