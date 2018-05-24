@@ -19,7 +19,7 @@
             <point-y>94</point-y>
         </point>
         <task classkmad="tache.Task" id-task-point="K9" id-task-subtasks-list="K22 K16 K25 K43 K54 " idkmad="K10">
-            <task-name>Play a turn</task-name>
+            <task-name>Play</task-name>
             <task-numero>1</task-numero>
             <task-observation/>
             <task-executant>ABS</task-executant>
@@ -29,9 +29,9 @@
             <task-decomposition>SEQ</task-decomposition>
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
-            <task-iteration>[1]</task-iteration>
+            <task-iteration>while(true)</task-iteration>
             <point classkmad="tache.Point" idkmad="K9">
-                <point-x>240</point-x>
+                <point-x>333</point-x>
                 <point-y>251</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K21" idkmad="K22">

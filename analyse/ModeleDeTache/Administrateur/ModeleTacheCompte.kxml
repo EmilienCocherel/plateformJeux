@@ -35,7 +35,7 @@
                 <point-y>186</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K12" idkmad="K13">
-                <task-name>Sélectionne un compte</task-name>
+                <task-name>cocher activer</task-name>
                 <task-numero>1.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -86,7 +86,7 @@
                 <point-y>186</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K15" idkmad="K16">
-                <task-name>Sélectionne un compte</task-name>
+                <task-name>décocher activer</task-name>
                 <task-numero>2.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -98,8 +98,8 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K15">
-                    <point-x>493</point-x>
-                    <point-y>414</point-y>
+                    <point-x>554</point-x>
+                    <point-y>417</point-y>
                 </point>
             </task>
             <task classkmad="tache.Task" id-task-point="K20" idkmad="K21">
