@@ -1,3 +1,6 @@
+pour savoir quand et comment bien éditer le changelog : https://docs.gitlab.com/ee/development/changelog.html
+!penser à editer le changelog!
+
 --initialisation--
 
 cliquez sur fork
