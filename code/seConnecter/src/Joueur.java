@@ -21,7 +21,7 @@ public class Joueur {
         this.pseudo = pseudo;
         this.motdepasse = motdepasse;
         this.niveau = niveau;
-        this.sexe = sexe
+        this.sexe = sexe;
         this.abonne = abonne;
         this.avatar=avatar;
         this.email="";
