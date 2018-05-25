@@ -9,4 +9,4 @@ test:
 
 build:
   stage: build
-  script: echo "Building the app"
+  script: ./build.sh
