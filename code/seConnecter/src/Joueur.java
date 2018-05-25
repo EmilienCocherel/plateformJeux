@@ -20,8 +20,8 @@ public class Joueur {
         this.identifiant = identifiant;
         this.pseudo = pseudo;
         this.motdepasse = motdepasse;
-        this.niveau = niveau
-        this.sexe = sexe;
+        this.niveau = niveau;
+        this.sexe = sexe
         this.abonne = abonne;
         this.avatar=avatar;
         this.email="";
