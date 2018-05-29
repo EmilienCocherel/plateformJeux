@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Joueur {
     private int identifiant;
@@ -9,7 +11,9 @@ public class Joueur {
     private int niveau;
     private char sexe;
     private boolean abonne;
-	private byte[] avatar;
+	  private byte[] avatar;
+    private String email;
+    private List<Joueur> listeAmi;
 
 
     public Joueur(int identifiant, String pseudo, String motdepasse, int niveau, char sexe, boolean abonne, byte[] avatar) {
@@ -20,6 +24,8 @@ public class Joueur {
         this.sexe = sexe;
         this.abonne = abonne;
         this.avatar=avatar;
+        this.email="";
+        this.listeAmi=new ArrayList<>();
     }
 
 
