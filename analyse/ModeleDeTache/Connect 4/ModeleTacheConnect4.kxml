@@ -15,7 +15,7 @@
         <task-effetsdebord>void</task-effetsdebord>
         <task-iteration>[1]</task-iteration>
         <point classkmad="tache.Point" idkmad="K6">
-            <point-x>449</point-x>
+            <point-x>836</point-x>
             <point-y>94</point-y>
         </point>
         <task classkmad="tache.Task" id-task-point="K9" id-task-subtasks-list="K22 K16 K25 K43 K54 " idkmad="K10">
@@ -137,7 +137,7 @@
                 <point-y>251</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K30" idkmad="K31">
-                <task-name>Click on pause</task-name>
+                <task-name>Click on pause button</task-name>
                 <task-numero>2.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -149,7 +149,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K30">
-                    <point-x>917</point-x>
+                    <point-x>894</point-x>
                     <point-y>425</point-y>
                 </point>
             </task>
@@ -188,7 +188,7 @@
                 <point-y>251</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K44" idkmad="K45">
-                <task-name>Click on end</task-name>
+                <task-name>Click on end button</task-name>
                 <task-numero>3.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -200,7 +200,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K44">
-                    <point-x>1281</point-x>
+                    <point-x>1252</point-x>
                     <point-y>425</point-y>
                 </point>
             </task>
