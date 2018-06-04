@@ -166,7 +166,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K68">
-                    <point-x>1323</point-x>
+                    <point-x>1297</point-x>
                     <point-y>290</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K71" idkmad="K72">
@@ -187,7 +187,7 @@
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K74" idkmad="K75">
-                    <task-name>End the game and opponent is victorious</task-name>
+                    <task-name>End the game</task-name>
                     <task-numero>1.3.2</task-numero>
                     <task-observation/>
                     <task-executant>SYS</task-executant>
@@ -199,14 +199,14 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K74">
-                        <point-x>1381</point-x>
+                        <point-x>1419</point-x>
                         <point-y>435</point-y>
                     </point>
                 </task>
             </task>
             <task classkmad="tache.Task" id-task-point="K12" id-task-subtasks-list="K31 K34 " idkmad="K13">
                 <task-name>Pause the game</task-name>
-                <task-numero>1.5</task-numero>
+                <task-numero>1.4</task-numero>
                 <task-observation/>
                 <task-executant>ABS</task-executant>
                 <task-modality>COGN</task-modality>
@@ -222,7 +222,7 @@
                 </point>
                 <task classkmad="tache.Task" id-task-point="K30" idkmad="K31">
                     <task-name>Click on pause button</task-name>
-                    <task-numero>1.5.1</task-numero>
+                    <task-numero>1.4.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
                     <task-modality>COGN</task-modality>
@@ -239,7 +239,7 @@
                 </task>
                 <task classkmad="tache.Task" id-task-point="K33" idkmad="K34">
                     <task-name>Pause the game</task-name>
-                    <task-numero>1.5.2</task-numero>
+                    <task-numero>1.4.2</task-numero>
                     <task-observation/>
                     <task-executant>SYS</task-executant>
                     <task-modality>COGN</task-modality>
