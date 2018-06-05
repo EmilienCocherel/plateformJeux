@@ -22,7 +22,7 @@
             <point-x>363</point-x>
             <point-y>28</point-y>
         </point>
-        <task classkmad="tache.Task" id-task-point="K6" id-task-subtasks-list="K19 K22 " idkmad="K7">
+        <task classkmad="tache.Task" id-task-point="K6" id-task-subtasks-list="K19 K40 " idkmad="K7">
             <task-name>Rédiger un rapport</task-name>
             <task-numero>1</task-numero>
             <task-observation/>
@@ -55,22 +55,56 @@
                     <point-y>354</point-y>
                 </point>
             </task>
-            <task classkmad="tache.Task" id-task-point="K21" idkmad="K22">
-                <task-name>Sauvegarde le rapport</task-name>
+            <task classkmad="tache.Task" id-task-point="K39" id-task-subtasks-list="K42 K22 " idkmad="K40">
+                <task-name>Valider Rapport</task-name>
                 <task-numero>1.2</task-numero>
                 <task-observation/>
-                <task-executant>SYS</task-executant>
+                <task-executant>ABS</task-executant>
                 <task-modality>COGN</task-modality>
-                <task-optional>false</task-optional>
+                <task-optional>true</task-optional>
                 <task-interruptible>false</task-interruptible>
-                <task-decomposition>LEAF</task-decomposition>
+                <task-decomposition>SEQ</task-decomposition>
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
-                <point classkmad="tache.Point" idkmad="K21">
-                    <point-x>199</point-x>
+                <point classkmad="tache.Point" idkmad="K39">
+                    <point-x>259</point-x>
                     <point-y>354</point-y>
                 </point>
+                <task classkmad="tache.Task" id-task-point="K41" idkmad="K42">
+                    <task-name>Valider texte</task-name>
+                    <task-numero>1.2.1</task-numero>
+                    <task-observation/>
+                    <task-executant>INT</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K41">
+                        <point-x>168</point-x>
+                        <point-y>526</point-y>
+                    </point>
+                </task>
+                <task classkmad="tache.Task" id-task-point="K21" idkmad="K22">
+                    <task-name>Sauvegarde le rapport</task-name>
+                    <task-numero>1.2.2</task-numero>
+                    <task-observation/>
+                    <task-executant>SYS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K21">
+                        <point-x>330</point-x>
+                        <point-y>546</point-y>
+                    </point>
+                </task>
             </task>
         </task>
         <task classkmad="tache.Task" id-task-point="K9" id-task-subtasks-list="K31 K13 " idkmad="K10">
@@ -86,7 +120,7 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K9">
-                <point-x>540</point-x>
+                <point-x>580</point-x>
                 <point-y>202</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K30" idkmad="K31">
