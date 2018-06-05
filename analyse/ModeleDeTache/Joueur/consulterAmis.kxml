@@ -2,7 +2,7 @@
 <!DOCTYPE kmad-model SYSTEM "file:KMADModelJT.dtd">
 <kmad-model version="1.4">
     <project classkmad="project.Project" idkmad="K1"/>
-    <task classkmad="tache.Task" id-task-point="K50" id-task-subtasks-list="K292 K301 K304 " idkmad="K51">
+    <task classkmad="tache.Task" id-task-point="K50" id-task-subtasks-list="K292 K301 K338 " idkmad="K51">
         <task-name>Consulter les amis</task-name>
         <task-numero>Racine   </task-numero>
         <task-observation/>
@@ -86,8 +86,8 @@
                 </point>
             </task>
         </task>
-        <task classkmad="tache.Task" id-task-point="K303" id-task-subtasks-list="K310 K316 " idkmad="K304">
-            <task-name>Demande d'amis</task-name>
+        <task classkmad="tache.Task" id-task-point="K337" id-task-subtasks-list="K340 K352 " idkmad="K338">
+            <task-name>Demande amis</task-name>
             <task-numero>3</task-numero>
             <task-observation/>
             <task-executant>ABS</task-executant>
@@ -97,13 +97,13 @@
             <task-decomposition>SEQ</task-decomposition>
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
-            <task-iteration>[1]</task-iteration>
-            <point classkmad="tache.Point" idkmad="K303">
-                <point-x>624</point-x>
-                <point-y>254</point-y>
+            <task-iteration>while( true )</task-iteration>
+            <point classkmad="tache.Point" idkmad="K337">
+                <point-x>574</point-x>
+                <point-y>158</point-y>
             </point>
-            <task classkmad="tache.Task" id-task-point="K309" idkmad="K310">
-                <task-name>Sélectionner les demandes d'amis</task-name>
+            <task classkmad="tache.Task" id-task-point="K339" idkmad="K340">
+                <task-name>Séléctionner demande ami</task-name>
                 <task-numero>3.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -114,60 +114,214 @@
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
-                <point classkmad="tache.Point" idkmad="K309">
-                    <point-x>428</point-x>
-                    <point-y>439</point-y>
+                <point classkmad="tache.Point" idkmad="K339">
+                    <point-x>391</point-x>
+                    <point-y>351</point-y>
                 </point>
             </task>
-            <task classkmad="tache.Task" id-task-point="K315" id-task-subtasks-list="K319 K322 " idkmad="K316">
-                <task-name>Actions</task-name>
+            <task classkmad="tache.Task" id-task-point="K351" id-task-subtasks-list="K304 K334 " idkmad="K352">
+                <task-name>Gérer demande</task-name>
                 <task-numero>3.2</task-numero>
                 <task-observation/>
                 <task-executant>ABS</task-executant>
                 <task-modality>COGN</task-modality>
                 <task-optional>false</task-optional>
                 <task-interruptible>false</task-interruptible>
-                <task-decomposition>ALT</task-decomposition>
+                <task-decomposition>SEQ</task-decomposition>
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
-                <task-iteration>[1]</task-iteration>
-                <point classkmad="tache.Point" idkmad="K315">
-                    <point-x>744</point-x>
-                    <point-y>439</point-y>
+                <task-iteration>while( true )</task-iteration>
+                <point classkmad="tache.Point" idkmad="K351">
+                    <point-x>859</point-x>
+                    <point-y>318</point-y>
                 </point>
-                <task classkmad="tache.Task" id-task-point="K318" idkmad="K319">
-                    <task-name>Accepter une demande</task-name>
+                <task classkmad="tache.Task" id-task-point="K303" id-task-subtasks-list="K310 K316 " idkmad="K304">
+                    <task-name>Gérer demandes reçus</task-name>
                     <task-numero>3.2.1</task-numero>
                     <task-observation/>
-                    <task-executant>INT</task-executant>
+                    <task-executant>ABS</task-executant>
                     <task-modality>COGN</task-modality>
                     <task-optional>true</task-optional>
                     <task-interruptible>false</task-interruptible>
-                    <task-decomposition>LEAF</task-decomposition>
+                    <task-decomposition>SEQ</task-decomposition>
                     <task-precondition>true</task-precondition>
                     <task-effetsdebord>void</task-effetsdebord>
-                    <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K318">
-                        <point-x>614</point-x>
-                        <point-y>619</point-y>
+                    <task-iteration>while( true )</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K303">
+                        <point-x>619</point-x>
+                        <point-y>511</point-y>
                     </point>
+                    <task classkmad="tache.Task" id-task-point="K309" idkmad="K310">
+                        <task-name>Séléctionner une demande</task-name>
+                        <task-numero>3.2.1.1</task-numero>
+                        <task-observation/>
+                        <task-executant>INT</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K309">
+                            <point-x>421</point-x>
+                            <point-y>696</point-y>
+                        </point>
+                    </task>
+                    <task classkmad="tache.Task" id-task-point="K315" id-task-subtasks-list="K319 K322 " idkmad="K316">
+                        <task-name>Actions</task-name>
+                        <task-numero>3.2.1.2</task-numero>
+                        <task-observation/>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>ALT</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K315">
+                            <point-x>739</point-x>
+                            <point-y>696</point-y>
+                        </point>
+                        <task classkmad="tache.Task" id-task-point="K318" idkmad="K319">
+                            <task-name>Accepter une demande</task-name>
+                            <task-numero>3.2.1.2.1</task-numero>
+                            <task-observation/>
+                            <task-executant>INT</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>true</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K318">
+                                <point-x>578</point-x>
+                                <point-y>879</point-y>
+                            </point>
+                        </task>
+                        <task classkmad="tache.Task" id-task-point="K321" idkmad="K322">
+                            <task-name>Refuser une demande</task-name>
+                            <task-numero>3.2.1.2.2</task-numero>
+                            <task-observation/>
+                            <task-executant>INT</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>true</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K321">
+                                <point-x>782</point-x>
+                                <point-y>879</point-y>
+                            </point>
+                        </task>
+                    </task>
                 </task>
-                <task classkmad="tache.Task" id-task-point="K321" idkmad="K322">
-                    <task-name>Refuser une demande</task-name>
+                <task classkmad="tache.Task" id-task-point="K333" id-task-subtasks-list="K350 K344 K358 " idkmad="K334">
+                    <task-name>Demander en Ami</task-name>
                     <task-numero>3.2.2</task-numero>
                     <task-observation/>
-                    <task-executant>INT</task-executant>
+                    <task-executant>ABS</task-executant>
                     <task-modality>COGN</task-modality>
                     <task-optional>true</task-optional>
                     <task-interruptible>false</task-interruptible>
-                    <task-decomposition>LEAF</task-decomposition>
+                    <task-decomposition>SEQ</task-decomposition>
                     <task-precondition>true</task-precondition>
                     <task-effetsdebord>void</task-effetsdebord>
-                    <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K321">
-                        <point-x>837</point-x>
-                        <point-y>622</point-y>
+                    <task-iteration>while( true )</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K333">
+                        <point-x>1054</point-x>
+                        <point-y>511</point-y>
                     </point>
+                    <task classkmad="tache.Task" id-task-point="K349" idkmad="K350">
+                        <task-name>Entrer nom ami</task-name>
+                        <task-numero>3.2.2.1</task-numero>
+                        <task-observation/>
+                        <task-executant>INT</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K349">
+                            <point-x>950</point-x>
+                            <point-y>696</point-y>
+                        </point>
+                    </task>
+                    <task classkmad="tache.Task" id-task-point="K343" idkmad="K344">
+                        <task-name>Affichage validité nom</task-name>
+                        <task-numero>3.2.2.2</task-numero>
+                        <task-observation/>
+                        <task-executant>SYS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>false</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>LEAF</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>[1]</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K343">
+                            <point-x>1158</point-x>
+                            <point-y>696</point-y>
+                        </point>
+                    </task>
+                    <task classkmad="tache.Task" id-task-point="K357" id-task-subtasks-list="K360 K364 " idkmad="K358">
+                        <task-name>Valider</task-name>
+                        <task-numero>3.2.2.3</task-numero>
+                        <task-observation>Possible si nom valide
+</task-observation>
+                        <task-executant>ABS</task-executant>
+                        <task-modality>COGN</task-modality>
+                        <task-optional>true</task-optional>
+                        <task-interruptible>false</task-interruptible>
+                        <task-decomposition>SEQ</task-decomposition>
+                        <task-precondition>true</task-precondition>
+                        <task-effetsdebord>void</task-effetsdebord>
+                        <task-iteration>while( true )</task-iteration>
+                        <point classkmad="tache.Point" idkmad="K357">
+                            <point-x>1382</point-x>
+                            <point-y>696</point-y>
+                        </point>
+                        <task classkmad="tache.Task" id-task-point="K359" idkmad="K360">
+                            <task-name>Cliquer envoyer la demande</task-name>
+                            <task-numero>3.2.2.3.1</task-numero>
+                            <task-observation/>
+                            <task-executant>INT</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K359">
+                                <point-x>1242</point-x>
+                                <point-y>853</point-y>
+                            </point>
+                        </task>
+                        <task classkmad="tache.Task" id-task-point="K363" idkmad="K364">
+                            <task-name>Envoyer la demande</task-name>
+                            <task-numero>3.2.2.3.2</task-numero>
+                            <task-observation/>
+                            <task-executant>SYS</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K363">
+                                <point-x>1442</point-x>
+                                <point-y>853</point-y>
+                            </point>
+                        </task>
+                    </task>
                 </task>
             </task>
         </task>
