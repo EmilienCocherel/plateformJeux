@@ -69,7 +69,7 @@
                 </point>
             </task>
             <task classkmad="tache.Task" id-task-point="K20" idkmad="K21">
-                <task-name>Se souvenir du MDP</task-name>
+                <task-name>Cocher se souvenir</task-name>
                 <task-numero>1.3</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -85,8 +85,8 @@
                     <point-y>420</point-y>
                 </point>
             </task>
-            <task classkmad="tache.Task" id-task-point="K22" id-task-subtasks-list="K36 K25 K33 K38 " idkmad="K23">
-                <task-name>Mot de passe oublié / Changer de mot de passe</task-name>
+            <task classkmad="tache.Task" id-task-point="K22" id-task-subtasks-list="K36 K25 K33 " idkmad="K23">
+                <task-name>Mot de passe oublié</task-name>
                 <task-numero>1.4</task-numero>
                 <task-observation/>
                 <task-executant>ABS</task-executant>
@@ -114,7 +114,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K35">
-                        <point-x>283</point-x>
+                        <point-x>537</point-x>
                         <point-y>659</point-y>
                     </point>
                 </task>
@@ -131,7 +131,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K24">
-                        <point-x>416</point-x>
+                        <point-x>689</point-x>
                         <point-y>659</point-y>
                     </point>
                 </task>
@@ -148,94 +148,9 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K32">
-                        <point-x>554</point-x>
+                        <point-x>822</point-x>
                         <point-y>659</point-y>
                     </point>
-                </task>
-                <task classkmad="tache.Task" id-task-point="K37" id-task-subtasks-list="K27 K31 K29 K58 " idkmad="K38">
-                    <task-name>Nouveau mot de passe</task-name>
-                    <task-numero>1.4.4</task-numero>
-                    <task-observation/>
-                    <task-executant>ABS</task-executant>
-                    <task-modality>COGN</task-modality>
-                    <task-optional>true</task-optional>
-                    <task-interruptible>false</task-interruptible>
-                    <task-decomposition>ALT</task-decomposition>
-                    <task-precondition>true</task-precondition>
-                    <task-effetsdebord>void</task-effetsdebord>
-                    <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K37">
-                        <point-x>964</point-x>
-                        <point-y>629</point-y>
-                    </point>
-                    <task classkmad="tache.Task" id-task-point="K26" idkmad="K27">
-                        <task-name>Insérer ancien MDP</task-name>
-                        <task-numero>1.4.4.1</task-numero>
-                        <task-observation/>
-                        <task-executant>INT</task-executant>
-                        <task-modality>COGN</task-modality>
-                        <task-optional>false</task-optional>
-                        <task-interruptible>false</task-interruptible>
-                        <task-decomposition>LEAF</task-decomposition>
-                        <task-precondition>true</task-precondition>
-                        <task-effetsdebord>void</task-effetsdebord>
-                        <task-iteration>[1]</task-iteration>
-                        <point classkmad="tache.Point" idkmad="K26">
-                            <point-x>715</point-x>
-                            <point-y>779</point-y>
-                        </point>
-                    </task>
-                    <task classkmad="tache.Task" id-task-point="K30" idkmad="K31">
-                        <task-name>Insérer ancien MDP</task-name>
-                        <task-numero>1.4.4.2</task-numero>
-                        <task-observation/>
-                        <task-executant>INT</task-executant>
-                        <task-modality>COGN</task-modality>
-                        <task-optional>false</task-optional>
-                        <task-interruptible>false</task-interruptible>
-                        <task-decomposition>LEAF</task-decomposition>
-                        <task-precondition>true</task-precondition>
-                        <task-effetsdebord>void</task-effetsdebord>
-                        <task-iteration>[1]</task-iteration>
-                        <point classkmad="tache.Point" idkmad="K30">
-                            <point-x>900</point-x>
-                            <point-y>779</point-y>
-                        </point>
-                    </task>
-                    <task classkmad="tache.Task" id-task-point="K28" idkmad="K29">
-                        <task-name>Valider le nouveau MDP</task-name>
-                        <task-numero>1.4.4.3</task-numero>
-                        <task-observation/>
-                        <task-executant>INT</task-executant>
-                        <task-modality>COGN</task-modality>
-                        <task-optional>false</task-optional>
-                        <task-interruptible>false</task-interruptible>
-                        <task-decomposition>LEAF</task-decomposition>
-                        <task-precondition>true</task-precondition>
-                        <task-effetsdebord>void</task-effetsdebord>
-                        <task-iteration>[1]</task-iteration>
-                        <point classkmad="tache.Point" idkmad="K28">
-                            <point-x>1089</point-x>
-                            <point-y>779</point-y>
-                        </point>
-                    </task>
-                    <task classkmad="tache.Task" id-task-point="K57" idkmad="K58">
-                        <task-name>Vérification MDP</task-name>
-                        <task-numero>1.4.4.4</task-numero>
-                        <task-observation/>
-                        <task-executant>SYS</task-executant>
-                        <task-modality>COGN</task-modality>
-                        <task-optional>false</task-optional>
-                        <task-interruptible>false</task-interruptible>
-                        <task-decomposition>LEAF</task-decomposition>
-                        <task-precondition>true</task-precondition>
-                        <task-effetsdebord>void</task-effetsdebord>
-                        <task-iteration>[1]</task-iteration>
-                        <point classkmad="tache.Point" idkmad="K57">
-                            <point-x>1303</point-x>
-                            <point-y>779</point-y>
-                        </point>
-                    </task>
                 </task>
             </task>
             <task classkmad="tache.Task" id-task-point="K59" id-task-subtasks-list="K17 K41 " idkmad="K60">
@@ -251,7 +166,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K59">
-                    <point-x>1625</point-x>
+                    <point-x>1093</point-x>
                     <point-y>420</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K16" idkmad="K17">
@@ -267,7 +182,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K16">
-                        <point-x>1501</point-x>
+                        <point-x>969</point-x>
                         <point-y>590</point-y>
                     </point>
                 </task>
@@ -284,7 +199,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K40">
-                        <point-x>1698</point-x>
+                        <point-x>1166</point-x>
                         <point-y>590</point-y>
                     </point>
                     <task classkmad="tache.Task" id-task-point="K62" idkmad="K63">
@@ -300,7 +215,7 @@
                         <task-effetsdebord>void</task-effetsdebord>
                         <task-iteration>[1]</task-iteration>
                         <point classkmad="tache.Point" idkmad="K62">
-                            <point-x>1569</point-x>
+                            <point-x>1037</point-x>
                             <point-y>779</point-y>
                         </point>
                     </task>
@@ -317,7 +232,7 @@
                         <task-effetsdebord>void</task-effetsdebord>
                         <task-iteration>[1]</task-iteration>
                         <point classkmad="tache.Point" idkmad="K64">
-                            <point-x>1815</point-x>
+                            <point-x>1283</point-x>
                             <point-y>779</point-y>
                         </point>
                     </task>
@@ -337,8 +252,8 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K66">
-                <point-x>1806</point-x>
-                <point-y>215</point-y>
+                <point-x>1252</point-x>
+                <point-y>246</point-y>
             </point>
         </task>
     </task>
