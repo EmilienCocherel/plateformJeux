@@ -42,7 +42,7 @@
                 <task-modality>COGN</task-modality>
                 <task-optional>false</task-optional>
                 <task-interruptible>false</task-interruptible>
-                <task-decomposition>PAR</task-decomposition>
+                <task-decomposition>ENT</task-decomposition>
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
@@ -153,7 +153,7 @@
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K131" idkmad="K132">
-                    <task-name>maj base de donné</task-name>
+                    <task-name>maj base de données</task-name>
                     <task-numero>1.2.2</task-numero>
                     <task-observation/>
                     <task-executant>SYS</task-executant>
@@ -205,7 +205,7 @@
                 <point-y>234</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K18" idkmad="K19">
-                <task-name>selectionner partie</task-name>
+                <task-name>sélectionner partie</task-name>
                 <task-numero>2.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -217,8 +217,8 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K18">
-                    <point-x>1212</point-x>
-                    <point-y>399</point-y>
+                    <point-x>1282</point-x>
+                    <point-y>396</point-y>
                 </point>
             </task>
             <task classkmad="tache.Task" id-task-point="K12" id-task-subtasks-list="K48 K50 " idkmad="K13">
@@ -238,7 +238,7 @@
                     <point-y>399</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K47" idkmad="K48">
-                    <task-name>selectionner tableau de score</task-name>
+                    <task-name>sélectionner tableau de score</task-name>
                     <task-numero>2.2.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -250,7 +250,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K47">
-                        <point-x>1296</point-x>
+                        <point-x>1342</point-x>
                         <point-y>618</point-y>
                     </point>
                 </task>
@@ -289,7 +289,7 @@
                     <point-y>396</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K52" idkmad="K53">
-                    <task-name>selectionner abandonner</task-name>
+                    <task-name>sélectionner abandonner</task-name>
                     <task-numero>2.3.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -306,7 +306,7 @@
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K55" idkmad="K56">
-                    <task-name>fenetre confirmation</task-name>
+                    <task-name>fenêtre confirmation</task-name>
                     <task-numero>2.3.2</task-numero>
                     <task-observation/>
                     <task-executant>SYS</task-executant>
@@ -355,7 +355,7 @@
                             <point-y>819</point-y>
                         </point>
                         <task classkmad="tache.Task" id-task-point="K64" idkmad="K65">
-                            <task-name>selectionner confirmer</task-name>
+                            <task-name>sélectionner confirmer</task-name>
                             <task-numero>2.3.3.1.1</task-numero>
                             <task-observation/>
                             <task-executant>INT</task-executant>
@@ -367,12 +367,12 @@
                             <task-effetsdebord>void</task-effetsdebord>
                             <task-iteration>[1]</task-iteration>
                             <point classkmad="tache.Point" idkmad="K64">
-                                <point-x>1377</point-x>
-                                <point-y>1037</point-y>
+                                <point-x>2055</point-x>
+                                <point-y>1064</point-y>
                             </point>
                         </task>
                         <task classkmad="tache.Task" id-task-point="K67" idkmad="K68">
-                            <task-name>maj base de donné</task-name>
+                            <task-name>maj base de données</task-name>
                             <task-numero>2.3.3.1.2</task-numero>
                             <task-observation/>
                             <task-executant>SYS</task-executant>
@@ -384,7 +384,7 @@
                             <task-effetsdebord>void</task-effetsdebord>
                             <task-iteration>[1]</task-iteration>
                             <point classkmad="tache.Point" idkmad="K67">
-                                <point-x>1690</point-x>
+                                <point-x>2290</point-x>
                                 <point-y>1064</point-y>
                             </point>
                         </task>
@@ -446,7 +446,7 @@
                 <task-name>envoyer message</task-name>
                 <task-numero>3.2</task-numero>
                 <task-observation/>
-                <task-executant>SYS</task-executant>
+                <task-executant>ABS</task-executant>
                 <task-modality>COGN</task-modality>
                 <task-optional>true</task-optional>
                 <task-interruptible>false</task-interruptible>
@@ -459,7 +459,7 @@
                     <point-y>399</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K73" idkmad="K74">
-                    <task-name>selectionner envoyer message</task-name>
+                    <task-name>sélectionner envoyer message</task-name>
                     <task-numero>3.2.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -476,7 +476,7 @@
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K76" idkmad="K77">
-                    <task-name>ouvre fenetre messageri</task-name>
+                    <task-name>ouvre fenêtre messagerie</task-name>
                     <task-numero>3.2.2</task-numero>
                     <task-observation/>
                     <task-executant>SYS</task-executant>
@@ -510,7 +510,7 @@
                     <point-y>396</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K79" idkmad="K80">
-                    <task-name>selectionner adversaire</task-name>
+                    <task-name>sélectionner adversaire</task-name>
                     <task-numero>3.3.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -560,7 +560,7 @@
                         <point-y>651</point-y>
                     </point>
                     <task classkmad="tache.Task" id-task-point="K88" idkmad="K89">
-                        <task-name>slectionner pseudo</task-name>
+                        <task-name>sélectionner adversaire</task-name>
                         <task-numero>3.3.3.1</task-numero>
                         <task-observation/>
                         <task-executant>INT</task-executant>
@@ -577,7 +577,7 @@
                         </point>
                     </task>
                     <task classkmad="tache.Task" id-task-point="K82" idkmad="K83">
-                        <task-name>ouvre fenetre adversaire</task-name>
+                        <task-name>ouvre fenêtre adversaire</task-name>
                         <task-numero>3.3.3.2</task-numero>
                         <task-observation/>
                         <task-executant>SYS</task-executant>
@@ -609,11 +609,11 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K32">
-                <point-x>4533</point-x>
+                <point-x>4064</point-x>
                 <point-y>234</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K38" idkmad="K39">
-                <task-name>selectionner aide</task-name>
+                <task-name>sélectionner aide</task-name>
                 <task-numero>4.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -646,7 +646,7 @@
                     <point-y>399</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K94" idkmad="K95">
-                    <task-name>selectionner à propos</task-name>
+                    <task-name>sélectionner à propos</task-name>
                     <task-numero>4.2.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -663,7 +663,7 @@
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K97" idkmad="K98">
-                    <task-name>ouvre fenetre à propos</task-name>
+                    <task-name>ouvre fenêtre à propos</task-name>
                     <task-numero>4.2.2</task-numero>
                     <task-observation/>
                     <task-executant>SYS</task-executant>
@@ -697,7 +697,7 @@
                     <point-y>399</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K100" idkmad="K101">
-                    <task-name>selectionner tutoriel</task-name>
+                    <task-name>sélectionner tutoriel</task-name>
                     <task-numero>4.3.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -714,7 +714,7 @@
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K103" idkmad="K104">
-                    <task-name>ouvre fenetre tutoriel</task-name>
+                    <task-name>ouvre fenêtre tutoriel</task-name>
                     <task-numero>4.3.2</task-numero>
                     <task-observation/>
                     <task-executant>SYS</task-executant>
@@ -726,7 +726,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K103">
-                        <point-x>4578</point-x>
+                        <point-x>4562</point-x>
                         <point-y>651</point-y>
                     </point>
                 </task>
