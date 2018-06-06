@@ -15,11 +15,11 @@
         <task-effetsdebord>void</task-effetsdebord>
         <task-iteration>[1]</task-iteration>
         <point classkmad="tache.Point" idkmad="K44">
-            <point-x>112</point-x>
+            <point-x>259</point-x>
             <point-y>0</point-y>
         </point>
         <task classkmad="tache.Task" id-task-point="K200" idkmad="K201">
-            <task-name>Sélectionner les jeux</task-name>
+            <task-name>Sélectionner colonne menu "jeux"</task-name>
             <task-numero>1</task-numero>
             <task-observation/>
             <task-executant>INT</task-executant>
@@ -32,7 +32,7 @@
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K200">
                 <point-x>0</point-x>
-                <point-y>264</point-y>
+                <point-y>253</point-y>
             </point>
         </task>
         <task classkmad="tache.Task" id-task-point="K209" id-task-subtasks-list="K215 K204 " idkmad="K210">
@@ -48,8 +48,8 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K209">
-                <point-x>207</point-x>
-                <point-y>264</point-y>
+                <point-x>327</point-x>
+                <point-y>253</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K214" idkmad="K215">
                 <task-name>Sélectionner mes jeux</task-name>
@@ -64,7 +64,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K214">
-                    <point-x>118</point-x>
+                    <point-x>204</point-x>
                     <point-y>438</point-y>
                 </point>
             </task>
@@ -81,7 +81,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K203">
-                    <point-x>328</point-x>
+                    <point-x>414</point-x>
                     <point-y>438</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K206" idkmad="K207">
@@ -97,7 +97,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K206">
-                        <point-x>165</point-x>
+                        <point-x>251</point-x>
                         <point-y>621</point-y>
                     </point>
                 </task>
@@ -114,7 +114,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K47">
-                        <point-x>385</point-x>
+                        <point-x>471</point-x>
                         <point-y>618</point-y>
                     </point>
                 </task>
@@ -133,7 +133,7 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K212">
-                <point-x>543</point-x>
+                <point-x>663</point-x>
                 <point-y>253</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K233" idkmad="K234">
@@ -149,7 +149,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K233">
-                    <point-x>504</point-x>
+                    <point-x>624</point-x>
                     <point-y>438</point-y>
                 </point>
             </task>
@@ -166,7 +166,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K235">
-                    <point-x>737</point-x>
+                    <point-x>857</point-x>
                     <point-y>438</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K238" idkmad="K239">
@@ -182,7 +182,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K238">
-                        <point-x>659</point-x>
+                        <point-x>779</point-x>
                         <point-y>618</point-y>
                     </point>
                 </task>
@@ -199,7 +199,7 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K240">
-                        <point-x>858</point-x>
+                        <point-x>978</point-x>
                         <point-y>622</point-y>
                     </point>
                 </task>
