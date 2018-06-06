@@ -48,7 +48,7 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K188">
-                <point-x>261</point-x>
+                <point-x>311</point-x>
                 <point-y>263</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K194" idkmad="K195">
@@ -64,7 +64,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K194">
-                    <point-x>46</point-x>
+                    <point-x>140</point-x>
                     <point-y>443</point-y>
                 </point>
             </task>
@@ -81,7 +81,7 @@
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
                 <point classkmad="tache.Point" idkmad="K197">
-                    <point-x>334</point-x>
+                    <point-x>424</point-x>
                     <point-y>443</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K35" idkmad="K36">
@@ -97,8 +97,8 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K35">
-                        <point-x>284</point-x>
-                        <point-y>620</point-y>
+                        <point-x>348</point-x>
+                        <point-y>640</point-y>
                     </point>
                 </task>
                 <task classkmad="tache.Task" id-task-point="K41" idkmad="K42">
@@ -114,8 +114,8 @@
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
                     <point classkmad="tache.Point" idkmad="K41">
-                        <point-x>427</point-x>
-                        <point-y>620</point-y>
+                        <point-x>543</point-x>
+                        <point-y>640</point-y>
                     </point>
                 </task>
             </task>
@@ -133,7 +133,7 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
             <point classkmad="tache.Point" idkmad="K38">
-                <point-x>534</point-x>
+                <point-x>759</point-x>
                 <point-y>263</point-y>
             </point>
         </task>
