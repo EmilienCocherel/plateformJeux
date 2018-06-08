@@ -41,9 +41,9 @@
             <task-observation/>
             <task-executant>ABS</task-executant>
             <task-modality>COGN</task-modality>
-            <task-optional>false</task-optional>
+            <task-optional>true</task-optional>
             <task-interruptible>false</task-interruptible>
-            <task-decomposition>ENT</task-decomposition>
+            <task-decomposition>SEQ</task-decomposition>
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
@@ -99,8 +99,8 @@
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>while( true )</task-iteration>
             <point classkmad="tache.Point" idkmad="K337">
-                <point-x>574</point-x>
-                <point-y>158</point-y>
+                <point-x>625</point-x>
+                <point-y>152</point-y>
             </point>
             <task classkmad="tache.Task" id-task-point="K339" idkmad="K340">
                 <task-name>Séléctionner demande ami</task-name>
@@ -164,11 +164,11 @@
                         <task-effetsdebord>void</task-effetsdebord>
                         <task-iteration>[1]</task-iteration>
                         <point classkmad="tache.Point" idkmad="K309">
-                            <point-x>421</point-x>
-                            <point-y>696</point-y>
+                            <point-x>300</point-x>
+                            <point-y>745</point-y>
                         </point>
                     </task>
-                    <task classkmad="tache.Task" id-task-point="K315" id-task-subtasks-list="K319 K322 " idkmad="K316">
+                    <task classkmad="tache.Task" id-task-point="K315" id-task-subtasks-list="K319 K322 K410 " idkmad="K316">
                         <task-name>Actions</task-name>
                         <task-numero>3.2.1.2</task-numero>
                         <task-observation/>
@@ -181,8 +181,8 @@
                         <task-effetsdebord>void</task-effetsdebord>
                         <task-iteration>[1]</task-iteration>
                         <point classkmad="tache.Point" idkmad="K315">
-                            <point-x>739</point-x>
-                            <point-y>696</point-y>
+                            <point-x>673</point-x>
+                            <point-y>745</point-y>
                         </point>
                         <task classkmad="tache.Task" id-task-point="K318" idkmad="K319">
                             <task-name>Accepter une demande</task-name>
@@ -197,8 +197,8 @@
                             <task-effetsdebord>void</task-effetsdebord>
                             <task-iteration>[1]</task-iteration>
                             <point classkmad="tache.Point" idkmad="K318">
-                                <point-x>578</point-x>
-                                <point-y>879</point-y>
+                                <point-x>499</point-x>
+                                <point-y>928</point-y>
                             </point>
                         </task>
                         <task classkmad="tache.Task" id-task-point="K321" idkmad="K322">
@@ -214,8 +214,25 @@
                             <task-effetsdebord>void</task-effetsdebord>
                             <task-iteration>[1]</task-iteration>
                             <point classkmad="tache.Point" idkmad="K321">
-                                <point-x>782</point-x>
-                                <point-y>879</point-y>
+                                <point-x>728</point-x>
+                                <point-y>928</point-y>
+                            </point>
+                        </task>
+                        <task classkmad="tache.Task" id-task-point="K409" idkmad="K410">
+                            <task-name>MAJ Affichage + BD</task-name>
+                            <task-numero>3.2.1.2.3</task-numero>
+                            <task-observation/>
+                            <task-executant>SYS</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>false</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K409">
+                                <point-x>940</point-x>
+                                <point-y>928</point-y>
                             </point>
                         </task>
                     </task>
@@ -266,11 +283,11 @@
                         <task-effetsdebord>void</task-effetsdebord>
                         <task-iteration>[1]</task-iteration>
                         <point classkmad="tache.Point" idkmad="K343">
-                            <point-x>1158</point-x>
+                            <point-x>1127</point-x>
                             <point-y>696</point-y>
                         </point>
                     </task>
-                    <task classkmad="tache.Task" id-task-point="K357" id-task-subtasks-list="K360 K364 " idkmad="K358">
+                    <task classkmad="tache.Task" id-task-point="K357" id-task-subtasks-list="K360 K387 K364 " idkmad="K358">
                         <task-name>Valider</task-name>
                         <task-numero>3.2.2.3</task-numero>
                         <task-observation>Possible si nom valide
@@ -288,8 +305,25 @@
                             <point-y>696</point-y>
                         </point>
                         <task classkmad="tache.Task" id-task-point="K359" idkmad="K360">
-                            <task-name>Cliquer envoyer la demande</task-name>
+                            <task-name>Ajouter message</task-name>
                             <task-numero>3.2.2.3.1</task-numero>
+                            <task-observation/>
+                            <task-executant>INT</task-executant>
+                            <task-modality>COGN</task-modality>
+                            <task-optional>true</task-optional>
+                            <task-interruptible>false</task-interruptible>
+                            <task-decomposition>LEAF</task-decomposition>
+                            <task-precondition>true</task-precondition>
+                            <task-effetsdebord>void</task-effetsdebord>
+                            <task-iteration>[1]</task-iteration>
+                            <point classkmad="tache.Point" idkmad="K359">
+                                <point-x>1198</point-x>
+                                <point-y>928</point-y>
+                            </point>
+                        </task>
+                        <task classkmad="tache.Task" id-task-point="K386" idkmad="K387">
+                            <task-name>Cliquer envoyer la demande</task-name>
+                            <task-numero>3.2.2.3.2</task-numero>
                             <task-observation/>
                             <task-executant>INT</task-executant>
                             <task-modality>COGN</task-modality>
@@ -299,14 +333,14 @@
                             <task-precondition>true</task-precondition>
                             <task-effetsdebord>void</task-effetsdebord>
                             <task-iteration>[1]</task-iteration>
-                            <point classkmad="tache.Point" idkmad="K359">
-                                <point-x>1242</point-x>
-                                <point-y>853</point-y>
+                            <point classkmad="tache.Point" idkmad="K386">
+                                <point-x>1357</point-x>
+                                <point-y>928</point-y>
                             </point>
                         </task>
                         <task classkmad="tache.Task" id-task-point="K363" idkmad="K364">
                             <task-name>Envoyer la demande</task-name>
-                            <task-numero>3.2.2.3.2</task-numero>
+                            <task-numero>3.2.2.3.3</task-numero>
                             <task-observation/>
                             <task-executant>SYS</task-executant>
                             <task-modality>COGN</task-modality>
@@ -317,8 +351,8 @@
                             <task-effetsdebord>void</task-effetsdebord>
                             <task-iteration>[1]</task-iteration>
                             <point classkmad="tache.Point" idkmad="K363">
-                                <point-x>1442</point-x>
-                                <point-y>853</point-y>
+                                <point-x>1599</point-x>
+                                <point-y>928</point-y>
                             </point>
                         </task>
                     </task>

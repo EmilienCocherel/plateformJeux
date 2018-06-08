@@ -80,7 +80,6 @@
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
-<<<<<<< HEAD
                 <point classkmad="tache.Point" idkmad="K24">
                     <point-x>370</point-x>
                     <point-y>290</point-y>
@@ -106,50 +105,6 @@
             <task classkmad="tache.Task" id-task-point="K53" idkmad="K54">
                 <task-name>Pawn appears</task-name>
                 <task-numero>1.5</task-numero>
-=======
-                <point classkmad="tache.Point" idkmad="K68">
-                    <point-x>1297</point-x>
-                    <point-y>290</point-y>
-                </point>
-                <task classkmad="tache.Task" id-task-point="K71" idkmad="K72">
-                    <task-name>Click on surrend button</task-name>
-                    <task-numero>1.3.1</task-numero>
-                    <task-observation/>
-                    <task-executant>INT</task-executant>
-                    <task-modality>COGN</task-modality>
-                    <task-optional>false</task-optional>
-                    <task-interruptible>false</task-interruptible>
-                    <task-decomposition>LEAF</task-decomposition>
-                    <task-precondition>true</task-precondition>
-                    <task-effetsdebord>void</task-effetsdebord>
-                    <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K71">
-                        <point-x>1179</point-x>
-                        <point-y>435</point-y>
-                    </point>
-                </task>
-                <task classkmad="tache.Task" id-task-point="K74" idkmad="K75">
-                    <task-name>End the game</task-name>
-                    <task-numero>1.3.2</task-numero>
-                    <task-observation/>
-                    <task-executant>SYS</task-executant>
-                    <task-modality>COGN</task-modality>
-                    <task-optional>false</task-optional>
-                    <task-interruptible>false</task-interruptible>
-                    <task-decomposition>LEAF</task-decomposition>
-                    <task-precondition>true</task-precondition>
-                    <task-effetsdebord>void</task-effetsdebord>
-                    <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K74">
-                        <point-x>1419</point-x>
-                        <point-y>435</point-y>
-                    </point>
-                </task>
-            </task>
-            <task classkmad="tache.Task" id-task-point="K12" id-task-subtasks-list="K31 K34 " idkmad="K13">
-                <task-name>Pause the game</task-name>
-                <task-numero>1.4</task-numero>
->>>>>>> aurelien/master
                 <task-observation/>
                 <task-executant>SYS</task-executant>
                 <task-modality>COGN</task-modality>
@@ -163,43 +118,6 @@
                     <point-x>768</point-x>
                     <point-y>290</point-y>
                 </point>
-<<<<<<< HEAD
-=======
-                <task classkmad="tache.Task" id-task-point="K30" idkmad="K31">
-                    <task-name>Click on pause button</task-name>
-                    <task-numero>1.4.1</task-numero>
-                    <task-observation/>
-                    <task-executant>INT</task-executant>
-                    <task-modality>COGN</task-modality>
-                    <task-optional>false</task-optional>
-                    <task-interruptible>false</task-interruptible>
-                    <task-decomposition>LEAF</task-decomposition>
-                    <task-precondition>true</task-precondition>
-                    <task-effetsdebord>void</task-effetsdebord>
-                    <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K30">
-                        <point-x>1879</point-x>
-                        <point-y>435</point-y>
-                    </point>
-                </task>
-                <task classkmad="tache.Task" id-task-point="K33" idkmad="K34">
-                    <task-name>Pause the game</task-name>
-                    <task-numero>1.4.2</task-numero>
-                    <task-observation/>
-                    <task-executant>SYS</task-executant>
-                    <task-modality>COGN</task-modality>
-                    <task-optional>false</task-optional>
-                    <task-interruptible>false</task-interruptible>
-                    <task-decomposition>LEAF</task-decomposition>
-                    <task-precondition>true</task-precondition>
-                    <task-effetsdebord>void</task-effetsdebord>
-                    <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K33">
-                        <point-x>2071</point-x>
-                        <point-y>435</point-y>
-                    </point>
-                </task>
->>>>>>> aurelien/master
             </task>
         </task>
         <task classkmad="tache.Task" id-task-point="K164" id-task-subtasks-list="K96 K99 K102 " idkmad="K165">
