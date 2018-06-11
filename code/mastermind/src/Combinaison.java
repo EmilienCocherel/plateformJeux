@@ -1,55 +1,67 @@
 public class Combinaison {
 
-    private int p1, p2, p3, p4;
+    private Pion p1, p2, p3, p4;
 
-    public Combinaison(int p1, int p2, int p3, int p4){
+    public Combinaison(Pion p1, Pion p2, Pion p3, Pion p4){
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
         this.p4 = p4;
     }
-
-//    public void Combinaison(){ // À IMPLÉMENTER ???
-//
-//    }
 
 //    Getter et Setter
 
-    public int getP1() {
-        return p1;
+    public Pion getP1() {
+      return this.p1;
     }
 
-    public void setP1(int p1) {
-        this.p1 = p1;
+    public String getCouleurP1() {
+      return this.p1.getCouleur();
     }
 
-    public int getP2() {
-        return p2;
+    public void setP1(int val) {
+      this.p1.setVal(val);
     }
 
-    public void setP2(int p2) {
-        this.p2 = p2;
+    public Pion getP2() {
+      return this.p2;
     }
 
-    public int getP3() {
-        return p3;
+    public String getCouleurP2() {
+      return this.p2.getCouleur();
     }
 
-    public void setP3(int p3) {
-        this.p3 = p3;
+    public void setP2(int val) {
+      this.p2.setVal(val);
     }
 
-    public int getP4() {
-        return p4;
+    public Pion getP3() {
+      return this.p3;
     }
 
-    public void setP4(int p4) {
-        this.p4 = p4;
+    public String getCouleurP3() {
+      return this.p3.getCouleur();
+    }
+
+    public void setP3(int val) {
+      this.p3.setVal(val);
+    }
+
+    public Pion getP4() {
+      return this.p4;
+    }
+
+    public String getCouleurP4() {
+      return this.p4.getCouleur();
+    }
+
+    public void setP4(int val) {
+        this.p4.setVal(val);
     }
 
     @Override
     public boolean equals(Object o){
         Combinaison c2=(Combinaison)o;
-        return this.p1==c2.p1 && this.p2==c2.p2 && this.p3==c2.p3 && this.p4==c2.p4;
+        return this.p1.equals(c2.p1) && this.p2.equals(c2.p2) && this.p3.equals(c2.p3) && this.p4.equals(c2.p4);
     }
 }
