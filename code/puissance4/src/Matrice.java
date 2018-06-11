@@ -19,12 +19,22 @@ public class Matrice<T> {
 
 //    Getter et Setter
 
+	/**
+	 * @param colonne La colonne à rechercher
+	 * @param ligne La ligne à rechercher
+	 * @return L'objet à la position demandée
+	 */
     public T get(int ligne, int colonne) {
 		return this.tableau.get(ligne).get(colonne);
     }
 
-    public boolean set(int ligne, int colonne, T valeur){ // À IMPLEMENTER
-        return true;
+	/**
+	 * @param colonne La colonne à rechercher
+	 * @param ligne La ligne à rechercher
+	 * @param valeur La nouvelle valeur de la position donnée
+	 */
+    public boolean set(int ligne, int colonne, T valeur) {
+		return this.tableau.get(ligne).set(colonne, valeur);
     }
 
     public List<List<T>> getTableau() {
