@@ -37,15 +37,19 @@ public class Mastermind extends Application{
     }
 
     public void finPartie(){
+        Alert al = new Alert(Alert.AlertType.INFORMATION);
         if (this.estFinie()){
-
+            al.setHeaderText("Bravo !");
         }
         else{
-
+            al.setHeaderText("Zut...");
         }
     }
 
     public void verifCombi(Combinaison test){
+        if (estFinie()){
+
+        }
     }
 
     public void initManche(){ // À IMPLÉMENTER
@@ -195,6 +199,8 @@ public class Mastermind extends Application{
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
         Button brestart = new Button("tester");
+        TestCombi tc = new TestCombi(this,this.manche);
+        brestart.setOnAction(tc);
         res.getChildren().add(brestart);
         res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
         res.getChildren().add(this.choixCouleursP1());
