@@ -133,6 +133,8 @@ public class GUI extends Application {
 				new Joueur("Cyber Nat", 2, 18)
 				);
 
+		stage.setTitle("Connect 4");
+
 		stage.setScene(this.laScene());
 		stage.show();
 	}
