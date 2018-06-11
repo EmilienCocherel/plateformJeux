@@ -26,7 +26,7 @@ public class Puissance4 {
     }
 
     public boolean jouer(int colonne) {
-		int res;
+		boolean res;
 		Joueur joueur;
 		if (this.actuel == 1) {
 			joueur = this.joueur1;
@@ -36,13 +36,12 @@ public class Puissance4 {
 			this.actuel = 1;
 		}
 		res = this.plateau.placerPion(joueur.getPion(), colonne);
-		if (res == 1) {
+		if (res) {
 			this.gagnants.add(joueur);
 			joueur1.reset();
 			joueur2.reset();
 			plateau.reset();
-		}
-		if (res == 0)
+		} else
 			joueur.retirerPion();
 		return res;
     }
@@ -60,12 +59,8 @@ public class Puissance4 {
     private Integer getNbPions(String joueur){ // À IMPLÉMENTER
         return null;
     }
-    public List<Map<Joueur, Integer>> getRound() {
-        return round;
-    }
-
-    public void setRound(List<Map<Joueur, Integer>> round) {
-        this.round = round;
+    public List<Joueur> getGagnants() {
+        return this.gagnants;
     }
 
     public int getId() {
