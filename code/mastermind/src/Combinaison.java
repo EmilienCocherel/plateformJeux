@@ -19,12 +19,44 @@ public class Combinaison {
         return p1;
     }
 
+    public String getCouleurP1() {
+        if(this.p1 == 0){
+          return "Rouge";
+        }
+        if(this.p1 == 1){
+          return "bleu";
+        }
+        if(this.p1 == 2){
+          return "vert";
+        }
+        if(this.p1 == 3){
+          return "jaune";
+        }
+        return null;
+    }
+
     public void setP1(int p1) {
         this.p1 = p1;
     }
 
     public int getP2() {
         return p2;
+    }
+
+    public String getCouleurP2() {
+        if(this.p2 == 0){
+          return "Rouge";
+        }
+        if(this.p2 == 1){
+          return "bleu";
+        }
+        if(this.p2 == 2){
+          return "vert";
+        }
+        if(this.p2 == 3){
+          return "jaune";
+        }
+        return null;
     }
 
     public void setP2(int p2) {
@@ -35,12 +67,44 @@ public class Combinaison {
         return p3;
     }
 
+    public String getCouleurP3() {
+        if(this.p3 == 0){
+          return "Rouge";
+        }
+        if(this.p3 == 1){
+          return "bleu";
+        }
+        if(this.p3 == 2){
+          return "vert";
+        }
+        if(this.p3 == 3){
+          return "jaune";
+        }
+        return null;
+    }
+
     public void setP3(int p3) {
         this.p3 = p3;
     }
 
     public int getP4() {
         return p4;
+    }
+
+    public String getCouleurP4() {
+        if(this.p4 == 0){
+          return "Rouge";
+        }
+        if(this.p4 == 1){
+          return "bleu";
+        }
+        if(this.p4 == 2){
+          return "vert";
+        }
+        if(this.p4 == 3){
+          return "jaune";
+        }
+        return null;
     }
 
     public void setP4(int p4) {

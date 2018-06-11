@@ -33,6 +33,10 @@ public class Manche {
         return this.j;
     }
 
+    public Combinaison getCombi() {
+        return combi;
+    }
+
     public int getNbCoup(){
         return this.nbCoup;
     }
