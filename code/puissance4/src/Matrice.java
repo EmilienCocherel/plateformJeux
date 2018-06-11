@@ -109,23 +109,4 @@ public class Matrice<T> {
 		}
 		return res;
 	}
-	/**
-	 * @return Un ensemble des diagonales de matrice.
-	 */
-	public Set<List<T>> getDiagonales() {
-		Set<List<T>> res = new HashSet<>();
-		// Diagonales principales
-		for (int nb=0; nb<this.getNbLignes(); nb++) {
-			res.add(this.getDiagonalePrincipale(0, nb));
-			if (nb>0)
-				res.add(this.getDiagonaleSecondaire(nb, 0));
-		}
-		// Diagonales secondaires
-		for (int nb=0; nb<this.getNbLignes(); nb++) {
-			res.add(this.getDiagonaleSecondaire(0, nb));
-			if (nb>0)
-				res.add(this.getDiagonaleSecondaire(nb, 6));
-		}
-		return res;
-	}
 }
