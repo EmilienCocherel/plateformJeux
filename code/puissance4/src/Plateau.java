@@ -28,6 +28,7 @@ public class Plateau extends Matrice<Integer> {
     }
 
 	public boolean aGagne(int colonne, int ligne) {
+		Integer pion = this.get(ligne, colonne);
 		// Vérifier la ligne
 		List<Integer> l = this.getLigne(ligne);
 		for (int i = 0; i < l.size() - 4; i++)
