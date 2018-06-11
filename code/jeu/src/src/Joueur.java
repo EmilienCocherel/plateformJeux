@@ -1,31 +1,29 @@
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
-import java.util.List;
-import java.util.ArrayList;
 
 public class Joueur {
     private int identifiant;
     private String pseudo;
     private String motdepasse;
-    private int niveau;
     private char sexe;
     private boolean abonne;
+    private int niveau;
 	  private byte[] avatar;
-    private String email;
-    private List<Joueur> listeAmi;
+    private String emailJo;
+    private boolean activeJo;
 
 
-    public Joueur(int identifiant, String pseudo, String motdepasse, int niveau, char sexe, boolean abonne, byte[] avatar) {
+    public Joueur(int identifiant, String pseudo, String motdepasse, char sexe, boolean abonne, int niveau, byte[] avatar, String emailJo, boolean activeJo) {
         this.identifiant = identifiant;
         this.pseudo = pseudo;
         this.motdepasse = motdepasse;
-        this.niveau = niveau;
         this.sexe = sexe;
         this.abonne = abonne;
+        this.niveau = niveau;
         this.avatar=avatar;
-        this.email="";
-        this.listeAmi=new ArrayList<>();
+        this.emailJo=emailJo;
+        this.activeJo = activeJo;
     }
 
 
@@ -83,5 +81,21 @@ public class Joueur {
 
     public void setAvatar(byte[] avatar) {
         this.avatar = avatar;
+    }
+
+    public String getEmailJo(){
+      return this.emailJo;
+    }
+
+    public void setEmailJo(String mail){
+      this.emailJo = mail;
+    }
+
+    public boolean activeJo(){
+      return this.activeJo;
+    }
+
+    public void setActiveJo(boolean actif){
+      this.activeJo = actif;
     }
 }
