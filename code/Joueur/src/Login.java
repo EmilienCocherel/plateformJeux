@@ -72,7 +72,6 @@ public class Login extends Application {
         Hlogin.getChildren().addAll(Llogin, Tlogin);
         Hlogin.setPadding(new Insets(20, 0, 10, 20));
 
-        //51, 52, 57
         HBox Hmdp = new HBox();
         Label Lmdp = new Label("Mot de passe :  ");
         Lmdp.setTextFill(Color.rgb(196, 196, 196));
