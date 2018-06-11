@@ -56,29 +56,36 @@ public class JoueurBD {
 		ps.executeUpdate();
 		return numJ;
 	}
-  //
-  //
+
+
 	void effacerJoueur(int num) throws SQLException{
-	// 	Statement s = laConnexion.createStatement();
-	// 	s.executeUpdate("Delete from JOUEUR where numJoueur =" + num);
+		Statement s = laConnexion.createStatement();
+		s.executeUpdate("Delete from JOUEUR where numJoueur =" + num);
 	}
-  //
+
+
   void majJoueur(Joueur j) throws SQLException{
-	// 	PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?,sexe = ?,abonne = ?,	niveau = ?,	avatar = ? where numJoueur =" + j.getIdentifiant());
-	// 	ps.setString(1,j.getPseudo());
-	// 	ps.setString(2,j.getMotdepasse());
-	// 	ps.setString(3,j.getSexe() + "");
-	// 	String abo = "N";
-	// 	if (j.isAbonne()){
-	// 		abo = "O";
-	// 	}
-	// 	ps.setString(4,abo);
-	// 	ps.setInt(5,j.getNiveau());
-	// 	ps.setBytes(6,j.getAvatar());
-	// 	ps.executeUpdate();
-  //
+		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ? where idJo =" + j.getIdentifiant());
+		ps.setString(1,j.getPseudo());
+		ps.setString(2,j.getMotdepasse());
+		ps.setString(3,j.getSexe() + "");
+		String abo = "N";
+		if (j.isAbonne()){
+			abo = "O";
+		}
+		ps.setString(4,abo);
+		ps.setInt(5,j.getNiveau());
+		ps.setBytes(6,j.getAvatar());
+		ps.setString(7,j.getEmailJo());
+		String actif = "N";
+		if (j.activeJo()){
+			actif = "O";
+		}
+		ps.setString(8,actif);
+		ps.executeUpdate();
+
   }
-  //
+
   ArrayList<Joueur> listeDesJoueurs() throws SQLException{
 	// 	ArrayList<Joueur> Liste = new ArrayList<Joueur>();
 	// 	Statement s = laConnexion.createStatement();
