@@ -17,14 +17,10 @@ public class Matrice<T> {
 		}
     }
 
-    public Matrice(){
-
-    }
-
 //    Getter et Setter
 
-    public T get(int ligne, int colonne){ // À IMPLEMENTER
-        return null;
+    public T get(int ligne, int colonne) {
+		return this.tableau.get(ligne).get(colonne);
     }
 
     public boolean set(int ligne, int colonne, T valeur){ // À IMPLEMENTER
