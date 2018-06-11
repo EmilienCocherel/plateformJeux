@@ -6,8 +6,6 @@ public class Puissance4 {
     private int id;
 	private Joueur joueur1, joueur2;
 	private Plateau plateau;
-	/** Le joueur dont c'est le tour. */
-	private int actuel;
 
 	/**
 	 * @param joueur1 Le premier joueur
@@ -17,15 +15,14 @@ public class Puissance4 {
 		this.plateau = new Plateau();
 		this.joueur1 = j1;
 		this.joueur2 = j2;
-		this.actuel = 1;
 		this.id = -1;
     }
 
-    public Integer getPion(int ligne, int colonne){ // À IMPLÉMENTER
+    public Integer getPion(int ligne, int colonne) {
         return this.plateau.get(ligne, colonne);
     }
 
-    public boolean jouer(String joueur, int colonne){ // À IMPLÉMENTER
+    public boolean jouer(String joueur, int colonne) {
         return true;
     }
 
