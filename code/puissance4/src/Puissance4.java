@@ -30,7 +30,7 @@ public class Puissance4 {
     }
 
     public Integer getPion(int ligne, int colonne){ // À IMPLÉMENTER
-        return null;
+        return this.plateau.get(ligne, colonne);
     }
 
     public boolean jouer(String joueur, int colonne){ // À IMPLÉMENTER
