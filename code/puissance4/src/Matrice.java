@@ -79,11 +79,11 @@ public class Matrice<T> {
 	}
 
 	/**
-	 * @param colonne La colonne de départ de la diagonale.
 	 * @param ligne La ligne de départ de la diagonale.
+	 * @param colonne La colonne de départ de la diagonale.
 	 * @return La diagonale indiquée
 	 */
-	private List<T> getDiagonalePrincipale(int colonne, int ligne) {
+	public List<T> getDiagonalePrincipale(int ligne, int colonne) {
 		List<T> res = new ArrayList<>();
 		int x = colonne, y = ligne;
 		while (y < this.getNbLignes() && x < this.getNbColonnes()) {
@@ -95,11 +95,11 @@ public class Matrice<T> {
 	}
 
 	/**
-	 * @param colonne La colonne de départ de la diagonale.
 	 * @param ligne La ligne de départ de la diagonale.
+	 * @param colonne La colonne de départ de la diagonale.
 	 * @return La diagonale indiquée
 	 */
-	private List<T> getDiagonaleSecondaire(int colonne, int ligne) {
+	public List<T> getDiagonaleSecondaire(int ligne, int colonne) {
 		List<T> res = new ArrayList<>();
 		int x = colonne, y = ligne;
 		while (y >= 0 && x < this.getNbColonnes()) {
