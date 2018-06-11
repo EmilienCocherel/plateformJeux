@@ -13,9 +13,10 @@ public class Joueur {
     private String emailJo;
     private boolean activeJo;
     private boolean souvenir;
+    private boolean admin;
 
 
-    public Joueur(int identifiant, String pseudo, String motdepasse, char sexe, boolean abonne, int niveau, byte[] avatar, String emailJo, boolean activeJo, boolean souvenir) {
+    public Joueur(int identifiant, String pseudo, String motdepasse, char sexe, boolean abonne, int niveau, byte[] avatar, String emailJo, boolean activeJo, boolean souvenir, boolean admin) {
         this.identifiant = identifiant;
         this.pseudo = pseudo;
         this.motdepasse = motdepasse;
@@ -26,6 +27,7 @@ public class Joueur {
         this.emailJo=emailJo;
         this.activeJo = activeJo;
         this.souvenir = souvenir;
+        this.admin = admin;
     }
 
 
@@ -107,5 +109,13 @@ public class Joueur {
 
     public void setSouvenir(boolean souv){
       this.souvenir = souv;
+    }
+
+    public boolean isAdmin(){
+      return this.admin;
+    }
+
+    public void setAdmin(boolean admi){
+      this.admin = admi;
     }
 }

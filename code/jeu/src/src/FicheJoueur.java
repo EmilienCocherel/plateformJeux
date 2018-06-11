@@ -12,12 +12,13 @@ public class FicheJoueur extends GridPane{
     private Label titre;
     private TextField numJoueur;
     private TextField pseudo;
-    private PasswordField passwd;
+    private TextField passwd;
     private CheckBox abonne;
     private VueImageAvatar avatar;
     private TextField emailJo;
     private CheckBox activeJo;
     private CheckBox souvenir;
+    private CheckBox admin;
 
     private ComboBox<String> cb;
     private ToggleGroup gr;
@@ -52,6 +53,7 @@ public class FicheJoueur extends GridPane{
         this.abonne.setSelected(j.isAbonne());
         this.activeJo.setSelected(j.isActive());
         this.souvenir.setSelected(j.isRemembered());
+        this.admin.setSelected(j.isAdmin());
 
         this.avatar.setAvatar(j.getAvatar());
         switch(j.getNiveau()){
@@ -87,8 +89,9 @@ public class FicheJoueur extends GridPane{
         boolean abonne = this.abonne.isSelected();
         boolean actif = this.activeJo.isSelected();
         boolean resterCo = this.souvenir.isSelected();
+        boolean estAdmin = this.admin.isSelected();
 	    String nomFicImage="toto";
-	    return new Joueur(id,pseudo,motdepasse,sexe, abonne, niveau, this.avatar.getAvatar(), email, actif, resterCo);
+	    return new Joueur(id,pseudo,motdepasse,sexe, abonne, niveau, this.avatar.getAvatar(), email, actif, resterCo, estAdmin);
     }
 
     void viderFiche(){
@@ -97,7 +100,9 @@ public class FicheJoueur extends GridPane{
         this.pseudo.setText("");
         this.emailJo.setText("");
         this.abonne.setSelected(false);
-        // this.activeJo.setSelected(false);
+        this.activeJo.setSelected(false);
+        this.souvenir.setSelected(false);
+        this.admin.setSelected(false);
         this.gr.selectToggle(this.femme);
         this.cb.setValue("Débutant");
         this.avatar.resetAvatar();
@@ -118,10 +123,11 @@ public class FicheJoueur extends GridPane{
         this.numJoueur = new TextField();
         this.emailJo= new TextField();
         this.pseudo = new TextField();
-        this.passwd = new PasswordField();
+        this.passwd = new TextField();
         this.abonne = new CheckBox("Abonné");
         this.activeJo = new CheckBox("Actif");
-        this.souvenir = new CheckBox("Souviens");
+        this.souvenir = new CheckBox("Souvenu");
+        this.admin = new CheckBox("Adminstrateur");
 
         this.avatar = new VueImageAvatar("./img/avatar.png");
         this.avatar.setFitWidth(100);
@@ -159,9 +165,10 @@ public class FicheJoueur extends GridPane{
         this.add(this.cb,2,5);
         this.add(this.abonne,1,6);
         this.add(this.activeJo,2,6);
-        this.add(this.souvenir,3,6);
-        this.add(tp,1,7,2,1);
-        this.add(bouton,1,8,2,1);
+        this.add(this.souvenir,1,7);
+        this.add(this.admin,2,7);
+        this.add(tp,1,8,2,1);
+        this.add(bouton,1,9,2,1);
         this.add(this.avatar,3,0);
 
     }

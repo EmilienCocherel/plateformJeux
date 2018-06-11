@@ -30,12 +30,18 @@ public class JoueurBD {
 		String email = res.getString("emailJo");
 		boolean actif = res.getString("activeJo").equals("O");
 		boolean resterCo = res.getString("souvenir").equals("O");
+		boolean admin = res.getString("admin").equals("O");
 		res.close();
-		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, resterCo);
+		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, resterCo, admin);
   }
 
+	// Rapport rechercheRapportParNom(String nom) throws SQLException{
+	// 	Statement s = laConnexion.createStatement();
+	// 	ResultSet res = s.executeQuery("Select * from RAPPORT where idJo =" + num);
+	// }
+
 	int insererJoueur( Joueur j) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?)");
+		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?,?)");
 		int numJ = this.maxNumJoueur() + 1;
 		ps.setInt(1,numJ);
 		ps.setString(2,j.getPseudo());
@@ -59,6 +65,11 @@ public class JoueurBD {
 			resterCo = "O";
 		}
 		ps.setString(10,resterCo);
+		String estadmin = "N";
+		if (j.isAdmin()){
+			estadmin = "O";
+		}
+		ps.setString(11,estadmin);
 		ps.executeUpdate();
 		return numJ;
 	}
@@ -66,12 +77,12 @@ public class JoueurBD {
 
 	void effacerJoueur(int num) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		s.executeUpdate("Delete from JOUEUR where numJoueur =" + num);
+		s.executeUpdate("Delete from JOUEUR where idJo =" + num);
 	}
 
 
   void majJoueur(Joueur j) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, resterCo = ? where idJo =" + j.getIdentifiant());
+		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, souvenir = ?, admin = ? where idJo =" + j.getIdentifiant());
 		ps.setString(1,j.getPseudo());
 		ps.setString(2,j.getMotdepasse());
 		ps.setString(3,j.getSexe() + "");
@@ -94,6 +105,11 @@ public class JoueurBD {
 			resterCo = "O";
 		}
 		ps.setString(10, resterCo);
+		String estAdmin = "N";
+		if (j.isAdmin()){
+			estAdmin = "O";
+		}
+		ps.setString(10, estAdmin);
 		ps.executeUpdate();
 
   }
@@ -113,7 +129,8 @@ public class JoueurBD {
 			String mail = res.getString("emailJo");
 			boolean actif = res.getString("activeJo").equals("O");
 			boolean resterCo = res.getString("souvenir").equals("O");
-			Liste.add(new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, mail, actif, resterCo));
+			boolean estAdmin = res.getString("admin").equals("O");
+			Liste.add(new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, mail, actif, resterCo, estAdmin));
 		}
 		res.close();
 		return Liste;
