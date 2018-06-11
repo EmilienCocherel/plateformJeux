@@ -28,7 +28,7 @@ public class PlateauGUI extends GridPane {
 		Integer pion;
 		for (int i=0; i < 49; i++) {
 			pion = this.plateau.get(i%7, i/7);
-			c = new Circle(50);
+			c = new Circle(45);
 			PlateauGUI.setCouleur(pion, c);
 			this.pions.add(c);
 			this.add(c, i%7, i/7+1);
