@@ -27,7 +27,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 	 */
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		RadioButton rb =(RadioButton) actionEvent.getSource();
+		BoutonRadio rb =(BoutonRadio) actionEvent.getSource();
 		if (rb.getPion()==1){
 			if (rb.getText()=="rouge"){
 				partie.getCombi().setP1(0);
