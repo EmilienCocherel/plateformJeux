@@ -94,7 +94,7 @@ public class Matrice<T> {
 	private List<T> getDiagonalePrincipale(int colonne, int ligne) {
 		List<T> res = new ArrayList<>();
 		int x = colonne, y = ligne;
-		while (y >= this.getNbLignes() && x < this.getNbColonnes()) {
+		while (y < this.getNbLignes() && x < this.getNbColonnes()) {
 			res.add(this.get(x, y));
 			x++;
 			y++;
