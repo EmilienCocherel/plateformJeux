@@ -36,12 +36,4 @@ public class Matrice<T> {
     public boolean set(int ligne, int colonne, T valeur) {
 		return this.tableau.get(ligne).set(colonne, valeur);
     }
-
-    public List<List<T>> getTableau() {
-        return tableau;
-    }
-
-    public void setTableau(List<List<T>> tableau) {
-        this.tableau = tableau;
-    }
 }
