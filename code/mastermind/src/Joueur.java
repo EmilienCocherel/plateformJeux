@@ -26,5 +26,4 @@ public class Joueur {
     public int getScore(){return this.score;}
 
     public void setScore(int val){this.score=val;}
-
 }
