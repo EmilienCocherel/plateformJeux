@@ -60,8 +60,6 @@ public class Mastermind extends Application{
         this.id = id;
     }
 
-
-
     public void setJ1(Joueur j1) {
         this.j1 = j1;
     }
@@ -246,10 +244,10 @@ public class Mastermind extends Application{
         public void start(Stage stage) {
             // création du modèle
             this.combis=new ArrayList<>();
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combi = new Combinaison(0,0,0,0);
+            this.combis.add(new Combinaison(new Pion(1),new Pion(2),new Pion(2),new Pion(1)));
+            this.combis.add(new Combinaison(new Pion(1),new Pion(3),new Pion(1),new Pion(1)));
+            this.combis.add(new Combinaison(new Pion(2),new Pion(1),new Pion(1),new Pion(1)));
+            this.combi = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
             stage.setTitle("jeu du pendu");
             this.j1=new Joueur();
             this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
