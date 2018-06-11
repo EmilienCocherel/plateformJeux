@@ -20,6 +20,7 @@ public class Mastermind extends Application{
     private Label p3;
     private Label p4;
     private Combinaison combi;
+    private Manche manche;
 
 
     public Combinaison getCombi(){
@@ -27,10 +28,21 @@ public class Mastermind extends Application{
     }
 
     public boolean estFinie(){ // À IMPLÉMENTER
-        return true;
+        if (this.manche.estFini() && this.manche.getNum() == 3){
+            return true;
+        }
+        else{ // Mème si la personne à fait ses 12 coups mais qu'aucun n'est gagnant
+            return false;
+        }
     }
 
-    public void finPartie(){ // À IMPLÉMENTER
+    public void finPartie(){
+        if (this.estFinie()){
+
+        }
+        else{
+
+        }
     }
 
     public void verifCombi(Combinaison test){
@@ -198,7 +210,7 @@ public class Mastermind extends Application{
         private FlowPane titre(){
             FlowPane res = new FlowPane();
             res.setPadding(new Insets(10,10,10,10));
-            Label nom = new Label("Matsermind");
+            Label nom = new Label("Mastermind");
             res.getChildren().add(nom);
             res.setAlignment(Pos.CENTER);
             return res;
@@ -256,7 +268,6 @@ public class Mastermind extends Application{
             stage.setScene(this.laScene());
             stage.show();
             this.majAffichage();
-            // démarrage du chrono
         }
 
         /**
