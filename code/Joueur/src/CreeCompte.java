@@ -28,7 +28,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-/*public class CreeCompte extends Application {
+public class CreeCompte extends Application {
 
 
 
@@ -45,4 +45,3 @@ import java.util.List;
         launch(args);
     }
 }
-*/
