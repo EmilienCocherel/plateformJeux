@@ -46,4 +46,10 @@ public class Combinaison {
     public void setP4(int p4) {
         this.p4 = p4;
     }
+
+    @Override
+    public boolean equals(Object o){
+        Combinaison c2=(Combinaison)o;
+        return this.p1==c2.p1 && this.p2==c2.p2 && this.p3==c2.p3 && this.p4==c2.p4;
+    }
 }
