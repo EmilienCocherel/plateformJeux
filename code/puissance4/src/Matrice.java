@@ -55,6 +55,18 @@ public class Matrice<T> {
 	}
 
 	/**
+	 * @param ligne La ligne souhaitée
+	 * @return La ligne demandée en paramètre
+	 */
+	public List<T> getLigne(int ligne) {
+		List<T> res = new ArrayList<>();
+		for (int colonne = 0; colonne < this.getNbColonnes(); colonne ++) {
+			res.add(this.get(ligne, colonne));
+		}
+		return res;
+	}
+
+	/**
 	 * @return Un ensemble des lignes de la matrice.
 	 */
 	public Set<List<T>> getLignes() {
