@@ -248,7 +248,7 @@ public class Mastermind extends Application{
             this.combis.add(new Combinaison(new Pion(1),new Pion(3),new Pion(1),new Pion(1)));
             this.combis.add(new Combinaison(new Pion(2),new Pion(1),new Pion(1),new Pion(1)));
             this.combi = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
-            stage.setTitle("jeu du pendu");
+            stage.setTitle("Mastermind");
             this.j1=new Joueur();
             this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
             stage.setScene(this.laScene());

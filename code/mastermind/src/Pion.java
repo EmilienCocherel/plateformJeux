@@ -15,15 +15,18 @@ public class Pion{
 
   public String getCouleur(){
     if(this.val == 0){
-      return "Rouge";
+      return "";
     }
     if(this.val == 1){
-      return "bleu";
+      return "rouge";
     }
     if(this.val == 2){
-      return "vert";
+      return "bleu";
     }
     if(this.val == 3){
+      return "vert";
+    }
+    if(this.val == 4){
       return "jaune";
     }
     return null;
