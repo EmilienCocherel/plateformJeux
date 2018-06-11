@@ -1,5 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Matrice<T> {
     private List<List<T>> tableau;
@@ -50,5 +52,21 @@ public class Matrice<T> {
 	 */
 	public int getNbLignes() {
 		return this.tableau.size();
+	}
+
+	/**
+	 * @return Un ensemble des lignes de la matrice.
+	 */
+	public Set<List<T>> getLignes() {
+		Set<List<T>> res = new HashSet<>();
+		List<T> liste;
+		for (int lig=0; lig<this.getNbLignes(); lig++) {
+			liste = new ArrayList<>();
+			for (int col=0; col<this.getNbColonnes(); col++) {
+				liste.add(this.get(lig, col));
+			}
+			res.add(liste);
+		}
+		return res;
 	}
 }
