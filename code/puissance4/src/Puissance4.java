@@ -2,10 +2,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Puissance4 {
-    private List<Map<Joueur,Integer>> round;
+    private List<Joueur> gagnants;
     private int id;
 	private Joueur joueur1, joueur2;
 	private Plateau plateau;
+	/** Joueur actuel */
+	private int actuel;
 
 	/**
 	 * @param joueur1 Le premier joueur
@@ -16,17 +18,36 @@ public class Puissance4 {
 		this.joueur1 = j1;
 		this.joueur2 = j2;
 		this.id = -1;
+		this.actuel = 1;
     }
 
     public Integer getPion(int ligne, int colonne) {
         return this.plateau.get(ligne, colonne);
     }
 
-    public boolean jouer(String joueur, int colonne) {
-        return true;
+    public boolean jouer(int colonne) {
+		int res;
+		Joueur joueur;
+		if (this.actuel == 1) {
+			joueur = this.joueur1;
+			this.actuel = 2;
+		} else {
+			joueur = this.joueur2;
+			this.actuel = 1;
+		}
+		res = this.plateau.placerPion(joueur.getPion(), colonne);
+		if (res == 1) {
+			this.gagnants.add(joueur);
+			joueur1.reset();
+			joueur2.reset();
+			plateau.reset();
+		}
+		if (res == 0)
+			joueur.retirerPion();
+		return res;
     }
 
-    private boolean retirerPion(){ // À IMPLÉMENTER
+    private boolean retirerPion() { // À IMPLÉMENTER
         return true;
     }
 

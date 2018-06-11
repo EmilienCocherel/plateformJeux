@@ -1,12 +1,13 @@
 public class Joueur {
     private String nom;
     private Integer pion;
-    private int nbPions;
+    private int nbPions, nbPionsInitial;
 
     public Joueur(String nom, Integer pion, int nbPions){
         this.nom = nom;
         this.pion = pion;
         this.nbPions = nbPions;
+        this.nbPionsInitial = nbPions;
     }
 
 	/**
@@ -33,4 +34,11 @@ public class Joueur {
     public int getNbPions() {
         return nbPions;
     }
+
+	/**
+	 * Remettre à zéro pour le round suivant
+	 */
+	public void reset() {
+		this.nbPions = this.nbPionsInitial;
+	}
 }

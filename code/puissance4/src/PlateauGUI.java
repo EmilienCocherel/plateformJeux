@@ -10,10 +10,9 @@ public class PlateauGUI extends GridPane {
 	private Plateau plateau;
 	private List<Button> pions;
 
-	public PlateauGUI(Plateau plateau) {
+	public PlateauGUI(Plateau plateau, EventHandler<ActionEvent> actionJouer) {
 		this.plateau = plateau;
 		this.pions = new ArrayList<>();
-		EventHandler<ActionEvent> handler = new ActionJouer(this);
 		Button b;
 		Integer pion;
 		for (int i=0; i < 49; i++) {
@@ -22,7 +21,7 @@ public class PlateauGUI extends GridPane {
 				b = new Button("n");
 			else
 				b = new Button(pion.toString());
-			b.setOnAction(handler);
+			b.setOnAction(actionJouer);
 			this.pions.add(b);
 			this.add(b, i%7, i/7);
 		}
@@ -35,5 +34,9 @@ public class PlateauGUI extends GridPane {
 			if (this.pions.get(i).equals("n") && pion != null)
 				this.pions.get(i).setText(pion.toString());
 		}
+	}
+
+	public List<Button> getPions() {
+		return this.pions;
 	}
 }

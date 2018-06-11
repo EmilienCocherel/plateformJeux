@@ -80,4 +80,12 @@ public class Plateau extends Matrice<Integer> {
 		return false;
     }
 
+	/**
+	 * Remettre à zéro pour le round suivant
+	 */
+	public void reset() {
+		for (int ligne = 0; ligne < this.getNbLignes(); ligne ++)
+			for (int colonne = 0; colonne < this.getNbColonnes(); colonne ++)
+				this.set(ligne, colonne, null);
+	}
 }

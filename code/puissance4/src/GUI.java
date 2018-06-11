@@ -40,7 +40,7 @@ public class GUI extends Application {
 	 * @return le clavier avec les 27 caractères et le controleur des touches
 	 */
 	private PlateauGUI lePlateau() {
-		this.plateau = new PlateauGUI(this.puissance4.getPlateau());
+		this.plateau = new PlateauGUI(this.puissance4.getPlateau(), new ActionJouer(this.puissance4, this));
 		this.plateau.setAlignment(Pos.BOTTOM_CENTER);
 		this.plateau.setPadding(new Insets(15));
 		this.plateau.setHgap(2);
@@ -85,6 +85,10 @@ public class GUI extends Application {
 	public void majAffichage() {
 		// A implémenter
 		this.plateau.maj();
+	}
+
+	public PlateauGUI getPlateau() {
+		return this.plateau;
 	}
 
 	/**
