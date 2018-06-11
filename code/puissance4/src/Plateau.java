@@ -27,6 +27,48 @@ public class Plateau extends Matrice<Integer> {
 			return 0;
     }
 
+	public boolean aGagne(int colonne, int ligne) {
+		// Vérifier la ligne
+		List<Integer> l = this.getLigne(ligne);
+		for (int i = 0; i < l.size() - 4; i++)
+			if (l.get(i) == pion && l.get(i+1) == pion && l.get(i+2) == pion && l.get(i+3) == pion)
+				return true;
+
+		// Vérifier la colonne
+		List<Integer> c = this.getColonne(ligne);
+		for (int i = 0; i < c.size() - 4; i++)
+			if (c.get(i) == pion && c.get(i+1) == pion && c.get(i+2) == pion && c.get(i+3) == pion)
+				return true;
+
+		// Vérifier la diagonale principale
+		int diagonale_x = ligne, diagonale_y = colonne;
+		while (diagonale_x != 0 && diagonale_y != 0) {
+			diagonale_x --;
+			diagonale_y --;
+		}
+		List<Integer> d = this.getDiagonalePrincipale(diagonale_y, diagonale_x);
+		if (d.size() >= 4)
+			for (int i = 0; i < d.size() - 4; i++)
+				if (d.get(i) == pion && d.get(i+1) == pion && d.get(i+2) == pion && d.get(i+3) == pion)
+					return true;
+
+		// Vérifier la diagonale secondaire
+		diagonale_x = ligne;
+		diagonale_y = colonne;
+		while (diagonale_x != 0 && diagonale_y != 7) {
+			diagonale_x --;
+			diagonale_y ++;
+		}
+		d = this.getDiagonaleSecondaire(diagonale_y, diagonale_x);
+		if (d.size() >= 4)
+			for (int i = 0; i < d.size() - 4; i++)
+				if (d.get(i) == pion && d.get(i+1) == pion && d.get(i+2) == pion && d.get(i+3) == pion)
+					return true;
+
+		// Si le pion n'a pas gagné
+		return false;
+	}
+
 	/**
 	 * @param colonne La colonne à vérifier
 	 * @return Si il est possible de jouer à cette colonne
