@@ -44,4 +44,11 @@ public class Matrice<T> {
 	public int getNbColonnes() {
 		return this.tableau.get(0).size();
 	}
+
+	/**
+	 * @return Le nombre de lignes de la matrice
+	 */
+	public int getNbLignes() {
+		return this.tableau.size();
+	}
 }
