@@ -1,7 +1,10 @@
 <<<<<<< HEAD
-.xml
+=======
+.iml
+>>>>>>> emilien/master
 =======
 *.xml
 *.class
 *.iml
 >>>>>>> projet/test
+>>>>>>> emilien/master
