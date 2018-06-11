@@ -19,8 +19,14 @@ public class Plateau extends Matrice<Integer> {
 			return false;
     }
 
-    private boolean caseLibre(int colonne) { // À IMPLÉMENTER
-        return true;
+	/**
+	 * @param colonne La colonne à vérifier
+	 * @return Si il est possible de jouer à cette colonne
+	 */
+    private boolean caseLibre(int colonne) {
+		if (0 <= colonne && colonne < this.getNbColonnes() && this.get(colonne, 0) == null)
+			return true;
+		return false;
     }
 
 }
