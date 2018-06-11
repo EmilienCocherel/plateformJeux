@@ -37,4 +37,11 @@ public class Matrice<T> {
     public boolean set(int ligne, int colonne, T valeur) {
 		return this.tableau.get(ligne).set(colonne, valeur) != null;
     }
+
+	/**
+	 * @return Le nombre de colonnes de la matrice
+	 */
+	public int getNbColonnes() {
+		return this.tableau.get(0).size();
+	}
 }
