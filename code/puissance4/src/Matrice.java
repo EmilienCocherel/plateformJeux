@@ -79,22 +79,6 @@ public class Matrice<T> {
 	}
 
 	/**
-	 * @return Un ensemble des colonnes de la matrice.
-	 */
-	public Set<List<T>> getColonnes() {
-		Set<List<T>> res = new HashSet<>();
-		List<T> liste;
-		for (int col=0; col<this.getNbColonnes(); col++) {
-			liste = new ArrayList<>();
-			for (int lig=0; lig<this.getNbLignes(); lig++) {
-				liste.add(this.get(lig, col));
-			}
-			res.add(liste);
-		}
-		return res;
-	}
-
-	/**
 	 * @param colonne La colonne de départ de la diagonale.
 	 * @param ligne La ligne de départ de la diagonale.
 	 * @return La diagonale indiquée
