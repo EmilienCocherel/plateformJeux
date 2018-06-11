@@ -83,8 +83,11 @@ public class GUI extends Application {
 	 * raffraichit l'affichage en fonction du modèle
 	 */
 	public void majAffichage() {
+		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		// A implémenter
 		this.plateau.maj();
+		this.joueurs.get(0).setText(j1.getNom() + " " + j1.getPion() + " " + j1.getNbPions());
+		this.joueurs.get(1).setText(j2.getNom() + " " + j2.getPion() + " " + j2.getNbPions());
 	}
 
 	public PlateauGUI getPlateau() {
