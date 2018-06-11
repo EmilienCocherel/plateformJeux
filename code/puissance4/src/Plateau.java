@@ -1,7 +1,6 @@
-public class Plateau extends Matrice {
-
+public class Plateau extends Matrice<Integer> {
     public Plateau(){
-        super();
+        super(7, 7);
     }
 
     public boolean placerPion(int colonne, Integer pion){ // À IMPLÉMENTER
