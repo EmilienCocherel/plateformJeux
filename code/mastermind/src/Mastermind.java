@@ -1,12 +1,15 @@
+import java.util.ArrayList;
+
 public class Mastermind {
     private Joueur j1,j2;
     private int id;
-    private Combinaison combi;
+    private ArrayList<Combinaison> combis;
 
-    public Mastermind(Joueur j1, Joueur j2, Combinaison combi){
+    public Mastermind(Joueur j1, Joueur j2,int id){
+        this.id=id;
         this.j1 = j1;
         this.j2 = j2;
-        this.combi = combi;
+        this.combis=new ArrayList<>();
     }
 
     public boolean estFinie(){ // À IMPLÉMENTER
@@ -16,11 +19,16 @@ public class Mastermind {
     public void finPartie(){ // À IMPLÉMENTER
     }
 
-    public void verifCombi(){ // À IMPLÉMENTER
+    public void verifCombi(Combinaison test){
     }
 
     public void initManche(){ // À IMPLÉMENTER
 
+    }
+
+    public void prochaineManche(Manche precedent){
+        precedent.getJoueur().setScore(precedent.getJoueur().getScore()+precedent.getNbCoup());
+        precedent.getJoueur().nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueur(),precedent.getNum()+1));
     }
 
 
@@ -46,13 +54,7 @@ public class Mastermind {
         this.id = id;
     }
 
-    public Combinaison getCombi() {
-        return combi;
-    }
 
-    public void setCombi(Combinaison combi) {
-        this.combi = combi;
-    }
 
     public void setJ1(Joueur j1) {
         this.j1 = j1;
