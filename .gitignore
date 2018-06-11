@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 .xml
 <<<<<<< HEAD
 =======
 .iml
 >>>>>>> Projet/master
+=======
+*.xml
+*.class
+*.iml
+>>>>>>> Projet/test

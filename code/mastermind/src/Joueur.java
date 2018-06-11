@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 public class Joueur {
-    private int id;
     private int score;
     private ArrayList<Manche> manches;
 
-    public Joueur(int id){
-        this.id = id;
+    public Joueur(){
+        this.score=0;
+        this.manches=new ArrayList<>();
     }
 
     public void jouerPartie(){ // À IMPLÉMENTER
@@ -19,15 +19,11 @@ public class Joueur {
 
 //    Getter et Setter
 
+    public Manche getMancheCourante(){
+        return this.manches.get(this.manches.size()-1);
+    }
+
     public int getScore(){return this.score;}
 
     public void setScore(int val){this.score=val;}
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 }
