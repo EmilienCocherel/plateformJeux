@@ -9,7 +9,7 @@ import java.util.Optional;
 /**
  * Controleur des radio boutons gérant le niveau
  */
-public class ChoixCouleur1 implements EventHandler<ActionEvent> {
+public class ChoixCouleur implements EventHandler<ActionEvent> {
 
 
 	private Mastermind partie;
