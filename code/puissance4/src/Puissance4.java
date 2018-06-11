@@ -54,4 +54,8 @@ public class Puissance4 {
     public void setId(int id) {
         this.id = id;
     }
+
+	public Plateau getPlateau() {
+		return this.plateau;
+	}
 }
