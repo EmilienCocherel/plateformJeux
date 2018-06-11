@@ -69,4 +69,20 @@ public class Matrice<T> {
 		}
 		return res;
 	}
+
+	/**
+	 * @return Un ensemble des colonnes de la matrice.
+	 */
+	public Set<List<T>> getColonnes() {
+		Set<List<T>> res = new HashSet<>();
+		List<T> liste;
+		for (int col=0; col<this.getNbColonnes(); col++) {
+			liste = new ArrayList<>();
+			for (int lig=0; lig<this.getNbLignes(); lig++) {
+				liste.add(this.get(lig, col));
+			}
+			res.add(liste);
+		}
+		return res;
+	}
 }
