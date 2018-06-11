@@ -1,6 +1,8 @@
 import java.util.List;
 import java.util.ArrayList;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.layout.GridPane;
 import javafx.scene.control.Button;
 
@@ -11,6 +13,7 @@ public class PlateauGUI extends GridPane {
 	public PlateauGUI(Plateau plateau) {
 		this.plateau = plateau;
 		this.pions = new ArrayList<>();
+		EventHandler<ActionEvent> handler = new ActionJouer(this);
 		Button b;
 		Integer pion;
 		for (int i=0; i < 49; i++) {
@@ -19,6 +22,7 @@ public class PlateauGUI extends GridPane {
 				b = new Button("n");
 			else
 				b = new Button(pion.toString());
+			b.setOnAction(handler);
 			this.pions.add(b);
 			this.add(b, i%7, i/7);
 		}

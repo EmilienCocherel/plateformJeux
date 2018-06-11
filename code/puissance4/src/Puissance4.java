@@ -58,4 +58,12 @@ public class Puissance4 {
 	public Plateau getPlateau() {
 		return this.plateau;
 	}
+
+	public Joueur getJoueur1() {
+		return this.joueur1;
+	}
+
+	public Joueur getJoueur2() {
+		return this.joueur2;
+	}
 }

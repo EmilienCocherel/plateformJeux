@@ -11,6 +11,7 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 import java.io.File;
+import java.util.List;
 import java.util.ArrayList;
 
 /**
@@ -29,6 +30,10 @@ public class GUI extends Application {
 	 * Le plateau
 	 */
 	private PlateauGUI plateau;
+	/**
+	 * Les joueurs
+	 */
+	private List<Label> joueurs;
 
 
 	/**
@@ -48,11 +53,25 @@ public class GUI extends Application {
 	}
 
 	/**
+	 * @return Les joueurs
+	 */
+	private VBox lesJoueurs() {
+		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
+		this.joueurs = new ArrayList<>();
+		this.joueurs.add(new Label(j1.getNom() + " " + j1.getPion().toString() + " " + j1.getNbPions()));
+		this.joueurs.add(new Label(j2.getNom() + " " + j2.getPion().toString() + " " + j2.getNbPions()));
+		VBox res = new VBox(2);
+		res.getChildren().addAll(this.joueurs);
+		return res;
+	}
+
+	/**
 	 * @return le graphe de scène de la vue à partir de methodes précédantes
 	 */
 	private Scene laScene() {
 		BorderPane cont = new BorderPane();
-		cont.setBottom(this.lePlateau());
+		cont.setCenter(this.lePlateau());
+		cont.setRight(this.lesJoueurs());
 		cont.setBackground(new Background(new BackgroundFill(
 						Color.color(174.0/255, 229.0/255, 237.0/255),
 						CornerRadii.EMPTY,
