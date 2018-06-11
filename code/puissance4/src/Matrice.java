@@ -1,4 +1,5 @@
 import java.util.List;
+import java.util.ArrayList;
 
 public class Matrice<T> {
     private List<List<T>> tableau;
@@ -9,10 +10,10 @@ public class Matrice<T> {
 	 */
     public Matrice(int lignes, int colonnes) {
 		this.tableau = new ArrayList<>();
-		for (int i = 0; i < hauteur; i++) {
-			this.matrice.add(new ArrayList<T>());
-			for (int j = 0; j < largeur; j++) {
-				this.matrice.get(i).add(null);
+		for (int i = 0; i < lignes; i++) {
+			this.tableau.add(new ArrayList<T>());
+			for (int j = 0; j < colonnes; j++) {
+				this.tableau.get(i).add(null);
 			}
 		}
     }
@@ -34,6 +35,6 @@ public class Matrice<T> {
 	 * @param valeur La nouvelle valeur de la position donnée
 	 */
     public boolean set(int ligne, int colonne, T valeur) {
-		return this.tableau.get(ligne).set(colonne, valeur);
+		return this.tableau.get(ligne).set(colonne, valeur) != null;
     }
 }
