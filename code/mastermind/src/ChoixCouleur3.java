@@ -9,14 +9,14 @@ import java.util.Optional;
 /**
  * Controleur des radio boutons gérant le niveau
  */
-public class ChoixCouleur implements EventHandler<ActionEvent> {
+public class ChoixCouleur3 implements EventHandler<ActionEvent> {
 
 
 	private Mastermind partie;
 	private Manche manche;
 
 
-	public ChoixCouleur(Mastermind partie,Manche manche) {
+	public ChoixCouleur3(Mastermind partie,Manche manche) {
 	    this.partie = partie;
 	    this.manche = manche;
 	}
@@ -29,16 +29,16 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent actionEvent) {
 		RadioButton rb =(RadioButton) actionEvent.getSource();
 		if (rb.getText()=="rouge"){
-			partie.getCombi().setP1(0);
+			partie.getCombi().setP3(0);
 		}
 		if (rb.getText()=="bleu"){
-			partie.getCombi().setP1(1);
+			partie.getCombi().setP3(1);
 		}
 		if (rb.getText()=="vert"){
-			partie.getCombi().setP1(2);
+			partie.getCombi().setP3(2);
 		}
 		if (rb.getText()=="jaune"){
-			partie.getCombi().setP1(3);
+			partie.getCombi().setP3(3);
 		}
 		partie.majAffichage();
 	}
