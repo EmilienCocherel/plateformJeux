@@ -1,22 +1,29 @@
-public class Joueur {
-    private int id;
+import java.util.ArrayList;
 
-    public Joueur(int id){
-        this.id = id;
+public class Joueur {
+    private int score;
+    private ArrayList<Manche> manches;
+
+    public Joueur(){
+        this.score=0;
+        this.manches=new ArrayList<>();
     }
 
     public void jouerPartie(){ // À IMPLÉMENTER
 
     }
 
+    public void nouvelleManche(Manche manche){
+        this.manches.add(manche);
+    }
+
 //    Getter et Setter
 
-    public int getId() {
-        return id;
+    public Manche getMancheCourante(){
+        return this.manches.get(this.manches.size()-1);
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    public int getScore(){return this.score;}
+
+    public void setScore(int val){this.score=val;}
 }
-

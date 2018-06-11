@@ -102,9 +102,15 @@
                     <point-y>290</point-y>
                 </point>
             </task>
+<<<<<<< HEAD
+            <task classkmad="tache.Task" id-task-point="K12" id-task-subtasks-list="K31 K34 " idkmad="K13">
+                <task-name>Pause the game</task-name>
+                <task-numero>1.4</task-numero>
+=======
             <task classkmad="tache.Task" id-task-point="K53" idkmad="K54">
                 <task-name>Pawn appears</task-name>
                 <task-numero>1.5</task-numero>
+>>>>>>> Projet/master
                 <task-observation/>
                 <task-executant>SYS</task-executant>
                 <task-modality>COGN</task-modality>
@@ -118,6 +124,43 @@
                     <point-x>768</point-x>
                     <point-y>290</point-y>
                 </point>
+<<<<<<< HEAD
+                <task classkmad="tache.Task" id-task-point="K30" idkmad="K31">
+                    <task-name>Click on pause button</task-name>
+                    <task-numero>1.4.1</task-numero>
+                    <task-observation/>
+                    <task-executant>INT</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K30">
+                        <point-x>1879</point-x>
+                        <point-y>435</point-y>
+                    </point>
+                </task>
+                <task classkmad="tache.Task" id-task-point="K33" idkmad="K34">
+                    <task-name>Pause the game</task-name>
+                    <task-numero>1.4.2</task-numero>
+                    <task-observation/>
+                    <task-executant>SYS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K33">
+                        <point-x>2071</point-x>
+                        <point-y>435</point-y>
+                    </point>
+                </task>
+=======
+>>>>>>> Projet/master
             </task>
         </task>
         <task classkmad="tache.Task" id-task-point="K164" id-task-subtasks-list="K96 K99 K102 " idkmad="K165">
@@ -284,8 +327,13 @@
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
+<<<<<<< HEAD
+                <point classkmad="tache.Point" idkmad="K27">
+                    <point-x>3355</point-x>
+=======
                 <point classkmad="tache.Point" idkmad="K98">
                     <point-x>1846</point-x>
+>>>>>>> Projet/master
                     <point-y>290</point-y>
                 </point>
                 <task classkmad="tache.Task" id-task-point="K110" idkmad="K111">
@@ -294,14 +342,40 @@
                     <task-observation/>
                     <task-executant>INT</task-executant>
                     <task-modality>COGN</task-modality>
-                    <task-optional>true</task-optional>
+<<<<<<< HEAD
+                    <task-optional>false</task-optional>
                     <task-interruptible>false</task-interruptible>
                     <task-decomposition>LEAF</task-decomposition>
                     <task-precondition>true</task-precondition>
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K44">
+                        <point-x>3218</point-x>
+                        <point-y>435</point-y>
+                    </point>
+                </task>
+                <task classkmad="tache.Task" id-task-point="K50" idkmad="K51">
+                    <task-name>Opens empty message window</task-name>
+                    <task-numero>2.3.2</task-numero>
+                    <task-observation/>
+                    <task-executant>SYS</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+=======
+                    <task-optional>true</task-optional>
+>>>>>>> Projet/master
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+<<<<<<< HEAD
+                    <point classkmad="tache.Point" idkmad="K50">
+                        <point-x>3495</point-x>
+=======
                     <point classkmad="tache.Point" idkmad="K110">
                         <point-x>1314</point-x>
+>>>>>>> Projet/master
                         <point-y>435</point-y>
                     </point>
                 </task>
