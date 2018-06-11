@@ -119,14 +119,13 @@ public class FicheJoueur extends GridPane{
         this.pseudo = new TextField();
         this.passwd = new PasswordField();
         this.abonne = new CheckBox("Abonné");
+        this.activeJo = new CheckBox("Actif");
         this.avatar = new VueImageAvatar("./img/avatar.png");
         this.avatar.setFitWidth(100);
         this.avatar.setPreserveRatio(true);
         this.avatar.setSmooth(true);
         this.cb=new ComboBox<String>(
                 FXCollections.observableArrayList("Expert","Medium","Débutant"));
-        this.cb2=new ComboBox<String>(
-                FXCollections.observableArrayList("Actif"));
 
         this.homme = new RadioButton("Homme");
         this.femme = new RadioButton("Femme");
@@ -145,19 +144,20 @@ public class FicheJoueur extends GridPane{
         this.bouton.setOnAction(new ControleurBouton(this.AppliJDBC));
 
         this.add(this.titre,1,0,2,1);
-        this.add(this.cb2, 1,1,1,1);
-        this.add(this.emailJo, 1,1,2,1);
-        this.add(new Label("Numéro:"),1,1);
-        this.add(this.numJoueur,2,1);
-        this.add(new Label("Pseudo:"),1,2);
-        this.add(this.pseudo,2,2);
-        this.add(new Label("Mot de passe:"),1,3);
-        this.add(this.passwd,2,3);
-        this.add(new Label("Niveau:"),1,4);
-        this.add(this.cb,2,4);
-        this.add(this.abonne,1,5);
-        this.add(tp,1,6,2,1);
-        this.add(bouton,1,7,2,1);
+        this.add(new Label("Email:"),1,1);
+        this.add(this.emailJo, 2,1,1,1);
+        this.add(new Label("Numéro:"),1,2);
+        this.add(this.numJoueur,2,2);
+        this.add(new Label("Pseudo:"),1,3);
+        this.add(this.pseudo,2,3);
+        this.add(new Label("Mot de passe:"),1,4);
+        this.add(this.passwd,2,4);
+        this.add(new Label("Niveau:"),1,5);
+        this.add(this.cb,2,5);
+        this.add(this.abonne,1,6);
+        this.add(this.activeJo,2,6);
+        this.add(tp,1,7,2,1);
+        this.add(bouton,1,8,2,1);
         this.add(this.avatar,3,0);
 
     }
