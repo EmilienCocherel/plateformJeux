@@ -8,7 +8,6 @@ public class JoueurBD {
 	}
 
 	int maxNumJoueur() throws SQLException{
-		// PreparedStatement ps = laConnexion.prepareStatement("");
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select max(idJo) as lemax from JOUEUR");
 		res.next();
@@ -33,24 +32,29 @@ public class JoueurBD {
 		res.close();
 		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif);
   }
-  //
+
 	int insererJoueur( Joueur j) throws SQLException{
-	// 	PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?)");
-	// 	int numJ = this.maxNumJoueur() + 1;
-	// 	ps.setInt(1,numJ);
-	// 	ps.setString(2,j.getPseudo());
-	// 	ps.setString(3,j.getMotdepasse());
-	// 	ps.setString(4,j.getSexe() + "");
-	// 	String abo = "N";
-	// 	if (j.isAbonne()){
-	// 		abo = "O";
-	// 	}
-	// 	ps.setString(5,abo);
-	// 	ps.setInt(6,j.getNiveau());
-	// 	ps.setBytes(7,j.getAvatar());
-	// 	ps.executeUpdate();
-		return -1;
-  //
+		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?)");
+		int numJ = this.maxNumJoueur() + 1;
+		ps.setInt(1,numJ);
+		ps.setString(2,j.getPseudo());
+		ps.setString(3,j.getMotdepasse());
+		ps.setString(4,j.getSexe() + "");
+		String abo = "N";
+		if (j.isAbonne()){
+			abo = "O";
+		}
+		ps.setString(5,abo);
+		ps.setInt(6,j.getNiveau());
+		ps.setBytes(7,j.getAvatar());
+		ps.setString(8,j.getEmailJo());
+		String actif = "N";
+		if (j.activeJo()){
+			actif = "O";
+		}
+		ps.setString(9,actif);
+		ps.executeUpdate();
+		return numJ;
 	}
   //
   //
