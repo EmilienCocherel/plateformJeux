@@ -1,5 +1,4 @@
 public class Joueur {
-
     private String nom;
     private Integer pion;
     private int nbPions;
@@ -10,8 +9,15 @@ public class Joueur {
         this.nbPions = nbPions;
     }
 
-    public boolean retirerPion(){ // À IMPLÉMENTER
-        return true;
+	/**
+	 * Retire un pion au joueur
+	 */
+    public boolean retirerPion() {
+		if (this.nbPions > 0) {
+			this.nbPions --;
+			return true;
+		} else
+			return false;
     }
 
 //    Getter et Setter
@@ -20,23 +26,11 @@ public class Joueur {
         return nom;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
     public Integer getPion() {
         return pion;
     }
 
-    public void setPion(Integer pion) {
-        this.pion = pion;
-    }
-
     public int getNbPions() {
         return nbPions;
-    }
-
-    public void setNbPions(int nbPions) {
-        this.nbPions = nbPions;
     }
 }
