@@ -18,8 +18,8 @@ import java.util.ArrayList;
  * Vue du Puissance 4
  */
 public class GUI extends Application {
-	/*
-	 * modèle du jeu
+	/**
+	 * Modèle du jeu
 	 **/
 	private Puissance4 puissance4;
 	/**
@@ -41,7 +41,7 @@ public class GUI extends Application {
 	 */
 	private PlateauGUI lePlateau() {
 		this.plateau = new PlateauGUI(this.puissance4.getPlateau(), new ActionJouer(this.puissance4, this));
-		this.plateau.setAlignment(Pos.BOTTOM_CENTER);
+		this.plateau.setAlignment(Pos.CENTER);
 		this.plateau.setPadding(new Insets(15));
 		this.plateau.setHgap(2);
 		this.plateau.setVgap(2);
@@ -66,12 +66,39 @@ public class GUI extends Application {
 	}
 
 	/**
+	 * @return La barre des menus
+	 */
+	private MenuBar barreMenus() {
+		MenuBar res = new MenuBar();
+		Menu game = new Menu("Game");
+		Menu player = new Menu("Player");
+		Menu help = new Menu("Help");
+		game.getItems().addAll(
+				new MenuItem("Leave"),
+				new MenuItem("Surrender"),
+				new MenuItem("Score tab"),
+				new MenuItem("Back to game")
+				);
+		player.getItems().addAll(
+				new MenuItem("Opponent's stats"),
+				new MenuItem("Send messages")
+				);
+		help.getItems().addAll(
+				new MenuItem("About"),
+				new MenuItem("Tutorial")
+				);
+		res.getMenus().addAll(game, player, help);
+		return res;
+	}
+
+	/**
 	 * @return le graphe de scène de la vue à partir de methodes précédantes
 	 */
 	private Scene laScene() {
 		BorderPane cont = new BorderPane();
 		cont.setCenter(this.lePlateau());
 		cont.setRight(this.lesJoueurs());
+		cont.setTop(this.barreMenus());
 		cont.setBackground(new Background(new BackgroundFill(
 						Color.color(174.0/255, 229.0/255, 237.0/255),
 						CornerRadii.EMPTY,
