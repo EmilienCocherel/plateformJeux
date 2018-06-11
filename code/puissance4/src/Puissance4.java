@@ -21,14 +21,6 @@ public class Puissance4 {
 		this.id = -1;
     }
 
-	/**
-	 * @return Si la partie est finie ou non.
-	 */
-    public boolean estFinie() {
-		return this.plateau.aGagne(this.joueur1.getPion())
-			|| this.plateau.aGagne(this.joueur2.getPion());
-    }
-
     public Integer getPion(int ligne, int colonne){ // À IMPLÉMENTER
         return this.plateau.get(ligne, colonne);
     }
