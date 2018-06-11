@@ -103,7 +103,7 @@ public class GUI extends Application {
 						Color.color(174.0/255, 229.0/255, 237.0/255),
 						CornerRadii.EMPTY,
 						Insets.EMPTY)));
-		return new Scene(cont,700,800);
+		return new Scene(cont,1024,768);
 	}
 
 	/**
