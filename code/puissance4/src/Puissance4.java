@@ -4,10 +4,23 @@ import java.util.Map;
 public class Puissance4 {
     private List<Map<Joueur,Integer>> round;
     private int id;
+	private Joueur joueur1, joueur2;
+	private Plateau plateau;
+	/** Le joueur dont c'est le tour. */
+	private int actuel;
 
+	/**
+	 * @param joueur1 Le premier joueur
+	 * @param joueur2 Le second joueur
+	 */
     public Puissance4(Joueur j1, Joueur j2){
-
+		this.plateau = new Plateau();
+		this.joueur1 = j1;
+		this.joueur2 = j2;
+		this.actuel = 1;
+		this.id = -1;
     }
+
     public boolean estFinie(){ // À IMPLÉMENTER
         return true;
     }
