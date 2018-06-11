@@ -87,23 +87,25 @@ public class JoueurBD {
   }
 
   ArrayList<Joueur> listeDesJoueurs() throws SQLException{
-	// 	ArrayList<Joueur> Liste = new ArrayList<Joueur>();
-	// 	Statement s = laConnexion.createStatement();
-	// 	ResultSet res = s.executeQuery("Select * from JOUEUR");
-	// 	while (res.next()){
-	// 		int numJ = res.getInt("numJoueur");
-	// 		String nomJ = res.getString("pseudo");
-	// 		String mdp = res.getString("motdepasse");
-	// 		int level = res.getInt("niveau");
-	// 		String sexe = res.getString("sexe");
-	// 		boolean abo = res.getString("abonne").equals("O");
-	// 		byte[] image = res.getBytes("avatar");
-	// 		Liste.add(new Joueur(numJ, nomJ, mdp, level, sexe.charAt(0), abo, image));
-	// 	}
-	// 	res.close();
-		return null;
+		ArrayList<Joueur> Liste = new ArrayList<Joueur>();
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR");
+		while (res.next()){
+			int numJ = res.getInt("idJo");
+			String nomJ = res.getString("pseudo");
+			String mdp = res.getString("motdepasse");
+			int level = res.getInt("niveau");
+			String sexe = res.getString("sexe");
+			boolean abo = res.getString("abonne").equals("O");
+			byte[] image = res.getBytes("avatar");
+			String mail = res.getString("emailJo");
+			boolean actif = res.getString("activeJo").equals("O");
+			Liste.add(new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, mail, actif));
+		}
+		res.close();
+		return Liste;
   }
-  //
+
   String rapportMessage() throws SQLException{
 	// 	Statement st = laConnexion.createStatement();
 	// 	ResultSet rs=st.executeQuery(
