@@ -1,11 +1,20 @@
 import java.util.List;
 
 public class Matrice<T> {
-
     private List<List<T>> tableau;
 
-    public Matrice(int lignes, int colonnes){
-
+	/**
+	 * @param lignes Le nombre de lignes de la nouvelle matrice
+	 * @param colonnes Le nombre de colonnes de la nouvelle matrice
+	 */
+    public Matrice(int lignes, int colonnes) {
+		this.tableau = new ArrayList<>();
+		for (int i = 0; i < hauteur; i++) {
+			this.matrice.add(new ArrayList<T>());
+			for (int j = 0; j < largeur; j++) {
+				this.matrice.get(i).add(null);
+			}
+		}
     }
 
     public Matrice(){
