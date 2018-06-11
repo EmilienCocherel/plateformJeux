@@ -86,7 +86,7 @@ public class Mastermind extends Application{
         BoutonRadio rexpert = new BoutonRadio("jaune",1);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur1 actionNiveau = new ChoixCouleur1(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -114,7 +114,7 @@ public class Mastermind extends Application{
         BoutonRadio rexpert = new BoutonRadio("jaune",2);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur2 actionNiveau = new ChoixCouleur2(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -142,7 +142,7 @@ public class Mastermind extends Application{
         BoutonRadio rexpert = new BoutonRadio("jaune",3);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur3 actionNiveau = new ChoixCouleur3(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -171,7 +171,7 @@ public class Mastermind extends Application{
         BoutonRadio rexpert = new BoutonRadio("jaune",4);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur4 actionNiveau = new ChoixCouleur4(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
