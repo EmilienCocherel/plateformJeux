@@ -54,6 +54,7 @@ public class CreeCompte extends Application {
     }
 
     public GridPane creerCompte(){
+
         GridPane res = new GridPane();
 
         Font fonttitre = new Font("Arial", 25);
@@ -64,6 +65,34 @@ public class CreeCompte extends Application {
         title.setFont(fonttitre);
         title.setAlignment(Pos.TOP_LEFT);
 
+        HBox Hnom = new HBox();
+        Label Lnom = new Label("* Nom :   ");
+        Lnom.setTextFill(Color.rgb(196, 196, 196));
+        TextField Tnom = new TextField();
+        Hnom.getChildren().addAll(Lnom, Tnom);
+        Hnom.setPadding(new Insets(20, 0, 10, 20));
+
+        HBox Hemail = new HBox();
+        Label Lemail = new Label("* Email :  ");
+        Lemail.setTextFill(Color.rgb(196, 196, 196));
+        TextField Temail = new TextField();
+        Hemail.getChildren().addAll(Lemail, Temail);
+        Hemail.setPadding(new Insets(20, 0, 10, 20));
+
+        HBox Hmdp = new HBox();
+        Label Lmdp = new Label("* Entrez nouveau mot de passe :  ");
+        Lmdp.setTextFill(Color.rgb(196, 196, 196));
+        PasswordField Tmdp = new PasswordField();
+        Hmdp.getChildren().addAll(Lmdp, Tmdp);
+        Hmdp.setPadding(new Insets(10, 0, 0, 20));
+
+        res.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
+        res.setMaxSize(500, 400);
+
+        res.add(title,0,0);
+        res.add(Hnom,0,1);
+        res.add(Hemail,0,2);
+        res.add(Hmdp,0,3);
         return res;
     }
 
@@ -71,6 +100,7 @@ public class CreeCompte extends Application {
     private Scene laScene(){
         BorderPane cont = new BorderPane();
         cont.setTop(this.menuBar());
+        cont.setCenter(this.creerCompte());
         Stop[] stops = new Stop[] { new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123,41,67))};
         LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
 
