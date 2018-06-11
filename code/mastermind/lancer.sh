@@ -1,1 +1,1 @@
-javac -d bin src/*.java && java -cp bin Matsermind
+javac -d bin src/*.java && java -cp bin Mastermind
