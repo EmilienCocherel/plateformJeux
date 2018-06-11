@@ -122,6 +122,7 @@ CREATE TABLE JOUEUR (
   avatar longblob,
   emailJo varchar(100) DEFAULT NULL,
   activeJo char(1) DEFAULT NULL,
+  souvenir char(1) DEFAULT NULL,
   PRIMARY KEY (idJo),
   UNIQUE KEY idJo (idJo)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -181,4 +182,4 @@ ALTER TABLE INVITATION ADD FOREIGN KEY (idJo1) REFERENCES JOUEUR (idJo);
 ALTER TABLE INVITATION ADD FOREIGN KEY (idJo) REFERENCES JOUEUR (idJo);
 ALTER TABLE JEU ADD FOREIGN KEY (idTy) REFERENCES TYPEJEU (idTy);
 
-INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','T');
+INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'N');

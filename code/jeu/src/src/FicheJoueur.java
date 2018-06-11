@@ -17,9 +17,9 @@ public class FicheJoueur extends GridPane{
     private VueImageAvatar avatar;
     private TextField emailJo;
     private CheckBox activeJo;
+    private CheckBox souvenir;
 
     private ComboBox<String> cb;
-    private ComboBox<String> cb2;
     private ToggleGroup gr;
     private RadioButton homme;
     private RadioButton femme;
@@ -31,7 +31,6 @@ public class FicheJoueur extends GridPane{
 
     public void setNomBouton(String nomBouton) {
         this.bouton.setText(nomBouton);
-
     }
 
      public void setTitre(String titre) {
@@ -51,7 +50,8 @@ public class FicheJoueur extends GridPane{
         this.passwd.setText(j.getMotdepasse());
         this.emailJo.setText(j.getEmailJo());
         this.abonne.setSelected(j.isAbonne());
-        this.activeJo.setSelected(j.activeJo());
+        this.activeJo.setSelected(j.isActive());
+        this.souvenir.setSelected(j.isRemembered());
 
         this.avatar.setAvatar(j.getAvatar());
         switch(j.getNiveau()){
@@ -84,10 +84,11 @@ public class FicheJoueur extends GridPane{
         if (gr.getSelectedToggle()==homme)
             sexe='M';
         else sexe='F';
-        boolean abonne=this.abonne.isSelected();
+        boolean abonne = this.abonne.isSelected();
         boolean actif = this.activeJo.isSelected();
+        boolean resterCo = this.souvenir.isSelected();
 	    String nomFicImage="toto";
-	    return new Joueur(id,pseudo,motdepasse,sexe, abonne, niveau, this.avatar.getAvatar(), email, actif);
+	    return new Joueur(id,pseudo,motdepasse,sexe, abonne, niveau, this.avatar.getAvatar(), email, actif, resterCo);
     }
 
     void viderFiche(){
@@ -120,6 +121,8 @@ public class FicheJoueur extends GridPane{
         this.passwd = new PasswordField();
         this.abonne = new CheckBox("Abonné");
         this.activeJo = new CheckBox("Actif");
+        this.souvenir = new CheckBox("Souviens");
+
         this.avatar = new VueImageAvatar("./img/avatar.png");
         this.avatar.setFitWidth(100);
         this.avatar.setPreserveRatio(true);
@@ -156,6 +159,7 @@ public class FicheJoueur extends GridPane{
         this.add(this.cb,2,5);
         this.add(this.abonne,1,6);
         this.add(this.activeJo,2,6);
+        this.add(this.souvenir,3,6);
         this.add(tp,1,7,2,1);
         this.add(bouton,1,8,2,1);
         this.add(this.avatar,3,0);
