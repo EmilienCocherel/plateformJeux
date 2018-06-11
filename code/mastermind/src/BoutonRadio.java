@@ -7,4 +7,8 @@ public class BoutonRadio extends RadioButton{
     this.setText(text);
     this.pion=pion;
   }
+
+  public int getPion(){
+    return this.pion;
+  }
 }
