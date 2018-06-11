@@ -2,8 +2,8 @@
 <!DOCTYPE kmad-model SYSTEM "file:KMADModelJT.dtd">
 <kmad-model version="1.4">
     <project classkmad="project.Project" idkmad="K1"/>
-    <task classkmad="tache.Task" id-task-point="K44" id-task-subtasks-list="K201 K210 K213 " idkmad="K45">
-        <task-name>Consulter les jeux</task-name>
+    <task classkmad="tache.Task" id-task-point="K22" id-task-subtasks-list="K115 K13 K10 " idkmad="K23">
+        <task-name>Consulter la liste des parties</task-name>
         <task-numero>Racine   </task-numero>
         <task-observation/>
         <task-executant>ABS</task-executant>
@@ -14,12 +14,12 @@
         <task-precondition>true</task-precondition>
         <task-effetsdebord>void</task-effetsdebord>
         <task-iteration>[1]</task-iteration>
-        <point classkmad="tache.Point" idkmad="K44">
-            <point-x>259</point-x>
-            <point-y>0</point-y>
+        <point classkmad="tache.Point" idkmad="K22">
+            <point-x>675</point-x>
+            <point-y>70</point-y>
         </point>
-        <task classkmad="tache.Task" id-task-point="K200" idkmad="K201">
-            <task-name>Sélectionner colonne menu "jeux"</task-name>
+        <task classkmad="tache.Task" id-task-point="K114" idkmad="K115">
+            <task-name>Sélectionner parties</task-name>
             <task-numero>1</task-numero>
             <task-observation/>
             <task-executant>INT</task-executant>
@@ -30,13 +30,13 @@
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
-            <point classkmad="tache.Point" idkmad="K200">
-                <point-x>0</point-x>
-                <point-y>253</point-y>
+            <point classkmad="tache.Point" idkmad="K114">
+                <point-x>72</point-x>
+                <point-y>264</point-y>
             </point>
         </task>
-        <task classkmad="tache.Task" id-task-point="K209" id-task-subtasks-list="K215 K204 " idkmad="K210">
-            <task-name>Consulter mes jeux</task-name>
+        <task classkmad="tache.Task" id-task-point="K12" id-task-subtasks-list="K118 K121 " idkmad="K13">
+            <task-name>Consulter la liste des parties en cours</task-name>
             <task-numero>2</task-numero>
             <task-observation/>
             <task-executant>ABS</task-executant>
@@ -47,12 +47,12 @@
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
-            <point classkmad="tache.Point" idkmad="K209">
-                <point-x>327</point-x>
-                <point-y>253</point-y>
+            <point classkmad="tache.Point" idkmad="K12">
+                <point-x>298</point-x>
+                <point-y>264</point-y>
             </point>
-            <task classkmad="tache.Task" id-task-point="K214" idkmad="K215">
-                <task-name>Sélectionner mes jeux</task-name>
+            <task classkmad="tache.Task" id-task-point="K117" idkmad="K118">
+                <task-name>Sélectionner parties en cours</task-name>
                 <task-numero>2.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -63,29 +63,29 @@
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
-                <point classkmad="tache.Point" idkmad="K214">
-                    <point-x>204</point-x>
-                    <point-y>438</point-y>
+                <point classkmad="tache.Point" idkmad="K117">
+                    <point-x>26</point-x>
+                    <point-y>444</point-y>
                 </point>
             </task>
-            <task classkmad="tache.Task" id-task-point="K203" id-task-subtasks-list="K207 K48 " idkmad="K204">
-                <task-name>Consulter un jeu</task-name>
+            <task classkmad="tache.Task" id-task-point="K120" id-task-subtasks-list="K16 K81 K83 " idkmad="K121">
+                <task-name>Faire une action</task-name>
                 <task-numero>2.2</task-numero>
                 <task-observation/>
                 <task-executant>ABS</task-executant>
                 <task-modality>COGN</task-modality>
                 <task-optional>true</task-optional>
                 <task-interruptible>false</task-interruptible>
-                <task-decomposition>SEQ</task-decomposition>
+                <task-decomposition>ALT</task-decomposition>
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
-                <task-iteration>[1]</task-iteration>
-                <point classkmad="tache.Point" idkmad="K203">
-                    <point-x>414</point-x>
-                    <point-y>438</point-y>
+                <task-iteration>while(true)</task-iteration>
+                <point classkmad="tache.Point" idkmad="K120">
+                    <point-x>405</point-x>
+                    <point-y>444</point-y>
                 </point>
-                <task classkmad="tache.Task" id-task-point="K206" idkmad="K207">
-                    <task-name>Sélectionner un jeu</task-name>
+                <task classkmad="tache.Task" id-task-point="K15" idkmad="K16">
+                    <task-name>Continuer une partie</task-name>
                     <task-numero>2.2.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -96,32 +96,49 @@
                     <task-precondition>true</task-precondition>
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K206">
-                        <point-x>251</point-x>
-                        <point-y>621</point-y>
+                    <point classkmad="tache.Point" idkmad="K15">
+                        <point-x>180</point-x>
+                        <point-y>633</point-y>
                     </point>
                 </task>
-                <task classkmad="tache.Task" id-task-point="K47" idkmad="K48">
-                    <task-name>Chercher un adversaire</task-name>
+                <task classkmad="tache.Task" id-task-point="K80" idkmad="K81">
+                    <task-name>Consulter le profil d'un adversaire</task-name>
                     <task-numero>2.2.2</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
                     <task-modality>COGN</task-modality>
-                    <task-optional>true</task-optional>
+                    <task-optional>false</task-optional>
                     <task-interruptible>false</task-interruptible>
                     <task-decomposition>LEAF</task-decomposition>
                     <task-precondition>true</task-precondition>
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K47">
-                        <point-x>471</point-x>
-                        <point-y>618</point-y>
+                    <point classkmad="tache.Point" idkmad="K80">
+                        <point-x>376</point-x>
+                        <point-y>633</point-y>
+                    </point>
+                </task>
+                <task classkmad="tache.Task" id-task-point="K82" idkmad="K83">
+                    <task-name>Consulter le profil d'un jeu</task-name>
+                    <task-numero>2.2.3</task-numero>
+                    <task-observation/>
+                    <task-executant>INT</task-executant>
+                    <task-modality>COGN</task-modality>
+                    <task-optional>false</task-optional>
+                    <task-interruptible>false</task-interruptible>
+                    <task-decomposition>LEAF</task-decomposition>
+                    <task-precondition>true</task-precondition>
+                    <task-effetsdebord>void</task-effetsdebord>
+                    <task-iteration>[1]</task-iteration>
+                    <point classkmad="tache.Point" idkmad="K82">
+                        <point-x>679</point-x>
+                        <point-y>633</point-y>
                     </point>
                 </task>
             </task>
         </task>
-        <task classkmad="tache.Task" id-task-point="K212" id-task-subtasks-list="K234 K236 " idkmad="K213">
-            <task-name>Consulter la boutique</task-name>
+        <task classkmad="tache.Task" id-task-point="K9" id-task-subtasks-list="K124 K126 " idkmad="K10">
+            <task-name>Consulter la liste des parties terminées</task-name>
             <task-numero>3</task-numero>
             <task-observation/>
             <task-executant>ABS</task-executant>
@@ -132,12 +149,12 @@
             <task-precondition>true</task-precondition>
             <task-effetsdebord>void</task-effetsdebord>
             <task-iteration>[1]</task-iteration>
-            <point classkmad="tache.Point" idkmad="K212">
-                <point-x>663</point-x>
-                <point-y>253</point-y>
+            <point classkmad="tache.Point" idkmad="K9">
+                <point-x>919</point-x>
+                <point-y>264</point-y>
             </point>
-            <task classkmad="tache.Task" id-task-point="K233" idkmad="K234">
-                <task-name>Sélectionner la boutique</task-name>
+            <task classkmad="tache.Task" id-task-point="K123" idkmad="K124">
+                <task-name>Sélectionner les parties terminées</task-name>
                 <task-numero>3.1</task-numero>
                 <task-observation/>
                 <task-executant>INT</task-executant>
@@ -148,29 +165,29 @@
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
                 <task-iteration>[1]</task-iteration>
-                <point classkmad="tache.Point" idkmad="K233">
-                    <point-x>624</point-x>
-                    <point-y>438</point-y>
+                <point classkmad="tache.Point" idkmad="K123">
+                    <point-x>896</point-x>
+                    <point-y>444</point-y>
                 </point>
             </task>
-            <task classkmad="tache.Task" id-task-point="K235" id-task-subtasks-list="K239 K241 " idkmad="K236">
-                <task-name>Consulter un jeu</task-name>
+            <task classkmad="tache.Task" id-task-point="K125" id-task-subtasks-list="K87 K85 " idkmad="K126">
+                <task-name>Faire une action</task-name>
                 <task-numero>3.2</task-numero>
                 <task-observation/>
                 <task-executant>ABS</task-executant>
                 <task-modality>COGN</task-modality>
                 <task-optional>true</task-optional>
                 <task-interruptible>false</task-interruptible>
-                <task-decomposition>SEQ</task-decomposition>
+                <task-decomposition>ALT</task-decomposition>
                 <task-precondition>true</task-precondition>
                 <task-effetsdebord>void</task-effetsdebord>
-                <task-iteration>[1]</task-iteration>
-                <point classkmad="tache.Point" idkmad="K235">
-                    <point-x>857</point-x>
-                    <point-y>438</point-y>
+                <task-iteration>while(true)</task-iteration>
+                <point classkmad="tache.Point" idkmad="K125">
+                    <point-x>1236</point-x>
+                    <point-y>444</point-y>
                 </point>
-                <task classkmad="tache.Task" id-task-point="K238" idkmad="K239">
-                    <task-name>Sélectionner un jeu</task-name>
+                <task classkmad="tache.Task" id-task-point="K86" idkmad="K87">
+                    <task-name>Consulter le profil d'un adversaire</task-name>
                     <task-numero>3.2.1</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
@@ -181,26 +198,26 @@
                     <task-precondition>true</task-precondition>
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K238">
-                        <point-x>779</point-x>
-                        <point-y>618</point-y>
+                    <point classkmad="tache.Point" idkmad="K86">
+                        <point-x>933</point-x>
+                        <point-y>633</point-y>
                     </point>
                 </task>
-                <task classkmad="tache.Task" id-task-point="K240" idkmad="K241">
-                    <task-name>Acheter le jeu</task-name>
+                <task classkmad="tache.Task" id-task-point="K84" idkmad="K85">
+                    <task-name>Consulter le profil d'un jeu</task-name>
                     <task-numero>3.2.2</task-numero>
                     <task-observation/>
                     <task-executant>INT</task-executant>
                     <task-modality>COGN</task-modality>
-                    <task-optional>true</task-optional>
+                    <task-optional>false</task-optional>
                     <task-interruptible>false</task-interruptible>
                     <task-decomposition>LEAF</task-decomposition>
                     <task-precondition>true</task-precondition>
                     <task-effetsdebord>void</task-effetsdebord>
                     <task-iteration>[1]</task-iteration>
-                    <point classkmad="tache.Point" idkmad="K240">
-                        <point-x>978</point-x>
-                        <point-y>622</point-y>
+                    <point classkmad="tache.Point" idkmad="K84">
+                        <point-x>1290</point-x>
+                        <point-y>633</point-y>
                     </point>
                 </task>
             </task>
