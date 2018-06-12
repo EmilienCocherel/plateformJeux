@@ -15,7 +15,7 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
     @Override
     public void handle(ActionEvent actionEvent) {
         Login l=AppliJDBC.getLogin();
-        Connexion Connexion=AppliJDBC.getConnexion();
+        ConnexionMySQL Connexion=AppliJDBC.getConnexion();
 
         try {
             Connexion.connecter(l.getNomServeur(),l.getNomBD(),l.getLogin(), l.getMotDePasse());
