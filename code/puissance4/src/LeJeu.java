@@ -3,18 +3,17 @@ package Connect4;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 
-import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -37,7 +36,7 @@ public class LeJeu extends Application {
 	/**
 	 * Les joueurs
 	 */
-	private List<Label> joueurs;
+	private List<HBox> joueurs;
 
 
 	/**
@@ -53,9 +52,16 @@ public class LeJeu extends Application {
 	 */
 	private VBox lesJoueurs() {
 		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
+		Circle p1 = new Circle(30), p2 = new Circle(30);
+		p1.getStyleClass().add("pion");
+		p2.getStyleClass().add("pion");
+		PlateauGUI.setCouleur(j1.getPion(), p1);
+		PlateauGUI.setCouleur(j2.getPion(), p2);
 		this.joueurs = new ArrayList<>();
-		this.joueurs.add(new Label(j1.getNom() + " " + j1.getPion().toString() + " " + j1.getNbPions()));
-		this.joueurs.add(new Label(j2.getNom() + " " + j2.getPion().toString() + " " + j2.getNbPions()));
+		this.joueurs.add(new HBox());
+		this.joueurs.add(new HBox());
+		this.joueurs.get(0).getChildren().addAll(p1, new Label(j1.getNom()));
+		this.joueurs.get(1).getChildren().addAll(p2, new Label(j2.getNom()));
 		VBox res = new VBox(2);
 		res.getChildren().addAll(this.joueurs);
 		res.getStyleClass().add("joueurs");
@@ -114,8 +120,6 @@ public class LeJeu extends Application {
 		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		// A implémenter
 		this.plateau.maj();
-		this.joueurs.get(0).setText(j1.getNom() + " " + j1.getPion() + " " + j1.getNbPions());
-		this.joueurs.get(1).setText(j2.getNom() + " " + j2.getPion() + " " + j2.getNbPions());
 	}
 
 	public PlateauGUI getPlateau() {
