@@ -1,3 +1,4 @@
+import org.json.simple.JSONArray;
 import java.util.List;
 
 public class Plateau extends Matrice<Integer> {
@@ -90,5 +91,20 @@ public class Plateau extends Matrice<Integer> {
 		for (int ligne = 0; ligne < this.getNbLignes(); ligne ++)
 			for (int colonne = 0; colonne < this.getNbColonnes(); colonne ++)
 				this.set(ligne, colonne, null);
+	}
+
+	/**
+	 * Convertir le plateau au format json
+	 */
+	public JSONArray toJson() {
+		JSONArray res = new JSONArray();
+		JSONArray elem;
+		for (int ligne = 0; ligne < this.getNbLignes(); ligne ++) {
+			elem = new JSONArray();
+			for (int colonne = 0; colonne < this.getNbColonnes(); colonne ++)
+				elem.add(this.get(ligne, colonne));
+			res.add(elem);
+		}
+		return res;
 	}
 }

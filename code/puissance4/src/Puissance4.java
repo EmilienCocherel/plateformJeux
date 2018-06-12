@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.json.simple.JSONObject;
 
 public class Puissance4 {
     private List<Joueur> gagnants;
@@ -83,5 +84,16 @@ public class Puissance4 {
 
 	public Joueur getJoueur2() {
 		return this.joueur2;
+	}
+
+	public JSONObject toJson() {
+		JSONObject obj = new JSONObject();
+		obj.put("plateau", this.plateau.toJson());
+		obj.put("joueur1", this.joueur1.toJson());
+		obj.put("joueur2", this.joueur2.toJson());
+		obj.put("actuel", this.actuel);
+		obj.put("id", this.id);
+		System.out.println(obj);
+		return obj;
 	}
 }
