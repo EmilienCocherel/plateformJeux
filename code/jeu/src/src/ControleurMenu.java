@@ -100,7 +100,7 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     break;
                 case "Ajouter un jeu":
                     ficheJeu.setNomBouton("Ajouter");
-                    ficheJeu.activerIdJeu(true);
+                    ficheJeu.activerIdJeu(false);
                     ficheJeu.viderFicheJeu();
                     this.AppliJDBC.showFicheJeu();
                     break;

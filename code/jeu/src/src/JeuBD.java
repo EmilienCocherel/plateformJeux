@@ -8,13 +8,13 @@ public class JeuBD {
 	}
 
 	// recherche nombre de joueurs au total
-	int maxNumJoueur() throws SQLException{
+	int maxNumJeu() throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select max(idJo) as lemax from JOUEUR");
+		ResultSet res = s.executeQuery("Select max(idJeu) as lemax from JEU");
 		res.next();
-		int dernierJoueur = res.getInt("lemax");
+		int dernierJeu = res.getInt("lemax");
 		res.close();
-		return dernierJoueur;
+		return dernierJeu;
 	}
 
 	Joueur rechercherJoueurParNum(int num) throws SQLException{
@@ -54,32 +54,20 @@ public class JeuBD {
 	}
 
 	int insererJeu(JeuProfil j) throws SQLException{
-		// PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?)");
-		// int numJ = this.maxNumJoueur() + 1;
-		// ps.setInt(1,numJ);
-		// ps.setString(2,j.getPseudo());
-		// ps.setString(3,j.getMotdepasse());
-		// ps.setString(4,j.getSexe() + "");
-		// String abo = "N";
-		// if (j.isAbonne()){
-		// 	abo = "O";
-		// }
-		// ps.setString(5,abo);
-		// ps.setInt(6,j.getNiveau());
-		// ps.setBytes(7,j.getAvatar());
-		// ps.setString(8,j.getEmailJo());
-		// String actif = "N";
-		// if (j.isActive()){
-		// 	actif = "O";
-		// }
-		// ps.setString(9,actif);
-		// String estAdmin = "N";
-		// if (j.isAdmin()){
-		// 	estAdmin = "O";
-		// }
-		// ps.setString(10,estAdmin);
-		// ps.executeUpdate();
-		return 1;
+		PreparedStatement ps = laConnexion.prepareStatement("insert into JEU values (?,?,?,?,?,?)");
+		int numJeu = this.maxNumJeu() + 1;
+		ps.setInt(1,numJeu);
+		ps.setString(2,j.getNomJeu());
+		ps.setString(3,j.getDescription());
+		ps.setString(4,j.getJarJeu());
+		String isActif = "N";
+		if (j.isActive()){
+			isActif = "O";
+		}
+		ps.setString(5,isActif);
+		ps.setInt(6,j.getIdType());
+		ps.executeUpdate();
+		return numJeu;
 	}
 
 	//Suppression joueur
