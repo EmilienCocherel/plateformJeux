@@ -20,6 +20,7 @@ public class Mastermind extends Application{
     private Label p3;
     private Label p4;
     private Combinaison combi;
+    private Manche manche;
 
 
     public Combinaison getCombi(){
@@ -27,13 +28,28 @@ public class Mastermind extends Application{
     }
 
     public boolean estFinie(){ // À IMPLÉMENTER
-        return true;
+        if (this.manche.estFini() && this.manche.getNum() == 3){
+            return true;
+        }
+        else{ // Mème si la personne à fait ses 12 coups mais qu'aucun n'est gagnant
+            return false;
+        }
     }
 
-    public void finPartie(){ // À IMPLÉMENTER
+    public void finPartie(){
+        Alert al = new Alert(Alert.AlertType.INFORMATION);
+        if (this.estFinie()){
+            al.setHeaderText("Bravo !");
+        }
+        else{
+            al.setHeaderText("Zut...");
+        }
     }
 
     public void verifCombi(Combinaison test){
+        if (estFinie()){
+
+        }
     }
 
     public void initManche(){ // À IMPLÉMENTER
@@ -59,8 +75,6 @@ public class Mastermind extends Application{
     public void setId(int id) {
         this.id = id;
     }
-
-
 
     public void setJ1(Joueur j1) {
         this.j1 = j1;
@@ -183,6 +197,8 @@ public class Mastermind extends Application{
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
         Button brestart = new Button("tester");
+        TestCombi tc = new TestCombi(this,this.manche);
+        brestart.setOnAction(tc);
         res.getChildren().add(brestart);
         res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
         res.getChildren().add(this.choixCouleursP1());
@@ -198,7 +214,7 @@ public class Mastermind extends Application{
         private FlowPane titre(){
             FlowPane res = new FlowPane();
             res.setPadding(new Insets(10,10,10,10));
-            Label nom = new Label("Matsermind");
+            Label nom = new Label("Mastermind");
             res.getChildren().add(nom);
             res.setAlignment(Pos.CENTER);
             return res;
@@ -246,17 +262,16 @@ public class Mastermind extends Application{
         public void start(Stage stage) {
             // création du modèle
             this.combis=new ArrayList<>();
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combi = new Combinaison(0,0,0,0);
-            stage.setTitle("jeu du pendu");
+            this.combis.add(new Combinaison(new Pion(1),new Pion(2),new Pion(2),new Pion(1)));
+            this.combis.add(new Combinaison(new Pion(1),new Pion(3),new Pion(1),new Pion(1)));
+            this.combis.add(new Combinaison(new Pion(2),new Pion(1),new Pion(1),new Pion(1)));
+            this.combi = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
+            stage.setTitle("Mastermind");
             this.j1=new Joueur();
             this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
             stage.setScene(this.laScene());
             stage.show();
             this.majAffichage();
-            // démarrage du chrono
         }
 
         /**

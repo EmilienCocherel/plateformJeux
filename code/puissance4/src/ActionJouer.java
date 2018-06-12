@@ -1,3 +1,5 @@
+package Connect4;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -13,9 +15,9 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 	/**
 	 * Vue du jeu
 	 */
-	private GUI gui;
+	private LeJeu gui;
 
-	public ActionJouer(Puissance4 puissance4, GUI gui) {
+	public ActionJouer(Puissance4 puissance4, LeJeu gui) {
 		this.puissance4 = puissance4;
 		this.gui = gui;
 	}

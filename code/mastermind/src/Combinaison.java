@@ -1,119 +1,67 @@
 public class Combinaison {
 
-    private int p1, p2, p3, p4;
+    private Pion p1, p2, p3, p4;
 
-    public Combinaison(int p1, int p2, int p3, int p4){
+    public Combinaison(Pion p1, Pion p2, Pion p3, Pion p4){
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
         this.p4 = p4;
     }
-
-//    public void Combinaison(){ // À IMPLÉMENTER ???
-//
-//    }
 
 //    Getter et Setter
 
-    public int getP1() {
-        return p1;
+    public Pion getP1() {
+      return this.p1;
     }
 
     public String getCouleurP1() {
-        if(this.p1 == 0){
-          return "Rouge";
-        }
-        if(this.p1 == 1){
-          return "bleu";
-        }
-        if(this.p1 == 2){
-          return "vert";
-        }
-        if(this.p1 == 3){
-          return "jaune";
-        }
-        return null;
+      return this.p1.getCouleur();
     }
 
-    public void setP1(int p1) {
-        this.p1 = p1;
+    public void setP1(int val) {
+      this.p1.setVal(val);
     }
 
-    public int getP2() {
-        return p2;
+    public Pion getP2() {
+      return this.p2;
     }
 
     public String getCouleurP2() {
-        if(this.p2 == 0){
-          return "Rouge";
-        }
-        if(this.p2 == 1){
-          return "bleu";
-        }
-        if(this.p2 == 2){
-          return "vert";
-        }
-        if(this.p2 == 3){
-          return "jaune";
-        }
-        return null;
+      return this.p2.getCouleur();
     }
 
-    public void setP2(int p2) {
-        this.p2 = p2;
+    public void setP2(int val) {
+      this.p2.setVal(val);
     }
 
-    public int getP3() {
-        return p3;
+    public Pion getP3() {
+      return this.p3;
     }
 
     public String getCouleurP3() {
-        if(this.p3 == 0){
-          return "Rouge";
-        }
-        if(this.p3 == 1){
-          return "bleu";
-        }
-        if(this.p3 == 2){
-          return "vert";
-        }
-        if(this.p3 == 3){
-          return "jaune";
-        }
-        return null;
+      return this.p3.getCouleur();
     }
 
-    public void setP3(int p3) {
-        this.p3 = p3;
+    public void setP3(int val) {
+      this.p3.setVal(val);
     }
 
-    public int getP4() {
-        return p4;
+    public Pion getP4() {
+      return this.p4;
     }
 
     public String getCouleurP4() {
-        if(this.p4 == 0){
-          return "Rouge";
-        }
-        if(this.p4 == 1){
-          return "bleu";
-        }
-        if(this.p4 == 2){
-          return "vert";
-        }
-        if(this.p4 == 3){
-          return "jaune";
-        }
-        return null;
+      return this.p4.getCouleur();
     }
 
-    public void setP4(int p4) {
-        this.p4 = p4;
+    public void setP4(int val) {
+        this.p4.setVal(val);
     }
 
     @Override
     public boolean equals(Object o){
         Combinaison c2=(Combinaison)o;
-        return this.p1==c2.p1 && this.p2==c2.p2 && this.p3==c2.p3 && this.p4==c2.p4;
+        return this.p1.equals(c2.p1) && this.p2.equals(c2.p2) && this.p3.equals(c2.p3) && this.p4.equals(c2.p4);
     }
 }

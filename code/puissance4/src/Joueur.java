@@ -1,3 +1,5 @@
+package Connect4;
+
 import org.json.simple.JSONObject;
 
 public class Joueur {
