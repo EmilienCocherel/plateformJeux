@@ -1,3 +1,5 @@
+package application;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
@@ -15,7 +17,7 @@ public class ControleurConnexion implements EventHandler<ActionEvent>{
     @Override
     public void handle(ActionEvent actionEvent) {
         Login l=AppliJDBC.getLogin();
-        Connexion Connexion=AppliJDBC.getConnexion();
+        ConnexionMySQL Connexion=AppliJDBC.getConnexion();
 
         try {
             Connexion.connecter(l.getNomServeur(),l.getNomBD(),l.getLogin(), l.getMotDePasse());

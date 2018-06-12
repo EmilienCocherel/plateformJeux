@@ -1,9 +1,11 @@
+package application;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class JoueurBD {
-	Connexion laConnexion;
-	JoueurBD(Connexion laConnexion){
+	ConnexionMySQL laConnexion;
+	JoueurBD(ConnexionMySQL laConnexion){
 		this.laConnexion=laConnexion;
 	}
 

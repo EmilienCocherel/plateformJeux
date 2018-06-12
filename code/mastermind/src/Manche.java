@@ -1,4 +1,4 @@
-public class Manche {
+public class    Manche {
     private Joueur j;
     private int num;
     private Combinaison combi;
@@ -22,7 +22,13 @@ public class Manche {
     }
 
     public boolean estFini(){
-        return this.fini;
+        if (this.getCombi().equals(this.getCombi())){
+            return true;
+        }
+
+        else{
+            return false;
+        }
     }
 
     public void finManche(){
