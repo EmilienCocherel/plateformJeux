@@ -5,7 +5,6 @@ if [ -f Connect4.jar ]; then
 fi
 javac -d ./ src/*.java
 if (( $? == 0 )); then
-	jar cfe Connect4.jar Connect4.LeJeu *.class style/style.css
+	jar -cvf Connect4.jar *.class style/style.css
 	rm *.class
-	java -jar Connect4.jar
 fi
