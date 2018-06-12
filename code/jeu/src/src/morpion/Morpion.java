@@ -1,3 +1,5 @@
+package morpion;
+
 import java.util.Scanner;
 import org.json.simple.*;
 import org.json.simple.parser.*;

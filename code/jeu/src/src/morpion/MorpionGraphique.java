@@ -1,3 +1,5 @@
+package morpion;
+
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -6,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.geometry.Pos;
 import javafx.util.Duration;
+import application.*;
 
 public class MorpionGraphique extends GridPane {
     private Button [][] gb=null;

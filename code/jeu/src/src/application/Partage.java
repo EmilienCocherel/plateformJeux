@@ -1,3 +1,5 @@
+package application;
+
 public class Partage{
     private ConnexionMySQL mySQL;
     private ChoixJeu choixJeu;

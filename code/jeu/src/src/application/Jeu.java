@@ -1,3 +1,5 @@
+package application;
+
 import javafx.scene.layout.Pane;
 public interface Jeu{
     /** permet à un joueur de lancer le jeu en retrouvant l'état actuel de la partie

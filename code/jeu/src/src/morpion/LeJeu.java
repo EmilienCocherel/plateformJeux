@@ -1,5 +1,8 @@
+package morpion;
+
 import javafx.scene.layout.Pane;
 import java.sql.Connection;
+import application.*;
 
 public class LeJeu implements Jeu  {
     private int joueur;
