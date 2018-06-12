@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 public class FicheJeu extends GridPane{
     private AppliJDBC AppliJDBC;
     private Label titre;
-    private Label idJeu;
+    private TextField idJeu;
     private TextField nomJeu;
     private TextField description;
     private TextField jarJeu;
@@ -88,7 +88,7 @@ public class FicheJeu extends GridPane{
 
         this.titre=new Label("Fiche Jeu");
         this.titre.setFont(Font.font(24));
-        // this.idJeu = new TextField();
+        this.idJeu = new TextField();
         this.nomJeu= new TextField();
         this.description = new TextField();
         this.jarJeu = new TextField();
