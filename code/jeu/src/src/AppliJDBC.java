@@ -22,6 +22,7 @@ public class AppliJDBC extends Application {
     private ApplicationAJEL ApplicationAJEL;
     private Label message;
     private FicheResultat ficheResultat;
+    private ChoixJeu choixJeu;
 
     public void init(){
         try {
@@ -59,6 +60,7 @@ public class AppliJDBC extends Application {
         VBox fp=((VBox)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.message);
+        fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion));
         this.ApplicationAJEL.connecter();
     }
 

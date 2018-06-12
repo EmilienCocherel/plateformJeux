@@ -29,64 +29,69 @@ public class ConnexionMySQL{
 		}
 
     public void insertJeu(String nom, String regle, String nomFic, int typeJeu){
-	File file = new File (nomFic);
-	try{
-	    FileInputStream reader = new FileInputStream (file);
+			File file = new File (nomFic);
+			try{
+	    	FileInputStream reader = new FileInputStream (file);
 	    try{
-		int taille=reader.available();
-		try{
-		    PreparedStatement ps= mysql.prepareStatement("insert into JEUTEST values (?,?,?,?,'O',?)");
-		    Statement st=mysql.createStatement();
-		    ResultSet rs=st.executeQuery("select IFNULL(max(idJeu),0)+1 from JEUTEST");
-		    rs.next();
-		    int id=rs.getInt(1);
-		    ps.setInt(1,id);
-		    ps.setString(2,nom);
-		    ps.setString(3,regle);
-		    ps.setBlob(4,reader,taille);
-		    ps.setInt(5,typeJeu);
-		    ps.executeUpdate();
-		}catch (SQLException exception){
-		    System.out.println("Erreur SQL : " + exception.getMessage());
-		}
-		reader.close();
-	    }catch (IOException exception){
-		System.out.println("Erreur lors de la lecture : " + exception.toString());
+				int taille=reader.available();
+				try{
+			    PreparedStatement ps= mysql.prepareStatement("insert into JEU values (?,?,?,?,'O',?)");
+			    Statement st=mysql.createStatement();
+			    ResultSet rs=st.executeQuery("select IFNULL(max(idJeu),0)+1 from JEU");
+			    rs.next();
+			    int id=rs.getInt(1);
+			    ps.setInt(1,id);
+			    ps.setString(2,nom);
+			    ps.setString(3,regle);
+			    ps.setBlob(4,reader,taille);
+			    ps.setInt(5,typeJeu);
+			    ps.executeUpdate();
+				}
+				catch (SQLException exception){
+			    System.out.println("Erreur SQL : " + exception.getMessage());
+				}
+				reader.close();
 	    }
-	}catch (FileNotFoundException exception){
-	    System.out.println ("Le fichier n'a pas été trouvé");
+			catch (IOException exception){
+				System.out.println("Erreur lors de la lecture : " + exception.toString());
+	    }
 	}
-    }
+	catch (FileNotFoundException exception){
+		System.out.println ("Le fichier n'a pas été trouvé");
+	}
+	}
 
-    public void getJar(String nom, String nomFic){
-	File file = new File (nomFic);
-	try{
+  public void getJar(String nom, String nomFic){
+		File file = new File (nomFic);
+		try{
 	    FileOutputStream writer = new FileOutputStream (file);
 	    try{
-		Blob b;
-		try{
-		    PreparedStatement ps= mysql.prepareStatement("select jarJeu from JEUTEST where nomJeu=?");
-		    ps.setString(1,nom);
-		    ResultSet rs=ps.executeQuery();
-		    rs.next();
-		    b=rs.getBlob(1);
-		    writer.write(b.getBytes(1,(int)b.length()));
-		}catch (SQLException exception){
-		    System.out.println("Erreur SQL : " + exception.getMessage());
+				Blob b;
+				try{
+		    	PreparedStatement ps= mysql.prepareStatement("select jarJeu from JEU where nomJeu=?");
+		    	ps.setString(1,nom);
+		    	ResultSet rs=ps.executeQuery();
+		    	rs.next();
+		    	b=rs.getBlob(1);
+		    	writer.write(b.getBytes(1,(int)b.length()));
+				}
+				catch (SQLException exception){
+		    	System.out.println("Erreur SQL : " + exception.getMessage());
+				}
+			writer.close();
 		}
-
-		writer.close();
-	    }catch (IOException exception){
-		System.out.println("Erreur lors de la lecture : " + exception.toString());
-	    }
-	}catch (FileNotFoundException exception){
-	    System.out.println ("Le fichier n'a pas été trouvé");
+		catch (IOException exception){
+			System.out.println("Erreur lors de la lecture : " + exception.toString());
+	   }
 	}
-    }
-    public String getEtat(int idPartie) {
-	String etat="";
-	try{
-	    PreparedStatement ps= mysql.prepareStatement("select etatPartie from PARTIETEST where idPa=?");
+	catch (FileNotFoundException exception){
+		System.out.println ("Le fichier n'a pas été trouvé");
+	}
+	}
+  public String getEtat(int idPartie) {
+		String etat="";
+		try{
+	    PreparedStatement ps= mysql.prepareStatement("select etatPartie from PARTIE where idPa=?");
 	    ps.setInt(1,idPartie);
 	    ResultSet rs=ps.executeQuery();
 	    rs.next();
@@ -99,7 +104,7 @@ public class ConnexionMySQL{
 
     public void setEtat(int idPartie,String etat){
 	try{
-	    PreparedStatement ps= mysql.prepareStatement("update PARTIETEST set etatPartie=? where idPa=?");
+	    PreparedStatement ps= mysql.prepareStatement("update PARTIE set etatPartie=? where idPa=?");
 	    ps.setInt(2,idPartie);
 	    ps.setString(1,etat);
 	    ps.executeUpdate();
@@ -111,7 +116,7 @@ public class ConnexionMySQL{
     public ArrayList<String> getJeux(){
 	ArrayList<String> liste= new  ArrayList<String>();
 	try{
-	    PreparedStatement ps= mysql.prepareStatement("select distinct nomJeu from JEUTEST order by nomJeu");
+	    PreparedStatement ps= mysql.prepareStatement("select distinct nomJeu from JEU order by nomJeu");
 	    ResultSet rs=ps.executeQuery();
 	    while (rs.next()){
 		liste.add(rs.getString(1));
@@ -127,7 +132,7 @@ public class ConnexionMySQL{
     public boolean estUnePartie(int idPartie){
         try {
             Statement st = this.mysql.createStatement();
-            ResultSet rs = st.executeQuery("select * from PARTIETEST where idPa=" + idPartie);
+            ResultSet rs = st.executeQuery("select * from PARTIE where idPa=" + idPartie);
             return rs.next();
         }
         catch (SQLException ex){
@@ -137,10 +142,10 @@ public class ConnexionMySQL{
 	int idPartie=-1;
 	try{
 	    Statement s=mysql.createStatement();
-	    ResultSet rs=s.executeQuery("select IFNULL(max(idPa),0) from PARTIETEST");
+	    ResultSet rs=s.executeQuery("select IFNULL(max(idPa),0) from PARTIE");
 	    rs.next();
 	    idPartie=rs.getInt(1)+1;
-	    PreparedStatement ps= mysql.prepareStatement("insert into PARTIETEST values (?,now(),0,?,?,?,?,?,?)");
+	    PreparedStatement ps= mysql.prepareStatement("insert into PARTIE values (?,now(),0,?,?,?,?,?,?)");
 	    ps.setInt(1,idPartie);
 	    ps.setString(2,etat);
 	    ps.setInt(3,idJeu);
@@ -156,7 +161,7 @@ public class ConnexionMySQL{
     }
     public void updatePartie(int idPartie,String etat, int score1, int score2){
 	try{
-	    PreparedStatement ps= mysql.prepareStatement("update PARTIETEST set etatPartie=?,numEtape=numEtape+1, score1=?,score2=? where idPa=?");
+	    PreparedStatement ps= mysql.prepareStatement("update PARTIE set etatPartie=?,numEtape=numEtape+1, score1=?,score2=? where idPa=?");
 	    ps.setInt(4,idPartie);
 	    ps.setString(1,etat);
 	    ps.setInt(2,score1);

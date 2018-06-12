@@ -46,7 +46,7 @@ public class ChoixJeu extends GridPane {
 	this.add(lListeJeux,0,2);
 	this.add(lesJeux,1,2);
     }
-    void chargerJeu(String nomJeu){
+  void chargerJeu(String nomJeu){
 	Jeu jeu=null;
 
         try {
