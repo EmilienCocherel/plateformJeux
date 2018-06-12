@@ -1,14 +1,14 @@
 import javafx.scene.control.RadioButton;
 
 public class BoutonRadio extends RadioButton{
-  private int pion;
+  private Pion pion;
 
-  public BoutonRadio(String text,int pion){
+  public BoutonRadio(String text,int val){
     this.setText(text);
-    this.pion=pion;
+    this.pion= new Pion(val);
   }
 
-  public int getPion(){
+  public Pion getPion(){
     return this.pion;
   }
 }
