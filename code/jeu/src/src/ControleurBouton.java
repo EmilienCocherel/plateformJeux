@@ -35,8 +35,11 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         String nom=((Button)actionEvent.getTarget()).getText();
         Joueur j;
+        JeuProfil jp;
         JoueurBD jbd=this.AppliJDBC.getJoueurBD();
+        JeuBD jeubd =this.AppliJDBC.getJeuBD();
         FicheJoueur ficheJoueur=this.AppliJDBC.getFicheJoueur();
+        FicheJeu ficheJeu = this.AppliJDBC.getFicheJeu();
         switch (nom) {
             case "Créer":
                 j = ficheJoueur.getJoueur();
@@ -45,6 +48,16 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     ficheJoueur.setNumJoueur(nj);
                     alertOK("Insertion du joueur a réussi\nLe nouveau joueur porte le numéro "+nj);
                     ficheJoueur.viderFiche();
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
+            case "Ajouter":
+                jp = ficheJeu.getJeu();
+                try {
+                    int numjeu = jeubd.insererJeu(jp);
+                    alertOK("Insertion du jeu a réussi\nLe nouveau jeu porte le numéro "+numjeu);
+                    ficheJeu.viderFicheJeu();
                 } catch (SQLException ex) {
                     alertEchec(ex);
                 }

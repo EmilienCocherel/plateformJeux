@@ -15,6 +15,7 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         FicheJoueur ficheJoueur=this.AppliJDBC.getFicheJoueur();
+        FicheJeu    ficheJeu   =this.AppliJDBC.getFicheJeu();
         if (actionEvent.getTarget().getClass().equals(MenuItem.class)){
             String etiquette=((MenuItem)actionEvent.getTarget()).getText();
             switch (etiquette){
@@ -71,7 +72,7 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     break;
                 case "Afficher un joueur par pseudo":
                     ficheJoueur.setNomBouton("Rechercher par pseudo");
-                    ficheJoueur.activerPseudoJoueur(true);
+                    ficheJoueur.activerNumJoueur(true);
                     ficheJoueur.viderFiche();
                     ficheJoueur.setTitre("Mise à jour par pseudo");
                     this.AppliJDBC.showFicheJoueur();
@@ -97,6 +98,15 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     }
                     this.AppliJDBC.showFicheResultat(rapport);
                     break;
+                case "Ajouter un jeu":
+                    ficheJeu.setNomBouton("Ajouter");
+                    ficheJeu.activerIdJeu(true);
+                    ficheJeu.viderFicheJeu();
+                    this.AppliJDBC.showFicheJeu();
+                    break;
+
+
+
                 default:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
 			        alert.setTitle("Option non connue !!!! ");

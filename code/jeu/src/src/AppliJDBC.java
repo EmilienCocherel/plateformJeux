@@ -16,6 +16,8 @@ public class AppliJDBC extends Application {
 
     private Login Login;
     private FicheJoueur ficheJoueur;
+    private FicheJeu ficheJeu;
+    private JeuBD jeuBD;
     private JoueurBD joueurBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
@@ -32,6 +34,7 @@ public class AppliJDBC extends Application {
         }
         this.Login=new Login(this);
         this.ficheJoueur=new FicheJoueur(this);
+        this.ficheJeu = new FicheJeu(this);
         this.ficheResultat=new FicheResultat(this);
         this.joueurBD=new JoueurBD(this.Connexion);
         this.message=new Label("Vous n'êtes pas connecté");
@@ -79,6 +82,13 @@ public class AppliJDBC extends Application {
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.ficheJoueur);
     }
+
+    public void showFicheJeu(){
+      VBox fp =((VBox)scene.getRoot());
+      fp.getChildren().remove(1);
+      fp.getChildren().addAll(this.ficheJeu);
+    }
+
     public void showFicheResultat(String resultat){
         this.ficheResultat.setTexte(resultat);
         VBox fp=((VBox)scene.getRoot());
@@ -103,5 +113,13 @@ public class AppliJDBC extends Application {
 
     public FicheJoueur getFicheJoueur() {
         return ficheJoueur;
+    }
+
+    public JeuBD getJeuBD(){
+      return jeuBD;
+    }
+
+    public FicheJeu getFicheJeu(){
+      return ficheJeu;
     }
 }
