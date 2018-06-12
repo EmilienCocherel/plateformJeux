@@ -68,7 +68,7 @@ public class CreeCompte extends Application {
         HBox Hnom = new HBox();
         Label Lnom = new Label("* Nom :   ");
         Lnom.setTextFill(Color.rgb(196, 196, 196));
-        Lnom.setPadding(new Insets(0,6,0,50));
+        Lnom.setPadding(new Insets(0,0,0,56));
         TextField Tnom = new TextField();
         Hnom.getChildren().addAll(Lnom, Tnom);
         Hnom.setPadding(new Insets(20, 0, 0, 10));
@@ -91,13 +91,14 @@ public class CreeCompte extends Application {
         HBox Hmdp2 = new HBox();
         Label Lmdp2 = new Label("* Confirmez :   ");
         Lmdp2.setTextFill(Color.rgb(196, 196, 196));
-        Lmdp2.setPadding(new Insets(0,20,0,0));
+        Lmdp2.setPadding(new Insets(0,0,0,20));
         PasswordField Tmdp2 = new PasswordField();
         Hmdp2.getChildren().addAll(Lmdp2, Tmdp2);
         Hmdp2.setPadding(new Insets(10, 0, 0, 10));
 
-
-
+        CheckBox cb = new CheckBox("J'accepte les termes d'utilisation \n et la politique de confidentialité");
+        cb.setTextFill(Color.rgb(196, 196, 196));
+        cb.setPadding(new Insets(10, 0, 0, 20));
 
         HBox Hbouton = new HBox();
         Button bconnect = new Button("S'inscrire");
@@ -107,6 +108,7 @@ public class CreeCompte extends Application {
         Hbouton.setPadding(new Insets(40, 0, 0, 100));
         Hbouton.getChildren().addAll(bconnect);
 
+
         res.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         res.setMaxSize(500, 400);
 
@@ -115,7 +117,8 @@ public class CreeCompte extends Application {
         res.add(Hemail,0,2);
         res.add(Hmdp,0,3);
         res.add(Hmdp2,0,4);
-        res.add(Hbouton,0,5);
+        res.add(cb,0,5);
+        res.add(Hbouton,0,6);
         return res;
     }
 
@@ -128,7 +131,7 @@ public class CreeCompte extends Application {
         LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
 
         cont.setBackground(new Background(new BackgroundFill(lg1,null,null)));
-        return new Scene(cont,700,800);
+        return new Scene(cont,800,600);
     }
 
     @Override

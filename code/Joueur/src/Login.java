@@ -121,7 +121,7 @@ public class Login extends Application {
         LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
 
         cont.setBackground(new Background(new BackgroundFill(lg1,null,null)));
-        return new Scene(cont,700,800);
+        return new Scene(cont,800,600);
     }
 
     @Override
