@@ -17,7 +17,7 @@ public class AppliJDBC extends Application {
     private Login Login;
     private FicheJoueur ficheJoueur;
     private JoueurBD joueurBD;
-    private Connexion Connexion;
+    private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
     private Label message;
@@ -25,7 +25,7 @@ public class AppliJDBC extends Application {
 
     public void init(){
         try {
-            this.Connexion = new Connexion();
+            this.Connexion = new ConnexionMySQL();
         }catch (ClassNotFoundException ex){
             System.out.println("Driver MySQL non trouvé!!!");
             System.exit(1);
@@ -93,7 +93,7 @@ public class AppliJDBC extends Application {
 
     }
 
-    public Connexion getConnexion() {
+    public ConnexionMySQL getConnexion() {
         return Connexion;
     }
 
