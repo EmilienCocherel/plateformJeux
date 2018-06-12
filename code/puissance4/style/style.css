@@ -17,8 +17,12 @@
 }
 
 .bouton_jouer:disabled {
-	-fx-background-color: red;
+	-fx-background-color: darkred;
 	-fx-opacity: 1.0;
+}
+
+.bouton_jouer:pressed {
+	-fx-background-color: darkgreen;
 }
 
 #plateau {
