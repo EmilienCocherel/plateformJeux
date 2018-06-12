@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class ApplicationAJEL extends MenuBar{
     private String [][] menuPrinc={{"Connexion BD","Connexion","Déconnexion","Quitter"},
             {"Joueur","Afficher le plus grand numéro de joueur","Créer un joueur","Supprimer un joueur",
-                    "Mettre à jour un joueur","Afficher un joueur","Afficher tous les joueurs","Afficher msg par joueur"}};
+                    "Mettre à jour un joueur","Afficher un joueur","Afficher un joueur par pseudo","Afficher tous les joueurs","Afficher msg par joueur"}};
     private ArrayList<MenuItem> lesItems;
     private AppliJDBC AppliJDBC;
     private ControleurMenu controleurMenu;

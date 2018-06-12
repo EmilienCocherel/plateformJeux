@@ -49,7 +49,7 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
-            case "Rechercher":
+            case "Rechercher par numéro":
                 try{
                     j = jbd.rechercherJoueurParNum(ficheJoueur.getNumJoueur());
                     ficheJoueur.setJoueur(j);
@@ -58,8 +58,24 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                         case "Suppression":
                             ficheJoueur.setNomBouton("Supprimer");
                             break;
-                        case "Mise à jour":
-                            ficheJoueur.setNomBouton("Mettre à jour");
+                        case "Mise à jour par numéro":
+                            ficheJoueur.setNomBouton("Mettre à jour par numéro");
+                            ficheJoueur.activerNumJoueur(false);
+                            break;
+                    }
+
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
+            case "Rechercher par pseudo":
+                try{
+                    j = jbd.rechercherJoueurParPseudo(ficheJoueur.getPseudoJoueur());
+                    ficheJoueur.setJoueur(j);
+                    String titre = ficheJoueur.getTitre();
+                    switch (titre) {
+                        case "Mise à jour par pseudo":
+                            ficheJoueur.setNomBouton("Mettre à jour par pseudo");
                             ficheJoueur.activerNumJoueur(false);
                             break;
                     }
@@ -78,13 +94,25 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
-            case "Mettre à jour":
+            case "Mettre à jour par numéro":
                 try{
                     jbd.majJoueur(ficheJoueur.getJoueur());
-                    alertOK("Le joueur "+ficheJoueur.getNumJoueur()+" a bien été mis à jour");
+                    alertOK("Le joueur "+ficheJoueur.getNumJoueur()+ " a bien été mis à jour");
                     ficheJoueur.viderFiche();
-                    ficheJoueur.setNomBouton("Rechercher");
+                    ficheJoueur.setNomBouton("Rechercher par numéro");
                     ficheJoueur.activerNumJoueur(true);
+                }catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
+
+            case "Mettre à jour par pseudo":
+                try{
+                    jbd.majJoueur(ficheJoueur.getJoueur());
+                    alertOK("Le joueur "+ficheJoueur.getPseudoJoueur()+ " a bien été mis à jour");
+                    ficheJoueur.viderFiche();
+                    ficheJoueur.setNomBouton("Rechercher par pseudo");
+                    ficheJoueur.activerPseudoJoueur(true);
                 }catch (SQLException ex) {
                     alertEchec(ex);
                 }

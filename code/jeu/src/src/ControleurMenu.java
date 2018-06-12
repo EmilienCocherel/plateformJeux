@@ -49,24 +49,31 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     this.AppliJDBC.showFicheJoueur();
                     break;
                 case "Supprimer un joueur":
-                    ficheJoueur.setNomBouton("Rechercher");
+                    ficheJoueur.setNomBouton("Rechercher par numéro");
                     ficheJoueur.viderFiche();
                     ficheJoueur.activerNumJoueur(true);
                     ficheJoueur.setTitre("Suppression");
                     this.AppliJDBC.showFicheJoueur();
                     break;
                 case "Mettre à jour un joueur":
-                    ficheJoueur.setNomBouton("Rechercher");
+                    ficheJoueur.setNomBouton("Rechercher par numéro");
                     ficheJoueur.activerNumJoueur(true);
                     ficheJoueur.viderFiche();
-                    ficheJoueur.setTitre("Mise à jour");
+                    ficheJoueur.setTitre("Mise à jour par numéro");
                     this.AppliJDBC.showFicheJoueur();
                     break;
                 case "Afficher un joueur":
-                    ficheJoueur.setNomBouton("Rechercher");
+                    ficheJoueur.setNomBouton("Rechercher par numéro");
                     ficheJoueur.activerNumJoueur(true);
                     ficheJoueur.viderFiche();
                     ficheJoueur.setTitre("Consultation");
+                    this.AppliJDBC.showFicheJoueur();
+                    break;
+                case "Afficher un joueur par pseudo":
+                    ficheJoueur.setNomBouton("Rechercher par pseudo");
+                    ficheJoueur.activerPseudoJoueur(true);
+                    ficheJoueur.viderFiche();
+                    ficheJoueur.setTitre("Mise à jour par pseudo");
                     this.AppliJDBC.showFicheJoueur();
                     break;
                 case "Afficher tous les joueurs":

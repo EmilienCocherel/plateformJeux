@@ -173,8 +173,21 @@ public class FicheJoueur extends GridPane{
         this.numJoueur.setDisable(!actif);
         this.bouton.setDisable(false);
     }
+
     public int getNumJoueur(){
         return Integer.parseInt(this.numJoueur.getText());
+    }
+
+    public void activerPseudoJoueur(boolean actif){
+        for (Node n: this.getChildren()){
+            n.setDisable(actif);
+        }
+        this.pseudo.setDisable(!actif);
+        this.bouton.setDisable(false);
+    }
+
+    public String getPseudoJoueur(){
+        return this.pseudo.getText();
     }
 
 }

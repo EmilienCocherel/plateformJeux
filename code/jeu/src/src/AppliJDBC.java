@@ -46,7 +46,7 @@ public class AppliJDBC extends Application {
         fp.getChildren().addAll(this.ApplicationAJEL,message);
         this.scene= new Scene(fp,500,500);
         primaryStage.setScene(this.scene);
-        primaryStage.setTitle("Test JDBC");
+        primaryStage.setTitle("Application AJEL");
         primaryStage.show();
     }
 
