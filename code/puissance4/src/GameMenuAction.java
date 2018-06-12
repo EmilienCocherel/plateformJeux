@@ -30,6 +30,7 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 		String text = menu.getText();
 		if (text.equals("Leave")) {
 			// TODO
+			this.puissance4.toJson();
 			Platform.exit();
 		} else if (text.equals("Surrender")) {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to surrender?");
