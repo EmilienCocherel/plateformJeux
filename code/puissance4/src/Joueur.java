@@ -1,3 +1,5 @@
+package Connect4;
+
 public class Joueur {
     private String nom;
     private Integer pion;
