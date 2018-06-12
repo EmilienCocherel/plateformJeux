@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .xml
 <<<<<<< HEAD
 =======
@@ -15,3 +16,8 @@
 *.class
 *.iml
 >>>>>>> Projet/master
+=======
+*.xml
+*.class
+*.iml
+>>>>>>> Quentin/master
