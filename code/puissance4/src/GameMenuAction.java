@@ -34,6 +34,9 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 			alert.showAndWait()
 				.filter(response -> response == ButtonType.OK)
 				.ifPresent(response -> this.gui.abandonner());
+		} else if (text.equals("Score tab")) {
+			// TODO
+			System.out.println("Score tab");
 		}
 	}
 }
