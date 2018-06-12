@@ -43,14 +43,6 @@ public class GUI extends Application {
 	 */
 	private PlateauGUI lePlateau() {
 		this.plateau = new PlateauGUI(this.puissance4.getPlateau(), new ActionJouer(this.puissance4, this));
-		this.plateau.setAlignment(Pos.CENTER);
-		this.plateau.setPadding(new Insets(15));
-		this.plateau.setHgap(2);
-		this.plateau.setVgap(2);
-		this.plateau.setBackground(new Background(new BackgroundFill(
-						Color.color(122.0/255, 203.0/255, 215.0/255),
-						CornerRadii.EMPTY,
-						Insets.EMPTY)));
 		return this.plateau;
 	}
 
@@ -64,6 +56,7 @@ public class GUI extends Application {
 		this.joueurs.add(new Label(j2.getNom() + " " + j2.getPion().toString() + " " + j2.getNbPions()));
 		VBox res = new VBox(2);
 		res.getChildren().addAll(this.joueurs);
+		res.getStyleClass().add("joueurs");
 		return res;
 	}
 
@@ -110,10 +103,6 @@ public class GUI extends Application {
 		cont.setCenter(this.lePlateau());
 		cont.setRight(this.lesJoueurs());
 		cont.setTop(this.barreMenus());
-		cont.setBackground(new Background(new BackgroundFill(
-						Color.color(174.0/255, 229.0/255, 237.0/255),
-						CornerRadii.EMPTY,
-						Insets.EMPTY)));
 		return new Scene(cont,1024,768);
 	}
 
@@ -133,7 +122,7 @@ public class GUI extends Application {
 	}
 
 	/**
-	 * Crée le modèle, charge les images, créer le graphe de scène et lance le jeu
+	 * Crée le modèle, créer le graphe de scène et lance le jeu
 	 * @param stage la fenêtre principale
 	 */
 	@Override
@@ -147,6 +136,7 @@ public class GUI extends Application {
 		stage.setTitle("Connect 4");
 
 		stage.setScene(this.laScene());
+		stage.getScene().getStylesheets().add("style/style.css");
 		stage.show();
 	}
 

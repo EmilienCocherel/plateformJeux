@@ -3,11 +3,9 @@ export CLASSPATH=$CLASSPATH:./bin
 if [ -f Connect4.jar ]; then
 	rm Connect4.jar
 fi
-mkdir -p bin
-javac -d bin src/*.java
+javac -d ./ src/*.java
 if (( $? == 0 )); then
-	cd bin
-	jar cfe ../Connect4.jar GUI *.class
-	cd ..
+	jar cfe Connect4.jar GUI *.class style/style.css
+	rm *.class
 	java -jar Connect4.jar
 fi

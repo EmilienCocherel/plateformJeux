@@ -20,6 +20,7 @@ public class PlateauGUI extends GridPane {
 		for (int i=0; i < 7; i++) {
 			b = new Button(""+(i+1));
 			b.setOnAction(actionJouer);
+			b.getStyleClass().add("bouton_jouer");
 			this.controles.add(b);
 			this.add(b, i, 0);
 		}
@@ -28,11 +29,13 @@ public class PlateauGUI extends GridPane {
 		Integer pion;
 		for (int i=0; i < 49; i++) {
 			pion = this.plateau.get(i%7, i/7);
-			c = new Circle(45);
+			c = new Circle(40);
+			c.getStyleClass().add("pion");
 			PlateauGUI.setCouleur(pion, c);
 			this.pions.add(c);
 			this.add(c, i%7, i/7+1);
 		}
+		this.setId("plateau");
 	}
 
 	public void maj() {
@@ -51,11 +54,11 @@ public class PlateauGUI extends GridPane {
 
 	public static void setCouleur(Integer pion, Circle cercle) {
 		if (pion == null)
-			cercle.setFill(Color.LIGHTGRAY);
+			cercle.setId("");
 		else if (pion == 1)
-			cercle.setFill(Color.YELLOW);
+			cercle.setId("joueur1");
 		else
-			cercle.setFill(Color.RED);
+			cercle.setId("joueur2");
 	}
 
 
