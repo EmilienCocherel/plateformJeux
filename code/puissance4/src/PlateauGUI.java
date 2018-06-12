@@ -3,32 +3,48 @@ import java.util.ArrayList;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 
 public class PlateauGUI extends GridPane {
 	private Plateau plateau;
+	private List<Button> controles;
 	private List<Circle> pions;
 
 	public PlateauGUI(Plateau plateau, EventHandler<ActionEvent> actionJouer) {
 		this.plateau = plateau;
+		this.controles = new ArrayList<>();
+		Button b;
+		for (int i=0; i < 7; i++) {
+			b = new Button(""+(i+1));
+			b.setOnAction(actionJouer);
+			this.controles.add(b);
+			this.add(b, i, 0);
+		}
 		this.pions = new ArrayList<>();
 		Circle c;
 		Integer pion;
 		for (int i=0; i < 49; i++) {
 			pion = this.plateau.get(i%7, i/7);
-			c = new Circle(10);
+			c = new Circle(50);
 			PlateauGUI.setCouleur(pion, c);
 			this.pions.add(c);
-			this.add(c, i%7, i/7);
+			this.add(c, i%7, i/7+1);
 		}
 	}
 
 	public void maj() {
+		for (int i=0; i < 7; i++) {
+			if (this.plateau.getColonne(i).contains(null))
+				this.controles.get(i).setDisable(false);
+			else
+				this.controles.get(i).setDisable(true);
+		}
 		Integer pion;
 		for (int i=0; i < 49; i++) {
-			pion = this.plateau.get(i%7, i/7);
+			pion = this.plateau.get(i/7, i%7);
 			PlateauGUI.setCouleur(pion, this.pions.get(i));
 		}
 	}
@@ -39,7 +55,7 @@ public class PlateauGUI extends GridPane {
 		else if (pion == 1)
 			cercle.setFill(Color.YELLOW);
 		else
-			cercle.setFill(Color.BLUE);
+			cercle.setFill(Color.RED);
 	}
 
 

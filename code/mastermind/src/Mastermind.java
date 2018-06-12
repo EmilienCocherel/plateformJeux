@@ -76,8 +76,6 @@ public class Mastermind extends Application{
         this.id = id;
     }
 
-
-
     public void setJ1(Joueur j1) {
         this.j1 = j1;
     }
@@ -90,19 +88,19 @@ public class Mastermind extends Application{
         Label nom = new Label("p1");
         res.getChildren().add(nom);
         ToggleGroup group = new ToggleGroup();
-        RadioButton rfacile = new RadioButton("rouge");
+        BoutonRadio rfacile = new BoutonRadio("rouge",1);
         rfacile.setToggleGroup(group);
         res.getChildren().add(rfacile);
-        RadioButton rmoyen = new RadioButton("bleu");
+        BoutonRadio rmoyen = new BoutonRadio("bleu",1);
         rmoyen.setToggleGroup(group);
         res.getChildren().add(rmoyen);
-        RadioButton rdifficile = new RadioButton("vert");
+        BoutonRadio rdifficile = new BoutonRadio("vert",1);
         rdifficile.setToggleGroup(group);
         res.getChildren().add(rdifficile);
-        RadioButton rexpert = new RadioButton("jaune");
+        BoutonRadio rexpert = new BoutonRadio("jaune",1);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur1 actionNiveau = new ChoixCouleur1(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -118,19 +116,19 @@ public class Mastermind extends Application{
         Label nom = new Label("p2");
         res.getChildren().add(nom);
         ToggleGroup group = new ToggleGroup();
-        RadioButton rfacile = new RadioButton("rouge");
+        BoutonRadio rfacile = new BoutonRadio("rouge",2);
         rfacile.setToggleGroup(group);
         res.getChildren().add(rfacile);
-        RadioButton rmoyen = new RadioButton("bleu");
+        BoutonRadio rmoyen = new BoutonRadio("bleu",2);
         rmoyen.setToggleGroup(group);
         res.getChildren().add(rmoyen);
-        RadioButton rdifficile = new RadioButton("vert");
+        BoutonRadio rdifficile = new BoutonRadio("vert",2);
         rdifficile.setToggleGroup(group);
         res.getChildren().add(rdifficile);
-        RadioButton rexpert = new RadioButton("jaune");
+        BoutonRadio rexpert = new BoutonRadio("jaune",2);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur2 actionNiveau = new ChoixCouleur2(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -146,19 +144,19 @@ public class Mastermind extends Application{
         Label nom = new Label("p3");
         res.getChildren().add(nom);
         ToggleGroup group = new ToggleGroup();
-        RadioButton rfacile = new RadioButton("rouge");
+        BoutonRadio rfacile = new BoutonRadio("rouge",3);
         rfacile.setToggleGroup(group);
         res.getChildren().add(rfacile);
-        RadioButton rmoyen = new RadioButton("bleu");
+        BoutonRadio rmoyen = new BoutonRadio("bleu",3);
         rmoyen.setToggleGroup(group);
         res.getChildren().add(rmoyen);
-        RadioButton rdifficile = new RadioButton("vert");
+        BoutonRadio rdifficile = new BoutonRadio("vert",3);
         rdifficile.setToggleGroup(group);
         res.getChildren().add(rdifficile);
-        RadioButton rexpert = new RadioButton("jaune");
+        BoutonRadio rexpert = new BoutonRadio("jaune",3);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur3 actionNiveau = new ChoixCouleur3(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -175,19 +173,19 @@ public class Mastermind extends Application{
         Label nom = new Label("p4");
         res.getChildren().add(nom);
         ToggleGroup group = new ToggleGroup();
-        RadioButton rfacile = new RadioButton("rouge");
+        BoutonRadio rfacile = new BoutonRadio("rouge",4);
         rfacile.setToggleGroup(group);
         res.getChildren().add(rfacile);
-        RadioButton rmoyen = new RadioButton("bleu");
+        BoutonRadio rmoyen = new BoutonRadio("bleu",4);
         rmoyen.setToggleGroup(group);
         res.getChildren().add(rmoyen);
-        RadioButton rdifficile = new RadioButton("vert");
+        BoutonRadio rdifficile = new BoutonRadio("vert",4);
         rdifficile.setToggleGroup(group);
         res.getChildren().add(rdifficile);
-        RadioButton rexpert = new RadioButton("jaune");
+        BoutonRadio rexpert = new BoutonRadio("jaune",4);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur4 actionNiveau = new ChoixCouleur4(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -264,11 +262,11 @@ public class Mastermind extends Application{
         public void start(Stage stage) {
             // création du modèle
             this.combis=new ArrayList<>();
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combis.add(new Combinaison(1,2,1,2));
-            this.combi = new Combinaison(0,0,0,0);
-            stage.setTitle("jeu du pendu");
+            this.combis.add(new Combinaison(new Pion(1),new Pion(2),new Pion(2),new Pion(1)));
+            this.combis.add(new Combinaison(new Pion(1),new Pion(3),new Pion(1),new Pion(1)));
+            this.combis.add(new Combinaison(new Pion(2),new Pion(1),new Pion(1),new Pion(1)));
+            this.combi = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
+            stage.setTitle("Mastermind");
             this.j1=new Joueur();
             this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
             stage.setScene(this.laScene());
