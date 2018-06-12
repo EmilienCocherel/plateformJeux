@@ -1,5 +1,4 @@
 #!/bin/bash
-export CLASSPATH=$CLASSPATH:./bin
 if [ -f Connect4.jar ]; then
 	rm Connect4.jar
 fi
