@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
@@ -70,9 +72,12 @@ public class GUI extends Application {
 	 */
 	private MenuBar barreMenus() {
 		MenuBar res = new MenuBar();
-		Menu game = new Menu("Game");
-		Menu player = new Menu("Player");
-		Menu help = new Menu("Help");
+		Menu game = new Menu("Game"),
+			 player = new Menu("Player"),
+			 help = new Menu("Help");
+		EventHandler<ActionEvent> game_handler= new GameMenuAction(this.puissance4),
+			player_handler = new PlayerMenuAction(this.puissance4),
+			help_handler = new HelpMenuAction(this.puissance4);
 		game.getItems().addAll(
 				new MenuItem("Leave"),
 				new MenuItem("Surrender"),
@@ -87,6 +92,12 @@ public class GUI extends Application {
 				new MenuItem("About"),
 				new MenuItem("Tutorial")
 				);
+		for (MenuItem item : game.getItems())
+			item.setOnAction(game_handler);
+		for (MenuItem item : player.getItems())
+			item.setOnAction(player_handler);
+		for (MenuItem item : help.getItems())
+			item.setOnAction(help_handler);
 		res.getMenus().addAll(game, player, help);
 		return res;
 	}
