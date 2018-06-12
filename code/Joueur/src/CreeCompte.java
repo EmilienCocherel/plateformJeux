@@ -61,30 +61,51 @@ public class CreeCompte extends Application {
 
         Label title = new Label("S'incrire");
         title.setTextFill(Color.rgb(179, 71, 91));
-        title.setPadding(new Insets(5, 0, 20, 10));
+        title.setPadding(new Insets(5, 0, 10, 10));
         title.setFont(fonttitre);
         title.setAlignment(Pos.TOP_LEFT);
 
         HBox Hnom = new HBox();
         Label Lnom = new Label("* Nom :   ");
         Lnom.setTextFill(Color.rgb(196, 196, 196));
+        Lnom.setPadding(new Insets(0,6,0,50));
         TextField Tnom = new TextField();
         Hnom.getChildren().addAll(Lnom, Tnom);
-        Hnom.setPadding(new Insets(20, 0, 10, 20));
+        Hnom.setPadding(new Insets(20, 0, 0, 10));
 
         HBox Hemail = new HBox();
-        Label Lemail = new Label("* Email :  ");
+        Label Lemail = new Label("* Email :   ");
         Lemail.setTextFill(Color.rgb(196, 196, 196));
+        Lemail.setPadding(new Insets(0,0,0,50));
         TextField Temail = new TextField();
         Hemail.getChildren().addAll(Lemail, Temail);
-        Hemail.setPadding(new Insets(20, 0, 10, 20));
+        Hemail.setPadding(new Insets(20, 0, 10, 10));
 
         HBox Hmdp = new HBox();
-        Label Lmdp = new Label("* Entrez nouveau mot de passe :  ");
+        Label Lmdp = new Label("* Mot de passe :   ");
         Lmdp.setTextFill(Color.rgb(196, 196, 196));
         PasswordField Tmdp = new PasswordField();
         Hmdp.getChildren().addAll(Lmdp, Tmdp);
-        Hmdp.setPadding(new Insets(10, 0, 0, 20));
+        Hmdp.setPadding(new Insets(10, 0, 10, 10));
+
+        HBox Hmdp2 = new HBox();
+        Label Lmdp2 = new Label("* Confirmez :   ");
+        Lmdp2.setTextFill(Color.rgb(196, 196, 196));
+        Lmdp2.setPadding(new Insets(0,20,0,0));
+        PasswordField Tmdp2 = new PasswordField();
+        Hmdp2.getChildren().addAll(Lmdp2, Tmdp2);
+        Hmdp2.setPadding(new Insets(10, 0, 0, 10));
+
+
+
+
+        HBox Hbouton = new HBox();
+        Button bconnect = new Button("S'inscrire");
+        bconnect.setTextFill(Color.rgb(196, 196, 196));
+        bconnect.setBackground(new Background(new BackgroundFill(Color.rgb(179, 71, 91), new CornerRadii(5, false), null)));
+        bconnect.setPadding(new Insets(5, 50, 5,50));
+        Hbouton.setPadding(new Insets(40, 0, 0, 100));
+        Hbouton.getChildren().addAll(bconnect);
 
         res.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         res.setMaxSize(500, 400);
@@ -93,6 +114,8 @@ public class CreeCompte extends Application {
         res.add(Hnom,0,1);
         res.add(Hemail,0,2);
         res.add(Hmdp,0,3);
+        res.add(Hmdp2,0,4);
+        res.add(Hbouton,0,5);
         return res;
     }
 
