@@ -5,9 +5,14 @@ import javafx.scene.control.MenuItem;
 import java.util.ArrayList;
 
 public class ApplicationAJEL extends MenuBar{
-    private String [][] menuPrinc={{"Connexion BD","Connexion","Déconnexion","Quitter"},
+    private String [][] menuPrinc={
+            {"Connexion BD","Connexion","Déconnexion","Quitter"},
             {"Joueur","Afficher le plus grand numéro de joueur","Créer un joueur","Supprimer un joueur",
-                    "Mettre à jour un joueur","Afficher un joueur","Afficher un joueur par pseudo","Afficher tous les joueurs","Afficher msg par joueur"}};
+                    "Mettre à jour un joueur","Afficher un joueur","Afficher un joueur par pseudo","Afficher tous les joueurs","Afficher msg par joueur"},
+            {"Jeu", "Ajouter un jeu", "Mettre à jour un jeu"},
+            {"Rapport", "Lire un rapport", "Créer un rapport"},
+            {"Statistiques", "Lire une statistique"},
+            {"Aide", "Accéder aux aides"}};
     private ArrayList<MenuItem> lesItems;
     private AppliJDBC AppliJDBC;
     private ControleurMenu controleurMenu;
