@@ -2,6 +2,7 @@ package Connect4;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.MenuItem;
 
 public class PlayerMenuAction implements EventHandler<ActionEvent> {
 	/**
@@ -15,5 +16,14 @@ public class PlayerMenuAction implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent actionEvent) {
+		MenuItem menu = (MenuItem) actionEvent.getSource();
+		String text = menu.getText();
+		if (text.equals("Opponent's stats")) {
+			// TODO
+			System.out.println("Opponent's stats");
+		} else if (text.equals("Send messages")) {
+			// TODO
+			System.out.println("Send messages");
+		}
 	}
 }
