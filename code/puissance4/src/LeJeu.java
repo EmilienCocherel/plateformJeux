@@ -76,8 +76,7 @@ public class LeJeu extends Application {
 		game.getItems().addAll(
 				new MenuItem("Leave"),
 				new MenuItem("Surrender"),
-				new MenuItem("Score tab"),
-				new MenuItem("Back to game")
+				new MenuItem("Score tab")
 				);
 		player.getItems().addAll(
 				new MenuItem("Opponent's stats"),
