@@ -82,7 +82,7 @@ public class JoueurBD {
 		return numJ;
 	}
 
-
+	//Suppression joueur
 	void effacerJoueur(int num) throws SQLException{
 		Statement s = laConnexion.createStatement();
 		s.executeUpdate("Delete from MESSAGE where idUt1 =" + num);
