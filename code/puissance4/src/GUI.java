@@ -75,7 +75,7 @@ public class GUI extends Application {
 		Menu game = new Menu("Game"),
 			 player = new Menu("Player"),
 			 help = new Menu("Help");
-		EventHandler<ActionEvent> game_handler= new GameMenuAction(this.puissance4),
+		EventHandler<ActionEvent> game_handler= new GameMenuAction(this.puissance4, this),
 			player_handler = new PlayerMenuAction(this.puissance4),
 			help_handler = new HelpMenuAction(this.puissance4);
 		game.getItems().addAll(
@@ -163,5 +163,13 @@ public class GUI extends Application {
 	 */
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	/**
+	 * Abandonner la partie. Le joueur qui abandonne a perdu
+	 */
+	public void abandonner() {
+		// TODO
+		System.out.println("Surrendering");
 	}
 }

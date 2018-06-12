@@ -2,6 +2,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.application.Platform;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
 
 public class GameMenuAction implements EventHandler<ActionEvent> {
 	/**
@@ -9,8 +12,14 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 	 */
 	private Puissance4 puissance4;
 
-	public GameMenuAction(Puissance4 puissance4) {
+	/**
+	 * Vue du jeu
+	 */
+	private GUI gui;
+
+	public GameMenuAction(Puissance4 puissance4, GUI gui) {
 		this.puissance4 = puissance4;
+		this.gui = gui;
 	}
 
 	@Override
@@ -18,8 +27,13 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 		MenuItem menu = (MenuItem) actionEvent.getSource();
 		String text = menu.getText();
 		if (text.equals("Leave")) {
-			System.out.println(this.puissance4.toJson());
+			// TODO
 			Platform.exit();
+		} else if (text.equals("Surrender")) {
+			Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to surrender?");
+			alert.showAndWait()
+				.filter(response -> response == ButtonType.OK)
+				.ifPresent(response -> this.gui.abandonner());
 		}
 	}
 }
