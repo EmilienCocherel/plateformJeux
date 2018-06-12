@@ -13,27 +13,40 @@ public class Plateau extends Matrice<Integer> {
 	 */
     public boolean placerPion(int colonne, Integer pion) {
 		int ligne = 0;
-		while (ligne+1 < this.getNbLignes() && this.get(colonne, ligne+1) == null)
+		while (ligne+1 < this.getNbLignes() && this.get(ligne+1, colonne) == null)
 			ligne ++;
-		this.set(colonne, ligne, pion);
+		this.set(ligne, colonne, pion);
 
 		// Voir si le pion a gagné
-		return this.aGagne(colonne, ligne);
+		return this.aGagne(ligne, colonne);
     }
 
-	public boolean aGagne(int colonne, int ligne) {
+	/**
+	 * @param liste Une liste de pions (ligne, colonne ou diagonale)
+	 * @param pion Le pion recherché
+	 * @return Si le pion recherché gagne dans cette liste (càd est aligné 4 fois)
+	 */
+	public static boolean finie(List<Integer> liste, Integer pion) {
+		if (liste.size() >= 4)
+			for (int i = 0; i < liste.size() - 3; i++) {
+				if (liste.get(i) == pion && liste.get(i+1) == pion &&
+						liste.get(i+2) == pion && liste.get(i+3) == pion)
+					return true;
+			}
+		return false;
+	}
+
+	public boolean aGagne(int ligne, int colonne) {
 		Integer pion = this.get(ligne, colonne);
 		// Vérifier la ligne
 		List<Integer> l = this.getLigne(ligne);
-		for (int i = 0; i < l.size() - 4; i++)
-			if (l.get(i) == pion && l.get(i+1) == pion && l.get(i+2) == pion && l.get(i+3) == pion)
-				return true;
+		if (Plateau.finie(l, pion))
+			return true;
 
 		// Vérifier la colonne
-		List<Integer> c = this.getColonne(ligne);
-		for (int i = 0; i < c.size() - 4; i++)
-			if (c.get(i) == pion && c.get(i+1) == pion && c.get(i+2) == pion && c.get(i+3) == pion)
-				return true;
+		List<Integer> c = this.getColonne(colonne);
+		if (Plateau.finie(c, pion))
+			return true;
 
 		// Vérifier la diagonale principale
 		int diagonale_x = ligne, diagonale_y = colonne;
@@ -42,23 +55,19 @@ public class Plateau extends Matrice<Integer> {
 			diagonale_y --;
 		}
 		List<Integer> d = this.getDiagonalePrincipale(diagonale_y, diagonale_x);
-		if (d.size() >= 4)
-			for (int i = 0; i < d.size() - 4; i++)
-				if (d.get(i) == pion && d.get(i+1) == pion && d.get(i+2) == pion && d.get(i+3) == pion)
-					return true;
+		if (Plateau.finie(d, pion))
+			return true;
 
 		// Vérifier la diagonale secondaire
 		diagonale_x = ligne;
 		diagonale_y = colonne;
-		while (diagonale_x != 0 && diagonale_y != 7) {
+		while (diagonale_x > 0 && diagonale_y < 6) {
 			diagonale_x --;
 			diagonale_y ++;
 		}
 		d = this.getDiagonaleSecondaire(diagonale_y, diagonale_x);
-		if (d.size() >= 4)
-			for (int i = 0; i < d.size() - 4; i++)
-				if (d.get(i) == pion && d.get(i+1) == pion && d.get(i+2) == pion && d.get(i+3) == pion)
-					return true;
+		if (Plateau.finie(d, pion))
+			return true;
 
 		// Si le pion n'a pas gagné
 		return false;

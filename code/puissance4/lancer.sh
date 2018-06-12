@@ -1,2 +1,1 @@
-javac -d bin src/*.java
-java -cp bin GUI
+javac -d bin src/*.java && java -cp bin GUI

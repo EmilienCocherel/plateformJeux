@@ -23,7 +23,8 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		Button b = (Button) actionEvent.getSource();
-		int i = this.gui.getPlateau().getPions().indexOf(b);
+		int i = Integer.parseInt(b.getText())-1;
 		this.puissance4.jouer(i%7);
+		this.gui.majAffichage();
 	}
 }

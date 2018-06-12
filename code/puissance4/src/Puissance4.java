@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ public class Puissance4 {
 	 */
     public Puissance4(Joueur j1, Joueur j2){
 		this.plateau = new Plateau();
+		this.gagnants = new ArrayList<>();
 		this.joueur1 = j1;
 		this.joueur2 = j2;
 		this.id = -1;
@@ -35,7 +37,7 @@ public class Puissance4 {
 			joueur = this.joueur2;
 			this.actuel = 1;
 		}
-		res = this.plateau.placerPion(joueur.getPion(), colonne);
+		res = this.plateau.placerPion(colonne, joueur.getPion());
 		if (res) {
 			this.gagnants.add(joueur);
 			joueur1.reset();
