@@ -1,6 +1,9 @@
+import java.util.Random;
+
 public class Combinaison {
 
     private Pion p1, p2, p3, p4;
+    private Random rand;
 
     public Combinaison(Pion p1, Pion p2, Pion p3, Pion p4){
         this.p1 = p1;
@@ -8,6 +11,14 @@ public class Combinaison {
         this.p3 = p3;
         this.p4 = p4;
     }
+
+//    public Combinaison(){
+//        this.rand = new Random();
+//        this.p1 = new Pion(this.rand.nextInt(4));
+//        this.p2 = new Pion(this.rand.nextInt(4));
+//        this.p3 = new Pion(this.rand.nextInt(4));
+//        this.p4 = new Pion(this.rand.nextInt(4));
+//    }
 
 //    Getter et Setter
 
@@ -43,9 +54,7 @@ public class Combinaison {
       return this.p3.getCouleur();
     }
 
-    public void setP3(int val) {
-      this.p3.setVal(val);
-    }
+    public void setP3(int val) { this.p3.setVal(val);}
 
     public Pion getP4() {
       return this.p4;
