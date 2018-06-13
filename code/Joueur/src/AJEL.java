@@ -26,6 +26,7 @@ public class AJEL extends Application {
         Button seConnecter = new Button();
         Text texteSeConnecter = new Text("Se connecter");
         texteSeConnecter.setFont(new Font(14));
+        seConnecter.setStyle("-fx-background-color: transparent;");
         texteSeConnecter.setFill(Color.WHITE);
         seConnecter.setGraphic(texteSeConnecter);
 
@@ -33,9 +34,12 @@ public class AJEL extends Application {
         Button creerCompte = new Button();
         Text texteCreerUnCompte = new Text("Créer un compte");
         texteCreerUnCompte.setFont(new Font(14));
+        creerCompte.setStyle("-fx-background-color: transparent;");
         texteCreerUnCompte.setFill(Color.WHITE);
         creerCompte.setGraphic(texteCreerUnCompte);
 
+        menu.setButtonData(seConnecter,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(creerCompte,ButtonBar.ButtonData.LEFT);
         menu.getButtons().addAll(seConnecter, creerCompte);
         menu.setBackground(new Background(new BackgroundFill(this.couleurDegradeBar(), null, null)));
 
