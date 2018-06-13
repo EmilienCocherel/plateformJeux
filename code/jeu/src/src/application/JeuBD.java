@@ -9,11 +9,7 @@ public class JeuBD {
 		this.laConnexion=laConnexion;
 	}
 
-	public String test(){
-		return "yoylol";
-	}
-
-	// recherche nombre de joueurs au total
+	// recherche nombre de jeux au total
 	public int maxNumJeu() throws SQLException{
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select max(idJeu) as lemax from JEU");
@@ -26,6 +22,20 @@ public class JeuBD {
 	JeuProfil rechercherJeuParNum(int num) throws SQLException{
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JEU where idJeu =" + num);
+		res.next();
+		int numJeu = res.getInt("idJeu");
+		String nomJ = res.getString("nomJeu");
+		String description = res.getString("regleJeu");
+		String jarjar = res.getString("jarJeu");
+		boolean actif = res.getString("activeJeu").equals("O");
+		int idType = res.getInt("idTy");
+		res.close();
+		return new JeuProfil(numJeu, nomJ, description, jarjar, actif, idType);
+  }
+
+	JeuProfil rechercherJeuParNom(String nom) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JEU where nomJeu =" + nom);
 		res.next();
 		int numJeu = res.getInt("idJeu");
 		String nomJ = res.getString("nomJeu");
@@ -69,22 +79,18 @@ public class JeuBD {
 
   }
 
-  public ArrayList<Joueur> listeDesJoueurs() throws SQLException{
-		ArrayList<Joueur> Liste = new ArrayList<Joueur>();
+  public ArrayList<JeuProfil> listeDesJeux() throws SQLException{
+		ArrayList<JeuProfil> Liste = new ArrayList<JeuProfil>();
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JOUEUR");
+		ResultSet res = s.executeQuery("Select * from JEU");
 		while (res.next()){
-			int numJ = res.getInt("idJo");
-			String nomJ = res.getString("pseudo");
-			String mdp = res.getString("motdepasse");
-			int level = res.getInt("niveau");
-			String sexe = res.getString("sexe");
-			boolean abo = res.getString("abonne").equals("O");
-			byte[] image = res.getBytes("avatar");
-			String mail = res.getString("emailJo");
-			boolean actif = res.getString("activeJo").equals("O");
-			boolean estAdmin = res.getString("admin").equals("O");
-			Liste.add(new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, mail, actif, estAdmin));
+			int numJeu = res.getInt("idJeu");
+			String nomJ = res.getString("nomJeu");
+			String description = res.getString("regleJeu");
+			String jarjar = res.getString("jarJeu");
+			boolean actif = res.getString("activeJeu").equals("O");
+			int idType = res.getInt("idTy");
+			Liste.add(new JeuProfil(numJeu, nomJ, description, jarjar, actif, idType));
 		}
 		res.close();
 		return Liste;

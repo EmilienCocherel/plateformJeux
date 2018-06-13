@@ -109,6 +109,7 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     ficheJeu.viderFicheJeu();
                     this.AppliJDBC.showFicheJeu();
                     break;
+
                 case "Afficher le plus grand nombre de jeu":
                   try {
                       this.AppliJDBC.setMessage("Le plus grand numero est " + this.AppliJDBC.getJeuBD().maxNumJeu());
@@ -116,12 +117,42 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                       this.AppliJDBC.setMessage("Problème avec la requête\nVoici le message d'erreur\n" + ex.getMessage());
                   }
                   break;
+
                 case "Mettre à jour un jeu":
                   ficheJeu.setNomBouton("Rechercher un jeu par numéro");
                   ficheJeu.activerIdJeu(true);
                   ficheJeu.viderFicheJeu();
                   ficheJeu.setTitre("Mise à jour d'un jeu");
                   this.AppliJDBC.showFicheJeu();
+                  break;
+
+                case "Afficher un jeu par son numéro":
+                    ficheJoueur.setNomBouton("Rechercher par numéro");
+                    ficheJoueur.activerNumJoueur(true);
+                    ficheJoueur.viderFiche();
+                    ficheJoueur.setTitre("Consultation");
+                    this.AppliJDBC.showFicheJoueur();
+                    break;
+
+                case "Afficher un jeu par son nom":
+                    ficheJoueur.setNomBouton("Rechercher par pseudo");
+                    ficheJoueur.activerNumJoueur(true);
+                    ficheJoueur.viderFiche();
+                    ficheJoueur.setTitre("Mise à jour par pseudo");
+                    this.AppliJDBC.showFicheJoueur();
+                    break;
+
+                case "Afficher la liste des jeux":
+                  String laListeJeu="";
+                  try {
+                      ArrayList<JeuProfil> res = this.AppliJDBC.getJeuBD().listeDesJeux();
+                      for (JeuProfil j:res){
+                          laListeJeu+=j.getIdJeu()+" "+j.getNomJeu()+"\n";
+                      }
+                  }catch (SQLException ex){
+                      laListeJeu="La requête a échoué\nVoici le message du serveur\n"+ex.getMessage();
+                  }
+                  this.AppliJDBC.showFicheResultat(laListeJeu);
                   break;
 
                 default:
