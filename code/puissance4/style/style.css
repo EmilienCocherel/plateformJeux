@@ -3,11 +3,11 @@
 }
 
 .pion#joueur1 {
-	-fx-fill: yellow;
+	-fx-fill: #FFEB8A;
 }
 
 .pion#joueur2 {
-	-fx-fill: red;
+	-fx-fill: #FF3664;
 }
 
 .bouton_jouer {
@@ -35,4 +35,33 @@
 
 .joueurs {
 	-fx-background-color: #AEE5ED;
+	-fx-spacing: 5;
+	-fx-padding: 15;
+	-fx-alignment: top-center;
+	-fx-pref-width: 360px;
+}
+
+.joueur {
+	-fx-alignment: center-left;
+	-fx-spacing: 5;
+}
+
+#pause .pion {
+	-fx-fill: gray;
+}
+
+#pause .joueurs .pion#joueur1 {
+	-fx-fill: #DBCF95;
+}
+
+#pause .joueurs .pion#joueur2 {
+	-fx-fill: #BD5D73;
+}
+
+#pause #plateau {
+	-fx-background-color: #7EBBC4;
+}
+
+#pause .joueurs {
+	-fx-background-color: #AFD6DB;
 }
