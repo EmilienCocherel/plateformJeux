@@ -1,5 +1,7 @@
 package Connect4;
 
+import org.json.simple.JSONObject;
+
 public class Joueur {
     private String nom;
     private Integer pion;
@@ -42,5 +44,17 @@ public class Joueur {
 	 */
 	public void reset() {
 		this.nbPions = this.nbPionsInitial;
+	}
+
+	/**
+	 * Convertir le joueur au format JSON
+	 */
+	public JSONObject toJson() {
+		JSONObject res = new JSONObject();
+		res.put("nom", this.nom);
+		res.put("pion", this.pion);
+		res.put("nbPions", this.nbPions);
+		res.put("nbPionsInitial", this.nbPionsInitial);
+		return res;
 	}
 }
