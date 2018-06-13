@@ -28,36 +28,19 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreeCompte extends Application {
+public class CreeCompte extends GridPane {
 
-    Menu seconnecter,creerCompte;
+    GridPane res;
 
-    public VBox menuBar() {
-        VBox res = new VBox();
+    private BorderPane cont;
 
-        MenuBar menu = new MenuBar();
+    private ApplicationAJEL app;
 
-         this.seconnecter = new Menu("Se connecter");
+    public CreeCompte(ApplicationAJEL app1){
 
-         this.creerCompte = new Menu("Créer un compte");
+        this.app = app1;
 
-        Menu quitter = new Menu("Quitter");
-
-        menu.getMenus().addAll(seconnecter, creerCompte, quitter);
-
-        Stop[] stops = new Stop[] { new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123,41,67))};
-        LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
-        menu.setBackground(new Background(new BackgroundFill(lg1, null, null)));
-
-        res.getChildren().addAll(menu);
-
-        return res;
-
-    }
-
-    public GridPane creerCompte(){
-
-        GridPane res = new GridPane();
+        this.res = new GridPane();
 
         Font fonttitre = new Font("Arial", 25);
 
@@ -121,31 +104,17 @@ public class CreeCompte extends Application {
         res.add(Hmdp2,0,4);
         res.add(cb,0,5);
         res.add(Hbouton,0,6);
-        return res;
-    }
 
-
-    private Scene laScene(){
-        BorderPane cont = new BorderPane();
-        cont.setTop(this.menuBar());
-        cont.setCenter(this.creerCompte());
+        this.cont = new BorderPane();
+        cont.setTop(this.app.menuBar());
+        cont.setCenter(res);
         Stop[] stops = new Stop[] { new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123,41,67))};
         LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
 
         cont.setBackground(new Background(new BackgroundFill(lg1,null,null)));
-        return new Scene(cont,800,600);
     }
 
-    @Override
-    public void start(Stage stage) {
-
-        stage.setTitle("AJEL");
-        stage.setScene(this.laScene());
-        stage.show();
-
-    }
-
-    public static void main(String[] args) {
-        launch(args);
+    public BorderPane getPanelCreer(){
+        return this.cont;
     }
 }
