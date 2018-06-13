@@ -59,27 +59,37 @@ public class JeuxBoutique extends BorderPane {
         TableColumn type = this.colonneTab("Type");
         TableColumn dateEnLigne = this.colonneTab("Date de mise en ligne");
 
+        tab.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         tab.getColumns().addAll(nom, type, dateEnLigne);
 
         return tab;
     }
 
-    public BorderPane setfenetre(){
+    public BorderPane setfenetre() {
 
-        this.cont.setTop(this.barJeuBoutique());
-        this.cont.setCenter(this.tableau());
+        BorderPane fenetre = new BorderPane();
 
+        fenetre.setTop(this.barJeuBoutique());
+        fenetre.setCenter(this.tableau());
+
+        return fenetre;
+
+    }
+
+    public void initCont(){
+
+        this.cont.setTop(this.app.getMenuBar());
+        this.cont.setCenter(this.setfenetre());
         Stop[] stops = new Stop[]{new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123, 41, 67))};
         LinearGradient lg2 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
 
         this.cont.setBackground(new Background(new BackgroundFill(lg2, null, null)));
 
         this.cont.setPadding(new Insets(50, 50, 50, 50));
-
-        return this.cont;
     }
 
     public BorderPane getCont() {
+        this.initCont();
         return this.cont;
     }
 }
