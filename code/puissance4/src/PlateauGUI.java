@@ -44,10 +44,10 @@ public class PlateauGUI extends GridPane {
 
 	public void maj() {
 		for (int i=0; i < 7; i++) {
-			if (!this.gui.isPause() && this.plateau.getColonne(i).contains(null))
-				this.controles.get(i).setDisable(false);
-			else
+			if (this.gui.isPause() || !this.gui.isTour() || !this.plateau.getColonne(i).contains(null))
 				this.controles.get(i).setDisable(true);
+			else
+				this.controles.get(i).setDisable(false);
 		}
 		Integer pion;
 		for (int i=0; i < 49; i++) {

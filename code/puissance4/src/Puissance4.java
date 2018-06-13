@@ -58,10 +58,8 @@ public class Puissance4 {
 		boolean res;
 		Joueur joueur = this.getJoueurCourant();
 		res = this.plateau.placerPion(colonne, joueur.getPion());
-		if (res) {
-			joueur.retirerPion();
-			this.tour = false;
-		}
+		joueur.retirerPion();
+		this.tour = false;
 		return res;
     }
 
