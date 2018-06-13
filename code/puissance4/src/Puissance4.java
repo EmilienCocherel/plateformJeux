@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
 
 public class Puissance4 {
     private List<Joueur> gagnants;
@@ -114,12 +115,13 @@ public class Puissance4 {
 	}
 
 	public static Puissance4 fromJson(JSONObject json) {
-		return new Puissance4(Plateau.fromJson(json.get("plateau")),
-					Joueur.fromJson(json.get("joueur1")),
-					Joueur.fromJson(json.get("joueur2")),
-					json.get("actuel"),
-					json.get("id"),
-					json.get("tour")
+		return new Puissance4(Plateau.fromJson((JSONArray) json.get("plateau")),
+					(List<Joueur>) json.get("gagnants"),
+					Joueur.fromJson((JSONObject) json.get("joueur1")),
+					Joueur.fromJson((JSONObject) json.get("joueur2")),
+					(int) json.get("actuel"),
+					(int) json.get("id"),
+					(boolean) json.get("tour")
 					);
 	}
 
