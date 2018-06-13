@@ -66,7 +66,7 @@ public class AppliJDBC extends Application {
         VBox fp=((VBox)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.message);
-        fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion));
+        // fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion));
         this.ApplicationAJEL.connecter();
     }
 
