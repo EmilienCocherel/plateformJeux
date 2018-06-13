@@ -1,3 +1,5 @@
+package application;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
@@ -10,7 +12,7 @@ import javafx.scene.layout.GridPane;
 
 import java.sql.Connection;
 
-public class LoginBD extends GridPane {
+public class Login extends GridPane {
     private PasswordField motDePasse;
     private TextField login, nomServeur, nomBD;
 
@@ -23,35 +25,44 @@ public class LoginBD extends GridPane {
             }
         }
     }
-    public LoginBD(TestJDBC testJDBC){
+    public Login(AppliJDBC AppliJDBC){
         super();
         this.setPadding(new Insets(10));
         this.setHgap(10);
         this.setVgap(10);
 
-        Label ln=new Label("Email :");
+        Label ln=new Label("Login :");
         ln.setAlignment(Pos.BASELINE_RIGHT);
         Label lp=new Label("Mode de passe :");
         lp.setAlignment(Pos.BASELINE_RIGHT);
+        Label ls=new Label("Nom du serveur :");
+        ls.setAlignment(Pos.BASELINE_RIGHT);
+        Label lbd=new Label("Nom de la base de données :");
+        ls.setAlignment(Pos.BASELINE_RIGHT);
 
         this.motDePasse = new PasswordField();
+        this.motDePasse.setText("charlotte");
         this.motDePasse.setAlignment(Pos.BASELINE_LEFT);
         this.login = new TextField();
+        this.login.setText("charlotte");
         this.login.focusedProperty().addListener(new EcouteurLogin());
         this.login.setAlignment(Pos.BASELINE_LEFT);
+        this.nomServeur = new TextField("servinfo-db");
+        this.nomServeur.setAlignment(Pos.BASELINE_LEFT);
+        this.nomBD = new TextField();
+        this.nomBD.setAlignment(Pos.BASELINE_LEFT);
 
-        CheckBox cb = new CheckBox();
-        Label lc = new Label ("Enregistrer le mot de passe");
-        lc.setAlignement(Pos.BASELINE_LEFT);
-
-        Button b= new Button("Se Connecter");
+        Button b= new Button("Valider");
         b.setAlignment(Pos.BASELINE_CENTER);
-        b.setOnAction(new ControleurConnexion(testJDBC));
+        b.setOnAction(new ControleurConnexion(AppliJDBC));
         this.add(ln,1,1);
         this.add(lp,1,2);
-        this.add(cb,1,3);
+        this.add(ls,1,3);
+        this.add(lbd,1,4);
         this.add(this.login,2,1);
         this.add(this.motDePasse,2,2);
+        this.add(this.nomServeur,2,3);
+        this.add(this.nomBD,2,4);
         this.add(b,1,5,2,1);
 
     }
@@ -64,6 +75,12 @@ public class LoginBD extends GridPane {
         return this.login.getText();
     }
 
-    public Boolean getEnregistrer { return this.cb;}
+    public String getNomServeur() {
+        return this.nomServeur.getText();
+    }
+
+    public String getNomBD() {
+        return this.nomBD.getText();
+    }
 
 }

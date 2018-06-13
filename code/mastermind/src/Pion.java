@@ -5,6 +5,8 @@ public class Pion{
     this.val=val;
   }
 
+  public Pion(){}
+
   public int getVal(){
     return this.val;
   }
