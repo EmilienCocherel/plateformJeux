@@ -108,4 +108,21 @@ public class Puissance4 {
 		else
 			return this.joueur2;
 	}
+
+	/**
+	 * @return le joueur gagnant dans une partie terminée
+	 */
+	public Joueur getGagnant() {
+		int j1 = 0, j2 = 0;
+		for (Joueur gagnant : this.gagnants) {
+			if (gagnant == this.joueur1)
+				j1++;
+			else
+				j2++;
+		}
+		if (j1 > 1)
+			return this.joueur1;
+		else
+			return this.joueur2;
+	}
 }
