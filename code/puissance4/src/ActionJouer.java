@@ -27,6 +27,7 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 		Button b = (Button) actionEvent.getSource();
 		int i = Integer.parseInt(b.getText())-1;
 		this.puissance4.jouer(i%7);
+		// TODO: envoyer l'état de la partie à la bdd
 		this.gui.majAffichage();
 	}
 }
