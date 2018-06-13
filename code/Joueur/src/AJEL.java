@@ -86,7 +86,7 @@ public class AJEL extends Application {
         this.colorerLaBase();
 
         stage.setScene( new Scene(this.laBase,800,600));
-        stage.setTitle("AJEL nouveau");
+        stage.setTitle("AJEL");
         stage.show();
 
     }
