@@ -13,11 +13,6 @@ import javafx.scene.text.Font;
 
 public abstract class PageConnexion extends GridPane{
 
-//    private GridPane panel;
-   // private ApplicationAJEL app;
-    //private GridInscrire inscription;
-
-
 
     public PageConnexion() {
         super();

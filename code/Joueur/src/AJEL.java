@@ -18,41 +18,6 @@ public class AJEL extends Application {
     private BorderPane laBase;
 
 
-
-//    public void initMenuBar() {
-//
-//        this.bar = new VBox();
-//        this.menu = new MenuBar();
-//
-//        this.seconnecter = new Menu("Se connecter");
-//
-//        MenuItem seCo = new MenuItem("Se connecter");
-//        this.seconnecter.getItems().add(seCo);
-//        this.creerCompte = new Menu("Créer un compte");
-//        MenuItem crea = new MenuItem("Création du compte");
-//        this.creerCompte.getItems().add(crea);
-//
-//
-//        this.menu.getMenus().addAll(this.seconnecter, this.creerCompte);
-//
-//        Stop[] stops = new Stop[] { new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123,41,67))};
-//        LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
-//        this.menu.setBackground(new Background(new BackgroundFill(lg1, null, null)));
-//
-////        this.creerCompte.setOnAction(event -> this.modeInscrire());
-////        this.seconnecter.setOnAction(event -> window.setScene(this.seco));
-//
-//        this.bar.getChildren().add(this.menu);
-//
-//    }
-//
-//    private void modeInscrire(){
-//        this.leCentre.setGridInscrire();
-//    }
-//
-//    public VBox getMenuBar(){
-//        return this.bar;
-//    }
     private void creerMenuConnexion(){
         VBox bar = new VBox();
         MenuBar menu = new MenuBar();
