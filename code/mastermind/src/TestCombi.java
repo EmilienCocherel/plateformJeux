@@ -29,8 +29,6 @@ public class TestCombi implements EventHandler<ActionEvent> {
     @Override
     public void handle(ActionEvent actionEvent) {
         Button rb =(Button) actionEvent.getSource();
-        System.out.print(this.partie.getCombi());
-        System.out.print(this.manche.getCombi());
         if (this.partie.getCombi().equals(this.manche.getCombi())){
             this.manche.finManche();
         }

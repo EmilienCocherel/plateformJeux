@@ -19,15 +19,16 @@ public class ApplicationAJEL extends Application {
     private CreeCompte creerC;
     private Menu seconnecter, creerCompte, quitter;
     private MenuItem aller,crea,seCo;
-    private VBox res;
+    private MenuBar menu;
+    private VBox bar;
 
-    public ApplicationAJEL(){
+    public void init(){
+        this.initMenuBar();
     }
+    public void initMenuBar() {
+        this.bar = new VBox();
 
-    public VBox menuBar() {
-        res = new VBox();
-
-        MenuBar menu = new MenuBar();
+        this.menu = new MenuBar();
 
         this.seconnecter = new Menu("Se connecter");
         this.seCo = new MenuItem("Se connecter");
@@ -37,33 +38,41 @@ public class ApplicationAJEL extends Application {
         this.creerCompte.getItems().add(this.crea);
 
 
-        Menu quitter = new Menu("Quitter");
+        this.quitter = new Menu("Quitter");
 
-        menu.getMenus().addAll(seconnecter, creerCompte, quitter);
+        this.menu.getMenus().addAll(this.seconnecter, this.creerCompte, this.quitter);
 
         Stop[] stops = new Stop[] { new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123,41,67))};
         LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
-        menu.setBackground(new Background(new BackgroundFill(lg1, null, null)));
+        this.menu.setBackground(new Background(new BackgroundFill(lg1, null, null)));
 
-        res.getChildren().addAll(menu);
+        this.creerCompte.setOnAction(event -> window.setScene(this.creer));
+        this.seconnecter.setOnAction(event -> window.setScene(this.seco));
 
-        return res;
+        this.bar.getChildren().add(this.menu);
+
     }
+    public VBox getMenuBar(){
+        this.initMenuBar();
+        return this.bar;
+    }
+
 
     @Override
     public void start(Stage stage) {
-
-        this.login = new Login(this);
+        this.init();
         this.creerC = new CreeCompte(this);
-
+        this.login = new Login(this);
 
         window = stage;
 
         this.seco = new Scene(this.login.getPanelLogin(),800,600);
         this.creer = new Scene(this.creerC.getPanelCreer(), 800, 600);
-        this.creerCompte.setOnAction(event -> window.setScene(this.creer));
-        this.seconnecter.setOnAction(event -> window.setScene(this.seco));
-        window.setScene(this.creer);
+
+
+
+
+        window.setScene(this.seco);
         window.setTitle("AJEL");
         window.show();
 

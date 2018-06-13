@@ -28,7 +28,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CreeCompte extends GridPane {
+public class CreeCompte {
 
     GridPane res;
 
@@ -106,7 +106,7 @@ public class CreeCompte extends GridPane {
         res.add(Hbouton,0,6);
 
         this.cont = new BorderPane();
-        cont.setTop(this.app.menuBar());
+        cont.setTop(this.app.getMenuBar());
         cont.setCenter(res);
         Stop[] stops = new Stop[] { new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123,41,67))};
         LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);

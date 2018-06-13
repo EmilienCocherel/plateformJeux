@@ -28,16 +28,17 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Login extends BorderPane {
+public class Login {
     private BorderPane conti;
     private ApplicationAJEL app;
+    private GridPane res2;
 
 
     public Login(ApplicationAJEL app) {
 
             this.app = app;
 
-            GridPane res2 = new GridPane();
+            res2 = new GridPane();
 
             Font fonttitre = new Font("Arial", 25);
 
@@ -93,7 +94,7 @@ public class Login extends BorderPane {
             res2.add(Hmdpoublie, 0, 5);
 
             this.conti = new BorderPane();
-            conti.setTop(this.app.menuBar());
+            conti.setTop(this.app.getMenuBar());
             conti.setCenter(res2);
             Stop[] stops2 = new Stop[]{new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123, 41, 67))};
             LinearGradient lg2 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops2);
