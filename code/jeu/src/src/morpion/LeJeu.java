@@ -1,8 +1,10 @@
 package morpion;
 
+import javafx.application.Application;
 import javafx.scene.layout.Pane;
 import java.sql.Connection;
 import application.*;
+
 
 public class LeJeu implements Jeu  {
     private int joueur;
@@ -17,7 +19,8 @@ public class LeJeu implements Jeu  {
 	     this.mg=null;
     }
 
-    public Pane jouerCoup(int idPartie, int joueur, Object partage){
+    @Override
+    public void jouerCoup(int idPartie, int joueur, Object partage){
     	System.out.println("coucou1");
 	    this.partage=(Partage)partage;
 	    String etat = this.partage.getMySQL().getEtat(idPartie);
@@ -28,7 +31,8 @@ public class LeJeu implements Jeu  {
 	    return this.mg;
     }
 
-    public Pane creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+    @Override
+    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
 	     this.partage=(Partage)partage;
 	     this.mp=new Morpion(7, 4, 1);
 	     int idPartie=this.partage.getMySQL().creerPartie(idJeu,idJoueur1,idJoueur2,mp.getEtat());
@@ -36,7 +40,7 @@ public class LeJeu implements Jeu  {
        this.mg=new MorpionGraphique(this.mp, joueur,this.partage,idJeu);
 	     return this.mg;
     }
-    public Pane getVueJeu(){
-	     return (Pane) this.mg;
+    public Application getVueJeu(){
+	     return (Application) this.mg;
     }
 }

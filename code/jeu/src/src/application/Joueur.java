@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 public class Joueur {
-    private int identifiant;
+    protected int identifiant;
     private String pseudo;
     private String motdepasse;
     private char sexe;
@@ -30,6 +30,13 @@ public class Joueur {
         this.souvenir = souvenir;
     }
 
+    public Joueur(int id){
+      this.identifiant=id;
+    }
+
+    public Joueur(){
+      this.identifiant=1;
+    }
 
     public int getIdentifiant() {
         return identifiant;
