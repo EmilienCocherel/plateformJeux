@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 
 public class ApplicationAJEL extends Application {
     private Stage window;
-    private Scene seco,creer;
+    private Scene seco,creer,sBoutique;
+    private JeuxBoutique boutique;
     private Login login;
     private CreeCompte creerC;
     private Menu seconnecter, creerCompte, quitter;
@@ -61,16 +62,18 @@ public class ApplicationAJEL extends Application {
         this.init();
         this.creerC = new CreeCompte(this);
         this.login = new Login(this);
+        this.boutique = new JeuxBoutique(this);
 
         window = stage;
 
         this.seco = new Scene(this.login.getPanelLogin(),800,600);
         this.creer = new Scene(this.creerC.getPanelCreer(), 800, 600);
+        this.sBoutique = new Scene(this.boutique.getCont(),1000,800);
 
 
 
 
-        window.setScene(this.seco);
+        window.setScene(this.sBoutique);
         window.setTitle("AJEL");
         window.show();
 
