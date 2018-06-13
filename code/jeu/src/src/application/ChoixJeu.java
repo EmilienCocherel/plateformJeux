@@ -55,7 +55,7 @@ public class ChoixJeu extends GridPane {
 
         try {
 	        //jeu = this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+".LeJeu");
-          this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+".LeJeu");
+          this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+"."+nomJeu);
         }
         catch (ClassNotFoundException ex1) {
 	        System.out.println("Exception1 found for " + ex1.toString());
@@ -71,10 +71,11 @@ public class ChoixJeu extends GridPane {
         }
 		    Application j;
 	      if (laConnexion.estUnePartie(Integer.parseInt(numPartie.getText()))){
-          jeu.jouerCoup(Integer.parseInt(numPartie.getText()),Integer.parseInt(numJoueur.getText()),new Partage(this.laConnexion,this));
+          //jeu.jouerCoup(Integer.parseInt(numPartie.getText()),Integer.parseInt(numJoueur.getText()),new Partage(this.laConnexion,this));
         }
-	else jeu.creerPartie(1,1,2, new Partage(this.laConnexion,this));
+	else{
+    //jeu.creerPartie(1,1,2, new Partage(this.laConnexion,this));
 	//this.add(j,0,3);
     }
-
+  }
 }

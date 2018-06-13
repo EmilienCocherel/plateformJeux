@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import javafx.stage.Modality;
 import application.*;
 
-public class Mastermind implements application.Jeu{
+public class Mastermind extends application.Jeu{
     private JoueurMastermind j1;
     private int id;
     private ArrayList<Combinaison> combis;
@@ -30,6 +30,14 @@ public class Mastermind implements application.Jeu{
     public Mastermind(int id,JoueurMastermind j1){
       this.id=id;
       this.j1=j1;
+    }
+
+    @Override
+    public void jouerCoup(int idPartie, int joueur, Object partage){
+    }
+
+    @Override
+    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
     }
 
     public Combinaison getCombi(){
@@ -262,6 +270,7 @@ public class Mastermind implements application.Jeu{
          * @param stage la fenêtre principale
          */
 
+         @Override
          public void run(){
             this.stage = new Stage();
             this.combis=new ArrayList<>();

@@ -6,7 +6,7 @@ import java.sql.Connection;
 import application.*;
 
 
-public class LeJeu implements Jeu  {
+public class LeJeu extends Jeu  {
     private int joueur;
     private Morpion mp=null;
     private MorpionGraphique mg=null;

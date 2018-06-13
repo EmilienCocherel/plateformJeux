@@ -31,9 +31,9 @@ public class ChargeurJeu{
       //jeu.main(args);
       //Application.launch(Mastermind.class,args);
 
-      //Jeu jeu = (Jeu)Class.forName(nomClasse,true,loader).newInstance();
-      //Platform.runLater(jeu)
-      Platform.runLater(new Mastermind(1,new JoueurMastermind(10)));
+      Jeu jeu = (Jeu)Class.forName("Mastermind").newInstance();
+      Platform.runLater(jeu);
+      //Platform.runLater(new Mastermind(1,new JoueurMastermind(10)));
 
       //jeu.start(new Stage());
       //Class.forName(nomClasse,true,loader).newInstance();
