@@ -7,8 +7,12 @@ public class JeuBD {
 		this.laConnexion=laConnexion;
 	}
 
+	public String test(){
+		return "yoylol";
+	}
+
 	// recherche nombre de joueurs au total
-	int maxNumJeu() throws SQLException{
+	public int maxNumJeu() throws SQLException{
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select max(idJeu) as lemax from JEU");
 		res.next();
@@ -17,43 +21,21 @@ public class JeuBD {
 		return dernierJeu;
 	}
 
-	Joueur rechercherJoueurParNum(int num) throws SQLException{
+	JeuProfil rechercherJeuParNum(int num) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JOUEUR where idJo =" + num);
+		ResultSet res = s.executeQuery("Select * from JEU where idJeu =" + num);
 		res.next();
-		int numJ = res.getInt("idJo");
-		String nomJ = res.getString("pseudo");
-		String mdp = res.getString("motdepasse");
-		String sexe = res.getString("sexe");
-		boolean abo = res.getString("abonne").equals("O");
-		int level = res.getInt("niveau");
-		byte[] image = res.getBytes("avatar");
-		String email = res.getString("emailJo");
-		boolean actif = res.getString("activeJo").equals("O");
-		boolean admin = res.getString("admin").equals("O");
+		int numJeu = res.getInt("idJeu");
+		String nomJ = res.getString("nomJeu");
+		String description = res.getString("regleJeu");
+		String jarjar = res.getString("jarJeu");
+		boolean actif = res.getString("activeJeu").equals("O");
+		int idType = res.getInt("idTy");
 		res.close();
-		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
+		return new JeuProfil(numJeu, nomJ, description, jarjar, actif, idType);
   }
 
-	Joueur rechercherJoueurParPseudo(String nom) throws SQLException{
-		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+nom+'"');
-		res.next();
-		int numJ = res.getInt("idJo");
-		String nomJ = res.getString("pseudo");
-		String mdp = res.getString("motdepasse");
-		String sexe = res.getString("sexe");
-		boolean abo = res.getString("abonne").equals("O");
-		int level = res.getInt("niveau");
-		byte[] image = res.getBytes("avatar");
-		String email = res.getString("emailJo");
-		boolean actif = res.getString("activeJo").equals("O");
-		boolean admin = res.getString("admin").equals("O");
-		res.close();
-		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
-	}
-
-	int insererJeu(JeuProfil j) throws SQLException{
+	public int insererJeu(JeuProfil j) throws SQLException{
 		PreparedStatement ps = laConnexion.prepareStatement("insert into JEU values (?,?,?,?,?,?)");
 		int numJeu = this.maxNumJeu() + 1;
 		ps.setInt(1,numJeu);
@@ -70,43 +52,22 @@ public class JeuBD {
 		return numJeu;
 	}
 
-	//Suppression joueur
-	void effacerJoueur(int num) throws SQLException{
-		Statement s = laConnexion.createStatement();
-		s.executeUpdate("Delete from MESSAGE where idUt1 =" + num);
-		s.executeUpdate("Delete from MESSAGE where idUt2 =" + num);
-		s.executeUpdate("Delete from JOUEUR where idJo =" + num);
-	}
-
-
-  void majJoueur(Joueur j) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, admin = ? where idJo =" + j.getIdentifiant());
-		ps.setString(1,j.getPseudo());
-		ps.setString(2,j.getMotdepasse());
-		ps.setString(3,j.getSexe() + "");
-		String abo = "N";
-		if (j.isAbonne()){
-			abo = "O";
-		}
-		ps.setString(4,abo);
-		ps.setInt(5,j.getNiveau());
-		ps.setBytes(6,j.getAvatar());
-		ps.setString(7,j.getEmailJo());
+  public void majJeu(JeuProfil j) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("Update JEU set nomJeu = ?,regleJeu = ?, jarJeu = ?, activeJeu = ?,	idTy = ? wher idJeu =" + j.getIdJeu());
+		ps.setString(1,j.getNomJeu());
+		ps.setString(2,j.getDescription());
+		ps.setString(3,j.getJarJeu());
 		String actif = "N";
 		if (j.isActive()){
 			actif = "O";
 		}
-		ps.setString(8,actif);
-		String estAdmin = "N";
-		if (j.isAdmin()){
-			estAdmin = "O";
-		}
-		ps.setString(9, estAdmin);
+		ps.setString(4,actif);
+		ps.setInt(5,j.getIdType());
 		ps.executeUpdate();
 
   }
 
-  ArrayList<Joueur> listeDesJoueurs() throws SQLException{
+  public ArrayList<Joueur> listeDesJoueurs() throws SQLException{
 		ArrayList<Joueur> Liste = new ArrayList<Joueur>();
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JOUEUR");
@@ -127,7 +88,7 @@ public class JeuBD {
 		return Liste;
   }
 
-  String rapportMessage() throws SQLException{
+  public String rapportMessage() throws SQLException{
 		Statement st = laConnexion.createStatement();
 		ResultSet rs=st.executeQuery(
 						"select j2.pseudo pseudoRec, dateMsg, j1.pseudo pseudoExp, contenuMsg "+

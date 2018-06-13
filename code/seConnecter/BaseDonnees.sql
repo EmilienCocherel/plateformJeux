@@ -167,7 +167,7 @@ CREATE TABLE JEU (
   idJeu decimal(6,0),
   nomJeu varchar(20),
   regleJeu text,
-  jarJeu blob,
+  jarJeu text,
   activeJeu char(1),
   idTy decimal(6,0),
   PRIMARY KEY (idJeu)

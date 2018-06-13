@@ -101,7 +101,7 @@ public class FicheJeu extends GridPane{
 
         this.add(this.titre,1,0,2,1);
         this.add(new Label("Titre:"),1,1);
-        this.add(this.nomJeu, 1,0);
+        this.add(this.nomJeu, 2,1);
         this.add(new Label("Numéro:"),1,2);
         this.add(this.idJeu,2,2);
         this.add(new Label("JarJeu:"),1,3);

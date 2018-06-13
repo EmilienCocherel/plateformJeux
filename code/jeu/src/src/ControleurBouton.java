@@ -80,6 +80,25 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                 } catch (SQLException ex) {
                     alertEchec(ex);
                 }
+
+                //POUR LES JEUX
+                try{
+                    jeu = jeubd.rechercherJeuParNum(ficheJeu.getIdJeu());
+                    ficheJeu.setJeu(jeu);
+                    String titre = ficheJeu.getTitre();
+                    switch (titre) {
+                        case "Suppression":
+                            ficheJeu.setNomBouton("Supprimer");
+                            break;
+                        case "Mise à jour par numéro":
+                            ficheJeu.setNomBouton("Mettre à jour par numéro");
+                            ficheJeu.activerIdJeu(false);
+                            break;
+                    }
+
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
                 break;
             case "Rechercher par pseudo":
                 try{
@@ -114,6 +133,16 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     ficheJoueur.viderFiche();
                     ficheJoueur.setNomBouton("Rechercher par numéro");
                     ficheJoueur.activerNumJoueur(true);
+                }catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                // MAJ POUR LE JEU
+                try{
+                    jeubd.majJeu(ficheJeu.getJeu());
+                    alertOK("Le jeu "+ficheJeu.getIdJeu()+ " a bien été mis à jour");
+                    ficheJeu.viderFicheJeu();
+                    ficheJeu.setNomBouton("Rechercher par numéro");
+                    ficheJeu.activerIdJeu(true);
                 }catch (SQLException ex) {
                     alertEchec(ex);
                 }

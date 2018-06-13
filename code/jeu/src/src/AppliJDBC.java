@@ -36,6 +36,7 @@ public class AppliJDBC extends Application {
         this.ficheJoueur=new FicheJoueur(this);
         this.ficheJeu = new FicheJeu(this);
         this.ficheResultat=new FicheResultat(this);
+        this.jeuBD=new JeuBD(this.Connexion);
         this.joueurBD=new JoueurBD(this.Connexion);
         this.message=new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));

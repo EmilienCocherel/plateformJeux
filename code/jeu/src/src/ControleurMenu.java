@@ -98,14 +98,28 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     }
                     this.AppliJDBC.showFicheResultat(rapport);
                     break;
+
+                  //JEUX
                 case "Ajouter un jeu":
                     ficheJeu.setNomBouton("Ajouter");
                     ficheJeu.activerIdJeu(false);
                     ficheJeu.viderFicheJeu();
                     this.AppliJDBC.showFicheJeu();
                     break;
-
-
+                case "Afficher le plus grand nombre de jeu":
+                  try {
+                      this.AppliJDBC.setMessage("Le plus grand numero est " + this.AppliJDBC.getJeuBD().maxNumJeu());
+                  }catch (SQLException ex) {
+                      this.AppliJDBC.setMessage("Problème avec la requête\nVoici le message d'erreur\n" + ex.getMessage());
+                  }
+                  break;
+                case "Mettre à jour un jeu":
+                  ficheJeu.setNomBouton("Rechercher par numéro");
+                  ficheJeu.activerIdJeu(true);
+                  ficheJeu.viderFicheJeu();
+                  ficheJeu.setTitre("Mise à jour par numéro");
+                  this.AppliJDBC.showFicheJeu();
+                  break;
 
                 default:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
