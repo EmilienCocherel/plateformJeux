@@ -38,9 +38,7 @@ public class ApplicationAJEL extends Application {
         this.creerCompte.getItems().add(this.crea);
 
 
-        this.quitter = new Menu("Quitter");
-
-        this.menu.getMenus().addAll(this.seconnecter, this.creerCompte, this.quitter);
+        this.menu.getMenus().addAll(this.seconnecter, this.creerCompte);
 
         Stop[] stops = new Stop[] { new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123,41,67))};
         LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops);
