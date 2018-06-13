@@ -35,7 +35,7 @@ public class JeuBD {
 
 	JeuProfil rechercherJeuParNom(String nom) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JEU where nomJeu =" + nom);
+		ResultSet res = s.executeQuery("Select * from JEU where nomJeu =" + '"'+nom+'"');
 		res.next();
 		int numJeu = res.getInt("idJeu");
 		String nomJ = res.getString("nomJeu");

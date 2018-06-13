@@ -127,16 +127,16 @@ public class FicheJeu extends GridPane{
         return Integer.parseInt(this.idJeu.getText());
     }
 
-    // public void activerPseudoJoueur(boolean actif){
-    //     for (Node n: this.getChildren()){
-    //         n.setDisable(actif);
-    //     }
-    //     this.pseudo.setDisable(!actif);
-    //     this.bouton.setDisable(false);
-    // }
-    //
-    // public String getPseudoJoueur(){
-    //     return this.pseudo.getText();
-    // }
+    public void activerNomJeu(boolean actif){
+        for (Node n: this.getChildren()){
+            n.setDisable(actif);
+        }
+        this.nomJeu.setDisable(!actif);
+        this.bouton.setDisable(false);
+    }
+
+    public String getNomJeu(){
+        return this.nomJeu.getText();
+    }
 
 }

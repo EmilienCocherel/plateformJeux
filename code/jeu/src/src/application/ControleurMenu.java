@@ -75,7 +75,7 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     break;
                 case "Afficher un joueur par pseudo":
                     ficheJoueur.setNomBouton("Rechercher par pseudo");
-                    ficheJoueur.activerNumJoueur(true);
+                    ficheJoueur.activerPseudoJoueur(true);
                     ficheJoueur.viderFiche();
                     ficheJoueur.setTitre("Mise à jour par pseudo");
                     this.AppliJDBC.showFicheJoueur();
@@ -127,19 +127,19 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                   break;
 
                 case "Afficher un jeu par son numéro":
-                    ficheJoueur.setNomBouton("Rechercher par numéro");
-                    ficheJoueur.activerNumJoueur(true);
-                    ficheJoueur.viderFiche();
-                    ficheJoueur.setTitre("Consultation");
-                    this.AppliJDBC.showFicheJoueur();
+                    ficheJeu.setNomBouton("Rechercher jeu par numéro");
+                    ficheJeu.activerIdJeu(true);
+                    ficheJeu.viderFicheJeu();
+                    ficheJeu.setTitre("Consultation");
+                    this.AppliJDBC.showFicheJeu();
                     break;
 
                 case "Afficher un jeu par son nom":
-                    ficheJoueur.setNomBouton("Rechercher par pseudo");
-                    ficheJoueur.activerNumJoueur(true);
-                    ficheJoueur.viderFiche();
-                    ficheJoueur.setTitre("Mise à jour par pseudo");
-                    this.AppliJDBC.showFicheJoueur();
+                    ficheJeu.setNomBouton("Rechercher jeu par nom");
+                    ficheJeu.activerNomJeu(true);
+                    ficheJeu.viderFicheJeu();
+                    ficheJeu.setTitre("Consultation");
+                    this.AppliJDBC.showFicheJeu();
                     break;
 
                 case "Afficher la liste des jeux":
