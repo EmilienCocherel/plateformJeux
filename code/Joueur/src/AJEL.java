@@ -52,7 +52,11 @@ public class AJEL extends Application {
     }
 
     private void passerEnModeConnexion(){
-          this.laBase.setCenter(new GridConnexion());
+          this.laBase.setCenter(new GridConnexion(this));
+    }
+
+    public void passerEnModeMDPOublie(){
+        this.laBase.setCenter(new GridForgotPassword());
     }
     private void colorerLaBase(){
         this.laBase.setBackground(new Background(new BackgroundFill(this.couleurDegradeCentre(), null, null)));
