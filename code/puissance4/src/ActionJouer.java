@@ -1,5 +1,6 @@
 package Connect4;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
@@ -35,6 +36,19 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 			Alert alert = new Alert(AlertType.INFORMATION, "You've won round "+this.puissance4.getRound()+"!");
 			alert.showAndWait();
 			this.puissance4.getGagnants().add(courant);
+
+			// Si la partie est finie
+			if (this.puissance4.getRound() > 3) {
+				if (this.puissance4.getGagnant() == courant) {
+					alert = new Alert(AlertType.INFORMATION, "You've won the game! Good job.");
+				} else {
+					alert = new Alert(AlertType.INFORMATION, "You've lost the game.");
+				}
+				alert.showAndWait();
+				Platform.exit();
+			}
+
+			// Remettre tout à zéro
 			this.puissance4.getJoueur1().reset();
 			this.puissance4.getJoueur2().reset();
 			this.puissance4.getPlateau().reset();
