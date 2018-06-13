@@ -1,9 +1,7 @@
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -13,6 +11,9 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import static javafx.scene.control.ButtonBar.BUTTON_ORDER_LINUX;
+import static javafx.scene.control.ButtonBar.BUTTON_ORDER_NONE;
+
 public class AJEL extends Application {
 
     private BorderPane laBase;
@@ -20,32 +21,27 @@ public class AJEL extends Application {
 
     private void creerMenuConnexion(){
         VBox bar = new VBox();
-        MenuBar menu = new MenuBar();
+        ButtonBar menu = new ButtonBar();
 
-        Menu seconnecter = new Menu();
+        Button seConnecter = new Button();
         Text texteSeConnecter = new Text("Se connecter");
         texteSeConnecter.setFont(new Font(14));
         texteSeConnecter.setFill(Color.WHITE);
-        seconnecter.setGraphic(texteSeConnecter);
+        seConnecter.setGraphic(texteSeConnecter);
 
-        MenuItem seCo = new MenuItem("Se connecter");
-        seconnecter.getItems().add(seCo);
 
-        Menu creerCompte = new Menu();
+        Button creerCompte = new Button();
         Text texteCreerUnCompte = new Text("Créer un compte");
         texteCreerUnCompte.setFont(new Font(14));
         texteCreerUnCompte.setFill(Color.WHITE);
         creerCompte.setGraphic(texteCreerUnCompte);
 
-        MenuItem crea = new MenuItem("Création du compte");
-        creerCompte.getItems().add(crea);
-
-
-        menu.getMenus().addAll(seconnecter, creerCompte);
+        menu.getButtons().addAll(seConnecter, creerCompte);
         menu.setBackground(new Background(new BackgroundFill(this.couleurDegradeBar(), null, null)));
 
+
         creerCompte.setOnAction(event -> this.passerEnModeInscription());
-        seconnecter.setOnAction(event -> this.passerEnModeConnexion());
+        seConnecter.setOnAction(event -> this.passerEnModeConnexion());
 
         bar.getChildren().add(menu);
         this.laBase.setTop(bar);
