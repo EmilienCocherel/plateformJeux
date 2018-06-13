@@ -29,28 +29,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Login extends BorderPane {
-    private BorderPane sceneLogin;
+    private BorderPane conti;
+    private ApplicationAJEL app;
 
-    public Login() {
 
-            VBox res = new VBox();
+    public Login(ApplicationAJEL app) {
 
-            MenuBar menu = new MenuBar();
-
-            Menu seconnecter = new Menu("Se connecter");
-
-            Menu creerCompte = new Menu("Créer un compte");
-
-            Menu quitter = new Menu("Quitter");
-
-            menu.getMenus().addAll(seconnecter, creerCompte, quitter);
-
-            Stop[] stops1 = new Stop[]{new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123, 41, 67))};
-            LinearGradient lg1 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops1);
-            menu.setBackground(new Background(new BackgroundFill(lg1, null, null)));
-
-            res.getChildren().addAll(menu);
-
+            this.app = app;
 
             GridPane res2 = new GridPane();
 
@@ -97,8 +82,8 @@ public class Login extends BorderPane {
             Hmdpoublie.setPadding(new Insets(10, 0, 0, 100));
 
 
-            res.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
-            res.setMaxSize(400, 300);
+            res2.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
+            res2.setMaxSize(400, 300);
 
             res2.add(title, 0, 0);
             res2.add(Hlogin, 0, 1);
@@ -107,17 +92,17 @@ public class Login extends BorderPane {
             res2.add(Hbouton, 0, 4);
             res2.add(Hmdpoublie, 0, 5);
 
-            BorderPane cont = new BorderPane();
-            cont.setTop(res);
-            cont.setCenter(res2);
+            this.conti = new BorderPane();
+            conti.setTop(this.app.menuBar());
+            conti.setCenter(res2);
             Stop[] stops2 = new Stop[]{new Stop(0.4, Color.BLACK), new Stop(1, Color.rgb(123, 41, 67))};
             LinearGradient lg2 = new LinearGradient(0, 1, 0, 0, true, CycleMethod.REPEAT, stops2);
 
-            cont.setBackground(new Background(new BackgroundFill(lg2, null, null)));
-            this.sceneLogin=cont;
+            conti.setBackground(new Background(new BackgroundFill(lg2, null, null)));
+
         }
 
     public BorderPane getPanelLogin() {
-        return this.sceneLogin;
+        return this.conti;
     }
 }
