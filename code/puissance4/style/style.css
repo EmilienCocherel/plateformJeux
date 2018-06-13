@@ -1,0 +1,38 @@
+.pion {
+	-fx-fill: lightgray;
+}
+
+.pion#joueur1 {
+	-fx-fill: yellow;
+}
+
+.pion#joueur2 {
+	-fx-fill: red;
+}
+
+.bouton_jouer {
+	-fx-background-color: green;
+	-fx-min-width: 80;
+	-fx-min-height: 80;
+}
+
+.bouton_jouer:disabled {
+	-fx-background-color: darkred;
+	-fx-opacity: 1.0;
+}
+
+.bouton_jouer:pressed {
+	-fx-background-color: darkgreen;
+}
+
+#plateau {
+	-fx-background-color: #7ACBD7;
+	-fx-hgap: 5;
+	-fx-vgap: 5;
+	-fx-padding: 15;
+	-fx-alignment: center;
+}
+
+.joueurs {
+	-fx-background-color: #AEE5ED;
+}

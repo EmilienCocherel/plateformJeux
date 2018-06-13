@@ -1,3 +1,5 @@
+package Connect4;
+
 import java.util.List;
 
 public class Plateau extends Matrice<Integer> {
