@@ -21,7 +21,6 @@ public class GridConnexion extends PageConnexion{
         this.add(this.labelType("Mot de passe : "), 0, 2);
         this.add(new TextField(),1,2);
         this.add(this.checkBoxType("Enregistrer mot de passe"), 1, 3);
-
         this.add(this.buttonType("Se connecter"), 1, 4);
         this.add(this.lienType("Mot de passe oublié ?"), 1, 5);
 
