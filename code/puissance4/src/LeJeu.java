@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -26,6 +27,10 @@ public class LeJeu extends Application {
 	 **/
 	private Puissance4 puissance4;
 	/**
+	 * Si le jeu est en pause
+	 */
+	private boolean pause;
+	/**
 	 * Les différents contrôles qui seront mis à jour
 	 * ou consultés pour l'affichage
 	 */
@@ -37,13 +42,17 @@ public class LeJeu extends Application {
 	 * Les joueurs
 	 */
 	private List<HBox> joueurs;
+	/**
+	 * La scène
+	 */
+	private BorderPane cont;
 
 
 	/**
 	 * @return le clavier avec les 27 caractères et le controleur des touches
 	 */
 	private PlateauGUI lePlateau() {
-		this.plateau = new PlateauGUI(this.puissance4.getPlateau(), new ActionJouer(this.puissance4, this));
+		this.plateau = new PlateauGUI(this.puissance4.getPlateau(), this, new ActionJouer(this.puissance4, this));
 		return this.plateau;
 	}
 
@@ -53,6 +62,7 @@ public class LeJeu extends Application {
 	private VBox lesJoueurs() {
 		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		Circle p1 = new Circle(30), p2 = new Circle(30);
+		Button pause = new Button("Pause game");
 		p1.getStyleClass().add("pion");
 		p2.getStyleClass().add("pion");
 		PlateauGUI.setCouleur(j1.getPion(), p1);
@@ -61,9 +71,13 @@ public class LeJeu extends Application {
 		this.joueurs.add(new HBox());
 		this.joueurs.add(new HBox());
 		this.joueurs.get(0).getChildren().addAll(p1, new Label(j1.getNom()));
+		this.joueurs.get(0).getStyleClass().add("joueur");
 		this.joueurs.get(1).getChildren().addAll(p2, new Label(j2.getNom()));
+		this.joueurs.get(1).getStyleClass().add("joueur");
+		pause.setOnAction(new ActionPause(this));
 		VBox res = new VBox(2);
 		res.getChildren().addAll(this.joueurs);
+		res.getChildren().add(pause);
 		res.getStyleClass().add("joueurs");
 		return res;
 	}
@@ -106,11 +120,11 @@ public class LeJeu extends Application {
 	 * @return le graphe de scène de la vue à partir de methodes précédantes
 	 */
 	private Scene laScene() {
-		BorderPane cont = new BorderPane();
-		cont.setCenter(this.lePlateau());
-		cont.setRight(this.lesJoueurs());
-		cont.setTop(this.barreMenus());
-		return new Scene(cont,1024,768);
+		this.cont = new BorderPane();
+		this.cont.setCenter(this.lePlateau());
+		this.cont.setRight(this.lesJoueurs());
+		this.cont.setTop(this.barreMenus());
+		return new Scene(this.cont,1024,768);
 	}
 
 	/**
@@ -119,7 +133,12 @@ public class LeJeu extends Application {
 	public void majAffichage() {
 		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		// A implémenter
-		this.plateau.maj();
+		if (this.pause)
+			this.cont.setId("pause");
+		else {
+			this.cont.setId("");
+		}
+			this.plateau.maj();
 	}
 
 	public PlateauGUI getPlateau() {
@@ -166,5 +185,23 @@ public class LeJeu extends Application {
 	public void abandonner() {
 		// TODO
 		System.out.println("Surrendering");
+	}
+
+	/**
+	 * Met le jeu en pause ou le remet en route.
+	 */
+	public void pause() {
+		if (this.pause) {
+			this.pause = false;
+		} else {
+			this.pause = true;
+		}
+	}
+
+	/**
+	 * @return si le jeu est en pause ou non
+	 */
+	public boolean isPause() {
+		return this.pause;
 	}
 }
