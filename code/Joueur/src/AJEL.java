@@ -32,7 +32,7 @@ public class AJEL extends Application {
         seconnecter.getItems().add(seCo);
 
         Menu creerCompte = new Menu();
-        Text texteCreerUnCompte = new Text("Creer un compte");
+        Text texteCreerUnCompte = new Text("Créer un compte");
         texteCreerUnCompte.setFont(new Font(14));
         texteCreerUnCompte.setFill(Color.WHITE);
         creerCompte.setGraphic(texteCreerUnCompte);
@@ -52,9 +52,7 @@ public class AJEL extends Application {
     }
 
     private void passerEnModeInscription(){
-        GridPane gp = new GridPane();
-        gp.add(new Label("bonjour"),1,1);
-        this.laBase.setCenter(gp);
+        this.laBase.setCenter(new GridInscrire());
     }
 
     private void passerEnModeConnexion(){
