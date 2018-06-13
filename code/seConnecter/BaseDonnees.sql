@@ -131,6 +131,9 @@ DROP TABLE IF EXISTS RAPPORT;
 CREATE TABLE RAPPORT (
   idRapport decimal(6,0),
   dateRapport datetime,
+  titreRapport varchar(100),
+  sujetRapport decimal(65),
+  contenuRapport text,
   idJo decimal(6,0),
   PRIMARY KEY (idRapport)
 );
