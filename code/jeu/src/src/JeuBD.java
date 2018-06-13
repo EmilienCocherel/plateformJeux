@@ -53,7 +53,7 @@ public class JeuBD {
 	}
 
   public void majJeu(JeuProfil j) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("Update JEU set nomJeu = ?,regleJeu = ?, jarJeu = ?, activeJeu = ?,	idTy = ? wher idJeu =" + j.getIdJeu());
+		PreparedStatement ps = laConnexion.prepareStatement("Update JEU set nomJeu = ?,regleJeu = ?, jarJeu = ?, activeJeu = ?,	idTy = ? where idJeu =" + j.getIdJeu());
 		ps.setString(1,j.getNomJeu());
 		ps.setString(2,j.getDescription());
 		ps.setString(3,j.getJarJeu());

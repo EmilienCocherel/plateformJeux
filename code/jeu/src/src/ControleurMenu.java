@@ -114,10 +114,10 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                   }
                   break;
                 case "Mettre à jour un jeu":
-                  ficheJeu.setNomBouton("Rechercher par numéro");
+                  ficheJeu.setNomBouton("Rechercher un jeu par numéro");
                   ficheJeu.activerIdJeu(true);
                   ficheJeu.viderFicheJeu();
-                  ficheJeu.setTitre("Mise à jour par numéro");
+                  ficheJeu.setTitre("Mise à jour d'un jeu");
                   this.AppliJDBC.showFicheJeu();
                   break;
 

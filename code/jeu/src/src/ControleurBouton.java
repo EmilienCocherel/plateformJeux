@@ -82,16 +82,17 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                 }
 
                 //POUR LES JEUX
+              case "Rechercher un jeu par numéro":
                 try{
-                    jeu = jeubd.rechercherJeuParNum(ficheJeu.getIdJeu());
+                    JeuProfil jeu = jeubd.rechercherJeuParNum(ficheJeu.getIdJeu());
                     ficheJeu.setJeu(jeu);
                     String titre = ficheJeu.getTitre();
                     switch (titre) {
                         case "Suppression":
                             ficheJeu.setNomBouton("Supprimer");
                             break;
-                        case "Mise à jour par numéro":
-                            ficheJeu.setNomBouton("Mettre à jour par numéro");
+                        case "Mise à jour d'un jeu":
+                            ficheJeu.setNomBouton("Mettre à jour le jeu");
                             ficheJeu.activerIdJeu(false);
                             break;
                     }
@@ -100,6 +101,8 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
+
+
             case "Rechercher par pseudo":
                 try{
                     j = jbd.rechercherJoueurParPseudo(ficheJoueur.getPseudoJoueur());
@@ -137,6 +140,7 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 // MAJ POUR LE JEU
+            case "Mettre à jour le jeu":
                 try{
                     jeubd.majJeu(ficheJeu.getJeu());
                     alertOK("Le jeu "+ficheJeu.getIdJeu()+ " a bien été mis à jour");
