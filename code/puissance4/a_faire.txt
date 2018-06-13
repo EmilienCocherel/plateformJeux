@@ -1,0 +1,5 @@
+* boutons comme dans l'IHM
+* rendre les menus fonctionnels
+* gérer les parties à 2 personnes
+* trouver comment compiler en jar
+* ajouter la fonction pause
