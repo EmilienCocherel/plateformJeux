@@ -52,13 +52,15 @@ public class Mastermind extends Application{
         }
     }
 
-    public void initManche(){ // À IMPLÉMENTER
-
+    public void initManche(){
+        this.manche.initCombi();
     }
 
     public void prochaineManche(Manche precedent){
+        this.initManche();
         precedent.getJoueur().setScore(precedent.getJoueur().getScore()+precedent.getNbCoup());
-        precedent.getJoueur().nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueur(),precedent.getNum()+1));
+        precedent.getJoueur().nouvelleManche(new Manche(this.manche.getCombi(),this, precedent.getJoueur(),precedent.getNum()+1));
+        System.out.println(this.manche.getCombi());
     }
 
 
@@ -268,7 +270,9 @@ public class Mastermind extends Application{
             this.combi = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
             stage.setTitle("Mastermind");
             this.j1=new Joueur();
-            this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
+            this.manche = new Manche();
+            this.manche.initCombi();
+            this.j1.nouvelleManche(new Manche(this.manche.getCombi(),this, this.j1,0));
             stage.setScene(this.laScene());
             stage.show();
             this.majAffichage();
