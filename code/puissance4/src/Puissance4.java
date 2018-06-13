@@ -41,13 +41,7 @@ public class Puissance4 {
 			this.actuel = 1;
 		}
 		res = this.plateau.placerPion(colonne, joueur.getPion());
-		if (res) {
-			this.gagnants.add(joueur);
-			joueur1.reset();
-			joueur2.reset();
-			plateau.reset();
-		} else
-			joueur.retirerPion();
+		joueur.retirerPion();
 		return res;
     }
 
@@ -96,5 +90,22 @@ public class Puissance4 {
 		obj.put("actuel", this.actuel);
 		obj.put("id", this.id);
 		return obj;
+	}
+
+	/**
+	 * @return le round courant
+	 */
+	public int getRound() {
+		return this.gagnants.size()+1;
+	}
+
+	/**
+	 * @return le joueur actuel
+	 */
+	public Joueur getJoueurCourant() {
+		if (this.actuel == 1)
+			return this.joueur1;
+		else
+			return this.joueur2;
 	}
 }
