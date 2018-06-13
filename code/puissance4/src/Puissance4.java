@@ -95,7 +95,6 @@ public class Puissance4 {
 		obj.put("joueur2", this.joueur2.toJson());
 		obj.put("actuel", this.actuel);
 		obj.put("id", this.id);
-		System.out.println(obj);
 		return obj;
 	}
 }
