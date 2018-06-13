@@ -147,7 +147,12 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                   try {
                       ArrayList<JeuProfil> res = this.AppliJDBC.getJeuBD().listeDesJeux();
                       for (JeuProfil j:res){
-                          laListeJeu+=j.getIdJeu()+" "+j.getNomJeu()+"\n";
+                        if(j.isActive()){
+                          laListeJeu+=j.getIdJeu()+" "+j.getNomJeu()+"    Actif"+"\n";
+                        }
+                        else{
+                          laListeJeu+=j.getIdJeu()+" "+j.getNomJeu()+"    Inactif"+"\n";
+                        }
                       }
                   }catch (SQLException ex){
                       laListeJeu="La requête a échoué\nVoici le message du serveur\n"+ex.getMessage();
