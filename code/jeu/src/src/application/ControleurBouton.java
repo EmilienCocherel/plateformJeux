@@ -217,13 +217,25 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
               try {
                   ArrayList<Rapport> res = this.AppliJDBC.getRapportBD().listeDesRapportsFiltree(ficheRapport.getSujetRapport());
                   for (Rapport rappo:res){
-                    laListeRapports += rappo.getIdRapport()+" ";
+                    laListeRapports += rappo.getIdRapport()+" "+ rappo.getContenuRapport() +" " + rappo.getDateRapport();
                   }
               }catch (SQLException ex){
                   laListeRapports="La requête a échoué\nVoici le message du serveur\n"+ex.getMessage();
               }
               this.AppliJDBC.showFicheResultat(laListeRapports);
               break;
+
+            case "Rédiger":
+                r = ficheRapport.getRapport();
+                try {
+                    int nr = rbd.creerRapport(r);
+                    ficheRapport.setIdRapport(nr);
+                    alertOK("Insertion du rapport a réussi\nLe nouveau rapport porte le numéro "+nr);
+                    ficheRapport.viderFicheRapport();
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
 
         }
 

@@ -47,22 +47,18 @@ public class RapportBD {
 		return new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo);
   }
 
-	// public String creerRapport(Rapport r) throws SQLException{
-	// 	PreparedStatement ps = laConnexion.prepareStatement("insert into RAPPORT values (?,?,?,?,?,?)");
-	// 	// PreparedStatement ps = laConnexion.prepareStatement("Select pseudo from JOUEUR where")
-	// 	ps.setInt(1,numJeu);
-	// 	ps.setString(2,j.getNomJeu());
-	// 	ps.setString(3,j.getDescription());
-	// 	ps.setString(4,j.getJarJeu());
-	// 	String isActif = "N";
-	// 	if (j.isActive()){
-	// 		isActif = "O";
-	// 	}
-	// 	ps.setString(5,isActif);
-	// 	ps.setInt(6,j.getIdType());
-	// 	ps.executeUpdate();
-	// 	return numJeu;
-	// }
+	public int creerRapport(Rapport r) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("insert into RAPPORT values (?,?,?,?,?,?)");
+		int numRap = this.maxNumRapport() + 1;
+		ps.setInt(1,numRap);
+		ps.setString(2,r.getDateRapport());
+		ps.setString(3,r.getTitreRapport());
+		ps.setInt(4,r.getSujetRapport());
+		ps.setString(5,r.getContenuRapport());
+		ps.setInt(6,r.getIdJo());
+		ps.executeUpdate();
+		return numRap;
+	}
 
   // public void majJeu(JeuProfil j) throws SQLException{
 	// 	PreparedStatement ps = laConnexion.prepareStatement("Update JEU set nomJeu = ?,regleJeu = ?, jarJeu = ?, activeJeu = ?,	idTy = ? where idJeu =" + j.getIdJeu());
@@ -90,6 +86,28 @@ public class RapportBD {
 			String contenuRapport = res.getString("contenuRapport");
 			int idJo = res.getInt("idJo");
 			int sujetRapport = res.getInt("sujetRapport");
+
+			// ResultSet res2 = s.executeQuery("Select pseudo from JOUEUR where idJo =" + idJo);
+			// String pseudoEnv = res2.getString("pseudo");
+
+			Liste.add(new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo));
+		}
+		res.close();
+		return Liste;
+  }
+
+	public ArrayList<Rapport> listeDesRapports() throws SQLException{
+		ArrayList<Rapport> Liste = new ArrayList<Rapport>();
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from RAPPORT");
+		while (res.next()){
+			int idRapport = res.getInt("idRapport");
+			String dateRapport = res.getString("dateRapport");
+			String titreRapport = res.getString("titreRapport");
+			String contenuRapport = res.getString("contenuRapport");
+			int idJo = res.getInt("idJo");
+			int sujetRapport = res.getInt("sujetRapport");
+
 			Liste.add(new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo));
 		}
 		res.close();

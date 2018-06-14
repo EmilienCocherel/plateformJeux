@@ -191,6 +191,29 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                     this.AppliJDBC.showFicheRapport();
                     break;
 
+                case "Liste des rapports":
+                  String listeRapports="";
+                  try {
+                      ArrayList<Rapport> res = this.AppliJDBC.getRapportBD().listeDesRapports();
+                      for (Rapport rap:res){
+                        listeRapports += rap.getIdRapport()+" "+ rap.getContenuRapport() +" " + rap.getDateRapport()+"\n";
+                      }
+                  }catch (SQLException ex){
+                      listeRapports="La requête a échoué\nVoici le message du serveur\n"+ex.getMessage();
+                  }
+                  this.AppliJDBC.showFicheResultat(listeRapports);
+                  break;
+
+                case "Rédiger un rapport":
+                    ficheRapport.setNomBouton("Rédiger");
+                    ficheRapport.activerIdRapport(false);
+                    ficheRapport.activerDateRapport(false);
+                    ficheRapport.viderFicheRapport();
+                    this.AppliJDBC.showFicheRapport();
+                    break;
+
+
+
 
                 default:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
