@@ -9,11 +9,11 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.control.ButtonBar;
 
-public class GridJeuxBoutique extends PageJoueur{
+public class BorderJeuxBoutique extends PageJoueur{
 
     private AJEL appli;
 
-    public GridJeuxBoutique(AJEL appli){
+    public BorderJeuxBoutique(AJEL appli){
 
         super();
         this.appli = appli;
@@ -27,10 +27,7 @@ public class GridJeuxBoutique extends PageJoueur{
         this.setStyle("-fx-background-color: transparent;");
         this.setMaxSize(800, 700);
 
-
         this.setTop(this.buttonBarTypePageJoueur(mesJeux,boutique));
         this.setCenter(this.tableauTypePageJouer("Nom","Type","Description"));
-
     }
-
 }

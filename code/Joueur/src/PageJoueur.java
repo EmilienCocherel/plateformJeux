@@ -62,6 +62,15 @@ public abstract class PageJoueur extends BorderPane{
         return lien;
     }
 
+    public HBox hboxTypePageJoueur(String nom){
+        HBox hbox = new HBox();
+        Label label = new Label(nom);
+        TextField text = new TextField();
+        hbox.getChildren().addAll(label, text);
+
+        return hbox;
+    }
+
 
     public Button buttonTypePageJoueur(String nom){
         Button bouton = new Button(nom);
