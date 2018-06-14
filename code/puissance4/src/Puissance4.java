@@ -3,6 +3,7 @@ package Connect4;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import org.json.simple.JSONObject;
 
 public class Puissance4 {
     private List<Joueur> gagnants;
@@ -40,13 +41,7 @@ public class Puissance4 {
 			this.actuel = 1;
 		}
 		res = this.plateau.placerPion(colonne, joueur.getPion());
-		if (res) {
-			this.gagnants.add(joueur);
-			joueur1.reset();
-			joueur2.reset();
-			plateau.reset();
-		} else
-			joueur.retirerPion();
+		joueur.retirerPion();
 		return res;
     }
 
@@ -85,5 +80,49 @@ public class Puissance4 {
 
 	public Joueur getJoueur2() {
 		return this.joueur2;
+	}
+
+	public JSONObject toJson() {
+		JSONObject obj = new JSONObject();
+		obj.put("plateau", this.plateau.toJson());
+		obj.put("joueur1", this.joueur1.toJson());
+		obj.put("joueur2", this.joueur2.toJson());
+		obj.put("actuel", this.actuel);
+		obj.put("id", this.id);
+		return obj;
+	}
+
+	/**
+	 * @return le round courant
+	 */
+	public int getRound() {
+		return this.gagnants.size()+1;
+	}
+
+	/**
+	 * @return le joueur actuel
+	 */
+	public Joueur getJoueurCourant() {
+		if (this.actuel == 1)
+			return this.joueur1;
+		else
+			return this.joueur2;
+	}
+
+	/**
+	 * @return le joueur gagnant dans une partie terminée
+	 */
+	public Joueur getGagnant() {
+		int j1 = 0, j2 = 0;
+		for (Joueur gagnant : this.gagnants) {
+			if (gagnant == this.joueur1)
+				j1++;
+			else
+				j2++;
+		}
+		if (j1 > 1)
+			return this.joueur1;
+		else
+			return this.joueur2;
 	}
 }
