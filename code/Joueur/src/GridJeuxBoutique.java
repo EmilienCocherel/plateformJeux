@@ -31,11 +31,6 @@ public class GridJeuxBoutique extends PageJoueur{
         this.setTop(this.buttonBarTypePageJoueur(mesJeux,boutique));
         this.setCenter(this.tableauTypePageJouer("Nom","Type","Description"));
 
-
-
-
-
-
     }
 
 }
