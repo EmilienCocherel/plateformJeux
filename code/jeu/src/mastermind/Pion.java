@@ -17,7 +17,7 @@ public class Pion{
 
   public String getCouleur(){
     if(this.val == 0){
-      return "";
+      return " ";
     }
     if(this.val == 1){
       return "rouge";
