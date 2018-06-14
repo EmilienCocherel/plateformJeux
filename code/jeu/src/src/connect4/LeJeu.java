@@ -29,7 +29,7 @@ import org.json.simple.JSONObject;
 /**
  * Vue du Puissance 4
  */
-public class LeJeu extends Application {
+public class LeJeu extends application.Jeu {
 	/**
 	 * Modèle du jeu
 	 **/
@@ -55,13 +55,25 @@ public class LeJeu extends Application {
 	 */
 	private BorderPane cont;
 
-
 	/**
 	 * @return le clavier avec les 27 caractères et le controleur des touches
 	 */
 	private PlateauGUI lePlateau() {
 		this.plateau = new PlateauGUI(this.puissance4.getPlateau(), this, new ActionJouer(this.puissance4, this));
 		return this.plateau;
+	}
+
+	@Override
+	public void setJ1(application.Joueur joueur) {
+		this.puissance4.setJoueur1((Joueur) joueur);
+	}
+
+	public void setJ2(application.Joueur joueur) {
+		this.puissance4.setJoueur2((Joueur) joueur);
+	}
+
+	@Override
+	public void setId(int id) {
 	}
 
 	/**
@@ -159,8 +171,8 @@ public class LeJeu extends Application {
 	 * Crée le modèle, créer le graphe de scène et lance le jeu
 	 * @param stage la fenêtre principale
 	 */
-	@Override
-	public void start(Stage stage) {
+	public void run() {
+		Stage stage = new Stage();
 		// création du modèle
 		this.puissance4 = new Puissance4(
 				new Joueur("Nat", 1, 18),
@@ -176,19 +188,19 @@ public class LeJeu extends Application {
 		System.out.println("?");
 	}
 
+    @Override
+    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+    }
+
+    @Override
+    public void jouerCoup(int idPartie, int joueur, Object partage){
+    }
+
 	/**
 	 * Si la partie est finie
 	 */
 	public boolean finie() { // À IMPLÉMENTER
 		return false;
-	}
-
-	/**
-	 * Programme principal
-	 * @param args inutilisé
-	 */
-	public static void main(String[] args) {
-		launch(args);
 	}
 
 	/**

@@ -97,8 +97,16 @@ public class Puissance4 {
 		return this.joueur1;
 	}
 
+	public void setJoueur1(Joueur joueur) {
+		this.joueur1 = joueur;
+	}
+
 	public Joueur getJoueur2() {
 		return this.joueur2;
+	}
+
+	public void setJoueur2(Joueur joueur) {
+		this.joueur2 = joueur;
 	}
 
 	/**

@@ -2,7 +2,7 @@ package connect4;
 
 import org.json.simple.JSONObject;
 
-public class Joueur {
+public class Joueur extends application.Joueur {
     private String nom;
     private Integer pion;
     private int nbPions, nbPionsInitial;
