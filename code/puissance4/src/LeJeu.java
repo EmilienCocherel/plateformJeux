@@ -1,10 +1,11 @@
 package Connect4;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -13,7 +14,12 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
+import javafx.stage.Stage;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -183,8 +189,26 @@ public class LeJeu extends Application {
 	 * Abandonner la partie. Le joueur qui abandonne a perdu
 	 */
 	public void abandonner() {
-		// TODO
-		System.out.println("Surrendering");
+		this.puissance4.abandonner();
+		this.perdre();
+	}
+
+	/**
+	 * Annoncer au joueur courant sa victoire.
+	 */
+	public void gagner() {
+		Alert alert = new Alert(AlertType.INFORMATION, "You've won the game! Good job.");
+		alert.showAndWait();
+		Platform.exit();
+	}
+
+	/**
+	 * Annoncer au joueur courant sa défaite.
+	 */
+	public void perdre() {
+		Alert alert = new Alert(AlertType.INFORMATION, "You've lost the game.");
+		alert.showAndWait();
+		Platform.exit();
 	}
 
 	/**
