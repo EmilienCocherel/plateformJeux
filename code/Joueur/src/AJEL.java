@@ -50,6 +50,37 @@ public class AJEL extends Application {
         this.laBase.setTop(bar);
     }
 
+    private void creerMenuJoueur(){
+        VBox bar = new VBox();
+        ButtonBar menu = new ButtonBar();
+
+        Button partie = this.boutonMenuConnexion("Partie");
+        Button jeux = this.boutonMenuConnexion("Jeux");
+        Button invitations = this.boutonMenuConnexion("Invitations");
+        Button amis = this.boutonMenuConnexion("Amis");
+        Button messagerie = this.boutonMenuConnexion("Messagerie");
+        Button compte = this.boutonMenuConnexion("Compte");
+        Button seDeconnecter = this.boutonMenuConnexion("Se déconnecter");
+
+        menu.setButtonData(partie,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(jeux,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(invitations,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(amis,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(messagerie,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(invitations,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(messagerie,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(compte,ButtonBar.ButtonData.LEFT);
+        menu.setButtonData(seDeconnecter,ButtonBar.ButtonData.LEFT);
+        menu.getButtons().addAll(partie, jeux, invitations, amis, messagerie, compte, seDeconnecter);
+        menu.setBackground(new Background(new BackgroundFill(this.couleurDegradeBar(), null, null)));
+
+        //partie.setOnAction(event -> this.passerEnModeInscription());
+
+        bar.getChildren().add(menu);
+        this.laBase.setTop(bar);
+
+    }
+
     private void passerEnModeInscription(){
         this.laBase.setCenter(new GridInscrire());
     }
@@ -60,6 +91,10 @@ public class AJEL extends Application {
 
     public void passerEnModeMDPOublie(){
         this.laBase.setCenter(new GridForgotPassword());
+    }
+
+    public void passerEnModeJoueur(){
+        this.creerMenuJoueur();
     }
 
     private void colorerLaBase(){
@@ -89,7 +124,7 @@ public class AJEL extends Application {
         this.creerMenuConnexion();
         this.colorerLaBase();
 
-        stage.setScene( new Scene(this.laBase,800,600));
+        stage.setScene( new Scene(this.laBase,1000,800));
         stage.setTitle("AJEL");
         stage.show();
 
