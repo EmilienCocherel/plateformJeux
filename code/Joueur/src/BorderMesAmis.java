@@ -24,6 +24,8 @@ public class BorderMesAmis extends PageJoueur {
 
         this.setTop(hboxtop);
         this.setCenter(sceneCentre);
+        this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
+        this.setMaxSize(800, 700);
 
     }
 }
