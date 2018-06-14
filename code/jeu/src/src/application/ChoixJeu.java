@@ -20,7 +20,7 @@ public class ChoixJeu extends GridPane {
 
     public ChoixJeu( ConnexionMySQL laConnexion){
     	super();
-    	this.chargeur = new ChargeurJeu("/home/limet/");
+    	this.chargeur = new ChargeurJeu("./jar");
     	this.laConnexion=laConnexion;
     	GridPane grid = new GridPane();
     	grid.setAlignment(Pos.CENTER);
