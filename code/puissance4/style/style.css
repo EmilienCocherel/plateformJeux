@@ -46,7 +46,7 @@
 	-fx-spacing: 5;
 }
 
-#pause .pion {
+#pause .pion :not(.no-pause) {
 	-fx-fill: gray;
 }
 
