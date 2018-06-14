@@ -1,26 +1,32 @@
 1) créer les tables de test:
-   lancer mysql et lancer le script bdtest.sql dans votre BD
+   lancer mysql et lancer le script BaseDonnees.sql dans votre BD
 
 2) Compiler les trois paquets du  projet
    javac -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar application/*.java
    javac -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar morpion/*.java
+   javac -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar mastermind/*.java
+
 
 3) créer le jar du jeu du morpion
    jar -cvf morpion.jar morpion/*.class
+   jar -cvf morpion.jar mastermind/*.class
 
 4) Inserer le jeu du morpion dans la BD de test
    les paramètres sont le serveur de BD, la bd, le login et le mot de passe, le nom du jeu et le nom du .jar contenant le jeu
 
    java -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar application.MettreJeuDansBD servinfo-db dbxxxx xxxx yyyy morpion morpion.jar
+   java -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar application.MettreJeuDansBD servinfo-db dbxxxx xxxx yyyy mastermind mastermind.jar
+
 
    Cette action va inserer la ligne correspondant au jeu du morpion
 
 5) Télécharger le jeu du morpion : c'est l'action qui permet de sauvegarder en local le jar du jeu
    les paramètres sont le serveur de BD, la bd, le login et le mot de passe, le nom du jeu et le nom du fichier dans lequel on veut sauvegarder le .jar contenant le jeu
    java -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar application.TelechargerJeu servinfo-db dbxxxx xxxx yyyy morpion jar/morpion.jar
+   java -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar application.TelechargerJeu servinfo-db dbxxxx xxxx yyyy mastermind jar/mastermind.jar
+
+
 
 6) Tester le jeu du morpion chargé dynamiquement. Vous pouvez le charger 2 fois afin d'avoir 2 joueurs (n'oubliez pas de changer le numéro du joueur de la 2eme instance) Les numéros de joueur sont soit 1 soit 2. Concernant la partie, si le numéro existe déjà la partie est continée sinon la partie est crée).
 
    java -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar application.AppliJDBC
-
-   

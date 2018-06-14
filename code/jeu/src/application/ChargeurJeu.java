@@ -30,7 +30,7 @@ public class ChargeurJeu{
       //Application.launch(Mastermind.class,args);
 
 		System.out.println(listeURL[0]);
-      Jeu jeu = (Jeu)Class.forName(nomClasse).newInstance();
+      Jeu jeu = ( (Jeu<JoueurMastermind>) Class.forName(nomClasse).newInstance());
       jeu.setId(1);
       jeu.setJ1(new Joueur(10));
       Platform.runLater(jeu);
