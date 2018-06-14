@@ -12,11 +12,13 @@ import javafx.scene.shape.Circle;
 
 public class PlateauGUI extends GridPane {
 	private Plateau plateau;
+	private LeJeu gui;
 	private List<Button> controles;
 	private List<Circle> pions;
 
-	public PlateauGUI(Plateau plateau, EventHandler<ActionEvent> actionJouer) {
+	public PlateauGUI(Plateau plateau, LeJeu gui, EventHandler<ActionEvent> actionJouer) {
 		this.plateau = plateau;
+		this.gui = gui;
 		this.controles = new ArrayList<>();
 		Button b;
 		for (int i=0; i < 7; i++) {
@@ -42,7 +44,7 @@ public class PlateauGUI extends GridPane {
 
 	public void maj() {
 		for (int i=0; i < 7; i++) {
-			if (this.plateau.getColonne(i).contains(null))
+			if (!this.gui.isPause() && this.plateau.getColonne(i).contains(null))
 				this.controles.get(i).setDisable(false);
 			else
 				this.controles.get(i).setDisable(true);
