@@ -24,9 +24,6 @@ public class BorderMessagerieEnvoyes extends PageJoueur{
         Button envoyes = this.buttonTypePageJoueur("Envoyés");
         envoyes.setOnAction(event -> this.appli.passerEnModeMessagerieEnvoyes());
 
-        Button supprimer = this.buttonTypePageJoueur("Supprimer");
-        supprimer.setOnAction(event -> this.appli.passerEnModeMessagerieRecus());
-
         Button redigerMessage = this.buttonTypePageJoueur("Rédiger un nouveau message");
         redigerMessage.setOnAction(event -> this.appli.passerEnModeRedigerMessage());
 
@@ -35,6 +32,6 @@ public class BorderMessagerieEnvoyes extends PageJoueur{
 
         this.setTop(this.buttonBarTypePageJoueur(recus,envoyes));
         this.setCenter(this.tableauTypePageJouer("Destinataire","Objet","Date"));
-        this.setBottom(this.buttonBarTypePageJoueur(supprimer, redigerMessage));
+        this.setBottom(this.buttonBarTypePageJoueur(redigerMessage));
     }
 }
