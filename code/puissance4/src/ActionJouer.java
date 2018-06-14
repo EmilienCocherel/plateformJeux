@@ -34,6 +34,8 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 		if (this.puissance4.jouer(i%7)) {
 			this.gui.majAffichage();
 			Alert alert = new Alert(AlertType.INFORMATION, "You've won round "+this.puissance4.getRound()+"!");
+			alert.setTitle("Victory");
+			alert.setHeaderText("Victory");
 			alert.showAndWait();
 			this.puissance4.getGagnants().add(courant);
 

@@ -34,6 +34,8 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 			Platform.exit();
 		} else if (text.equals("Surrender")) {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to surrender?");
+			alert.setTitle("Surrender");
+			alert.setHeaderText("Surrender");
 			alert.showAndWait()
 				.filter(response -> response == ButtonType.OK)
 				.ifPresent(response -> this.gui.abandonner());
@@ -41,5 +43,12 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 			// TODO
 			System.out.println("Score tab");
 		}
+	}
+
+	/**
+	 * Affiche les gagnants de chaque manche
+	 */
+	public void afficheManches() {
+		// TODO
 	}
 }

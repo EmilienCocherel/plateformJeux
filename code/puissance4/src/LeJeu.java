@@ -198,6 +198,8 @@ public class LeJeu extends Application {
 	 */
 	public void gagner() {
 		Alert alert = new Alert(AlertType.INFORMATION, "You've won the game! Good job.");
+		alert.setTitle("Victory");
+		alert.setHeaderText("Victory");
 		alert.showAndWait();
 		Platform.exit();
 	}
@@ -207,6 +209,8 @@ public class LeJeu extends Application {
 	 */
 	public void perdre() {
 		Alert alert = new Alert(AlertType.INFORMATION, "You've lost the game.");
+		alert.setTitle("Defeat");
+		alert.setHeaderText("Defeat");
 		alert.showAndWait();
 		Platform.exit();
 	}
