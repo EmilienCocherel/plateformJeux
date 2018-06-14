@@ -52,10 +52,12 @@ public class ChoixJeu extends GridPane {
 
     public void chargerJeu(String nomJeu){
 	     Jeu jeu=null;
-
+       String nomClasse=""+nomJeu.charAt(0);
+       nomClasse=nomClasse.toUpperCase();
+       nomClasse+=nomJeu.substring(1);
         try {
 	        //jeu = this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+".LeJeu");
-          this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+"."+nomJeu);
+          this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+"."+nomClasse);
         }
         catch (ClassNotFoundException ex1) {
 	        System.out.println("Exception1 found for " + ex1.toString());

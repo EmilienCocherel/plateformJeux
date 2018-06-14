@@ -31,6 +31,7 @@ public class Mastermind extends application.Jeu{
       this.id=id;
       this.j1=j1;
     }
+    public Mastermind(){}
 
     @Override
     public void jouerCoup(int idPartie, int joueur, Object partage){
@@ -89,10 +90,12 @@ public class Mastermind extends application.Jeu{
         return id;
     }
 
+    @Override
     public void setId(int id) {
         this.id = id;
     }
 
+    @Override
     public void setJ1(JoueurMastermind j1) {
         this.j1 = j1;
     }

@@ -3,6 +3,7 @@ package application;
 import javafx.scene.layout.Pane;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import mastermind.*;
 
 public abstract class Jeu implements Runnable{
     /** permet à un joueur de lancer le jeu en retrouvant l'état actuel de la partie
@@ -19,4 +20,8 @@ public abstract class Jeu implements Runnable{
     public abstract void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage);
 
     public abstract void run();
+
+    public abstract void setId(int id);
+
+    public abstract void setJ1(JoueurMastermind j1);
 }
