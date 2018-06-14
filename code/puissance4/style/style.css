@@ -52,11 +52,11 @@
 	-fx-fill: #DEDEDE;
 }
 
-.pause .joueurs .pion#joueur1 {
+.pause .pion#joueur1 {
 	-fx-fill: #C2C1BC;
 }
 
-.pause .joueurs .pion#joueur2 {
+.pause .pion#joueur2 {
 	-fx-fill: #C2909C;
 }
 
