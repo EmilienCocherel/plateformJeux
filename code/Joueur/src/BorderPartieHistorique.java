@@ -28,6 +28,6 @@ public class BorderPartieHistorique extends PageJoueur{
         this.setMaxSize(800, 700);
 
         this.setTop(this.buttonBarTypePageJoueur(enCours,historique));
-        this.setCenter(this.tableauTypePageJouer("Jeu","Adversaire","Date début partie"));
+        this.setCenter(this.tableauTypePageJouer("Jeu","Adversaire","Date début partie","Date fin partie","Vainqueur"));
     }
 }

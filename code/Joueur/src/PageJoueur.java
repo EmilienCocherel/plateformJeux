@@ -64,9 +64,10 @@ public abstract class PageJoueur extends BorderPane{
 
     public HBox hboxTypePageJoueur(String nom){
         HBox hbox = new HBox();
-        Label label = new Label(nom);
+        Label label = this.labelTypePageJoueur(nom);
         TextField text = new TextField();
         hbox.getChildren().addAll(label, text);
+        hbox.setPadding(new Insets(10, 50, 10, 50));
 
         return hbox;
     }
@@ -85,8 +86,11 @@ public abstract class PageJoueur extends BorderPane{
 
         TableView tableau = new TableView();
         for (String nomC : nomsColonnes){
-            tableau.getColumns().add(new TableColumn(nomC));
+            TableColumn colonne = new TableColumn(nomC);
+            colonne.setMinWidth(130);
+            tableau.getColumns().add(colonne);
         }
+
         tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         return tableau;
     }
@@ -99,6 +103,7 @@ public abstract class PageJoueur extends BorderPane{
             barBouton.setButtonData(bouton,ButtonData.LEFT);
             barBouton.getButtons().addAll(bouton);
         }
+        barBouton.setPadding(new Insets(10, 0, 10, 0));
         return barBouton;
     }
 
@@ -109,6 +114,7 @@ public abstract class PageJoueur extends BorderPane{
             barBouton.setButtonData(bouton,ButtonData.LEFT);
             barBouton.getButtons().add(bouton);
         }
+        barBouton.setPadding(new Insets(10, 50, 10, 50));
         return barBouton;
     }
 
