@@ -1,8 +1,9 @@
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 public class BorderRedigerMessage extends PageJoueur {
 
@@ -17,15 +18,22 @@ public class BorderRedigerMessage extends PageJoueur {
         VBox vdestinataire = this.vboxTypePageJoueur("Destinaire");
 
         HBox haut = new HBox();
+        haut.setPadding(new Insets(10, 0, 10, 0));
         haut.getChildren().addAll(vobjet, vdestinataire);
 
-        VBox vmessage = this.vboxTypePageJoueur("Message");
+        TextField tmessage = new TextField();
+        tmessage.setMinSize(500, 200);
+        
+        VBox vmessage = this.vboxTypePageJoueur("Message", tmessage);
 
         Button bEnvoyer = this.buttonTypePageJoueur("Envoyer");
         bEnvoyer.setOnAction(event -> this.app.passerEnModeMessagerieEnvoyes());
 
         Button bAnnuler = this.buttonTypePageJoueur("Annuler");
         bAnnuler.setOnAction(event -> this.app.passerEnModeMessagerieRecus());
+
+        this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
+        this.setMaxSize(400, 300);
 
         this.setTop(haut);
         this.setCenter(vmessage);

@@ -73,13 +73,23 @@ public abstract class PageJoueur extends BorderPane{
         return hbox;
     }
 
+    public VBox vboxTypePageJoueur(String nom, TextField textfield){
+        VBox vbox = new VBox();
+        Label label = this.labelTypePageJoueur(nom);
+
+        vbox.getChildren().addAll(label, textfield);
+        vbox.setPadding(new Insets(20, 100, 10, 100));
+
+        return vbox;
+    }
+
     public VBox vboxTypePageJoueur(String nom){
         VBox vbox = new VBox();
         Label label = this.labelTypePageJoueur(nom);
         TextField text = new TextField();
 
         vbox.getChildren().addAll(label, text);
-        vbox.setPadding(new Insets(10, 100, 10, 100));
+        vbox.setPadding(new Insets(20, 100, 10, 100));
 
         return vbox;
     }
