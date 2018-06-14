@@ -100,9 +100,9 @@ public class LeJeu extends Application {
 			player_handler = new PlayerMenuAction(this.puissance4),
 			help_handler = new HelpMenuAction(this.puissance4);
 		game.getItems().addAll(
-				new MenuItem("Leave"),
 				new MenuItem("Surrender"),
-				new MenuItem("Score tab")
+				new MenuItem("Score tab"),
+				new MenuItem("Leave")
 				);
 		player.getItems().addAll(
 				new MenuItem("Opponent's stats"),
