@@ -96,7 +96,7 @@ public class Mastermind extends application.Jeu{
     }
 
     @Override
-    public void setJ1(JoueurMastermind j1) {
+    public void setJ1(Joueur j1) {
         this.j1 = j1;
     }
 

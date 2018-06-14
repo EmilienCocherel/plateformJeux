@@ -4,8 +4,6 @@ import java.io.*;
 import java.net.*;
 import javafx.stage.Stage;
 import javafx.application.Application;
-import morpion.*;
-import mastermind.*;
 import javafx.application.Platform;
 
 public class ChargeurJeu{
@@ -34,7 +32,7 @@ public class ChargeurJeu{
 		System.out.println(listeURL[0]);
       Jeu jeu = (Jeu)Class.forName(nomClasse).newInstance();
       jeu.setId(1);
-      jeu.setJ1(new JoueurMastermind(10));
+      jeu.setJ1(new Joueur(10));
       Platform.runLater(jeu);
       //Platform.runLater(new Mastermind(1,new JoueurMastermind(10)));
 
