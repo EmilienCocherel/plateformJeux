@@ -10,7 +10,7 @@ import javafx.scene.text.Font;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonBar;
 
-public abstract class PageJoueur extends GridPane{
+public abstract class PageJoueur extends BorderPane{
 
     public PageJoueur() {
         super();
@@ -78,6 +78,7 @@ public abstract class PageJoueur extends GridPane{
         for (String nomC : nomsColonnes){
             tableau.getColumns().add(new TableColumn(nomC));
         }
+        tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         return tableau;
     }
 
