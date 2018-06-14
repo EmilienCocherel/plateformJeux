@@ -136,7 +136,6 @@ public class FicheRapport extends GridPane{
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date today = Calendar.getInstance().getTime();
         String datenow = dateFormat.format(today);
-
         this.dateRapport.setText(datenow);
         this.add(this.dateRapport,2,5);
 
