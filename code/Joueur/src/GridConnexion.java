@@ -16,7 +16,7 @@ public class GridConnexion extends PageConnexion{
         this.appli = appli;
 
         Button seConnecter = this.buttonType("Se connecter");
-        seConnecter.setOnAction(event -> this.appli.passerEnModeJoueur());
+        seConnecter.setOnAction(event -> this.appli.passerEnModePartieEnCours());
 
         Hyperlink lienMDP = this.lienType("Mot de passe oublié ?");
         lienMDP.setOnAction(event -> this.appli.passerEnModeMDPOublie());

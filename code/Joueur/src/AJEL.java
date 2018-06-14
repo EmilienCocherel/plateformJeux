@@ -75,6 +75,7 @@ public class AJEL extends Application {
         menu.getButtons().addAll(partie, jeux, invitations, amis, messagerie, compte, seDeconnecter);
         menu.setBackground(new Background(new BackgroundFill(this.couleurDegradeBar(), null, null)));
 
+        partie.setOnAction(event -> this.passerEnModePartieEnCours());
         jeux.setOnAction(event -> this.passerEnModeJeuxBoutique());
         invitations.setOnAction(event -> this.passerEnModeInvitations());
 
@@ -109,6 +110,15 @@ public class AJEL extends Application {
 
     public void passerEnModeInvitations(){
         this.laBase.setCenter(new BorderInvitations(this));
+    }
+
+    public void passerEnModePartieEnCours(){
+        this.creerMenuJoueur();
+        this.laBase.setCenter(new BorderPartieEnCours(this));
+    }
+
+    public void passerEnModePartieHistorique(){
+        this.laBase.setCenter(new BorderPartieHistorique(this));
     }
 
     private void colorerLaBase(){
