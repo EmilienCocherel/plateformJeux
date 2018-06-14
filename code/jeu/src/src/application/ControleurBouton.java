@@ -210,6 +210,26 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                   alertEchec(ex);
               }
               break;
+
+            case "Filtrer les rapports":
+              try{
+                  r = rbd.rechercherRapportParSujet(ficheRapport.getSujetRapport());
+                  ficheRapport.setRapport(r);
+                  String titre = ficheRapport.getTitre();
+                  switch (titre) {
+                      case "Rapports":
+                          ficheJeu.setNomBouton("Lire");
+                          break;
+                      case "Mise à jour d'un jeu":
+                          ficheJeu.setNomBouton("Mettre à jour le jeu");
+                          ficheJeu.activerIdJeu(false);
+                          break;
+                  }
+
+              } catch (SQLException ex) {
+                  alertEchec(ex);
+              }
+              break;
         }
 
     }

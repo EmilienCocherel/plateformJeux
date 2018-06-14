@@ -33,19 +33,19 @@ public class RapportBD {
 		return new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo);
   }
 
-	// JeuProfil rechercherJeuParNom(String nom) throws SQLException{
-	// 	Statement s = laConnexion.createStatement();
-	// 	ResultSet res = s.executeQuery("Select * from JEU where nomJeu =" + '"'+nom+'"');
-	// 	res.next();
-	// 	int numJeu = res.getInt("idJeu");
-	// 	String nomJ = res.getString("nomJeu");
-	// 	String description = res.getString("regleJeu");
-	// 	String jarjar = res.getString("jarJeu");
-	// 	boolean actif = res.getString("activeJeu").equals("O");
-	// 	int idType = res.getInt("idTy");
-	// 	res.close();
-	// 	return new JeuProfil(numJeu, nomJ, description, jarjar, actif, idType);
-  // }
+	Rapport rechercherRapportParSujet(int sujet) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JEU where sujetRapport =" + sujet);
+		res.next();
+		int idRapport = res.getInt("idRapport");
+		String dateRapport = res.getString("dateRapport");
+		String titreRapport = res.getString("titreRapport");
+		String contenuRapport = res.getString("contenuRapport");
+		int idJo = res.getInt("idJo");
+		int sujetRapport = res.getInt("sujetRapport");
+		res.close();
+		return new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo);
+  }
 
 	// public String creerRapport(Rapport r) throws SQLException{
 	// 	PreparedStatement ps = laConnexion.prepareStatement("insert into RAPPORT values (?,?,?,?,?,?)");

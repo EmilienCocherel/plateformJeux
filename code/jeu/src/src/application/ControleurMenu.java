@@ -161,9 +161,9 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                   }
                   this.AppliJDBC.showFicheResultat(laListeJeu);
                   break;
-                  case "Jouer":
-                     this.AppliJDBC.showChoixJeu();
-                     break;
+                case "Jouer":
+                   this.AppliJDBC.showChoixJeu();
+                   break;
 
 
                 //RAPPORT
@@ -178,6 +178,14 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                 case "Afficher un rapport par son numéro":
                     ficheRapport.setNomBouton("Rechercher rapport par numéro");
                     ficheRapport.activerIdRapport(true);
+                    ficheRapport.viderFicheRapport();
+                    ficheRapport.setTitre("Consultation");
+                    this.AppliJDBC.showFicheRapport();
+                    break;
+
+                case "Lire un rapport":
+                    ficheRapport.setNomBouton("Filtrer les rapports");
+                    ficheRapport.activerSujetRapport(true);
                     ficheRapport.viderFicheRapport();
                     ficheRapport.setTitre("Consultation");
                     this.AppliJDBC.showFicheRapport();

@@ -141,6 +141,18 @@ public class FicheRapport extends GridPane{
         return Integer.parseInt(this.idRapport.getText());
     }
 
+    public void activerSujetRapport(boolean actif){
+        for (Node n: this.getChildren()){
+            n.setDisable(actif);
+        }
+        this.cb.setDisable(!actif);
+        this.bouton.setDisable(false);
+    }
+
+    public int getSujetRapport(){
+        return Integer.parseInt(this.sujetRapport.getText());
+    }
+
     // public void activerNomJeu(boolean actif){
     //     for (Node n: this.getChildren()){
     //         n.setDisable(actif);
