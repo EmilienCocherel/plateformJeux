@@ -8,12 +8,12 @@ public class JeuProfil {
     private int idJeu;
     private String nomJeu;
     private String description;
-    private String jarJeu;
+    private byte[] jarJeu;
     private boolean activeJeu;
     private int idType;
 
 
-    public JeuProfil(int idJeu, String nomJeu, String description, String jarJeu, boolean activeJeu, int idType) {
+    public JeuProfil(int idJeu, String nomJeu, String description, byte[] jarJeu, boolean activeJeu, int idType) {
         this.idJeu = idJeu;
         this.nomJeu = nomJeu;
         this.description = description;
@@ -46,11 +46,11 @@ public class JeuProfil {
         this.description = desc;
     }
 
-    public String getJarJeu() {
+    public byte[] getJarJeu() {
         return this.jarJeu;
     }
 
-    public void setjarJeu(String jarjar) {
+    public void setjarJeu(byte[] jarjar) {
         this.jarJeu = jarjar;
     }
 

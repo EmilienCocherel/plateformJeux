@@ -14,12 +14,12 @@ public class FicheJeu extends GridPane{
     private TextField idJeu;
     private TextField nomJeu;
     private TextField description;
-    private TextField jarJeu;
+    private VueImageAvatar jarjarjbins;
     private CheckBox activeJeu;
     // private CheckBox payant;
     // private TextField prix;
     // private VueImageAvatar image;
-    // private byte[] imageAvatar;
+    private byte[] jarJeu;
     private ComboBox<String> cb;
 
     private Button bouton;
@@ -43,7 +43,7 @@ public class FicheJeu extends GridPane{
     public void setJeu(JeuProfil j){
         this.nomJeu.setText(j.getNomJeu());
         this.description.setText(j.getDescription());
-        this.jarJeu.setText(j.getJarJeu());
+        // this.jarJeu.setAvatar(j.getAvatar());
 
         switch(j.getIdType()){
             case 1: cb.setValue("Tour par Tour"); break;
@@ -58,23 +58,23 @@ public class FicheJeu extends GridPane{
         }catch (Exception e){}
         String nomJeu=this.nomJeu.getText();
         String description=this.description.getText();
-        String jar = this.jarJeu.getText();
+        // String jar = this.jarJeu.getText();
         boolean isActif = this.activeJeu.isSelected();
-
+        byte [] b1 = new byte[1];
         int typejeu;
         if (cb.getValue().equals("Tour par tour"))
             typejeu=1;
         else
             typejeu=2;
 
-	    return new JeuProfil(id, nomJeu, description, jar, isActif, typejeu);
+	    return new JeuProfil(id, nomJeu, description,b1, isActif, typejeu);
     }
 
     void viderFicheJeu(){
         this.idJeu.setText("");
         this.description.setText("");
         this.nomJeu.setText("");
-        this.jarJeu.setText("");
+        // this.jarJeu.setText("");
         this.activeJeu.setSelected(false);
         this.cb.setValue("Tour par tour");
     }
@@ -92,7 +92,7 @@ public class FicheJeu extends GridPane{
         this.idJeu = new TextField();
         this.nomJeu= new TextField();
         this.description = new TextField();
-        this.jarJeu = new TextField();
+        // this.jarJeu = new TextField();
         this.activeJeu = new CheckBox("Actif");
         this.cb=new ComboBox<String>(
                 FXCollections.observableArrayList("Simultané","Tour par tour"));
@@ -105,8 +105,8 @@ public class FicheJeu extends GridPane{
         this.add(this.nomJeu, 2,1);
         this.add(new Label("Numéro:"),1,2);
         this.add(this.idJeu,2,2);
-        this.add(new Label("JarJeu:"),1,3);
-        this.add(this.jarJeu,2,3);
+        // this.add(new Label("JarJeu:"),1,3);
+        // this.add(this.jarJeu,2,3);
         this.add(new Label("Decpription:"),1,4);
         this.add(this.description,2,4);
         this.add(new Label("Type:"),1,5);

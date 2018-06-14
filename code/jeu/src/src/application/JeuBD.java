@@ -26,7 +26,7 @@ public class JeuBD {
 		int numJeu = res.getInt("idJeu");
 		String nomJ = res.getString("nomJeu");
 		String description = res.getString("regleJeu");
-		String jarjar = res.getString("jarJeu");
+		byte[] jarjar = res.getBytes("jarJeu");
 		boolean actif = res.getString("activeJeu").equals("O");
 		int idType = res.getInt("idTy");
 		res.close();
@@ -40,7 +40,7 @@ public class JeuBD {
 		int numJeu = res.getInt("idJeu");
 		String nomJ = res.getString("nomJeu");
 		String description = res.getString("regleJeu");
-		String jarjar = res.getString("jarJeu");
+		byte[] jarjar = res.getBytes("jarJeu");
 		boolean actif = res.getString("activeJeu").equals("O");
 		int idType = res.getInt("idTy");
 		res.close();
@@ -53,7 +53,8 @@ public class JeuBD {
 		ps.setInt(1,numJeu);
 		ps.setString(2,j.getNomJeu());
 		ps.setString(3,j.getDescription());
-		ps.setString(4,j.getJarJeu());
+		byte [] b1 = new byte[1];
+		ps.setBytes(4,b1);
 		String isActif = "N";
 		if (j.isActive()){
 			isActif = "O";
@@ -65,10 +66,11 @@ public class JeuBD {
 	}
 
   public void majJeu(JeuProfil j) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("Update JEU set nomJeu = ?,regleJeu = ?, jarJeu = ?, activeJeu = ?,	idTy = ? where idJeu =" + j.getIdJeu());
+		PreparedStatement ps = laConnexion.prepareStatement("Update JEU set nomJeu = ?,regleJeu = ?, activeJeu = ?,	idTy = ? where idJeu =" + j.getIdJeu());
 		ps.setString(1,j.getNomJeu());
 		ps.setString(2,j.getDescription());
-		ps.setString(3,j.getJarJeu());
+		byte [] b1 = new byte[1];
+		ps.setBytes(4,b1);
 		String actif = "N";
 		if (j.isActive()){
 			actif = "O";
@@ -87,7 +89,7 @@ public class JeuBD {
 			int numJeu = res.getInt("idJeu");
 			String nomJ = res.getString("nomJeu");
 			String description = res.getString("regleJeu");
-			String jarjar = res.getString("jarJeu");
+			byte[] jarjar = res.getBytes("jarJeu");
 			boolean actif = res.getString("activeJeu").equals("O");
 			int idType = res.getInt("idTy");
 			Liste.add(new JeuProfil(numJeu, nomJ, description, jarjar, actif, idType));
