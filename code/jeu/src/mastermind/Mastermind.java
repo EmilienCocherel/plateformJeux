@@ -186,7 +186,8 @@ public class Mastermind extends application.Jeu{
         res.setAlignment(Pos.CENTER);
         Button brestart = new Button("tester");
         TestCombi tc = new TestCombi(this,this.manche);
-        brestart.setOnAction(tc);
+        ActionTester actionTester = new ActionTester(this,((JoueurMastermind)this.j1).getMancheCourante());
+        brestart.setOnAction(actionTester);
         res.getChildren().add(brestart);
         res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
         res.getChildren().add(this.choixCouleursP1());
