@@ -1,8 +1,10 @@
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.control.ButtonBar;
@@ -12,6 +14,7 @@ public class GridJeuxBoutique extends PageJoueur{
     private AJEL appli;
 
     public GridJeuxBoutique(AJEL appli){
+
         super();
         this.appli = appli;
 
@@ -21,12 +24,14 @@ public class GridJeuxBoutique extends PageJoueur{
         Button boutique = this.buttonTypePageJoueur("Boutique");
         boutique.setOnAction(event -> this.appli.passerEnModeJeuxBoutique());
 
-        this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
-        this.setMaxSize(400, 300);
+        this.setStyle("-fx-background-color: transparent;");
+        this.setMaxSize(800, 700);
 
 
-        this.add(this.buttonBarTypePageJoueur(mesJeux,boutique),0,1);
-        this.add(this.tableauTypePageJouer("Nom","Type","Description"),0,1);
+        this.setTop(this.buttonBarTypePageJoueur(mesJeux,boutique));
+        this.setCenter(this.tableauTypePageJouer("Nom","Type","Description"));
+
+
 
 
 
