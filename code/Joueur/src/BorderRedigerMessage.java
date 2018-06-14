@@ -12,29 +12,14 @@ public class BorderRedigerMessage extends PageJoueur {
         super();
         this.app = app;
 
-        VBox vobjet = new VBox();
+        VBox vobjet = this.vboxTypePageJoueur("Objet");
 
-        Label lobjet = new Label("Objet");
-        TextField tobjet = new TextField();
-
-        vobjet.getChildren().addAll(lobjet, tobjet);
-
-        VBox vdestinataire = new VBox();
-
-        Label ldesinataire = new Label("Destinataire");
-        TextField tdestinataire = new TextField("Destinataire");
-
-        vdestinataire.getChildren().addAll(ldesinataire, tdestinataire);
+        VBox vdestinataire = this.vboxTypePageJoueur("Destinaire");
 
         HBox haut = new HBox();
         haut.getChildren().addAll(vobjet, vdestinataire);
 
-        VBox vmessage = new VBox();
-
-        Label lmessage = new Label("Message");
-        TextField tmessage = new TextField();
-
-        vmessage.getChildren().addAll(lmessage, tmessage);
+        VBox vmessage = this.vboxTypePageJoueur("Message");
 
         Button bEnvoyer = this.buttonTypePageJoueur("Envoyer");
         bEnvoyer.setOnAction(event -> this.app.passerEnModeMessagerieEnvoyes());
