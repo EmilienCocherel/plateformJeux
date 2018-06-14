@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import javafx.stage.Modality;
 import application.*;
 
-public class Mastermind extends application.Jeu{
-    private JoueurMastermind j1;
+public class Mastermind<T> extends application.Jeu<T>{
+    private T j1;
     private int id;
     private ArrayList<Combinaison> combis;
     private Label p1;
@@ -27,7 +27,7 @@ public class Mastermind extends application.Jeu{
     private Manche manche;
     private Stage stage;
 
-    public Mastermind(int id,JoueurMastermind j1){
+    public Mastermind(int id,T j1){
       this.id=id;
       this.j1=j1;
     }
@@ -82,7 +82,7 @@ public class Mastermind extends application.Jeu{
 
 //    Getter et Setter
 
-    public JoueurMastermind getJ1() {
+    public T getJ1() {
         return j1;
     }
 
@@ -96,7 +96,7 @@ public class Mastermind extends application.Jeu{
     }
 
     @Override
-    public void setJ1(Joueur j1) {
+    public void setJ1(T j1) {
         this.j1 = j1;
     }
 
@@ -120,7 +120,7 @@ public class Mastermind extends application.Jeu{
         BoutonRadio rexpert = new BoutonRadio("jaune",1);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -148,7 +148,7 @@ public class Mastermind extends application.Jeu{
         BoutonRadio rexpert = new BoutonRadio("jaune",2);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -176,7 +176,7 @@ public class Mastermind extends application.Jeu{
         BoutonRadio rexpert = new BoutonRadio("jaune",3);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -205,7 +205,7 @@ public class Mastermind extends application.Jeu{
         BoutonRadio rexpert = new BoutonRadio("jaune",4);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,this.j1.getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -282,7 +282,7 @@ public class Mastermind extends application.Jeu{
             this.combis.add(new Combinaison(new Pion(2),new Pion(1),new Pion(1),new Pion(1)));
             this.combi = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
             stage.setTitle("Mastermind");
-            this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
+             ((JoueurMastermind)this.j1).nouvelleManche(new Manche(this.combis.get(0),this, (JoueurMastermind)this.j1,0));
             stage.setScene(this.laScene());
             stage.show();
             this.majAffichage();
