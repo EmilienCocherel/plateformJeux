@@ -8,7 +8,6 @@ public class Plateau extends Matrice<Integer> {
         super(7, 7);
     }
 
-
 	/**
 	 * @param colonne La colonne à laquelle placer le pion
 	 * @param pion Le pion à placer
@@ -106,6 +105,21 @@ public class Plateau extends Matrice<Integer> {
 			for (int colonne = 0; colonne < this.getNbColonnes(); colonne ++)
 				elem.add(this.get(ligne, colonne));
 			res.add(elem);
+		}
+		return res;
+	}
+
+	/**
+	 * Importer un plateau au format JSON
+	 */
+	public static Plateau fromJson(JSONArray json) {
+		Plateau res = new Plateau();
+		JSONArray elem;
+		for (int colonne = 0 ; colonne < res.getNbColonnes(); colonne ++) {
+			elem = (JSONArray) json.get(colonne);
+			for (int ligne = 0 ; ligne < res.getNbLignes(); ligne ++) {
+				res.set(ligne, colonne, (Integer) elem.get(ligne));
+			}
 		}
 		return res;
 	}

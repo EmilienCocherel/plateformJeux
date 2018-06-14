@@ -116,19 +116,19 @@ public class ConnexionMySQL{
     }
 
     public ArrayList<String> getJeux(){
-	ArrayList<String> liste= new  ArrayList<String>();
-	try{
-	    PreparedStatement ps= mysql.prepareStatement("select distinct nomJeu from JEU order by nomJeu");
-	    ResultSet rs=ps.executeQuery();
-	    while (rs.next()){
-		liste.add(rs.getString(1));
-	    }
-	    rs.close();
-	}catch (SQLException exception){
-	    System.out.println("Erreur SQL : " + exception.getMessage());
-	}
+			ArrayList<String> liste= new  ArrayList<String>();
+			try{
+			    PreparedStatement ps= mysql.prepareStatement("select distinct nomJeu from JEU order by nomJeu");
+			    ResultSet rs=ps.executeQuery();
+			    while (rs.next()){
+				liste.add(rs.getString(1));
+			    }
+			    rs.close();
+			}catch (SQLException exception){
+			    System.out.println("Erreur SQL : " + exception.getMessage());
+			}
 
-	return liste;
+			return liste;
     }
 
     public boolean estUnePartie(int idPartie){

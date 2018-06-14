@@ -9,14 +9,15 @@ class ActionLesJeux implements EventHandler<ActionEvent> {
     private ConnexionMySQL laConnexion;
     private ChoixJeu vue;
 
-    ActionLesJeux(ChoixJeu  vue, ConnexionMySQL laConnexion){
-	this.vue=vue;
-	this.laConnexion=laConnexion;
+    public ActionLesJeux(ChoixJeu  vue, ConnexionMySQL laConnexion){
+    	this.vue=vue;
+    	this.laConnexion=laConnexion;
     }
+
     @Override
     public void handle(ActionEvent e) {
-	ComboBox c=(ComboBox) e.getSource();
-	String jeu=(String)c.getValue();
-	vue.chargerJeu(jeu);
+    	ComboBox c=(ComboBox) e.getSource();
+    	String jeu=(String)c.getValue();
+    	vue.chargerJeu(jeu);
     }
 }

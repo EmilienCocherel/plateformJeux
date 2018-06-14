@@ -20,6 +20,7 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
         FicheJoueur ficheJoueur=this.AppliJDBC.getFicheJoueur();
         FicheJeu    ficheJeu   =this.AppliJDBC.getFicheJeu();
         FicheRapport ficheRapport = this.AppliJDBC.getFicheRapport();
+        //ChoixJeu choixJeu = this.AppliJDBC.getChoixJeu();
         if (actionEvent.getTarget().getClass().equals(MenuItem.class)){
             String etiquette=((MenuItem)actionEvent.getTarget()).getText();
             switch (etiquette){
@@ -160,6 +161,9 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                   }
                   this.AppliJDBC.showFicheResultat(laListeJeu);
                   break;
+                  case "Jouer":
+                     this.AppliJDBC.showChoixJeu();
+                     break;
 
 
                 //RAPPORT
