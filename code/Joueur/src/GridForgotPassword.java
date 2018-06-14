@@ -17,13 +17,11 @@ public class GridForgotPassword extends PageConnexion {
         this.add(this.title("Mot de passe oublié"), 1, 0);
         this.add(this.labelType("Email : "), 0, 1);
         this.add(new TextField(),1,1);
-        this.add(this.labelType("Ancien mot de passe : "), 0, 2);
+        this.add(this.labelType("Nouveau mot de passe : "), 0, 2);
         this.add(new TextField(),1,2);
-        this.add(this.labelType("Nouveau mot de passe : "), 0, 3);
+        this.add(this.labelType("Confirmer mot de passe : "), 0, 3);
         this.add(new TextField(),1,3);
-        this.add(this.labelType("Confirmer mot de passe : "), 0, 4);
-        this.add(new TextField(),1,4);
-        this.add(this.labelType(""), 0, 5);
+        this.add(this.labelType(""), 0, 4);
         this.add(this.buttonType("Changer mot de passe"), 1, 6);
 
     }
