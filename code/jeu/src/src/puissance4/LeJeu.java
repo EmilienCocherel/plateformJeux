@@ -24,6 +24,8 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
+
 /**
  * Vue du Puissance 4
  */
@@ -123,7 +125,7 @@ public class LeJeu extends Application {
 	}
 
 	/**
-	 * @return le graphe de scène de la vue à partir de methodes précédantes
+	 * @return le graphe de scène de la vue à partir de methodes précédentes
 	 */
 	private Scene laScene() {
 		this.cont = new BorderPane();
@@ -137,14 +139,16 @@ public class LeJeu extends Application {
 	 * raffraichit l'affichage en fonction du modèle
 	 */
 	public void majAffichage() {
-		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		// A implémenter
 		if (this.pause)
-			this.cont.setId("pause");
-		else {
-			this.cont.setId("");
-		}
-			this.plateau.maj();
+			this.cont.getStyleClass().add("pause");
+		else
+			this.cont.getStyleClass().remove("pause");
+		if (!this.puissance4.isTour())
+			this.cont.getStyleClass().add("autre-tour");
+		else
+			this.cont.getStyleClass().remove("autre-tour");
+		this.plateau.maj();
 	}
 
 	public PlateauGUI getPlateau() {
@@ -160,7 +164,8 @@ public class LeJeu extends Application {
 		// création du modèle
 		this.puissance4 = new Puissance4(
 				new Joueur("Nat", 1, 18),
-				new Joueur("Cyber Nat", 2, 18)
+				new Joueur("Cyber Nat", 2, 18),
+				1
 				);
 
 		stage.setTitle("Connect 4");
@@ -168,6 +173,7 @@ public class LeJeu extends Application {
 		stage.setScene(this.laScene());
 		stage.getScene().getStylesheets().add("style/style.css");
 		stage.show();
+		System.out.println("?");
 	}
 
 	/**
@@ -231,5 +237,28 @@ public class LeJeu extends Application {
 	 */
 	public boolean isPause() {
 		return this.pause;
+	}
+
+	/**
+	 * @return si c'est le tour du joueur courant ou non
+	 */
+	public boolean isTour() {
+		return this.puissance4.isTour();
+	}
+
+	/**
+	 * Envoyer l'état actuel de la partie à l'application
+	 */
+	public void setEtat() {
+		// TODO: envoyer l'état au format JSON
+		JSONObject json = this.puissance4.toJson();
+		json.put("pause", this.pause);
+	}
+
+	/**
+	 * Charger l'état actuel depuis l'application
+	 */
+	public void getEtat() {
+		// TODO: récupérer l'état en JSON et le charger
 	}
 }

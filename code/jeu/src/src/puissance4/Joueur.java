@@ -14,6 +14,13 @@ public class Joueur {
         this.nbPionsInitial = nbPions;
     }
 
+	public Joueur(String nom, Integer pion, int nbPions, int nbPionsInitial) {
+        this.nom = nom;
+        this.pion = pion;
+        this.nbPions = nbPions;
+        this.nbPionsInitial = nbPionsInitial;
+	}
+
 	/**
 	 * Retire un pion au joueur
 	 */
@@ -56,5 +63,15 @@ public class Joueur {
 		res.put("nbPions", this.nbPions);
 		res.put("nbPionsInitial", this.nbPionsInitial);
 		return res;
+	}
+
+	/**
+	 * Importer un joueur au format JSON
+	 */
+	public static Joueur fromJson(JSONObject json) {
+		return new Joueur((String) json.get("nom"),
+				(Integer) json.get("pion"),
+				(int) json.get("nbPions"),
+				(int) json.get("nbPionsInitial"));
 	}
 }

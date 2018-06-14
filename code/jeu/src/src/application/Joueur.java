@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 
 public class Joueur {
-    private int identifiant;
+    protected int identifiant;
     private String pseudo;
     private String motdepasse;
     private char sexe;
@@ -14,10 +14,10 @@ public class Joueur {
 	  private byte[] avatar;
     private String emailJo;
     private boolean activeJo;
-    private boolean souvenir;
+    private boolean admin;
 
 
-    public Joueur(int identifiant, String pseudo, String motdepasse, char sexe, boolean abonne, int niveau, byte[] avatar, String emailJo, boolean activeJo, boolean souvenir) {
+    public Joueur(int identifiant, String pseudo, String motdepasse, char sexe, boolean abonne, int niveau, byte[] avatar, String emailJo, boolean activeJo, boolean admin) {
         this.identifiant = identifiant;
         this.pseudo = pseudo;
         this.motdepasse = motdepasse;
@@ -27,9 +27,16 @@ public class Joueur {
         this.avatar=avatar;
         this.emailJo=emailJo;
         this.activeJo = activeJo;
-        this.souvenir = souvenir;
+        this.admin = admin;
     }
 
+    public Joueur(int id){
+      this.identifiant=id;
+    }
+
+    public Joueur(){
+      this.identifiant=1;
+    }
 
     public int getIdentifiant() {
         return identifiant;
@@ -103,11 +110,11 @@ public class Joueur {
       this.activeJo = actif;
     }
 
-    public boolean isRemembered(){
-      return this.souvenir;
+    public boolean isAdmin(){
+      return this.admin;
     }
 
-    public void setSouvenir(boolean souv){
-      this.souvenir = souv;
+    public void setAdmin(boolean admi){
+      this.admin = admi;
     }
 }

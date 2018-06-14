@@ -9,6 +9,7 @@ public class JoueurBD {
 		this.laConnexion=laConnexion;
 	}
 
+	// recherche nombre de joueurs au total
 	int maxNumJoueur() throws SQLException{
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select max(idJo) as lemax from JOUEUR");
@@ -31,10 +32,28 @@ public class JoueurBD {
 		byte[] image = res.getBytes("avatar");
 		String email = res.getString("emailJo");
 		boolean actif = res.getString("activeJo").equals("O");
-		boolean resterCo = res.getString("souvenir").equals("O");
+		boolean admin = res.getString("admin").equals("O");
 		res.close();
-		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, resterCo);
+		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
   }
+
+	Joueur rechercherJoueurParPseudo(String nom) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+nom+'"');
+		res.next();
+		int numJ = res.getInt("idJo");
+		String nomJ = res.getString("pseudo");
+		String mdp = res.getString("motdepasse");
+		String sexe = res.getString("sexe");
+		boolean abo = res.getString("abonne").equals("O");
+		int level = res.getInt("niveau");
+		byte[] image = res.getBytes("avatar");
+		String email = res.getString("emailJo");
+		boolean actif = res.getString("activeJo").equals("O");
+		boolean admin = res.getString("admin").equals("O");
+		res.close();
+		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
+	}
 
 	int insererJoueur( Joueur j) throws SQLException{
 		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?)");
@@ -56,24 +75,26 @@ public class JoueurBD {
 			actif = "O";
 		}
 		ps.setString(9,actif);
-		String resterCo = "N";
-		if (j.isRemembered()){
-			resterCo = "O";
+		String estAdmin = "N";
+		if (j.isAdmin()){
+			estAdmin = "O";
 		}
-		ps.setString(10,resterCo);
+		ps.setString(10,estAdmin);
 		ps.executeUpdate();
 		return numJ;
 	}
 
-
+	//Suppression joueur
 	void effacerJoueur(int num) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		s.executeUpdate("Delete from JOUEUR where numJoueur =" + num);
+		s.executeUpdate("Delete from MESSAGE where idUt1 =" + num);
+		s.executeUpdate("Delete from MESSAGE where idUt2 =" + num);
+		s.executeUpdate("Delete from JOUEUR where idJo =" + num);
 	}
 
 
   void majJoueur(Joueur j) throws SQLException{
-		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, resterCo = ? where idJo =" + j.getIdentifiant());
+		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, admin = ? where idJo =" + j.getIdentifiant());
 		ps.setString(1,j.getPseudo());
 		ps.setString(2,j.getMotdepasse());
 		ps.setString(3,j.getSexe() + "");
@@ -90,12 +111,11 @@ public class JoueurBD {
 			actif = "O";
 		}
 		ps.setString(8,actif);
-		ps.setString(9,j.getEmailJo());
-		String resterCo = "N";
-		if (j.isRemembered()){
-			resterCo = "O";
+		String estAdmin = "N";
+		if (j.isAdmin()){
+			estAdmin = "O";
 		}
-		ps.setString(10, resterCo);
+		ps.setString(9, estAdmin);
 		ps.executeUpdate();
 
   }
@@ -114,41 +134,41 @@ public class JoueurBD {
 			byte[] image = res.getBytes("avatar");
 			String mail = res.getString("emailJo");
 			boolean actif = res.getString("activeJo").equals("O");
-			boolean resterCo = res.getString("souvenir").equals("O");
-			Liste.add(new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, mail, actif, resterCo));
+			boolean estAdmin = res.getString("admin").equals("O");
+			Liste.add(new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, mail, actif, estAdmin));
 		}
 		res.close();
 		return Liste;
   }
 
   String rapportMessage() throws SQLException{
-	// 	Statement st = laConnexion.createStatement();
-	// 	ResultSet rs=st.executeQuery(
-	// 					"select j2.pseudo pseudoRec, dateMsg, j1.pseudo pseudoExp, contenuMsg "+
-	// 										"from MESSAGE, JOUEUR j1, JOUEUR j2 " +
-	// 										"where j1.numJoueur=idUt1 and j2.numJoueur=idUt2 "+
-	// 										"order by j2.pseudo, dateMsg");
-	// 	String pseudoPrec="", pseudo="111";
-	// 	int cpt=0;
-	// 	String res="";
-	// 	while (rs.next()){
-	// 			pseudo=rs.getString(1);
-	// 			if (! pseudo.equals(pseudoPrec)){
-	// 					if (!pseudoPrec.equals("")){
-	// 							res+="Total des messages reçus: "+cpt+"\n\n";
-	// 						}
-	// 						cpt=0;
-	// 					res+="Messages reçus par "+pseudo+"\n";
-	// 					pseudoPrec=pseudo;
-	// 				}
-	// 				cpt+=1;
-	// 			res+=rs.getTimestamp(2)+": de "+rs.getString(3)+": "+rs.getString(4)+"\n";
-	// 		}
-  //
-	// 		if (!pseudoPrec.equals("")) {
-	// 			res += "Total des messages: " + cpt + "\n\n";
-	// 	}
-	// 	rs.close();
-		return "";
+		Statement st = laConnexion.createStatement();
+		ResultSet rs=st.executeQuery(
+						"select j2.pseudo pseudoRec, dateMsg, j1.pseudo pseudoExp, contenuMsg "+
+											"from MESSAGE, JOUEUR j1, JOUEUR j2 " +
+											"where j1.idJo = idUt1 and j2.idJo = idUt2 "+
+											"order by j2.pseudo, dateMsg");
+		String pseudoPrec="", pseudo="111";
+		int cpt=0;
+		String res="";
+		while (rs.next()){
+				pseudo = rs.getString(1);
+				if (! pseudo.equals(pseudoPrec)){
+						if (!pseudoPrec.equals("")){
+								res += "Total des messages reçus: " + cpt + "\n\n";
+							}
+							cpt=0;
+						res += "Messages reçus par "+pseudo+"\n";
+						pseudoPrec = pseudo;
+					}
+					cpt += 1;
+				res += rs.getTimestamp(2)+": de "+rs.getString(3)+": "+rs.getString(4)+"\n";
+			}
+
+			if (!pseudoPrec.equals("")) {
+				res += "Total des messages: " + cpt + "\n\n";
+		}
+		rs.close();
+		return res;
   }
 }
