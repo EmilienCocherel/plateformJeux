@@ -19,8 +19,10 @@ public class AppliJDBC extends Application {
     private Login Login;
     private FicheJoueur ficheJoueur;
     private FicheJeu ficheJeu;
+    private FicheRapport ficheRapport;
     private JeuBD jeuBD;
     private JoueurBD joueurBD;
+    private RapportBD rapportBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -35,13 +37,15 @@ public class AppliJDBC extends Application {
             System.out.println("Driver MySQL non trouvé!!!");
             System.exit(1);
         }
-        this.Login=new Login(this);
-        this.ficheJoueur=new FicheJoueur(this);
-        this.ficheJeu = new FicheJeu(this);
-        this.ficheResultat=new FicheResultat(this);
-        this.jeuBD=new JeuBD(this.Connexion);
-        this.joueurBD=new JoueurBD(this.Connexion);
-        this.message=new Label("Vous n'êtes pas connecté");
+        this.Login        = new Login(this);
+        this.ficheJoueur  = new FicheJoueur(this);
+        this.ficheJeu     = new FicheJeu(this);
+        this.ficheRapport = new FicheRapport(this);
+        this.ficheResultat= new FicheResultat(this);
+        this.jeuBD        = new JeuBD(this.Connexion);
+        this.joueurBD     = new JoueurBD(this.Connexion);
+        this.rapportBD    = new RapportBD(this.Connexion);
+        this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
     }
@@ -94,18 +98,24 @@ public class AppliJDBC extends Application {
       fp.getChildren().addAll(this.ficheJeu);
     }
 
+    public void showFicheRapport(){
+      VBox fp =((VBox)scene.getRoot());
+      fp.getChildren().remove(1);
+      fp.getChildren().addAll(this.ficheRapport);
+    }
+
     public void showFicheResultat(String resultat){
         this.ficheResultat.setTexte(resultat);
         VBox fp=((VBox)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.ficheResultat);
     }
+
     public void setMessage(String message){
         this.message.setText(message);
          VBox fp=((VBox)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.message);
-
     }
 
     public ConnexionMySQL getConnexion() {
@@ -126,5 +136,13 @@ public class AppliJDBC extends Application {
 
     public FicheJeu getFicheJeu(){
       return ficheJeu;
+    }
+
+    public RapportBD getRapportBD(){
+      return rapportBD;
+    }
+
+    public FicheRapport getFicheRapport(){
+      return ficheRapport;
     }
 }

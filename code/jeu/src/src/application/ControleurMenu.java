@@ -19,6 +19,7 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         FicheJoueur ficheJoueur=this.AppliJDBC.getFicheJoueur();
         FicheJeu    ficheJeu   =this.AppliJDBC.getFicheJeu();
+        FicheRapport ficheRapport = this.AppliJDBC.getFicheRapport();
         if (actionEvent.getTarget().getClass().equals(MenuItem.class)){
             String etiquette=((MenuItem)actionEvent.getTarget()).getText();
             switch (etiquette){
@@ -159,6 +160,17 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                   }
                   this.AppliJDBC.showFicheResultat(laListeJeu);
                   break;
+
+
+                //RAPPORT
+                case "Afficher le plus grand nombre de rapport":
+                  try {
+                      this.AppliJDBC.setMessage("Le plus grand numero est " + this.AppliJDBC.getRapportBD().maxNumRapport());
+                  }catch (SQLException ex) {
+                      this.AppliJDBC.setMessage("Problème avec la requête\nVoici le message d'erreur\n" + ex.getMessage());
+                  }
+                  break;
+
 
                 default:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
