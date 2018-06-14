@@ -3,71 +3,72 @@ package application;
 import java.io.File;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.sql.Date;
 
 public class Rapport {
-    private int idJeu;
-    private String nomJeu;
-    private String description;
-    private String jarJeu;
-    private boolean activeJeu;
-    private int idType;
+    private int idRapport;
+    private String dateRapport;
+    private String titreRapport;
+    private int sujetRapport;
+    private String contenuRapport;
+    private int idJo;
 
 
-    public Rapport(int idJeu, String nomJeu, String description, String jarJeu, boolean activeJeu, int idType) {
-        this.idJeu = idJeu;
-        this.nomJeu = nomJeu;
-        this.description = description;
-        this.jarJeu = jarJeu;
-        this.activeJeu = activeJeu;
-        this.idType = idType;
+    public Rapport(int idRapport, String dateRapport, String titreRapport, int sujetRapport, String contenuRapport, int idJo) {
+        this.idRapport = idRapport;
+        this.dateRapport = dateRapport;
+        this.sujetRapport = sujetRapport;
+        this.titreRapport = titreRapport;
+        this.contenuRapport = contenuRapport;
+        this.idJo = idJo;
     }
 
-    public int getIdJeu() {
-        return this.idJeu;
+    public int getIdRapport() {
+        return this.idRapport;
     }
 
-    public void setIdjeu(int id) {
-        this.idJeu = id;
+    public void setIdRapport(int id) {
+        this.idRapport = id;
     }
 
-    public String getNomJeu() {
-        return this.nomJeu;
+    public String getDateRapport() {
+        return this.dateRapport;
     }
 
-    public void setNomJeu(String nom) {
-        this.nomJeu = nom;
+    public void setDateRapport(String nd) {
+        this.dateRapport = nd;
     }
 
-    public String getDescription() {
-        return this.description;
+    public String getTitreRapport() {
+        return this.titreRapport;
     }
 
-    public void setDescription(String desc) {
-        this.description = desc;
+    public void setTitreRapport(String nt) {
+        this.titreRapport = nt;
     }
 
-    public String getJarJeu() {
-        return this.jarJeu;
+    public int getSujetRapport(){
+        return this.sujetRapport;
     }
 
-    public void setjarJeu(String jarjar) {
-        this.jarJeu = jarjar;
+    public void setSujetRapport (int sujet){
+        this.sujetRapport = sujet;
     }
 
-    public boolean isActive() {
-        return this.activeJeu;
+    public String getContenuRapport() {
+        return this.contenuRapport;
     }
 
-    public void setActiveJeu(boolean actif) {
-        this.activeJeu = actif;
+    public void setContenuRapport(String contenu) {
+        this.contenuRapport = contenu;
     }
 
-    public int getIdType() {
-        return this.idType;
+    public int getIdJo() {
+        return this.idJo;
     }
 
-    public void setIdType(int id) {
-        this.idType = id;
+    public void setIdJo(int id) {
+        this.idJo = id;
     }
 
 }

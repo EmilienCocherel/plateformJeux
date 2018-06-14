@@ -10,13 +10,13 @@ public class RapportBD {
 	}
 
 	// recherche nombre de jeux au total
-	public int maxNumJeu() throws SQLException{
+	public int maxNumRapport() throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select max(idJeu) as lemax from JEU");
+		ResultSet res = s.executeQuery("Select max(idRapport) as lemax from RAPPORT");
 		res.next();
-		int dernierJeu = res.getInt("lemax");
+		int dernierRapport = res.getInt("lemax");
 		res.close();
-		return dernierJeu;
+		return dernierRapport;
 	}
 
 	JeuProfil rechercherJeuParNum(int num) throws SQLException{
@@ -49,7 +49,7 @@ public class RapportBD {
 
 	public int insererJeu(JeuProfil j) throws SQLException{
 		PreparedStatement ps = laConnexion.prepareStatement("insert into JEU values (?,?,?,?,?,?)");
-		int numJeu = this.maxNumJeu() + 1;
+		int numJeu = this.maxNumRapport() + 1;
 		ps.setInt(1,numJeu);
 		ps.setString(2,j.getNomJeu());
 		ps.setString(3,j.getDescription());
