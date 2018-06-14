@@ -40,12 +40,10 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 			// Si la partie est finie
 			if (this.puissance4.getRound() > 3) {
 				if (this.puissance4.getGagnant() == courant) {
-					alert = new Alert(AlertType.INFORMATION, "You've won the game! Good job.");
+					this.gui.gagner();
 				} else {
-					alert = new Alert(AlertType.INFORMATION, "You've lost the game.");
+					this.gui.perdre();
 				}
-				alert.showAndWait();
-				Platform.exit();
 			}
 
 			// Remettre tout à zéro
