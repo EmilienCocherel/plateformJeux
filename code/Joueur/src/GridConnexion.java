@@ -19,7 +19,6 @@ public class GridConnexion extends PageConnexion{
         seConnecter.setOnAction(event -> this.appli.passerEnModeJoueur());
 
 
-
         Hyperlink lienMDP = this.lienType("Mot de passe oublié ?");
         lienMDP.setOnAction(event -> this.appli.passerEnModeMDPOublie());
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));

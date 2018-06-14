@@ -8,6 +8,7 @@ import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonBar;
 
 public abstract class PageJoueur extends GridPane{
 
@@ -86,10 +87,19 @@ public abstract class PageJoueur extends GridPane{
         for (String nomBouton : nomsBoutons){
             Button bouton = this.buttonTypePageJoueur(nomBouton);
             barBouton.setButtonData(bouton,ButtonData.LEFT);
-            barBouton.getButtons().add(bouton);
+            barBouton.getButtons().addAll(bouton);
         }
         return barBouton;
     }
 
+    public ButtonBar buttonBarTypePageJoueur(Button... boutons){
+
+        ButtonBar barBouton = new ButtonBar();
+        for (Button bouton : boutons){
+            barBouton.setButtonData(bouton,ButtonData.LEFT);
+            barBouton.getButtons().add(bouton);
+        }
+        return barBouton;
+    }
 
 }
