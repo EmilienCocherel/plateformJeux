@@ -1,0 +1,69 @@
+.pion {
+	-fx-fill: #C5D0EA;
+}
+
+.pion#joueur1 {
+	-fx-fill: #F4E28A;
+}
+
+.pion#joueur2 {
+	-fx-fill: #F43A68;
+}
+
+.bouton_jouer {
+	-fx-background-color: #438D43;
+	-fx-text-fill: #C5D0EA;
+	-fx-font-size: 16pt;
+	-fx-min-width: 80;
+	-fx-min-height: 80;
+}
+
+.bouton_jouer:disabled {
+	-fx-background-color: #9571BF;
+	-fx-text-fill: #DEDEDE;
+}
+
+.bouton_jouer:pressed {
+	-fx-background-color: #406C44;
+}
+
+#plateau {
+	-fx-background-color: #445785;
+	-fx-hgap: 5;
+	-fx-vgap: 5;
+	-fx-padding: 15;
+	-fx-alignment: center;
+}
+
+.joueurs {
+	-fx-background-color: #C5D0EA;
+	-fx-spacing: 5;
+	-fx-padding: 15;
+	-fx-alignment: top-center;
+	-fx-pref-width: 360px;
+}
+
+.joueur {
+	-fx-alignment: center-left;
+	-fx-spacing: 5;
+}
+
+.pause .pion :not(.no-pause) {
+	-fx-fill: #DEDEDE;
+}
+
+.pause .joueurs .pion#joueur1 {
+	-fx-fill: #C2C1BC;
+}
+
+.pause .joueurs .pion#joueur2 {
+	-fx-fill: #C2909C;
+}
+
+.pause #plateau, .autre-tour #plateau {
+	-fx-background-color: #4C546B;
+}
+
+.pause .joueurs, .autre-tour .joueurs {
+	-fx-background-color: #DEDEDE;
+}
