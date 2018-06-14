@@ -12,10 +12,10 @@
 //
 //public class Invitations extends BorderPane {
 //
-//    ApplicationAJEL app;
+//    AJEL app;
 //    BorderPane cont;
 //
-//    public Invitations(ApplicationAJEL app1){
+//    public Invitations(AJEL app1){
 //        this.app = app1;
 //        this.cont = new BorderPane();
 //    }
