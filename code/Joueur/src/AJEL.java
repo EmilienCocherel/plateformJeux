@@ -79,6 +79,8 @@ public class AJEL extends Application {
         jeux.setOnAction(event -> this.passerEnModeJeuxBoutique());
         invitations.setOnAction(event -> this.passerEnModeInvitations());
 
+        messagerie.setOnAction(event -> this.passerEnModeMessagerieRecus());
+
         bar.getChildren().add(menu);
         this.laBase.setTop(bar);
 
@@ -119,6 +121,14 @@ public class AJEL extends Application {
 
     public void passerEnModePartieHistorique(){
         this.laBase.setCenter(new BorderPartieHistorique(this));
+    }
+
+    public void passerEnModeMessagerieRecus(){
+        this.laBase.setCenter(new BorderMessagerieRecus(this));
+    }
+
+    public void passerEnModeMessagerieEnvoyes(){
+        this.laBase.setCenter(new BorderMessagerieEnvoyes(this));
     }
 
     private void colorerLaBase(){
