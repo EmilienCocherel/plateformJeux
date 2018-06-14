@@ -1,11 +1,8 @@
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.GridPane;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.layout.HBox;
 
 public class BorderMesAmis extends PageJoueur {
 
@@ -15,14 +12,20 @@ public class BorderMesAmis extends PageJoueur {
         super();
         this.app = app;
 
-        HBox hboxtop= this.hBoxTypetextBouton("Demander en ami");
+        BorderPane sceneTop = new BorderPane();
 
-        GridPane sceneCentre = new GridPane();
+        sceneTop.setLeft(this.buttonTypePageJoueur("Demander en ami"));
+        sceneTop.setCenter(new TextField());
+        sceneTop.setPadding(new Insets(10, 30, 10, 10));
 
-        sceneCentre.add(this.buttonBarTypePageJoueur("Mes amis","Mes demandes"),0,0);
-        sceneCentre.add(this.tableauTypePageJouer("Nom","Niveau","Pourcentage victoire"),0,1);
+        BorderPane sceneCentre = new BorderPane();
 
-        this.setTop(hboxtop);
+        sceneCentre.setTop(this.buttonBarTypePageJoueur("Mes amis","Mes demandes"));
+        sceneCentre.setCenter(this.tableauTypePageJouer("Nom","Niveau","Pourcentage victoire"));
+        sceneCentre.setPadding(new Insets(10, 10, 10, 10));
+        sceneCentre.setMinWidth(600);
+
+        this.setTop(sceneTop);
         this.setCenter(sceneCentre);
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(800, 700);
