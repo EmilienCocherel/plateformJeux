@@ -87,7 +87,7 @@ public class FicheRapport extends GridPane{
 	    return new Rapport(id, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo);
     }
 
-    void viderFicheJeu(){
+    void viderFicheRapport(){
         this.idRapport.setText("");
         this.titreRapport.setText("");
         this.contenuRapport.setText("");

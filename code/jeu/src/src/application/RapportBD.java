@@ -9,7 +9,7 @@ public class RapportBD {
 		this.laConnexion=laConnexion;
 	}
 
-	// recherche nombre de jeux au total
+	// recherche nombre de rapport au total
 	public int maxNumRapport() throws SQLException{
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select max(idRapport) as lemax from RAPPORT");
@@ -19,18 +19,18 @@ public class RapportBD {
 		return dernierRapport;
 	}
 
-	JeuProfil rechercherJeuParNum(int num) throws SQLException{
+	Rapport rechercherRapportParNum(int num) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JEU where idJeu =" + num);
+		ResultSet res = s.executeQuery("Select * from RAPPORT where idRapport =" + num);
 		res.next();
-		int numJeu = res.getInt("idJeu");
-		String nomJ = res.getString("nomJeu");
-		String description = res.getString("regleJeu");
-		String jarjar = res.getString("jarJeu");
-		boolean actif = res.getString("activeJeu").equals("O");
-		int idType = res.getInt("idTy");
+		int idRapport = res.getInt("idRapport");
+		String dateRapport = res.getString("dateRapport");
+		String titreRapport = res.getString("titreRapport");
+		String contenuRapport = res.getString("contenuRapport");
+		int idJo = res.getInt("idJo");
+		int sujetRapport = res.getInt("sujetRapport");
 		res.close();
-		return new JeuProfil(numJeu, nomJ, description, jarjar, actif, idType);
+		return new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo);
   }
 
 	JeuProfil rechercherJeuParNom(String nom) throws SQLException{

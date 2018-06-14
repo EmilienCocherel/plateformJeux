@@ -171,6 +171,14 @@ public class ControleurMenu implements EventHandler<ActionEvent> {
                   }
                   break;
 
+                case "Afficher un rapport par son numéro":
+                    ficheRapport.setNomBouton("Rechercher rapport par numéro");
+                    ficheRapport.activerIdRapport(true);
+                    ficheRapport.viderFicheRapport();
+                    ficheRapport.setTitre("Consultation");
+                    this.AppliJDBC.showFicheRapport();
+                    break;
+
 
                 default:
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);

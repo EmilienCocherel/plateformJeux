@@ -18,7 +18,7 @@ public class ApplicationAJEL extends MenuBar{
                     "Afficher un jeu par son numéro", "Afficher un jeu par son nom", "Ajouter un jeu",
                     "Mettre à jour un jeu"},
 
-            {"Rapport", "Lire un rapport", "Créer un rapport", "Afficher le plus grand nombre de rapport"},
+            {"Rapport", "Lire un rapport", "Créer un rapport", "Afficher le plus grand nombre de rapport", "Afficher un rapport par son numéro"},
 
             {"Statistiques", "Lire une statistique"},
 

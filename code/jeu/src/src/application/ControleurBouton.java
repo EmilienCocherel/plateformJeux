@@ -38,10 +38,13 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
         String nom=((Button)actionEvent.getTarget()).getText();
         Joueur j;
         JeuProfil jp;
+        Rapport r;
         JoueurBD jbd=this.AppliJDBC.getJoueurBD();
         JeuBD jeubd =this.AppliJDBC.getJeuBD();
+        RapportBD rbd = this.AppliJDBC.getRapportBD();
         FicheJoueur ficheJoueur=this.AppliJDBC.getFicheJoueur();
         FicheJeu ficheJeu = this.AppliJDBC.getFicheJeu();
+        FicheRapport ficheRapport = this.AppliJDBC.getFicheRapport();
         switch (nom) {
             case "Créer":
                 j = ficheJoueur.getJoueur();
@@ -179,6 +182,28 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                           ficheJeu.setNomBouton("Mettre à jour le jeu");
                           ficheJeu.activerIdJeu(false);
                           break;
+                  }
+
+              } catch (SQLException ex) {
+                  alertEchec(ex);
+              }
+              break;
+
+
+                //RAPPORT
+            case "Rechercher rapport par numéro":
+              try{
+                  r = rbd.rechercherRapportParNum(ficheRapport.getIdRapport());
+                  ficheRapport.setRapport(r);
+                  String titre = ficheRapport.getTitre();
+                  switch (titre) {
+                      case "Suppression":
+                          ficheRapport.setNomBouton("Supprimer");
+                          break;
+                      // case "Mise à jour d'un jeu":
+                      //     ficheJeu.setNomBouton("Mettre à jour le jeu");
+                      //     ficheJeu.activerIdJeu(false);
+                      //     break;
                   }
 
               } catch (SQLException ex) {
