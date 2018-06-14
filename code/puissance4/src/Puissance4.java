@@ -82,6 +82,26 @@ public class Puissance4 {
 		return this.joueur2;
 	}
 
+	/**
+	 * @return le joueur actuel
+	 */
+	public Joueur getJoueurCourant() {
+		if (this.actuel == 1)
+			return this.joueur1;
+		else
+			return this.joueur2;
+	}
+
+	/**
+	 * @return l'adversaire
+	 */
+	public Joueur getAdversaire() {
+		if (this.actuel == 1)
+			return this.joueur2;
+		else
+			return this.joueur1;
+	}
+
 	public JSONObject toJson() {
 		JSONObject obj = new JSONObject();
 		obj.put("plateau", this.plateau.toJson());
@@ -100,16 +120,6 @@ public class Puissance4 {
 	}
 
 	/**
-	 * @return le joueur actuel
-	 */
-	public Joueur getJoueurCourant() {
-		if (this.actuel == 1)
-			return this.joueur1;
-		else
-			return this.joueur2;
-	}
-
-	/**
 	 * @return le joueur gagnant dans une partie terminée
 	 */
 	public Joueur getGagnant() {
@@ -124,5 +134,14 @@ public class Puissance4 {
 			return this.joueur1;
 		else
 			return this.joueur2;
+	}
+
+	/**
+	 * Abandonner la partie.
+	 */
+	public void abandonner() {
+		this.gagnants = new ArrayList<>();
+		for (int i = 0; i < 3; i++)
+			this.gagnants.add(this.getAdversaire());
 	}
 }
