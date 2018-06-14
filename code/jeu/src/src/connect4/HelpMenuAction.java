@@ -1,4 +1,4 @@
-package Connect4;
+package connect4;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

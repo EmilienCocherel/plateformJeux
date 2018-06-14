@@ -1,4 +1,4 @@
-package Connect4;
+package connect4;
 
 import javafx.application.Application;
 import javafx.application.Platform;

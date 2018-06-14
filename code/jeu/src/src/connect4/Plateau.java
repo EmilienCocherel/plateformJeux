@@ -1,4 +1,4 @@
-package Connect4;
+package connect4;
 
 import org.json.simple.JSONArray;
 import java.util.List;
