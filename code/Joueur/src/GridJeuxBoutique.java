@@ -25,9 +25,12 @@ public class GridJeuxBoutique extends PageJoueur{
         this.setMaxSize(400, 300);
 
 
-        this.add(this.buttonBarTypePageJoueur(mesJeux,boutique),0,0);
+        this.add(this.buttonBarTypePageJoueur(mesJeux,boutique),0,1);
         this.add(this.tableauTypePageJouer("Nom","Type","Description"),0,1);
-        
+
+
+
+
     }
 
 }
