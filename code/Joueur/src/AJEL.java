@@ -37,6 +37,7 @@ public class AJEL extends Application {
         Button seConnecter = this.boutonMenuConnexion("Se connecter");
         Button creerCompte = this.boutonMenuConnexion("Créer un compte");
 
+
         menu.setButtonData(seConnecter,ButtonBar.ButtonData.LEFT);
         menu.setButtonData(creerCompte,ButtonBar.ButtonData.LEFT);
         menu.getButtons().addAll(seConnecter, creerCompte);
