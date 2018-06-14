@@ -217,7 +217,7 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
               try {
                   ArrayList<Rapport> res = this.AppliJDBC.getRapportBD().listeDesRapportsFiltree(ficheRapport.getSujetRapport());
                   for (Rapport rappo:res){
-                    laListeRapports += rappo.getIdRapport()+" "+ rappo.getContenuRapport() +" " + rappo.getDateRapport();
+                    laListeRapports += rappo.getIdRapport()+" "+ rappo.getContenuRapport() +" " + rappo.getDateRapport() +"\n";
                   }
               }catch (SQLException ex){
                   laListeRapports="La requête a échoué\nVoici le message du serveur\n"+ex.getMessage();
