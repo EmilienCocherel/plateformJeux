@@ -150,8 +150,23 @@ public class FicheRapport extends GridPane{
     }
 
     public int getSujetRapport(){
-        return Integer.parseInt(this.sujetRapport.getText());
+      int sujetRapport;
+      if (cb.getValue().equals("Bug"))
+          sujetRapport = 1;
+      else if (cb.getValue().equals("Information"))
+          sujetRapport = 2;
+      else if (cb.getValue().equals("Message"))
+          sujetRapport = 3;
+      else if (cb.getValue().equals("Bannissement"))
+          sujetRapport = 4;
+      else if (cb.getValue().equals("Debannissement"))
+          sujetRapport = 5;
+      else
+          sujetRapport = 6;
+      return sujetRapport;
     }
+
+
 
     // public void activerNomJeu(boolean actif){
     //     for (Node n: this.getChildren()){

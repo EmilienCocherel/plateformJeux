@@ -79,22 +79,22 @@ public class RapportBD {
   //
   // }
   //
-  // public ArrayList<JeuProfil> listeDesJeux() throws SQLException{
-	// 	ArrayList<JeuProfil> Liste = new ArrayList<JeuProfil>();
-	// 	Statement s = laConnexion.createStatement();
-	// 	ResultSet res = s.executeQuery("Select * from JEU");
-	// 	while (res.next()){
-	// 		int numJeu = res.getInt("idJeu");
-	// 		String nomJ = res.getString("nomJeu");
-	// 		String description = res.getString("regleJeu");
-	// 		String jarjar = res.getString("jarJeu");
-	// 		boolean actif = res.getString("activeJeu").equals("O");
-	// 		int idType = res.getInt("idTy");
-	// 		Liste.add(new JeuProfil(numJeu, nomJ, description, jarjar, actif, idType));
-	// 	}
-	// 	res.close();
-	// 	return Liste;
-  // }
+  public ArrayList<Rapport> listeDesRapportsFiltree(int sujet) throws SQLException{
+		ArrayList<Rapport> Liste = new ArrayList<Rapport>();
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from RAPPORT where sujetRapport =" + sujet);
+		while (res.next()){
+			int idRapport = res.getInt("idRapport");
+			String dateRapport = res.getString("dateRapport");
+			String titreRapport = res.getString("titreRapport");
+			String contenuRapport = res.getString("contenuRapport");
+			int idJo = res.getInt("idJo");
+			int sujetRapport = res.getInt("sujetRapport");
+			Liste.add(new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo));
+		}
+		res.close();
+		return Liste;
+  }
   //
   // public String rapportMessage() throws SQLException{
 	// 	Statement st = laConnexion.createStatement();

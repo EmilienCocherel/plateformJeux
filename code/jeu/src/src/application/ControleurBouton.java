@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import java.util.ArrayList;
 
 import java.sql.SQLException;
 
@@ -212,24 +213,18 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
               break;
 
             case "Filtrer les rapports":
-              try{
-                  r = rbd.rechercherRapportParSujet(ficheRapport.getSujetRapport());
-                  ficheRapport.setRapport(r);
-                  String titre = ficheRapport.getTitre();
-                  switch (titre) {
-                      case "Rapports":
-                          ficheJeu.setNomBouton("Lire");
-                          break;
-                      case "Mise à jour d'un jeu":
-                          ficheJeu.setNomBouton("Mettre à jour le jeu");
-                          ficheJeu.activerIdJeu(false);
-                          break;
+              String laListeRapports="";
+              try {
+                  ArrayList<Rapport> res = this.AppliJDBC.getRapportBD().listeDesRapportsFiltree(ficheRapport.getSujetRapport());
+                  for (Rapport rappo:res){
+                    laListeRapports += rappo.getIdRapport()+" ";
                   }
-
-              } catch (SQLException ex) {
-                  alertEchec(ex);
+              }catch (SQLException ex){
+                  laListeRapports="La requête a échoué\nVoici le message du serveur\n"+ex.getMessage();
               }
+              this.AppliJDBC.showFicheResultat(laListeRapports);
               break;
+
         }
 
     }
