@@ -122,7 +122,6 @@ CREATE TABLE JOUEUR (
   avatar longblob,
   emailJo varchar(100) DEFAULT NULL,
   activeJo char(1) DEFAULT NULL,
-  souvenir char(1) DEFAULT NULL,
   admin char(1) DEFAULT NULL,
   PRIMARY KEY (idJo),
   UNIQUE KEY idJo (idJo)
@@ -132,6 +131,9 @@ DROP TABLE IF EXISTS RAPPORT;
 CREATE TABLE RAPPORT (
   idRapport decimal(6,0),
   dateRapport datetime,
+  titreRapport varchar(100),
+  sujetRapport decimal(65),
+  contenuRapport text,
   idJo decimal(6,0),
   PRIMARY KEY (idRapport)
 );
@@ -168,7 +170,7 @@ CREATE TABLE JEU (
   idJeu decimal(6,0),
   nomJeu varchar(20),
   regleJeu text,
-  jarJeu blob,
+  jarJeu text,
   activeJeu char(1),
   idTy decimal(6,0),
   PRIMARY KEY (idJeu)
@@ -191,4 +193,4 @@ ALTER TABLE INVITATION ADD FOREIGN KEY (idJo1) REFERENCES JOUEUR (idJo);
 ALTER TABLE INVITATION ADD FOREIGN KEY (idJo) REFERENCES JOUEUR (idJo);
 ALTER TABLE JEU ADD FOREIGN KEY (idTy) REFERENCES TYPEJEU (idTy);
 
-INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'N', 'N');
+INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'N');

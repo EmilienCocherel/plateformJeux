@@ -37,8 +37,14 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
     public void handle(ActionEvent actionEvent) {
         String nom=((Button)actionEvent.getTarget()).getText();
         Joueur j;
+        JeuProfil jp;
+        Rapport r;
         JoueurBD jbd=this.AppliJDBC.getJoueurBD();
+        JeuBD jeubd =this.AppliJDBC.getJeuBD();
+        RapportBD rbd = this.AppliJDBC.getRapportBD();
         FicheJoueur ficheJoueur=this.AppliJDBC.getFicheJoueur();
+        FicheJeu ficheJeu = this.AppliJDBC.getFicheJeu();
+        FicheRapport ficheRapport = this.AppliJDBC.getFicheRapport();
         switch (nom) {
             case "Créer":
                 j = ficheJoueur.getJoueur();
@@ -51,7 +57,17 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
-            case "Rechercher":
+            case "Ajouter":
+                jp = ficheJeu.getJeu();
+                try {
+                    int numjeu = jeubd.insererJeu(jp);
+                    alertOK("Insertion du jeu a réussi\nLe nouveau jeu porte le numéro "+numjeu);
+                    ficheJeu.viderFicheJeu();
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
+            case "Rechercher un jeu par numéro":
                 try{
                     j = jbd.rechercherJoueurParNum(ficheJoueur.getNumJoueur());
                     ficheJoueur.setJoueur(j);
@@ -60,8 +76,24 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                         case "Suppression":
                             ficheJoueur.setNomBouton("Supprimer");
                             break;
-                        case "Mise à jour":
-                            ficheJoueur.setNomBouton("Mettre à jour");
+                        case "Mise à jour par numéro":
+                            ficheJoueur.setNomBouton("Mettre à jour par numéro");
+                            ficheJoueur.activerNumJoueur(false);
+                            break;
+                    }
+
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+
+            case "Rechercher par pseudo":
+                try{
+                    j = jbd.rechercherJoueurParPseudo(ficheJoueur.getPseudoJoueur());
+                    ficheJoueur.setJoueur(j);
+                    String titre = ficheJoueur.getTitre();
+                    switch (titre) {
+                        case "Mise à jour par pseudo":
+                            ficheJoueur.setNomBouton("Mettre à jour par pseudo");
                             ficheJoueur.activerNumJoueur(false);
                             break;
                     }
@@ -80,17 +112,104 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
-            case "Mettre à jour":
+            case "Mettre à jour par numéro":
                 try{
                     jbd.majJoueur(ficheJoueur.getJoueur());
-                    alertOK("Le joueur "+ficheJoueur.getNumJoueur()+" a bien été mis à jour");
+                    alertOK("Le joueur "+ficheJoueur.getNumJoueur()+ " a bien été mis à jour");
                     ficheJoueur.viderFiche();
-                    ficheJoueur.setNomBouton("Rechercher");
+                    ficheJoueur.setNomBouton("Rechercher par numéro");
                     ficheJoueur.activerNumJoueur(true);
                 }catch (SQLException ex) {
                     alertEchec(ex);
                 }
+
+
+                // MAJ POUR LE JEU
+            case "Mettre à jour le jeu":
+                try{
+                    jeubd.majJeu(ficheJeu.getJeu());
+                    alertOK("Le jeu "+ficheJeu.getIdJeu()+ " a bien été mis à jour");
+                    ficheJeu.viderFicheJeu();
+                    ficheJeu.setNomBouton("Rechercher jeu par numéro");
+                    ficheJeu.activerIdJeu(true);
+                }catch (SQLException ex) {
+                    alertEchec(ex);
+                }
                 break;
+
+            case "Mettre à jour par nom":
+                try{
+                    jeubd.majJeu(ficheJeu.getJeu());
+                    alertOK("Le jeu "+ficheJeu.getNomJeu()+ " a bien été mis à jour");
+                    ficheJeu.viderFicheJeu();
+                    ficheJeu.setNomBouton("Rechercher jeu par nom");
+                    ficheJeu.activerNomJeu(true);
+                }catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
+
+            case "Rechercher jeu par numéro":
+              try{
+                  JeuProfil jeu = jeubd.rechercherJeuParNum(ficheJeu.getIdJeu());
+                  ficheJeu.setJeu(jeu);
+                  String titre = ficheJeu.getTitre();
+                  switch (titre) {
+                      case "Suppression":
+                          ficheJeu.setNomBouton("Supprimer");
+                          break;
+                      case "Mise à jour d'un jeu":
+                          ficheJeu.setNomBouton("Mettre à jour le jeu");
+                          ficheJeu.activerIdJeu(false);
+                          break;
+                  }
+
+              } catch (SQLException ex) {
+                  alertEchec(ex);
+              }
+              break;
+
+            case "Rechercher jeu par nom":
+              try{
+                  JeuProfil jeu = jeubd.rechercherJeuParNom(ficheJeu.getNomJeu());
+                  ficheJeu.setJeu(jeu);
+                  String titre = ficheJeu.getTitre();
+                  switch (titre) {
+                      case "Suppression":
+                          ficheJeu.setNomBouton("Supprimer");
+                          break;
+                      case "Mise à jour d'un jeu":
+                          ficheJeu.setNomBouton("Mettre à jour le jeu");
+                          ficheJeu.activerIdJeu(false);
+                          break;
+                  }
+
+              } catch (SQLException ex) {
+                  alertEchec(ex);
+              }
+              break;
+
+
+                //RAPPORT
+            case "Rechercher rapport par numéro":
+              try{
+                  r = rbd.rechercherRapportParNum(ficheRapport.getIdRapport());
+                  ficheRapport.setRapport(r);
+                  String titre = ficheRapport.getTitre();
+                  switch (titre) {
+                      case "Suppression":
+                          ficheRapport.setNomBouton("Supprimer");
+                          break;
+                      // case "Mise à jour d'un jeu":
+                      //     ficheJeu.setNomBouton("Mettre à jour le jeu");
+                      //     ficheJeu.activerIdJeu(false);
+                      //     break;
+                  }
+
+              } catch (SQLException ex) {
+                  alertEchec(ex);
+              }
+              break;
         }
 
     }

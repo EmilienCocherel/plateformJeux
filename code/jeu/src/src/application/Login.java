@@ -41,10 +41,10 @@ public class Login extends GridPane {
         ls.setAlignment(Pos.BASELINE_RIGHT);
 
         this.motDePasse = new PasswordField();
-        this.motDePasse.setText("charlotte");
+        this.motDePasse.setText("fouquet");
         this.motDePasse.setAlignment(Pos.BASELINE_LEFT);
         this.login = new TextField();
-        this.login.setText("charlotte");
+        this.login.setText("fouquet");
         this.login.focusedProperty().addListener(new EcouteurLogin());
         this.login.setAlignment(Pos.BASELINE_LEFT);
         this.nomServeur = new TextField("servinfo-db");
@@ -64,7 +64,6 @@ public class Login extends GridPane {
         this.add(this.nomServeur,2,3);
         this.add(this.nomBD,2,4);
         this.add(b,1,5,2,1);
-
     }
 
     public String getMotDePasse() {

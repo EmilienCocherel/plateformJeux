@@ -4,7 +4,7 @@ import java.util.Scanner;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
-public class Morpion{
+public class Morpion extends application.Jeu{
 
     private int taille;
     private int nbAlignes;
@@ -13,10 +13,15 @@ public class Morpion{
     private int joueurGagnant=0;
     private int numTour=0;
 
-    Morpion(String json){
-	setEtat(json);
+    //private int joueur;
+    //private Morpion mp=null;
+    //private MorpionGraphique mg=null;
+    //private Partage partage=null;
+
+    public Morpion(String json){
+	     setEtat(json);
     }
-    Morpion(int taille, int nbAlignes, int joueurCourant){
+    public Morpion(int taille, int nbAlignes, int joueurCourant){
 	this.taille=taille;
 	this.nbAlignes=nbAlignes;
 	this.grille= new int[taille][taille];
@@ -258,4 +263,29 @@ public class Morpion{
 	System.out.println("Le gagnant est le joueur "+m.getProchainJoueur());
 
     }
+
+    // @Override
+    // public void jouerCoup(int idPartie, int joueur, Object partage){
+    //   System.out.println("coucou1");
+    //   this.partage=(Partage)partage;
+    //   String etat = this.partage.getMySQL().getEtat(idPartie);
+    //   //String etat="{\"grille\":[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,2],[0,0,0,1,0]], \"nbAlignes\":3, \"joueurCourant\":1, \"joueurGagnant\":0, \"taille\":5, \"numTour\":2}";//"{\"grille\":[[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,0],[0,0,0,0,2],[0,0,0,1,0]], \"joueurCourant\":1, \"joueurGagnant\":0, \"nbAlignes\":3, \"taille\":5}";
+    //   this.mp=new Morpion(etat);
+    //   this.joueur=joueur;
+    //   this.mg=new MorpionGraphique(this.mp, joueur,this.partage,idPartie);
+    //   return this.mg;
+    // }
+    //
+    // @Override
+    // public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+    //    this.partage=(Partage)partage;
+    //    this.mp=new Morpion(7, 4, 1);
+    //    int idPartie=this.partage.getMySQL().creerPartie(idJeu,idJoueur1,idJoueur2,mp.getEtat());
+    //    this.joueur=1;
+    //    this.mg=new MorpionGraphique(this.mp, joueur,this.partage,idJeu);
+    //    return this.mg;
+    // }
+    // public Application getVueJeu(){
+    //    return (Application) this.mg;
+    // }
 }
