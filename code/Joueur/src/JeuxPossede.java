@@ -2,9 +2,9 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonBar;
-import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -13,14 +13,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
 import javafx.scene.paint.LinearGradient;
 import javafx.scene.paint.Stop;
+import javafx.stage.Stage;
 
-public class JeuxBoutique extends BorderPane {
+public class JeuxPossede extends BorderPane {
 
-    private BorderPane cont;
-    private ApplicationAJEL app;
+    ApplicationAJEL app;
+    BorderPane cont;
 
-    public JeuxBoutique(ApplicationAJEL app1) {
-
+    public JeuxPossede(ApplicationAJEL app1){
         this.app = app1;
         this.cont = new BorderPane();
     }
@@ -29,24 +29,27 @@ public class JeuxBoutique extends BorderPane {
 
         Button res = new Button(nomb);
         res.setTextFill(Color.rgb(196, 196, 196));
-        res.setPadding(new Insets(5, 20, 5, 20));
         res.setBackground(new Background(new BackgroundFill(Color.rgb(179, 71, 91), new CornerRadii(5, false), Insets.EMPTY)));
         return res;
     }
 
-    public ButtonBar barJeuBoutique() {
+    public HBox barJeuBoutique() {
 
-         ButtonBar bJeuBoutique = new ButtonBar();
+        HBox hBouton = new HBox();
+        //ButtonBar bJeuBoutique = new ButtonBar();
 
-         Button bMesJeux = this.creerbouton("Mes jeux");
-         ButtonBar.setButtonData(bMesJeux, ButtonData.LEFT);
+        Button bMesJeux = this.creerbouton("Mes jeux");
+        //ButtonBar.setButtonData(bMesJeux, ButtonBar.ButtonData.LEFT);
 
-         Button bBoutique = this.creerbouton("Boutique");
-         ButtonBar.setButtonData(bBoutique, ButtonData.HELP_2);
-         //bBoutique.requestFocus();
-         bJeuBoutique.getButtons().addAll(bMesJeux, bBoutique);
+        Button bBoutique = this.creerbouton("Boutique");
+        //ButtonBar.setButtonData(bBoutique, ButtonBar.ButtonData.HELP_2);
 
-         return bJeuBoutique;
+        hBouton.setAlignment(Pos.CENTER);
+        hBouton.getChildren().addAll(bMesJeux, bBoutique);
+
+        //bJeuBoutique.getButtons().addAll(bMesJeux, bBoutique);
+
+        return hBouton;
     }
 
     public TableColumn colonneTab(String nomcol){
@@ -109,4 +112,6 @@ public class JeuxBoutique extends BorderPane {
         this.initCont();
         return this.cont;
     }
+
+
 }
