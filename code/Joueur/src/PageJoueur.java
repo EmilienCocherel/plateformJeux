@@ -88,7 +88,7 @@ public abstract class PageJoueur extends GridPane{
             barBouton.setButtonData(bouton,ButtonData.LEFT);
             barBouton.getButtons().add(bouton);
         }
-        return barBouton;  
+        return barBouton;
     }
 
 
