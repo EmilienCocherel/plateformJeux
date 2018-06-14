@@ -78,10 +78,6 @@ public class AppliJDBC extends Application {
         this.message.setText("Vous êtes déconnecté");
         VBox fp=((VBox)scene.getRoot());
         fp.getChildren().remove(1);
-<<<<<<< HEAD:code/jeu/src/src/application/AppliJDBC.java
-        // fp.getChildren().remove(1);
-=======
->>>>>>> projet/test:code/jeu/src/application/AppliJDBC.java
         fp.getChildren().addAll(this.message);
         this.ApplicationAJEL.deconnecter();
     }

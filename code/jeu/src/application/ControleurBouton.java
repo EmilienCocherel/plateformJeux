@@ -68,11 +68,8 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
-<<<<<<< HEAD:code/jeu/src/src/application/ControleurBouton.java
-            case "Rechercher par numéro":
-=======
+
             case "Rechercher un joueur par numéro":
->>>>>>> projet/test:code/jeu/src/application/ControleurBouton.java
                 try{
                     j = jbd.rechercherJoueurParNum(ficheJoueur.getNumJoueur());
                     ficheJoueur.setJoueur(j);
