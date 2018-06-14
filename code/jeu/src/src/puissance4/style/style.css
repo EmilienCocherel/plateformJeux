@@ -48,22 +48,22 @@
 	-fx-spacing: 5;
 }
 
-#pause .pion :not(.no-pause) {
+.pause .pion :not(.no-pause) {
 	-fx-fill: #DEDEDE;
 }
 
-#pause .joueurs .pion#joueur1 {
+.pause .joueurs .pion#joueur1 {
 	-fx-fill: #C2C1BC;
 }
 
-#pause .joueurs .pion#joueur2 {
+.pause .joueurs .pion#joueur2 {
 	-fx-fill: #C2909C;
 }
 
-#pause #plateau, .autre-tour #plateau {
+.pause #plateau, .autre-tour #plateau {
 	-fx-background-color: #4C546B;
 }
 
-#pause .joueurs, .autre-tour .joueurs {
+.pause .joueurs, .autre-tour .joueurs {
 	-fx-background-color: #DEDEDE;
 }
