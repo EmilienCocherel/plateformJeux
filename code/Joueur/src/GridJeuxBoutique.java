@@ -16,10 +16,10 @@ public class GridJeuxBoutique extends PageJoueur{
         this.appli = appli;
 
         Button mesJeux = this.buttonTypePageJoueur("Mes jeux");
-        //mesJeux.setOnAction(event -> this.appli.passerEnModeJeuxPossede());
+        mesJeux.setOnAction(event -> this.appli.passerEnModeJeuxPossede());
 
         Button boutique = this.buttonTypePageJoueur("Boutique");
-        //boutique.setOnAction(event -> this.appli.passerEnModeJeuxBoutique());
+        boutique.setOnAction(event -> this.appli.passerEnModeJeuxBoutique());
 
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(400, 300);
