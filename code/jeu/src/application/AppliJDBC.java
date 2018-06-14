@@ -108,7 +108,6 @@ public class AppliJDBC extends Application {
       VBox fp =((VBox)scene.getRoot());
       fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion));
       fp.getChildren().remove(1);
-      // fp.getChildren().addAll(this.choixJeu);
     }
 
     public void showFicheResultat(String resultat){

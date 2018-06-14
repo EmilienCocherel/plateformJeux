@@ -67,7 +67,7 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
-            case "Rechercher un jeu par numéro":
+            case "Rechercher un joueur par numéro":
                 try{
                     j = jbd.rechercherJoueurParNum(ficheJoueur.getNumJoueur());
                     ficheJoueur.setJoueur(j);
@@ -149,7 +149,7 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                 }
                 break;
 
-            case "Rechercher jeu par numéro":
+            case "Rechercher un jeu par numéro":
               try{
                   JeuProfil jeu = jeubd.rechercherJeuParNum(ficheJeu.getIdJeu());
                   ficheJeu.setJeu(jeu);
