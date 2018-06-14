@@ -15,8 +15,8 @@ import java.util.ArrayList;
 import javafx.stage.Modality;
 import application.*;
 
-public class Mastermind<T> extends application.Jeu<T>{
-    private T j1;
+public class Mastermind extends application.Jeu{
+    private JoueurMastermind j1;
     private int id;
     private ArrayList<Combinaison> combis;
     private Label p1;
@@ -27,7 +27,7 @@ public class Mastermind<T> extends application.Jeu<T>{
     private Manche manche;
     private Stage stage;
 
-    public Mastermind(int id,T j1){
+    public Mastermind(int id,JoueurMastermind j1){
       this.id=id;
       this.j1=j1;
     }
@@ -82,7 +82,7 @@ public class Mastermind<T> extends application.Jeu<T>{
 
 //    Getter et Setter
 
-    public T getJ1() {
+    public JoueurMastermind getJ1() {
         return j1;
     }
 
@@ -96,8 +96,8 @@ public class Mastermind<T> extends application.Jeu<T>{
     }
 
     @Override
-    public void setJ1(T j1) {
-        this.j1 = j1;
+    public void setJ1(Joueur joueur) {
+      this.j1 = new JoueurMastermind(joueur.getIdentifiant());
     }
 
     private VBox choixCouleursP1(){

@@ -5,7 +5,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import mastermind.*;
 
-public abstract class Jeu<T> implements Runnable{
+public abstract class Jeu implements Runnable{
     /** permet à un joueur de lancer le jeu en retrouvant l'état actuel de la partie
 	 @param idPartie est l'identifiant de la partie dans la base de données
 	 @param numJoueur est le numéro du joueur de la partie (1 ou 2)
@@ -23,5 +23,5 @@ public abstract class Jeu<T> implements Runnable{
 
     public abstract void setId(int id);
 
-    public abstract void setJ1(T j1);
+    public abstract void setJ1(Joueur j1);
 }
