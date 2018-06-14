@@ -28,6 +28,5 @@ public class GridConnexion extends PageConnexion{
         this.add(this.buttonType("Se connecter"), 1, 5);
         this.add(lienMDP, 1, 6);
 
-
     }
 }
