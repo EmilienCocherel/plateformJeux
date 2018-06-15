@@ -149,7 +149,7 @@ public class AJEL extends Application {
     }
 
     public void passerEnModeChgmntInfo(){
-        //this.laBase.setCenter(new BorderChgmntInfo(this));
+        this.laBase.setCenter(new BorderChgmntInfo(this));
     }
 
 
