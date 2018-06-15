@@ -18,7 +18,7 @@ public class ChargeurJeu{
 	}
 
 	@SuppressWarnings("deprecation")
-	public void chargerJeu(String nomJar, String nomClasse, Partie partie, PartieBD partieBD) throws ClassNotFoundException,InstantiationException,IllegalAccessException,MalformedURLException {
+	public void chargerJeu(String nomJar, String nomClasse, Partie partie, PartieBD partieBD, int idJoueur) throws ClassNotFoundException,InstantiationException,IllegalAccessException,MalformedURLException {
 		File ficJar = new File(this.repertoireJar+nomJar);
 		URL[] listeURL = {ficJar.toURL()};
 		String[] args = {};
@@ -31,7 +31,7 @@ public class ChargeurJeu{
 		Jeu jeu = ((Jeu) Class.forName(nomClasse).newInstance());
 		//jeu.setId(1);
 		//jeu.setJ1(new Joueur(10));
-		jeu.setPartie(partie);
+		jeu.setPartie(partie, idJoueur);
 		jeu.setPartieBD(partieBD);
 		Platform.runLater(jeu);
 		//Platform.runLater(new Mastermind(1,new JoueurMastermind(10)));

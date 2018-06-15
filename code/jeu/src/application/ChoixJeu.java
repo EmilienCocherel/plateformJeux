@@ -64,11 +64,12 @@ public class ChoixJeu extends GridPane {
        nomClasse=nomClasse.toUpperCase();
        nomClasse+=nomJeu.substring(1);
 
+		int idJoueur = Integer.parseInt(this.numJoueur.getText());
 		Joueur joueur1, joueur2 = new Joueur(2);
 		try {
-			joueur1 = joueurBD.rechercherJoueurParNum(Integer.parseInt(this.numJoueur.getText()));
+			joueur1 = joueurBD.rechercherJoueurParNum(idJoueur);
 		} catch (SQLException ex) {
-			joueur1 = new Joueur(Integer.parseInt(this.numJoueur.getText()));
+			joueur1 = new Joueur(idJoueur);
 			try {
 				joueurBD.insererJoueur(joueur1);
 			} catch (SQLException e) {
@@ -95,7 +96,7 @@ public class ChoixJeu extends GridPane {
 			Label lListeJeux= new Label("Choisissez votre jeu");
 			try {
 				//jeu = this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+".LeJeu");
-				this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+"."+nomClasse, partie, partieBD);
+				this.chargeur.chargerJeu(nomJeu+".jar",nomJeu+"."+nomClasse, partie, partieBD, idJoueur);
 			}
 			catch (ClassNotFoundException ex1) {
 				System.out.println("Exception1 found for " + ex1.toString());

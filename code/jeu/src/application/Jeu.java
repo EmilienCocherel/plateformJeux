@@ -25,7 +25,11 @@ public abstract class Jeu implements Runnable{
 
     //public abstract void setJ1(Joueur j1);
 
-	public abstract void setPartie(Partie partie);
+	/**
+	 * @param partie La partie en cours
+	 * @param joueur Le joueur client
+	 */
+	public abstract void setPartie(Partie partie, int joueur);
 
 	public abstract void setPartieBD(PartieBD partieBD);
 }
