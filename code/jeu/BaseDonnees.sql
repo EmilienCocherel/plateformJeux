@@ -124,8 +124,11 @@ CREATE TABLE JOUEUR (
   activeJo char(1) DEFAULT NULL,
   admin char(1) DEFAULT NULL,
   PRIMARY KEY (idJo),
-  UNIQUE KEY idJo (idJo)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY idJo (idJo),
+  UNIQUE KEY emailJo (emailJo)
+)
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 DROP TABLE IF EXISTS RAPPORT;
 CREATE TABLE RAPPORT (
@@ -170,7 +173,7 @@ CREATE TABLE JEU (
   idJeu decimal(6,0),
   nomJeu varchar(20),
   regleJeu text,
-  jarJeu text,
+  jarJeu longblob,
   activeJeu char(1),
   idTy decimal(6,0),
   PRIMARY KEY (idJeu)
@@ -194,3 +197,5 @@ ALTER TABLE INVITATION ADD FOREIGN KEY (idJo) REFERENCES JOUEUR (idJo);
 ALTER TABLE JEU ADD FOREIGN KEY (idTy) REFERENCES TYPEJEU (idTy);
 
 INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'N');
+insert into TYPEJEU VALUES (1, 'test');
+insert into RAPPORT values(1, '2018-05-11 10:04:18', 'titre rapport', 1, 'contenu raport', 1);
