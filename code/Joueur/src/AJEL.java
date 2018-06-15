@@ -80,6 +80,7 @@ public class AJEL extends Application {
         invitations.setOnAction(event -> this.passerEnModeInvitations());
         amis.setOnAction(event -> this.passerEnModeMesAmis());
         messagerie.setOnAction(event -> this.passerEnModeMessagerieRecus());
+        compte.setOnAction(event -> this.passerEnModeProfilUtilisateur());
         seDeconnecter.setOnAction(event -> this.passerEnModeConnexion());
 
         bar.getChildren().add(menu);
@@ -142,6 +143,15 @@ public class AJEL extends Application {
     public void passerEnModeRedigerMessage(){
         this.laBase.setCenter(new BorderRedigerMessage(this));
     }
+
+    public void passerEnModeProfilUtilisateur(){
+        this.laBase.setCenter(new BorderProfilUtilisateur(this));
+    }
+
+    public void passerEnModeChgmntInfo(){
+        this.laBase.setCenter(new BorderChgmntInfo(this));
+    }
+
 
     private void colorerLaBase(){
         this.laBase.setBackground(new Background(new BackgroundFill(this.couleurDegradeCentre(), null, null)));
