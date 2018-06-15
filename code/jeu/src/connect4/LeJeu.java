@@ -18,6 +18,9 @@ import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
 
 import javafx.stage.Stage;
 
@@ -194,6 +197,11 @@ public class LeJeu extends application.Jeu {
 	 * Créer le graphe de scène et lance le jeu
 	 */
 	public void run() {
+		// Gestion de la mise à jour de l'état de la partie
+		Timeline timeline = new Timeline();
+		timeline.getKeyFrames().add(new KeyFrame(Duration.millis(1000), new ActionTemps(this)));
+		timeline.setCycleCount(Timeline.INDEFINITE);
+
 		Stage stage = new Stage();
 
 		stage.setTitle("Connect 4");
