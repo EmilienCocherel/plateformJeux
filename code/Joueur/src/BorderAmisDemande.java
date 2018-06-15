@@ -1,16 +1,13 @@
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
-public class BorderMesAmis extends PageJoueur {
+public class BorderAmisDemande extends PageJoueur {
 
     AJEL app;
 
-    public BorderMesAmis(AJEL app) {
+    public BorderAmisDemande(AJEL app) {
         super();
         this.app = app;
 
@@ -25,7 +22,7 @@ public class BorderMesAmis extends PageJoueur {
         BorderPane sceneCentre = new BorderPane();
 
         sceneCentre.setTop(this.buttonBarTypePageJoueur(mesAmis,mesDemandes));
-        sceneCentre.setCenter(this.tableauTypePageJouer("Nom","Niveau","Pourcentage victoire"));
+        sceneCentre.setCenter(this.tableauTypePageJouer("Nom","Niveau","Pourcentage victoire","Accepter"));
         sceneCentre.setPadding(new Insets(10, 10, 10, 10));
         sceneCentre.setMinWidth(600);
 

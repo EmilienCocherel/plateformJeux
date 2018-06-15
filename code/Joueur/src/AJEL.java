@@ -129,6 +129,8 @@ public class AJEL extends Application {
         this.laBase.setCenter(new BorderMesAmis(this));
     }
 
+    public void passerEnModeMesDemandes() {this.laBase.setCenter(new BorderAmisDemande(this));}
+
     public void passerEnModeMessagerieRecus(){
         this.laBase.setCenter(new BorderMessagerieRecus(this));
     }
