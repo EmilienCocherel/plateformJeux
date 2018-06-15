@@ -1,6 +1,7 @@
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -9,6 +10,8 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonBar;
+
+import javafx.scene.image.ImageView;
 
 public abstract class PageJoueur extends BorderPane{
 
@@ -181,6 +184,26 @@ public abstract class PageJoueur extends BorderPane{
         }
         barBouton.setPadding(new Insets(10, 50, 10, 50));
         return barBouton;
+    }
+
+    public HBox imageTypePageJoueur(){
+
+        Image test = new Image("chat.jpg");
+
+        ImageView iv1 = new ImageView();
+        iv1.setImage(test);
+        iv1.setFitWidth(200);
+        iv1.setFitHeight(200);
+        iv1.setPreserveRatio(true);
+        iv1.setSmooth(true);
+        iv1.setCache(true);
+
+        HBox res = new HBox();
+        res.getChildren().add(iv1);
+        res.setPadding(new Insets(10, 50, 10, 50));
+
+
+        return res;
     }
 
 }
