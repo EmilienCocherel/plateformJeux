@@ -1,7 +1,10 @@
 import javafx.application.Application;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class AJEL extends Application {
+
+    private BorderPane laBase;
 
     public static void main(String[] args) {
         launch(args);
