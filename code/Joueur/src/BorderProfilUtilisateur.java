@@ -4,6 +4,8 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
+import javax.swing.text.html.ImageView;
+
 public class BorderProfilUtilisateur extends PageJoueur {
 
     AJEL app;
@@ -12,16 +14,14 @@ public class BorderProfilUtilisateur extends PageJoueur {
         super();
         this.app = app;
 
-
-
         GridPane gInfo = new GridPane();
-        gInfo.add(this.titlePageJouer("Pseudo"), 0, 0);
+        gInfo.add(this.labelGrosPageJoueur("Pseudo"), 0, 0);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 0);
-        gInfo.add(this.titlePageJouer("Niveau"), 0, 1);
+        gInfo.add(this.labelGrosPageJoueur("Niveau"), 0, 1);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 1);
-        gInfo.add(this.titlePageJouer("Premium"), 0, 2);
+        gInfo.add(this.labelGrosPageJoueur("Premium"), 0, 2);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 2);
-        gInfo.add(this.titlePageJouer("Date d'inscription"), 0, 3);
+        gInfo.add(this.labelGrosPageJoueur("Date d'inscription"), 0, 3);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 3);
         gInfo.setPadding(new Insets(50, 0, 0, 50));
 
