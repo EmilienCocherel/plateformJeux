@@ -6,6 +6,6 @@ public class BorderAjouterJeu extends PageAdmin {
         super();
         this.app = app;
 
-        
+
     }
 }
