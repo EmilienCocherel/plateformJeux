@@ -141,12 +141,14 @@ public class Puissance4 {
 	}
 
 	public static Puissance4 fromJson(JSONObject json) {
+		Long actuel = (Long) json.get("actuel"),
+			 id = (Long) json.get("id");
 		return new Puissance4(Plateau.fromJson((JSONArray) json.get("plateau")),
 					(List<Joueur>) json.get("gagnants"),
 					Joueur.fromJson((JSONObject) json.get("joueur1")),
 					Joueur.fromJson((JSONObject) json.get("joueur2")),
-					(int) json.get("actuel"),
-					(int) json.get("id"),
+					actuel.intValue(),
+					id.intValue(),
 					(boolean) json.get("tour")
 					);
 	}
