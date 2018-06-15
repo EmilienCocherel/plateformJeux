@@ -14,20 +14,20 @@ public class Puissance4 {
 	/** Joueur actuel (celui qui utilise ce client) */
 	private int actuel;
 	/** Si c'est le tour du joueur actuel */
-	private boolean tour;
+	private int tour;
 
 	/**
 	 * @param joueur1 Le premier joueur
 	 * @param joueur2 Le second joueur
 	 */
-    public Puissance4(Joueur j1, Joueur j2, int actuel){
+    public Puissance4(Joueur j1, Joueur j2, int actuel) {
 		this.plateau = new Plateau();
 		this.gagnants = new ArrayList<>();
 		this.joueur1 = j1;
 		this.joueur2 = j2;
 		this.id = -1;
 		this.actuel = actuel;
-		this.tour = this.actuel == 1;
+		this.tour = this.actuel;
     }
 
 	/**
@@ -40,7 +40,7 @@ public class Puissance4 {
 	 * @param tour Si c'est le tour du joueur actuel
 	 */
 	public Puissance4(Plateau plateau, List<Joueur> gagnants, Joueur joueur1, Joueur joueur2,
-			int id, int actuel, boolean tour) {
+			int id, int actuel, int tour) {
 		this.plateau = plateau;
 		this.gagnants = gagnants;
 		this.joueur1 = joueur1;
@@ -59,22 +59,8 @@ public class Puissance4 {
 		Joueur joueur = this.getJoueurCourant();
 		res = this.plateau.placerPion(colonne, joueur.getPion());
 		joueur.retirerPion();
-		this.tour = false;
+		this.passerTour();
 		return res;
-    }
-
-    private boolean retirerPion() { // À IMPLÉMENTER
-        return true;
-    }
-
-//    Getter et Setter
-
-    private Joueur getJoueur(String nom){ // À IMPLÉMENTER
-        return null;
-    }
-
-    private Integer getNbPions(String joueur){ // À IMPLÉMENTER
-        return null;
     }
 
     public List<Joueur> getGagnants() {
@@ -142,14 +128,15 @@ public class Puissance4 {
 
 	public static Puissance4 fromJson(JSONObject json) {
 		Long actuel = (Long) json.get("actuel"),
-			 id = (Long) json.get("id");
+			 id = (Long) json.get("id"),
+			 tour = (Long) json.get("tour");
 		return new Puissance4(Plateau.fromJson((JSONArray) json.get("plateau")),
 					(List<Joueur>) json.get("gagnants"),
 					Joueur.fromJson((JSONObject) json.get("joueur1")),
 					Joueur.fromJson((JSONObject) json.get("joueur2")),
 					actuel.intValue(),
 					id.intValue(),
-					(boolean) json.get("tour")
+					tour.intValue()
 					);
 	}
 
@@ -164,12 +151,10 @@ public class Puissance4 {
 	 * @return le joueur gagnant dans une partie terminée
 	 */
 	public Joueur getGagnant() {
-		int j1 = 0, j2 = 0;
+		int j1 = 0;
 		for (Joueur gagnant : this.gagnants) {
 			if (gagnant == this.joueur1)
 				j1++;
-			else
-				j2++;
 		}
 		if (j1 > 1)
 			return this.joueur1;
@@ -190,13 +175,23 @@ public class Puissance4 {
 	 * @return si c'est le tour du joueur actuel
 	 */
 	public boolean isTour() {
+		return this.tour == this.actuel;
+	}
+
+	/**
+	 * @return le joueur dont c'est le tour
+	 */
+	public int tourDe() {
 		return this.tour;
 	}
 
 	/**
-	 * Fait passer au tour du joueur actuel
+	 * Fait passer au tour du joueur suivant
 	 */
 	public void passerTour() {
-		this.tour = true;
+		if (this.tour == 1)
+			this.tour = 2;
+		else
+			this.tour = 1;
 	}
 }

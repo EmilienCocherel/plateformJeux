@@ -81,9 +81,7 @@ public class LeJeu extends application.Jeu {
 	@Override
 	public void setPartie(application.Partie partie) {
 		this.partie = partie;
-		try {
-			this.getEtat();
-		} catch (ParseException ex) {
+		if (!this.getEtat()) {
 			this.puissance4 = new Puissance4(
 					new Joueur(partie.getJoueur1().getPseudo(), 1, 18),
 					new Joueur(partie.getJoueur2().getPseudo(), 2, 18),
@@ -198,9 +196,10 @@ public class LeJeu extends application.Jeu {
 	 */
 	public void run() {
 		// Gestion de la mise à jour de l'état de la partie
-		Timeline timeline = new Timeline();
-		timeline.getKeyFrames().add(new KeyFrame(Duration.millis(1000), new ActionTemps(this)));
-		timeline.setCycleCount(Timeline.INDEFINITE);
+		Timeline timeline = new Timeline(new KeyFrame(
+					Duration.millis(1000),
+					ae -> this.getEtat()));
+		timeline.play();
 
 		Stage stage = new Stage();
 
@@ -298,12 +297,19 @@ public class LeJeu extends application.Jeu {
 
 	/**
 	 * Charger l'état actuel depuis l'application
+	 * @return si l'opération a réussie
 	 */
-	public void getEtat() throws ParseException {
+	public boolean getEtat() {
 		JSONParser parser = new JSONParser();
-		JSONObject obj = (JSONObject) parser.parse(partie.getEtat());
-		System.out.println(obj);
-		this.puissance4 = Puissance4.fromJson(obj);
-		this.pause = (boolean) obj.get("pause");
+		try {
+			JSONObject obj = (JSONObject) parser.parse(partie.getEtat());
+			System.out.println(obj);
+			this.puissance4 = Puissance4.fromJson(obj);
+			this.pause = (boolean) obj.get("pause");
+			return true;
+		} catch (ParseException ex) {
+			System.out.println("pas de màj de l'état :(");
+			return false;
+		}
 	}
 }
