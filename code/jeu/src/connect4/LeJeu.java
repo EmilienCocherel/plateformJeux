@@ -306,6 +306,8 @@ public class LeJeu extends application.Jeu {
 	public boolean getEtat() {
 		JSONParser parser = new JSONParser();
 		try {
+			int id = this.partie.getId();
+			String etat = this.partieBD.getEtat(id);
 			JSONObject obj = (JSONObject) parser.parse(this.partieBD.getEtat(this.partie.getId()));
 			this.puissance4 = Puissance4.fromJson(obj);
 			this.pause = (boolean) obj.get("pause");
