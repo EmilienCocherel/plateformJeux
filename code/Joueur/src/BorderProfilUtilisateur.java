@@ -28,7 +28,7 @@ public class BorderProfilUtilisateur extends PageJoueur {
         Button changerInfo = this.buttonTypePageJoueur("Changer information compte");
         changerInfo.setOnAction(event -> this.app.passerEnModeChgmntInfo());
 
-        Button consulterstats = this.buttonTypePageJoueur("Consutler statistiques");
+        Button consulterstats = this.buttonTypePageJoueur("Consulter statistiques");
         consulterstats.setOnAction(event -> this.app.passerEnModeConsulterStatsJeux());
 
         ButtonBar bar = this.buttonBarTypePageJoueur(changerInfo, consulterstats);
