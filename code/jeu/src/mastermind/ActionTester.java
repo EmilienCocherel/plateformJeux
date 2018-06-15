@@ -29,7 +29,7 @@ public class ActionTester implements EventHandler<ActionEvent> {
 	 */
 	@Override
 	public void handle(ActionEvent actionEvent) {
-    if (this.partie.getCombi().equals(this.manche.getCombi())){
+    if (this.partie.getATester().equals(this.manche.getCombi())){
       this.manche.addToLog("bonne combinaison\n");
     }
     else{

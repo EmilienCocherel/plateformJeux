@@ -19,13 +19,10 @@ public class Combinaison {
       return this.p1;
     }
 
-    public String getCouleurP1() {
+    public Paint getCouleurP1() {
       return this.p1.getCouleur();
     }
 
-    public Paint getPeintureP1() {
-      return this.p1.getPeinture();
-    }
 
     public void setP1(int val) {
       this.p1.setVal(val);
@@ -35,13 +32,10 @@ public class Combinaison {
       return this.p2;
     }
 
-    public String getCouleurP2() {
+    public Paint getCouleurP2() {
       return this.p2.getCouleur();
     }
 
-    public Paint getPeintureP2() {
-      return this.p2.getPeinture();
-    }
 
     public void setP2(int val) {
       this.p2.setVal(val);
@@ -51,13 +45,10 @@ public class Combinaison {
       return this.p3;
     }
 
-    public String getCouleurP3() {
+    public Paint getCouleurP3() {
       return this.p3.getCouleur();
     }
 
-    public Paint getPeintureP3() {
-      return this.p3.getPeinture();
-    }
 
     public void setP3(int val) {
       this.p3.setVal(val);
@@ -67,13 +58,10 @@ public class Combinaison {
       return this.p4;
     }
 
-    public String getCouleurP4() {
+    public Paint getCouleurP4() {
       return this.p4.getCouleur();
     }
 
-    public Paint getPeintureP4() {
-      return this.p4.getPeinture();
-    }
 
     public void setP4(int val) {
         this.p4.setVal(val);
