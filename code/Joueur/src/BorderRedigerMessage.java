@@ -23,7 +23,7 @@ public class BorderRedigerMessage extends PageJoueur {
 
         TextField tmessage = new TextField();
         tmessage.setMinSize(500, 200);
-        
+
         VBox vmessage = this.vboxTypePageJoueur("Message", tmessage);
 
         Button bEnvoyer = this.buttonTypePageJoueur("Envoyer");
