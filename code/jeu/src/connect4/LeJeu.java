@@ -79,13 +79,14 @@ public class LeJeu extends application.Jeu {
 	}
 
 	@Override
-	public void setPartie(application.Partie partie) {
+	public void setPartie(application.Partie partie, int idJoueur) {
 		this.partie = partie;
+		application.Joueur joueur1 = partie.getJoueur1(), joueur2 = partie.getJoueur2();
 		if (!this.getEtat()) {
 			this.puissance4 = new Puissance4(
-					new Joueur(partie.getJoueur1().getPseudo(), 1, 18),
-					new Joueur(partie.getJoueur2().getPseudo(), 2, 18),
-					1 // TODO: utiliser le vrai joueur actuel
+					new Joueur(joueur1.getIdentifiant(), joueur1.getPseudo(), 1, 18),
+					new Joueur(joueur2.getIdentifiant(), joueur2.getPseudo(), 2, 18),
+					idJoueur
 				);
 		}
 	}
@@ -176,11 +177,11 @@ public class LeJeu extends application.Jeu {
 	public void majAffichage() {
 		// A implémenter
 		System.out.println(this.cont);
-		if (this.pause)
+		if (this.pause && !this.cont.getStylesheets().contains("pause"))
 			this.cont.getStyleClass().add("pause");
 		else
 			this.cont.getStyleClass().remove("pause");
-		if (!this.puissance4.isTour())
+		if (!this.puissance4.isTour() && !this.cont.getStylesheets().contains("autre-tour"))
 			this.cont.getStyleClass().add("autre-tour");
 		else
 			this.cont.getStyleClass().remove("autre-tour");
@@ -197,8 +198,9 @@ public class LeJeu extends application.Jeu {
 	public void run() {
 		// Gestion de la mise à jour de l'état de la partie
 		Timeline timeline = new Timeline(new KeyFrame(
-					Duration.millis(1000),
-					ae -> this.getEtat()));
+					Duration.millis(2000),
+					ae -> this.getEtatEtMaj()));
+		timeline.setCycleCount(Timeline.INDEFINITE);
 		timeline.play();
 
 		Stage stage = new Stage();
@@ -290,8 +292,10 @@ public class LeJeu extends application.Jeu {
 		System.out.println(json);
 		try {
 			this.partieBD.majEtat(this.partie.getId(), json.toString());
+			System.out.println(this.puissance4.getJoueurCourant().getId()+" insert màj OK");
 		} catch (SQLException ex) {
-			System.out.println("pas de maj de l'etat :(");
+			if (this.puissance4 != null)
+				System.out.println(this.puissance4.getJoueurCourant().getId()+" insert màj FAIL");
 		}
 	}
 
@@ -302,14 +306,24 @@ public class LeJeu extends application.Jeu {
 	public boolean getEtat() {
 		JSONParser parser = new JSONParser();
 		try {
-			JSONObject obj = (JSONObject) parser.parse(partie.getEtat());
-			System.out.println(obj);
+			JSONObject obj = (JSONObject) parser.parse(this.partieBD.getEtat(this.partie.getId()));
 			this.puissance4 = Puissance4.fromJson(obj);
 			this.pause = (boolean) obj.get("pause");
+			System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj OK");
 			return true;
 		} catch (ParseException ex) {
-			System.out.println("pas de màj de l'état :(");
+			if (this.puissance4 != null)
+				System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj FAIL");
+			return false;
+		} catch (SQLException ex) {
+			if (this.puissance4 != null)
+				System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj FAIL");
 			return false;
 		}
+	}
+
+	public void getEtatEtMaj() {
+		if (this.getEtat())
+			this.majAffichage();
 	}
 }
