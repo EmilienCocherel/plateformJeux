@@ -92,12 +92,33 @@ public abstract class PageAdmin extends BorderPane{
         return hbox;
     }
 
+    public HBox hboxTypePageAdmin(String nom, String nom2){
+        HBox hbox = new HBox();
+        Label label = this.labelTypePageAdmin(nom);
+        Label label2 = this.labelTypePageAdmin(nom2);
+
+        hbox.getChildren().addAll(label, label2);
+        hbox.setPadding(new Insets(10, 50, 10, 50));
+
+        return hbox;
+    }
+
     public HBox hboxTypePageAdmin(String nom, Button b){
         HBox hbox = new HBox();
         Label label = this.labelTypePageAdmin(nom);
 
         hbox.getChildren().addAll(label, b);
         hbox.setPadding(new Insets(10, 50, 10, 50));
+
+        return hbox;
+    }
+
+    public HBox hboxTypePageAdmin(String nom, TextArea textarea){
+        HBox hbox = new HBox();
+        Label label = this.labelTypePageAdmin(nom);
+
+        hbox.getChildren().addAll(label, textarea);
+        hbox.setPadding(new Insets(20, 100, 10, 100));
 
         return hbox;
     }

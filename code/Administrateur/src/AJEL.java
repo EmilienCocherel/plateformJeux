@@ -43,10 +43,10 @@ public class AJEL extends Application {
         gererCompte.setOnAction(event -> this.passerEnModeCompte());
 
         MenuItem lireRapport = new MenuItem("Lire un rapport");
-        //lireRapport.setOnAction(event -> this.passerEnModeRapportLire());
+        lireRapport.setOnAction(event -> this.passerEnModeRapportLire());
 
         MenuItem redigerRapport = new MenuItem("Rédiger un rapport");
-        //redigerRapport.setOnAction(event -> this.passerEnModeRapportRediger());
+        redigerRapport.setOnAction(event -> this.passerEnModeRapportRediger());
 
         MenuItem lireStats = new MenuItem("Lire des statistiques");
         //lireStats.setOnAction(event -> this.passerEnModeStats());
@@ -88,13 +88,13 @@ public class AJEL extends Application {
         this.laBase.setCenter(new BorderCompte(this));
     }
 //
-//    public void passerEnModeRapportLire(){
-//        this.laBase.setCenter(new BorderRapportLire(this));
-//    }
+    public void passerEnModeRapportLire(){
+        this.laBase.setCenter(new BorderLireRapport(this));
+    }
 //
-//    public void passerEnModeRapportRediger(){
-//        this.laBase.setCenter(new BorderRapportRediger(this));
-//    }
+    public void passerEnModeRapportRediger(){
+        this.laBase.setCenter(new BorderRedigerRapport(this));
+    }
 //
 //    public void passerEnModeStats(){
 //        this.laBase.setCenter(new BorderStats(this));
