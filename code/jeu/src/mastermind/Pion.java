@@ -1,5 +1,7 @@
 package mastermind;
 
+import javafx.scene.paint.Paint;
+
 public class Pion{
   private int val;
 
@@ -17,21 +19,25 @@ public class Pion{
 
   public String getCouleur(){
     if(this.val == 0){
-      return " ";
+      return "WHITE";
     }
     if(this.val == 1){
-      return "rouge";
+      return "RED";
     }
     if(this.val == 2){
-      return "bleu";
+      return "BLUE";
     }
     if(this.val == 3){
-      return "vert";
+      return "GREEN";
     }
     if(this.val == 4){
-      return "jaune";
+      return "YELLOW";
     }
     return null;
+  }
+
+  public Paint getPeinture(){
+    return Paint.valueOf(this.getCouleur());
   }
 
   @Override

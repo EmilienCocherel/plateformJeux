@@ -1,5 +1,7 @@
 package mastermind;
 
+import java.util.ArrayList;
+
 public class    Manche {
     private JoueurMastermind j;
     private int num;
@@ -7,6 +9,8 @@ public class    Manche {
     private Mastermind partie;
     private int nbCoup;
     private boolean fini;
+    private String log;
+    private ArrayList<Combinaison> CombiParTour;
 
     public Manche(Combinaison combi,Mastermind partie, JoueurMastermind j, int num){
         this.j=j;
@@ -15,11 +19,27 @@ public class    Manche {
         this.num=num;
         this.nbCoup=0;
         this.fini=false;
+        this.log="";
+        this.CombiParTour=new ArrayList<>();
     }
 
     public void verifCombi(Combinaison test){
         if(this.combi.equals(test)){
             this.finManche();
+        }
+    }
+
+    public ArrayList<Combinaison> getCombiParTour() {
+        return CombiParTour;
+    }
+
+    public void setCombiParTour(ArrayList<Combinaison> combiParTour) {
+        CombiParTour = combiParTour;
+    }
+
+    public void initCombiParTour(){
+        for (int i=0; i<10;i++){
+            this.CombiParTour.add(new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0)));
         }
     }
 
@@ -55,6 +75,18 @@ public class    Manche {
 
     public int getNum(){
         return this.num;
+    }
+
+    public String getLog(){
+      return this.log;
+    }
+
+    public void setLog(String text){
+      this.log=text;
+    }
+
+    public void addToLog(String text){
+      this.log+=text;
     }
 
 

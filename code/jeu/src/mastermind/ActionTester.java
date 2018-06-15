@@ -29,6 +29,12 @@ public class ActionTester implements EventHandler<ActionEvent> {
 	 */
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		partie.majAffichage();
+    if (this.partie.getCombi().equals(this.manche.getCombi())){
+      this.manche.addToLog("bonne combinaison\n");
+    }
+    else{
+      this.manche.addToLog("mauvaise combinaison\n");
+    }
+    this.partie.getHistorique().setText(this.manche.getLog());
 	}
 }

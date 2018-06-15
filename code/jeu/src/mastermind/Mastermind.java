@@ -1,6 +1,5 @@
 package mastermind;
 
-import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -9,23 +8,24 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.scene.shape.Circle;
 
-import java.io.File;
 import java.util.ArrayList;
-import javafx.stage.Modality;
 import application.*;
 
 public class Mastermind extends application.Jeu{
     private JoueurMastermind j1;
     private int id;
     private ArrayList<Combinaison> combis;
-    private Label p1;
-    private Label p2;
-    private Label p3;
-    private Label p4;
+
+    private Circle p1;
+    private Circle p2;
+    private Circle p3;
+    private Circle p4;
     private Combinaison combi;
     private Manche manche;
     private Stage stage;
+    private Label historique;
 
     public Mastermind(int id,JoueurMastermind j1){
       this.id=id;
@@ -64,10 +64,8 @@ public class Mastermind extends application.Jeu{
         }
     }
 
-    public void verifCombi(Combinaison test){
-        if (estFinie()){
-
-        }
+    public Label getHistorique(){
+      return this.historique;
     }
 
     public void initManche(){ // À IMPLÉMENTER
@@ -113,7 +111,7 @@ public class Mastermind extends application.Jeu{
         return null;
     }
 
-    private Label getLabelPion(int nbPion){
+    private Circle getCirclePion(int nbPion){
         switch (nbPion){
             case 0:
                 return this.p1;
@@ -129,18 +127,18 @@ public class Mastermind extends application.Jeu{
     private VBox choixCouleurDuPion(int pion){
         VBox res=new VBox(5);
         if (pion==0){
-          this.p1=new Label();
+          this.p1=new Circle(10.0,Color.WHITE);
         }
         if (pion==1){
-          this.p2=new Label();
+          this.p2=new Circle(10.0,Color.WHITE);
         }
         if (pion==2){
-          this.p3=new Label();
+          this.p3=new Circle(10.0,Color.WHITE);
         }
         if (pion==3){
-          this.p4=new Label();
+          this.p4=new Circle(10.0,Color.WHITE);
         }
-        res.getChildren().add(this.getLabelPion(pion));
+        res.getChildren().add(this.getCirclePion(pion));
         res.setPadding(new Insets(10,10,10,10));
         Label nom = new Label(this.getStringPion(pion));
         res.getChildren().add(nom);
@@ -194,6 +192,8 @@ public class Mastermind extends application.Jeu{
         res.getChildren().add(this.choixCouleursP2());
         res.getChildren().add(this.choixCouleursP3());
         res.getChildren().add(this.choixCouleursP4());
+        this.historique = new Label();
+        res.getChildren().add(historique);
         return res;
     }
 
@@ -217,7 +217,7 @@ public class Mastermind extends application.Jeu{
             cont.setTop(this.titre());
             cont.setCenter(this.central());
             cont.setBackground(new Background(new BackgroundFill(Color.PINK,null,null)));
-            return new Scene(cont,500,450);
+            return new Scene(cont,500,900);
         }
 
 
@@ -231,16 +231,13 @@ public class Mastermind extends application.Jeu{
          * raffraichit l'affichage en fonction du modèle
          */
         public void majAffichage(){
-          this.p1.setText(this.combi.getCouleurP1());
-          this.p2.setText(this.combi.getCouleurP2());
-          this.p3.setText(this.combi.getCouleurP3());
-          this.p4.setText(this.combi.getCouleurP4());
+          this.p1.setFill(this.combi.getPeintureP1());
+          this.p2.setFill(this.combi.getPeintureP2());
+          this.p3.setFill(this.combi.getPeintureP3());
+          this.p4.setFill(this.combi.getPeintureP4());
+          //this.historique.setText(this.manche.getLog());
         }
 
-        /**
-         * Crée le modèle, charge les images, créer le graphe de scène et lance le jeu
-         * @param stage la fenêtre principale
-         */
 
          @Override
          public void run(){
@@ -251,7 +248,7 @@ public class Mastermind extends application.Jeu{
             this.combis.add(new Combinaison(new Pion(2),new Pion(1),new Pion(1),new Pion(1)));
             this.combi = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
             stage.setTitle("Mastermind");
-             ((JoueurMastermind)this.j1).nouvelleManche(new Manche(this.combis.get(0),this, (JoueurMastermind)this.j1,0));
+            ((JoueurMastermind)this.j1).nouvelleManche(new Manche(this.combis.get(0),this, (JoueurMastermind)this.j1,0));
             stage.setScene(this.laScene());
             stage.show();
             this.majAffichage();
