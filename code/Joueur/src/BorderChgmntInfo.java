@@ -33,13 +33,17 @@ public class BorderChgmntInfo extends PageJoueur{
         infoCentre.setPadding(new Insets(30, 30, 10, 10));
 
         Button sauvegarder = this.buttonTypePageJoueur("Sauvegarder");
+        sauvegarder.setOnAction(event -> this.app.passerEnModeProfilUtilisateur());
 
         Button annuler = this.buttonTypePageJoueur("Annuler");
+        annuler.setOnAction(event -> this.app.passerEnModeProfilUtilisateur());
 
         ButtonBar barBot = this.buttonBarTypePageJoueur(sauvegarder,annuler);
 
+
         this.setCenter(infoCentre);
         this.setBottom(barBot);
+        this.setRight(this.imageTypePageJoueur());
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(800, 700);
 
