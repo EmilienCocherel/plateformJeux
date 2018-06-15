@@ -86,9 +86,9 @@ public class ChoixJeu extends GridPane {
 			} catch (SQLException ex) {
 				partie = new Partie(partieBD.maxId()+1, new Date(), 1, "", jeuP, joueur1, 0, joueur2, 0);
 				try {
-					joueurBD.insererJoueur(joueur1);
+					partieBD.creerPartie(partie);
 				} catch (SQLException e) {
-					System.out.println("merde (joueur1)");
+					System.out.println("merde (partie)");
 				}
 			}
 
