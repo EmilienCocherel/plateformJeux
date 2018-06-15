@@ -154,13 +154,13 @@ DROP TABLE IF EXISTS PARTIE;
 CREATE TABLE PARTIE (
   idPa decimal(6,0),
   debutPa datetime,
-  numEtape char(1),
+  numEtape decimal(1,0),
   etatPartie text,
   idJeu decimal(6,0),
   idJo1 decimal(6,0),
-  score1 VARCHAR(42),
+  score1 decimal(6,0),
   idJo2 decimal(6,0),
-  score2 VARCHAR(42),
+  score2 decimal(6,0),
   PRIMARY KEY (idPa)
 );
 
