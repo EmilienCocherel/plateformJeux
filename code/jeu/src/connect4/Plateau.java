@@ -121,9 +121,9 @@ public class Plateau extends Matrice<Integer> {
 			for (int ligne = 0 ; ligne < res.getNbLignes(); ligne ++) {
 				value = (Long) elem.get(ligne);
 				if (value != null)
-					res.set(ligne, colonne, value.intValue());
+					res.set(colonne, ligne, value.intValue());
 				else
-					res.set(ligne, colonne, null);
+					res.set(colonne, ligne, null);
 			}
 		}
 		return res;

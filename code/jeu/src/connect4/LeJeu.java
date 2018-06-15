@@ -197,6 +197,7 @@ public class LeJeu extends application.Jeu {
 		stage.setScene(this.laScene());
 		stage.getScene().getStylesheets().add("connect4/style/style.css");
 		stage.show();
+		this.majAffichage();
 	}
 
     @Override
@@ -293,6 +294,5 @@ public class LeJeu extends application.Jeu {
 		System.out.println(obj);
 		this.puissance4 = Puissance4.fromJson(obj);
 		this.pause = (boolean) obj.get("pause");
-		this.majAffichage();
 	}
 }
