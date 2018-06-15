@@ -54,6 +54,14 @@ public class LeJeu extends application.Jeu {
 	 * La scène
 	 */
 	private BorderPane cont;
+	/**
+	 * La partie (pour récupérer les informations de la partie et des joueurs)
+	 */
+	private application.Partie partie;
+	/**
+	 * Pour interagir avec la base de données
+	 */
+	private application.PartieBD partieBD;
 
 	/**
 	 * @return le clavier avec les 27 caractères et le controleur des touches
@@ -64,26 +72,13 @@ public class LeJeu extends application.Jeu {
 	}
 
 	@Override
-	public void setJ1(application.Joueur joueur) {
-		if (joueur != null) {
-			this.puissance4.setJoueur1(new Joueur(
-						joueur.getPseudo(),
-						1,
-						18
-						));
-		}
-	}
-
-	public void setJ2(application.Joueur joueur) {
-		this.puissance4.setJoueur2(new Joueur(
-					joueur.getPseudo(),
-					2,
-					18
-					));
+	public void setPartie(application.Partie partie) {
+		this.partie = partie;
 	}
 
 	@Override
-	public void setId(int id) {
+	public void setPartieBD(application.PartieBD partieBD) {
+		this.partieBD = partieBD;
 	}
 
 	/**

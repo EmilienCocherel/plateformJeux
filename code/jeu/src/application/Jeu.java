@@ -21,7 +21,11 @@ public abstract class Jeu implements Runnable{
 
     public abstract void run();
 
-    public abstract void setId(int id);
+    //public abstract void setId(int id);
 
-    public abstract void setJ1(Joueur j1);
+    //public abstract void setJ1(Joueur j1);
+
+	public abstract void setPartie(Partie partie);
+
+	public abstract void setPartieBD(PartieBD partieBD);
 }
