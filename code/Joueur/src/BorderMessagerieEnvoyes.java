@@ -27,8 +27,10 @@ public class BorderMessagerieEnvoyes extends PageJoueur{
         Button redigerMessage = this.buttonTypePageJoueur("Rédiger un nouveau message");
         redigerMessage.setOnAction(event -> this.appli.passerEnModeRedigerMessage());
 
-        this.setStyle("-fx-background-color: transparent;");
+
         this.setMaxSize(800, 700);
+        this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
+        this.setPadding(new Insets(0, 20, 0, 20));
 
         this.setTop(this.buttonBarTypePageJoueur(recus,envoyes));
         this.setCenter(this.tableauTypePageJouer("Destinataire","Objet","Date"));
