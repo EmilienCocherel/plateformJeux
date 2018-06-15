@@ -38,6 +38,5 @@ public class BorderAjouterJeu extends PageAdmin {
 
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(800, 700);
-        
     }
 }
