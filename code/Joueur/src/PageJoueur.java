@@ -95,9 +95,11 @@ public abstract class PageJoueur extends BorderPane{
     }
 
     public HBox hBoxTypetextBouton(String nom){
-        HBox hbox = new HBox();
+        HBox hbox = new HBox(10);
+        hbox.setAlignment(Pos.CENTER_LEFT);
         TextField text = new TextField();
         Button bouton = this.buttonTypePageJoueur("Demander en ami");
+
 
         hbox.getChildren().addAll(bouton, text);
         hbox.setPadding(new Insets(10, 50, 10, 50));

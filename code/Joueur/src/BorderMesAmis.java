@@ -12,11 +12,7 @@ public class BorderMesAmis extends PageJoueur {
         super();
         this.app = app;
 
-        BorderPane sceneTop = new BorderPane();
-
-        sceneTop.setLeft(this.buttonTypePageJoueur("Demander en ami"));
-        sceneTop.setCenter(new TextField());
-        sceneTop.setPadding(new Insets(10, 30, 10, 10));
+        HBox bartop = this.hBoxTypetextBouton("Demande en ami");
 
         BorderPane sceneCentre = new BorderPane();
 
@@ -25,7 +21,7 @@ public class BorderMesAmis extends PageJoueur {
         sceneCentre.setPadding(new Insets(10, 10, 10, 10));
         sceneCentre.setMinWidth(600);
 
-        this.setTop(sceneTop);
+        this.setTop(bartop);
         this.setCenter(sceneCentre);
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(800, 700);
