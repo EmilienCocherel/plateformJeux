@@ -46,7 +46,10 @@ public class Puissance4 {
 		this.joueur1 = joueur1;
 		this.joueur2 = joueur2;
 		this.id = id;
-		this.actuel = actuel;
+		if (actuel == joueur1.getId())
+			this.actuel = 1;
+		else
+			this.actuel = 2;
 		this.tour = tour;
 	}
 
