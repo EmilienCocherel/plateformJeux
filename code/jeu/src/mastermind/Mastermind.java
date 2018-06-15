@@ -17,10 +17,6 @@ public class Mastermind extends application.Jeu{
     private JoueurMastermind j1;
     private int id;
     private ArrayList<Combinaison> combis;
-    //private Pion p1;
-    //private Pion p2;
-    //private Pion p3;
-    //private Pion p4;
     private Combinaison aTester;
     private Manche manche;
     private Stage stage;
@@ -67,17 +63,12 @@ public class Mastermind extends application.Jeu{
       return this.historique;
     }
 
-    public void initManche(){ // À IMPLÉMENTER
-
-    }
 
     public void prochaineManche(Manche precedent){
         precedent.getJoueurMastermind().setScore(precedent.getJoueurMastermind().getScore()+precedent.getNbCoup());
         precedent.getJoueurMastermind().nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueurMastermind(),precedent.getNum()+1));
     }
 
-
-//    Getter et Setter
 
     public JoueurMastermind getJ1() {
         return j1;
@@ -125,18 +116,6 @@ public class Mastermind extends application.Jeu{
     }
     private VBox choixCouleurDuPion(int pion){
         VBox res=new VBox(5);
-        //if (pion==0){
-        //  this.p1=new Pion(1);
-        //}
-        //if (pion==1){
-        //  this.p2=new Pion(2);
-        //}
-        //if (pion==2){
-        //  this.p3=new Pion(3);
-        //}
-        //if (pion==3){
-        //  this.p4=new Pion(4);
-        //}
         res.getChildren().add(this.getPion(pion));
         res.setPadding(new Insets(10,10,10,10));
         Label nom = new Label(this.getStringPion(pion));
@@ -178,12 +157,18 @@ public class Mastermind extends application.Jeu{
         return this.choixCouleurDuPion(3);
     }
 
-    private HBox central(){
+
+    private VBox HistoriqueCombinaison(){
+        VBox res=new VBox(5);
+        res.setAlignment(Pos.CENTER);
+        return res;
+    }
+
+    private HBox InterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
         Button brestart = new Button("tester");
-        TestCombi tc = new TestCombi(this,this.manche);
-        ActionTester actionTester = new ActionTester(this,((JoueurMastermind)this.j1).getMancheCourante());
+        ActionTester actionTester = new ActionTester(this,this.j1.getMancheCourante());
         brestart.setOnAction(actionTester);
         res.getChildren().add(brestart);
         res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
@@ -214,9 +199,10 @@ public class Mastermind extends application.Jeu{
         private Scene laScene(){
             BorderPane cont = new BorderPane();
             cont.setTop(this.titre());
-            cont.setCenter(this.central());
+            cont.setCenter(this.HistoriqueCombinaison());
+            cont.setBottom(this.InterfaceChoix());
             cont.setBackground(new Background(new BackgroundFill(Color.PINK,null,null)));
-            return new Scene(cont,500,900);
+            return new Scene(cont,500,600);
         }
 
 
@@ -247,7 +233,9 @@ public class Mastermind extends application.Jeu{
             this.combis.add(new Combinaison(new Pion(2),new Pion(1),new Pion(1),new Pion(1)));
             this.aTester = new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0));
             stage.setTitle("Mastermind");
-            ((JoueurMastermind)this.j1).nouvelleManche(new Manche(this.combis.get(0),this, (JoueurMastermind)this.j1,0));
+            this.j1.nouvelleManche(new Manche(this.combis.get(0),this, (JoueurMastermind)this.j1,0));
+            this.manche=this.j1.getMancheCourante();
+            this.manche.initCombiParTour();
             stage.setScene(this.laScene());
             stage.show();
             this.majAffichage();
