@@ -1,6 +1,7 @@
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -21,7 +22,8 @@ public class BorderRedigerMessage extends PageJoueur {
         haut.setPadding(new Insets(10, 0, 10, 0));
         haut.getChildren().addAll(vobjet, vdestinataire);
 
-        TextField tmessage = new TextField();
+        TextArea tmessage = new TextArea();
+        tmessage.setWrapText(true);
         tmessage.setMinSize(500, 200);
 
         VBox vmessage = this.vboxTypePageJoueur("Message", tmessage);
