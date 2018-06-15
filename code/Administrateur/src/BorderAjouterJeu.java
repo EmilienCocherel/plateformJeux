@@ -31,7 +31,7 @@ public class BorderAjouterJeu extends PageAdmin {
         cotehaut.add(this.imageTypePageAdmin(),0,0);
         cotehaut.add(cotegauche,1,0);
 
-        
+
 
 
 
