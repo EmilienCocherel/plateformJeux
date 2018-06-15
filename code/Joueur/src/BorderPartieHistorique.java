@@ -24,8 +24,9 @@ public class BorderPartieHistorique extends PageJoueur{
         Button historique = this.buttonTypePageJoueur("Historique");
         historique.setOnAction(event -> this.appli.passerEnModePartieHistorique());
 
-        this.setStyle("-fx-background-color: transparent;");
         this.setMaxSize(800, 700);
+        this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
+        this.setPadding(new Insets(20, 20, 20, 20));
 
         this.setTop(this.buttonBarTypePageJoueur(enCours,historique));
         this.setCenter(this.tableauTypePageJouer("Jeu","Adversaire","Date début partie","Date fin partie","Vainqueur"));
