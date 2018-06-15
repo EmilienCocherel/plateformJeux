@@ -31,6 +31,7 @@ public class BorderProfilUtilisateur extends PageJoueur {
         Button consulterstats = this.buttonTypePageJoueur("Consutler statistiques");
 
         ButtonBar bar = this.buttonBarTypePageJoueur(changerInfo, consulterstats);
+        bar.setPadding(new Insets(0,0,50,0));
 
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(800, 700);
