@@ -21,9 +21,9 @@ public class BorderProfilUtilisateur extends PageJoueur {
         gInfo.add(this.labelTypePageJoueur("..."), 1, 1);
         gInfo.add(this.labelGrosPageJoueur("Premium"), 0, 2);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 2);
-        gInfo.add(this.labelGrosPageJoueur("Date d'inscription"), 0, 3);
+        gInfo.add(this.labelGrosPageJoueur("Date d'inscription     "), 0, 3);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 3);
-        gInfo.setPadding(new Insets(50, 0, 0, 50));
+        gInfo.setPadding(new Insets(75, 0, 0, 50));
 
         Button changerInfo = this.buttonTypePageJoueur("Changer information compte");
         changerInfo.setOnAction(event -> this.app.passerEnModeChgmntInfo());
@@ -37,6 +37,7 @@ public class BorderProfilUtilisateur extends PageJoueur {
         this.setMaxSize(800, 700);
 
         this.setCenter(gInfo);
+        this.setRight(this.imageTypePageJoueur());
         this.setBottom(bar);
     }
 }

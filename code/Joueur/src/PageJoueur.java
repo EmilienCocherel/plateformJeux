@@ -188,7 +188,7 @@ public abstract class PageJoueur extends BorderPane{
 
     public HBox imageTypePageJoueur(){
 
-        Image test = new Image("chat.jpg");
+        Image test = new Image("inconnu.png");
 
         ImageView iv1 = new ImageView();
         iv1.setImage(test);
@@ -200,7 +200,7 @@ public abstract class PageJoueur extends BorderPane{
 
         HBox res = new HBox();
         res.getChildren().add(iv1);
-        res.setPadding(new Insets(10, 50, 10, 50));
+        res.setPadding(new Insets(75, 75, 10, 50));
 
 
         return res;
