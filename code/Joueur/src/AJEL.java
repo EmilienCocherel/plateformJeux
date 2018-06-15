@@ -152,6 +152,14 @@ public class AJEL extends Application {
         this.laBase.setCenter(new BorderChgmntInfo(this));
     }
 
+    public void passerEnModeConsulterStatsJeux(){
+        this.laBase.setCenter(new BorderConsutlerStatsJeux(this));
+    }
+
+    public void passerEnModeConsulterStatsAdversaire(){
+        this.laBase.setCenter(new BorderConsulterStatsAdversaire(this));
+    }
+
 
     private void colorerLaBase(){
         this.laBase.setBackground(new Background(new BackgroundFill(this.couleurDegradeCentre(), null, null)));
