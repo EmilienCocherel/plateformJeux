@@ -100,7 +100,11 @@ public class LeJeu extends application.Jeu {
 	private VBox lesJoueurs() {
 		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		Circle p1 = new Circle(30), p2 = new Circle(30);
-		Button pause = new Button("Pause game");
+		Button pause;
+		if (this.pause)
+			pause = new Button("Resume game");
+		else
+			pause = new Button("Pause game");
 		p1.getStyleClass().add("pion");
 		p2.getStyleClass().add("pion");
 		PlateauGUI.setCouleur(j1.getPion(), p1);
@@ -221,6 +225,7 @@ public class LeJeu extends application.Jeu {
 	public void abandonner() {
 		this.puissance4.abandonner();
 		this.perdre();
+		this.setEtat();
 	}
 
 	/**
@@ -231,7 +236,6 @@ public class LeJeu extends application.Jeu {
 		alert.setTitle("Victory");
 		alert.setHeaderText("Victory");
 		alert.showAndWait();
-		Platform.exit();
 	}
 
 	/**
@@ -242,7 +246,6 @@ public class LeJeu extends application.Jeu {
 		alert.setTitle("Defeat");
 		alert.setHeaderText("Defeat");
 		alert.showAndWait();
-		Platform.exit();
 	}
 
 	/**
