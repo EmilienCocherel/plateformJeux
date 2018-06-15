@@ -24,7 +24,11 @@ import javafx.stage.Stage;
 import java.util.List;
 import java.util.ArrayList;
 
+import java.sql.SQLException;
+
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * Vue du Puissance 4
@@ -74,6 +78,15 @@ public class LeJeu extends application.Jeu {
 	@Override
 	public void setPartie(application.Partie partie) {
 		this.partie = partie;
+		try {
+			this.getEtat();
+		} catch (ParseException ex) {
+			this.puissance4 = new Puissance4(
+					new Joueur(partie.getJoueur1().getPseudo(), 1, 18),
+					new Joueur(partie.getJoueur2().getPseudo(), 2, 18),
+					1 // TODO: utiliser le vrai joueur actuel
+				);
+		}
 	}
 
 	@Override
@@ -157,6 +170,7 @@ public class LeJeu extends application.Jeu {
 	 */
 	public void majAffichage() {
 		// A implémenter
+		System.out.println(this.cont);
 		if (this.pause)
 			this.cont.getStyleClass().add("pause");
 		else
@@ -173,18 +187,6 @@ public class LeJeu extends application.Jeu {
 	}
 
 	/**
-	 * Initialiser le modèle.
-	 */
-	public LeJeu() {
-		// création du modèle
-		this.puissance4 = new Puissance4(
-				new Joueur("Nat", 1, 18),
-				new Joueur("Cyber Nat", 2, 18),
-				1
-				);
-	}
-
-	/**
 	 * Créer le graphe de scène et lance le jeu
 	 */
 	public void run() {
@@ -195,7 +197,6 @@ public class LeJeu extends application.Jeu {
 		stage.setScene(this.laScene());
 		stage.getScene().getStylesheets().add("connect4/style/style.css");
 		stage.show();
-		System.out.println("?");
 	}
 
     @Override
@@ -275,12 +276,23 @@ public class LeJeu extends application.Jeu {
 		// TODO: envoyer l'état au format JSON
 		JSONObject json = this.puissance4.toJson();
 		json.put("pause", this.pause);
+		System.out.println(json);
+		try {
+			this.partieBD.majEtat(this.partie.getId(), json.toString());
+		} catch (SQLException ex) {
+			System.out.println("pas de maj de l'etat :(");
+		}
 	}
 
 	/**
 	 * Charger l'état actuel depuis l'application
 	 */
-	public void getEtat() {
-		// TODO: récupérer l'état en JSON et le charger
+	public void getEtat() throws ParseException {
+		JSONParser parser = new JSONParser();
+		JSONObject obj = (JSONObject) parser.parse(partie.getEtat());
+		System.out.println(obj);
+		this.puissance4 = Puissance4.fromJson(obj);
+		this.pause = (boolean) obj.get("pause");
+		this.majAffichage();
 	}
 }
