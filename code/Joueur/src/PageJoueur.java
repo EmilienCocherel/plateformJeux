@@ -92,12 +92,11 @@ public abstract class PageJoueur extends BorderPane{
         return hbox;
     }
 
-    public HBox hboxTypePageJoueur(String nom, String mot){
+    public HBox hboxTypePageJoueur(String nom, Button b){
         HBox hbox = new HBox();
         Label label = this.labelTypePageJoueur(nom);
-        Label label2 = this.labelTypePageJoueur(mot);
 
-        hbox.getChildren().addAll(label, label2);
+        hbox.getChildren().addAll(label, b);
         hbox.setPadding(new Insets(10, 50, 10, 50));
 
         return hbox;
@@ -139,7 +138,6 @@ public abstract class PageJoueur extends BorderPane{
 
 
     }
-
 
     public Button buttonTypePageJoueur(String nom){
         Button bouton = new Button(nom);
