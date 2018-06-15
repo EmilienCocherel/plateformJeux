@@ -196,8 +196,13 @@ public abstract class PageJoueur extends BorderPane{
         iv1.setSmooth(true);
         iv1.setCache(true);
 
+        Button imageClicable = new Button();
+        imageClicable.setGraphic(iv1);
+        imageClicable.setStyle("-fx-background-color: transparent;");
+
         HBox res = new HBox();
-        res.getChildren().add(iv1);
+        res.getChildren().add(imageClicable);
+        res.setStyle("-fx-background-color: transparent;");
         res.setPadding(new Insets(75, 75, 10, 50));
 
 
