@@ -10,9 +10,9 @@ import javafx.scene.control.MenuItem;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ControleurMenu implements EventHandler<ActionEvent> {
+public class ControleurMenuAccueil implements EventHandler<ActionEvent> {
     AppliJDBC AppliJDBC;
-    public ControleurMenu(AppliJDBC AppliJDBC){
+    ControleurMenuAccueil(AppliJDBC AppliJDBC){
         this.AppliJDBC=AppliJDBC;
     }
     @Override

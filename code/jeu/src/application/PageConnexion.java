@@ -50,6 +50,19 @@ public abstract class PageConnexion extends GridPane{
 
     }
 
+    public Label labelTypeDroite(String nom) {
+
+        Label label = new Label(nom);
+        Font fontCondition = new Font("Arial", 12);
+        label.setTextFill(Color.rgb(196, 196, 196));
+        label.setAlignment(Pos.CENTER_RIGHT);
+        label.setPadding(new Insets(10, 0, 10, 150));
+        label.setFont(fontCondition);
+
+        return label;
+
+    }
+
     public CheckBox checkBoxType(String nom) {
 
         CheckBox cb = new CheckBox(nom);

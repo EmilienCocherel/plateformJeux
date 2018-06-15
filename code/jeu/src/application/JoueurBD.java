@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class JoueurBD {
 	ConnexionMySQL laConnexion;
+
 	JoueurBD(ConnexionMySQL laConnexion){
 		this.laConnexion=laConnexion;
 	}
@@ -53,6 +54,26 @@ public class JoueurBD {
 		boolean admin = res.getString("admin").equals("O");
 		res.close();
 		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
+	}
+
+	int creerMonCompteJoueur( Joueur j) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?)");
+		int numJ = this.maxNumJoueur() + 1;
+		ps.setInt(1,numJ);
+		ps.setString(2,j.getPseudo());
+		ps.setString(3,j.getMotdepasse());
+		ps.setString(4,j.getSexe() + "");
+		String abo = "N";
+		ps.setString(5,abo);
+		ps.setInt(6,j.getNiveau());
+		ps.setBytes(7,j.getAvatar());
+		ps.setString(8,j.getEmailJo());
+		String actif = "O";
+		ps.setString(9,actif);
+		String estAdmin = "N";
+		ps.setString(10,estAdmin);
+		ps.executeUpdate();
+		return numJ;
 	}
 
 	int insererJoueur( Joueur j) throws SQLException{

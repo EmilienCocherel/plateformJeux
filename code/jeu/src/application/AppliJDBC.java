@@ -1,5 +1,6 @@
 package application;
 
+import java.sql.*;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -30,6 +31,8 @@ public class AppliJDBC extends Application {
     private ApplicationAJEL ApplicationAJEL;
     private Label message;
     private FicheResultat ficheResultat;
+    private GridInscrire inscrire;
+
     private BorderPane laBase;
 
     public void init(){
@@ -37,6 +40,7 @@ public class AppliJDBC extends Application {
             this.Connexion = new ConnexionMySQL();
             this.laBase = new BorderPane();
             this.ApplicationAJEL = new ApplicationAJEL(this);
+            this.inscrire = new GridInscrire(this);
         }catch (ClassNotFoundException ex){
             System.out.println("Driver MySQL non trouvé!!!");
             System.exit(1);
@@ -54,6 +58,12 @@ public class AppliJDBC extends Application {
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
     }
+
+    public ConnexionMySQL getConnexionMySql(){
+      return this.Connexion;
+    }
+
+
     @Override
     public void start(Stage stage) {
         // VBox fp=new VBox(5);
@@ -64,7 +74,6 @@ public class AppliJDBC extends Application {
         // primaryStage.setScene(this.scene);
         // primaryStage.setTitle("Application AJEL");
         // primaryStage.show();
-
         this.ApplicationAJEL.creerMenuConnexion();
         this.ApplicationAJEL.colorerLaBase();
 
@@ -78,7 +87,7 @@ public class AppliJDBC extends Application {
     }
     // Anicen fichier AJEL.java
     public void passerEnModeInscription(){
-        this.laBase.setCenter(new GridInscrire());
+        this.laBase.setCenter(new GridInscrire(this));
     }
 
     public void passerEnModeConnexion(){

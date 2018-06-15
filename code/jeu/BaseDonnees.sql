@@ -114,7 +114,7 @@ CREATE TABLE ETREAMI (
 
 CREATE TABLE JOUEUR (
   idJo decimal(6,0) NOT NULL,
-  pseudo varchar(10) DEFAULT NULL,
+  pseudo varchar(16) DEFAULT NULL,
   motdepasse varchar(500) DEFAULT NULL,
   sexe char(1) DEFAULT NULL,
   abonne char(1) DEFAULT NULL,
