@@ -9,9 +9,14 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.Circle;
+import javafx.scene.control.Alert;
 
 import java.util.ArrayList;
+import java.util.Optional;
+
 import application.*;
+
+import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class Mastermind extends application.Jeu{
     private JoueurMastermind j1;
@@ -43,33 +48,58 @@ public class Mastermind extends application.Jeu{
       return this.aTester;
     }
 
-    public boolean estFinie(){ // À IMPLÉMENTER
-        if (this.manche.estFini() && this.manche.getNum() == 3){
-            return true;
-        }
-        else{ // Mème si la personne à fait ses 12 coups mais qu'aucun n'est gagnant
-            return false;
-        }
-    }
+    //public boolean estFinie(){ // À IMPLÉMENTER
+    //    if (this.manche.estFini() && this.manche.getNum() == 3){
+    //        return true;
+    //    }
+    //   else{ // Mème si la personne à fait ses 12 coups mais qu'aucun n'est gagnant
+    //       return false;
+    //   }
+    //}
 
-    public void finPartie(){
-        Alert al = new Alert(Alert.AlertType.INFORMATION);
-        if (this.estFinie()){
-            al.setHeaderText("Bravo !");
-        }
-        else{
-            al.setHeaderText("Zut...");
-        }
-    }
+    public void finPartie(){}
 
     public Label getHistorique(){
       return this.historique;
     }
 
 
-    public void prochaineManche(Manche precedent){
-        precedent.getJoueurMastermind().setScore(precedent.getJoueurMastermind().getScore()+precedent.getNbCoup());
-        precedent.getJoueurMastermind().nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueurMastermind(),precedent.getNum()+1));
+    public void prochaineManche(Manche precedent,boolean gagne){
+        try{
+            System.out.println(precedent.getNum()+1);
+            this.j1.nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueurMastermind(),precedent.getNum()+1));
+            this.manche=j1.getMancheCourante();
+            this.manche.initCombiParTour();
+            System.out.println(this.manche.getNum()+1);
+            System.out.println("nouvelle manche");
+            Alert info = new Alert(CONFIRMATION);
+            if (gagne){
+                info.setHeaderText("Combinaison trouvé");
+                info.setContentText("Bravo ! voulez-vous passer à la suivante?");
+            }
+            else{
+                info.setHeaderText("Manche termine");
+                info.setContentText("La manche est terminé voulez-vous passer à la suivante?");
+            }
+            Optional<ButtonType> result = info.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                this.aTester = new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4));
+                this.initInterfaceChoix();
+                this.initHistoriqueCombinaison();
+                this.laScene();
+                stage.setScene(this.scene);
+            }
+            else{
+                this.stage.close();
+            }
+        }
+        catch(IndexOutOfBoundsException e){
+            Alert info = new Alert(CONFIRMATION);
+            info.setHeaderText("La Partie est terminé");
+            info.setContentText("bien joué");
+            info.showAndWait();
+            stage.close();
+        }
     }
 
 
@@ -164,12 +194,17 @@ public class Mastermind extends application.Jeu{
     private void initHistoriqueCombinaison(){
         VBox res=new VBox(5);
         res.setAlignment(Pos.CENTER);
-        for(Combinaison combi:this.manche.getCombiParTour()){
+        for(int i =0; i<this.manche.getCombiParTour().size();i++){
+            Combinaison combi = this.manche.getCombiParTour().get(i);
             HBox box = new HBox();
             box.getChildren().add(combi.getP1());
             box.getChildren().add(combi.getP2());
             box.getChildren().add(combi.getP3());
             box.getChildren().add(combi.getP4());
+            Resultat resultat = this.manche.getResParTour().get(i);
+            for (Circle cercle :resultat.getPionsRes()){
+                box.getChildren().add(cercle);
+            }
             res.getChildren().add(box);
         }
         this.historiqueCombinaison=res;
@@ -241,15 +276,16 @@ public class Mastermind extends application.Jeu{
             this.stage = new Stage();
             this.combis=new ArrayList<>();
             this.combis.add(new Combinaison(new Pion(Color.RED,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
-            this.combis.add(new Combinaison(new Pion(Color.RED,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.BLUE,4)));
-            this.combis.add(new Combinaison(new Pion(Color.RED,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
+            this.combis.add(new Combinaison(new Pion(Color.GREEN,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.BLUE,4)));
+            this.combis.add(new Combinaison(new Pion(Color.BLUE,1),new Pion(Color.YELLOW,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
             this.aTester = new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4));
             stage.setTitle("Mastermind");
             this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
             this.manche=this.j1.getMancheCourante();
             this.manche.initCombiParTour();
+            this.manche.initResParTour();
             this.initInterfaceChoix();
-             this.initHistoriqueCombinaison();
+            this.initHistoriqueCombinaison();
             this.laScene();
             stage.setScene(this.scene);
             stage.show();
