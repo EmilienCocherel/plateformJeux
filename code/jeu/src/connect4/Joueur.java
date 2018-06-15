@@ -3,18 +3,21 @@ package connect4;
 import org.json.simple.JSONObject;
 
 public class Joueur extends application.Joueur {
+	private int id;
     private String nom;
     private Integer pion;
     private int nbPions, nbPionsInitial;
 
-    public Joueur(String nom, Integer pion, int nbPions){
+    public Joueur(int id, String nom, Integer pion, int nbPions) {
+		this.id = id;
         this.nom = nom;
         this.pion = pion;
         this.nbPions = nbPions;
         this.nbPionsInitial = nbPions;
     }
 
-	public Joueur(String nom, Integer pion, int nbPions, int nbPionsInitial) {
+	public Joueur(int id, String nom, Integer pion, int nbPions, int nbPionsInitial) {
+		this.id = id;
         this.nom = nom;
         this.pion = pion;
         this.nbPions = nbPions;
@@ -33,6 +36,10 @@ public class Joueur extends application.Joueur {
     }
 
 //    Getter et Setter
+
+	public int getId() {
+		return this.id;
+	}
 
     public String getNom() {
         return nom;
@@ -58,6 +65,7 @@ public class Joueur extends application.Joueur {
 	 */
 	public JSONObject toJson() {
 		JSONObject res = new JSONObject();
+		res.put("id", this.id);
 		res.put("nom", this.nom);
 		res.put("pion", this.pion);
 		res.put("nbPions", this.nbPions);
@@ -69,10 +77,12 @@ public class Joueur extends application.Joueur {
 	 * Importer un joueur au format JSON
 	 */
 	public static Joueur fromJson(JSONObject json) {
-		Long pion = (Long) json.get("pion"),
+		Long id = (Long) json.get("id"),
+			 pion = (Long) json.get("pion"),
 			 nbPions = (Long) json.get("nbPions"),
 			 nbPionsInitial = (Long) json.get("nbPionsInitial");
-		return new Joueur((String) json.get("nom"),
+		return new Joueur(id.intValue(),
+				(String) json.get("nom"),
 				pion.intValue(),
 				nbPions.intValue(),
 				nbPionsInitial.intValue());
