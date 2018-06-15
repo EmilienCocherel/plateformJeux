@@ -22,13 +22,13 @@ public class BorderChgmntInfo extends PageJoueur{
         ComboBox infoSexe = new ComboBox();
         infoSexe.getItems().setAll("Homme","Femme","Autre");
 
-        infoCentre.add(this.labelTypePageJoueur("Pseudo : "),0,0);
+        infoCentre.add(this.labelGrosPageJoueur("Pseudo : "),0,0);
         infoCentre.add(new TextField(),1,0);
-        infoCentre.add(this.labelTypePageJoueur("Sexe : "),0,1);
+        infoCentre.add(this.labelGrosPageJoueur("Sexe : "),0,1);
         infoCentre.add(infoSexe,1,1);
-        infoCentre.add(this.labelTypePageJoueur("Mot de passe : "),0,2);
+        infoCentre.add(this.labelGrosPageJoueur("Mot de passe : "),0,2);
         infoCentre.add(new TextField(),1,2);
-        infoCentre.add(this.labelTypePageJoueur("Prenium : "),0,3);
+        infoCentre.add(this.labelGrosPageJoueur("Prenium : "),0,3);
         infoCentre.add(this.lienTypePageJoueur("Acheter un compte prenium"),1,3);
         infoCentre.setPadding(new Insets(30, 30, 10, 10));
 

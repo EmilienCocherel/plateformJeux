@@ -24,7 +24,7 @@ public abstract class PageJoueur extends BorderPane{
 
     public Label titlePageJouer(String titre) {
 
-        Font fonttitre = new Font("Arial", 25);
+        Font fonttitre = new Font("Arial", 32);
         Label title = new Label(titre);
         title.setTextFill(Color.rgb(179, 71, 91));
         title.setPadding(new Insets(10, 0, 10, 10));
@@ -36,10 +36,26 @@ public abstract class PageJoueur extends BorderPane{
 
     public Label labelTypePageJoueur(String nom) {
 
+
         Label label = new Label(nom);
         label.setTextFill(Color.rgb(196, 196, 196));
         label.setAlignment(Pos.CENTER);
         label.setPadding(new Insets(10, 0, 10, 10));
+
+
+        return label;
+
+    }
+
+
+    public Label labelGrosPageJoueur(String nom) {
+
+        Font fontGros = new Font("Arial", 25);
+        Label label = new Label(nom);
+        label.setTextFill(Color.rgb(196, 196, 196));
+        label.setAlignment(Pos.CENTER);
+        label.setPadding(new Insets(10, 0, 10, 10));
+        label.setFont(fontGros);
 
         return label;
 
