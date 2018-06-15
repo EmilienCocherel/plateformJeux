@@ -1,5 +1,7 @@
 package mastermind;
 
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 public class    Manche {
@@ -23,12 +25,6 @@ public class    Manche {
         this.CombiParTour=new ArrayList<>();
     }
 
-    public void verifCombi(Combinaison test){
-        if(this.combi.equals(test)){
-            this.finManche();
-        }
-    }
-
     public ArrayList<Combinaison> getCombiParTour() {
         return CombiParTour;
     }
@@ -39,7 +35,7 @@ public class    Manche {
 
     public void initCombiParTour(){
         for (int i=0; i<10;i++){
-            this.CombiParTour.add(new Combinaison(new Pion(0),new Pion(0),new Pion(0),new Pion(0)));
+            this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4)));
         }
     }
 
@@ -53,7 +49,7 @@ public class    Manche {
         }
     }
 
-    public void finManche(){
+    public void finManche(boolean gagne){
         this.partie.prochaineManche(this);
     }
 
@@ -70,6 +66,11 @@ public class    Manche {
     }
 
     public void incrNbCoup(){
+        Combinaison combi = this.partie.getATester();
+        this.CombiParTour.get(this.nbCoup).setCouleurP1(combi.getP1().getCouleur());
+        this.CombiParTour.get(this.nbCoup).setCouleurP2(combi.getP2().getCouleur());
+        this.CombiParTour.get(this.nbCoup).setCouleurP3(combi.getP3().getCouleur());
+        this.CombiParTour.get(this.nbCoup).setCouleurP4(combi.getP4().getCouleur());
         this.nbCoup+=1;
     }
 

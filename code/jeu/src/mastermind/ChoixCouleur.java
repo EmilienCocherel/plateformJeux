@@ -2,16 +2,10 @@ package mastermind;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.RadioButton;
 import javafx.scene.paint.Color;
 
-import java.util.Optional;
 
-/**
- * Controleur des radio boutons gérant le niveau
- */
+
 public class ChoixCouleur implements EventHandler<ActionEvent> {
 
 
@@ -24,14 +18,11 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 	    this.manche = manche;
 	}
 
-	/**
-	 * gère le changement de niveau
-	 * @param actionEvent
-	 */
+
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		BoutonRadio rb =(BoutonRadio) actionEvent.getSource();
-		if (rb.getPion().getVal()==0){
+		if (rb.getValPion()==0){
 			if (rb.getText()=="rouge"){
 				partie.getATester().getP1().setFill(Color.RED);
 			}
@@ -46,7 +37,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 			}
 		}
 
-		if (rb.getPion().getVal()==1){
+		if (rb.getValPion()==1){
 			if (rb.getText()=="rouge"){
 				partie.getATester().getP2().setFill(Color.RED);
 			}
@@ -61,7 +52,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 			}
 		}
 
-		if (rb.getPion().getVal()==2){
+		if (rb.getValPion()==2){
 			if (rb.getText()=="rouge"){
 				partie.getATester().getP3().setFill(Color.RED);
 			}
@@ -76,7 +67,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 			}
 		}
 
-		if (rb.getPion().getVal()==3){
+		if (rb.getValPion()==3){
 			if (rb.getText()=="rouge"){
 				partie.getATester().getP4().setFill(Color.RED);
 			}

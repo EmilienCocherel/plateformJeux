@@ -1,24 +1,18 @@
 package mastermind;
 
-import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class Pion extends Circle{
   private int val;
 
-  public Pion(int val){
-    this.val=val;
+  public Pion(Paint couleur,int val){
     this.setRadius(10.0);
-    this.setFill(Color.WHITE);
+    this.setFill(couleur);
   }
 
   public int getVal(){
     return this.val;
-  }
-
-  public void setVal(int val){
-    this.val=val;
   }
 
   public Paint getCouleur(){
