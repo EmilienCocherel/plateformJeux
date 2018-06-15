@@ -24,8 +24,9 @@ public class BorderJeuxBoutique extends PageJoueur{
         Button boutique = this.buttonTypePageJoueur("Boutique");
         boutique.setOnAction(event -> this.appli.passerEnModeJeuxBoutique());
 
-        this.setStyle("-fx-background-color: transparent;");
         this.setMaxSize(800, 700);
+        this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
+        this.setPadding(new Insets(20, 20, 20, 20));
 
         this.setTop(this.buttonBarTypePageJoueur(mesJeux,boutique));
         this.setCenter(this.tableauTypePageJouer("Nom","Type","Description"));

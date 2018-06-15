@@ -23,7 +23,7 @@ public class BorderAmisDemande extends PageJoueur {
 
         sceneCentre.setTop(this.buttonBarTypePageJoueur(mesAmis,mesDemandes));
         sceneCentre.setCenter(this.tableauTypePageJouer("Nom","Niveau","Pourcentage victoire","Accepter"));
-        sceneCentre.setPadding(new Insets(10, 10, 10, 10));
+        sceneCentre.setPadding(new Insets(20, 20, 20, 20));
         sceneCentre.setMinWidth(600);
 
         this.setTop(bartop);
