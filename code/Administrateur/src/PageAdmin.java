@@ -227,4 +227,13 @@ public abstract class PageAdmin extends BorderPane{
         return tmessage;
     }
 
+    public ComboBox comboBoxAdmin(String... nomItem){
+        ComboBox cb = new ComboBox();
+        for (String nom : nomItem){
+            cb.getItems().add(nom);
+        }
+        return cb;
+    }
+
+
 }
