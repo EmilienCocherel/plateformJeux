@@ -12,15 +12,18 @@ public class BorderProfilUtilisateur extends PageJoueur {
         super();
         this.app = app;
 
+
+
         GridPane gInfo = new GridPane();
-        gInfo.add(this.labelTypePageJoueur("Pseudo"), 0, 0);
+        gInfo.add(this.titlePageJouer("Pseudo"), 0, 0);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 0);
-        gInfo.add(this.labelTypePageJoueur("Niveau"), 0, 1);
+        gInfo.add(this.titlePageJouer("Niveau"), 0, 1);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 1);
-        gInfo.add(this.labelTypePageJoueur("Premium"), 0, 2);
+        gInfo.add(this.titlePageJouer("Premium"), 0, 2);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 2);
-        gInfo.add(this.labelTypePageJoueur("Date d'inscription"), 0, 3);
+        gInfo.add(this.titlePageJouer("Date d'inscription"), 0, 3);
         gInfo.add(this.labelTypePageJoueur("..."), 1, 3);
+        gInfo.setPadding(new Insets(50, 0, 0, 50));
 
         Button changerInfo = this.buttonTypePageJoueur("Changer information compte");
         changerInfo.setOnAction(event -> this.app.passerEnModeChgmntInfo());
