@@ -30,7 +30,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent actionEvent) {
 		BoutonRadio rb =(BoutonRadio) actionEvent.getSource();
-		if (rb.getPion().getVal()==1){
+		if (rb.getPion().getVal()==0){
 			if (rb.getText()=="rouge"){
 				partie.getCombi().setP1(1);
 			}
@@ -45,7 +45,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 			}
 		}
 
-		if (rb.getPion().getVal()==2){
+		if (rb.getPion().getVal()==1){
 			if (rb.getText()=="rouge"){
 				partie.getCombi().setP2(1);
 			}
@@ -60,7 +60,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 			}
 		}
 
-		if (rb.getPion().getVal()==3){
+		if (rb.getPion().getVal()==2){
 			if (rb.getText()=="rouge"){
 				partie.getCombi().setP3(1);
 			}
@@ -75,7 +75,7 @@ public class ChoixCouleur implements EventHandler<ActionEvent> {
 			}
 		}
 
-		if (rb.getPion().getVal()==4){
+		if (rb.getPion().getVal()==3){
 			if (rb.getText()=="rouge"){
 				partie.getCombi().setP4(1);
 			}

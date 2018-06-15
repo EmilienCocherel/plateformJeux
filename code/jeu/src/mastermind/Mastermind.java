@@ -99,25 +99,62 @@ public class Mastermind extends application.Jeu{
     public void setJ1(Joueur joueur) {
       this.j1 = new JoueurMastermind(joueur.getIdentifiant());
     }
+    public String getStringPion(int nbPion){
+        switch (nbPion){
+            case 0:
+                return "p1";
+            case 1:
+                return "p2";
+            case 2:
+                return "p3";
+            case 3:
+                return "p4";
+        }
+        return null;
+    }
 
-    private VBox choixCouleursP1(){
+    private Label getLabelPion(int nbPion){
+        switch (nbPion){
+            case 0:
+                return this.p1;
+            case 1:
+                return this.p2;
+            case 2:
+                return this.p3;
+            case 3:
+                return this.p4;
+        }
+        return null;
+    }
+    private VBox choixCouleurDuPion(int pion){
         VBox res=new VBox(5);
-        this.p1=new Label();
-        res.getChildren().add(this.p1);
+        if (pion==0){
+          this.p1=new Label();
+        }
+        if (pion==1){
+          this.p2=new Label();
+        }
+        if (pion==2){
+          this.p3=new Label();
+        }
+        if (pion==3){
+          this.p4=new Label();
+        }
+        res.getChildren().add(this.getLabelPion(pion));
         res.setPadding(new Insets(10,10,10,10));
-        Label nom = new Label("p1");
+        Label nom = new Label(this.getStringPion(pion));
         res.getChildren().add(nom);
         ToggleGroup group = new ToggleGroup();
-        BoutonRadio rfacile = new BoutonRadio("rouge",1);
+        BoutonRadio rfacile = new BoutonRadio("rouge",pion);
         rfacile.setToggleGroup(group);
         res.getChildren().add(rfacile);
-        BoutonRadio rmoyen = new BoutonRadio("bleu",1);
+        BoutonRadio rmoyen = new BoutonRadio("bleu",pion);
         rmoyen.setToggleGroup(group);
         res.getChildren().add(rmoyen);
-        BoutonRadio rdifficile = new BoutonRadio("vert",1);
+        BoutonRadio rdifficile = new BoutonRadio("vert",pion);
         rdifficile.setToggleGroup(group);
         res.getChildren().add(rdifficile);
-        BoutonRadio rexpert = new BoutonRadio("jaune",1);
+        BoutonRadio rexpert = new BoutonRadio("jaune",pion);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
         ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
@@ -126,91 +163,22 @@ public class Mastermind extends application.Jeu{
         rdifficile.setOnAction(actionNiveau);
         rexpert.setOnAction(actionNiveau);
         return res;
+    }
+
+    private VBox choixCouleursP1(){
+        return this.choixCouleurDuPion(0);
     }
 
     private VBox choixCouleursP2(){
-        VBox res=new VBox(5);
-        this.p2=new Label();
-        res.getChildren().add(this.p2);
-        res.setPadding(new Insets(10,10,10,10));
-        Label nom = new Label("p2");
-        res.getChildren().add(nom);
-        ToggleGroup group = new ToggleGroup();
-        BoutonRadio rfacile = new BoutonRadio("rouge",2);
-        rfacile.setToggleGroup(group);
-        res.getChildren().add(rfacile);
-        BoutonRadio rmoyen = new BoutonRadio("bleu",2);
-        rmoyen.setToggleGroup(group);
-        res.getChildren().add(rmoyen);
-        BoutonRadio rdifficile = new BoutonRadio("vert",2);
-        rdifficile.setToggleGroup(group);
-        res.getChildren().add(rdifficile);
-        BoutonRadio rexpert = new BoutonRadio("jaune",2);
-        rexpert.setToggleGroup(group);
-        res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
-        rfacile.setOnAction(actionNiveau);
-        rmoyen.setOnAction(actionNiveau);
-        rdifficile.setOnAction(actionNiveau);
-        rexpert.setOnAction(actionNiveau);
-        return res;
+        return this.choixCouleurDuPion(1);
     }
 
     private VBox choixCouleursP3(){
-        VBox res=new VBox(5);
-        this.p3=new Label();
-        res.getChildren().add(this.p3);
-        res.setPadding(new Insets(10,10,10,10));
-        Label nom = new Label("p3");
-        res.getChildren().add(nom);
-        ToggleGroup group = new ToggleGroup();
-        BoutonRadio rfacile = new BoutonRadio("rouge",3);
-        rfacile.setToggleGroup(group);
-        res.getChildren().add(rfacile);
-        BoutonRadio rmoyen = new BoutonRadio("bleu",3);
-        rmoyen.setToggleGroup(group);
-        res.getChildren().add(rmoyen);
-        BoutonRadio rdifficile = new BoutonRadio("vert",3);
-        rdifficile.setToggleGroup(group);
-        res.getChildren().add(rdifficile);
-        BoutonRadio rexpert = new BoutonRadio("jaune",3);
-        rexpert.setToggleGroup(group);
-        res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
-        rfacile.setOnAction(actionNiveau);
-        rmoyen.setOnAction(actionNiveau);
-        rdifficile.setOnAction(actionNiveau);
-        rexpert.setOnAction(actionNiveau);
-        return res;
+        return this.choixCouleurDuPion(2);
     }
 
     private VBox choixCouleursP4(){
-        VBox res=new VBox(5);
-        this.p4=new Label();
-        this.p4.setText("test");
-        res.getChildren().add(this.p4);
-        res.setPadding(new Insets(10,10,10,10));
-        Label nom = new Label("p4");
-        res.getChildren().add(nom);
-        ToggleGroup group = new ToggleGroup();
-        BoutonRadio rfacile = new BoutonRadio("rouge",4);
-        rfacile.setToggleGroup(group);
-        res.getChildren().add(rfacile);
-        BoutonRadio rmoyen = new BoutonRadio("bleu",4);
-        rmoyen.setToggleGroup(group);
-        res.getChildren().add(rmoyen);
-        BoutonRadio rdifficile = new BoutonRadio("vert",4);
-        rdifficile.setToggleGroup(group);
-        res.getChildren().add(rdifficile);
-        BoutonRadio rexpert = new BoutonRadio("jaune",4);
-        rexpert.setToggleGroup(group);
-        res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
-        rfacile.setOnAction(actionNiveau);
-        rmoyen.setOnAction(actionNiveau);
-        rdifficile.setOnAction(actionNiveau);
-        rexpert.setOnAction(actionNiveau);
-        return res;
+        return this.choixCouleurDuPion(3);
     }
 
     private HBox central(){
@@ -218,7 +186,8 @@ public class Mastermind extends application.Jeu{
         res.setAlignment(Pos.CENTER);
         Button brestart = new Button("tester");
         TestCombi tc = new TestCombi(this,this.manche);
-        brestart.setOnAction(tc);
+        ActionTester actionTester = new ActionTester(this,((JoueurMastermind)this.j1).getMancheCourante());
+        brestart.setOnAction(actionTester);
         res.getChildren().add(brestart);
         res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
         res.getChildren().add(this.choixCouleursP1());

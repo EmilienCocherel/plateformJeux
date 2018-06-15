@@ -65,11 +65,21 @@ public class LeJeu extends application.Jeu {
 
 	@Override
 	public void setJ1(application.Joueur joueur) {
-		this.puissance4.setJoueur1((Joueur) joueur);
+		if (joueur != null) {
+			this.puissance4.setJoueur1(new Joueur(
+						joueur.getPseudo(),
+						1,
+						18
+						));
+		}
 	}
 
 	public void setJ2(application.Joueur joueur) {
-		this.puissance4.setJoueur2((Joueur) joueur);
+		this.puissance4.setJoueur2(new Joueur(
+					joueur.getPseudo(),
+					2,
+					18
+					));
 	}
 
 	@Override
@@ -168,22 +178,27 @@ public class LeJeu extends application.Jeu {
 	}
 
 	/**
-	 * Crée le modèle, créer le graphe de scène et lance le jeu
-	 * @param stage la fenêtre principale
+	 * Initialiser le modèle.
 	 */
-	public void run() {
-		Stage stage = new Stage();
+	public LeJeu() {
 		// création du modèle
 		this.puissance4 = new Puissance4(
 				new Joueur("Nat", 1, 18),
 				new Joueur("Cyber Nat", 2, 18),
 				1
 				);
+	}
+
+	/**
+	 * Créer le graphe de scène et lance le jeu
+	 */
+	public void run() {
+		Stage stage = new Stage();
 
 		stage.setTitle("Connect 4");
 
 		stage.setScene(this.laScene());
-		stage.getScene().getStylesheets().add("style/style.css");
+		stage.getScene().getStylesheets().add("connect4/style/style.css");
 		stage.show();
 		System.out.println("?");
 	}
