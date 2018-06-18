@@ -213,21 +213,21 @@ public class LeJeu extends application.Jeu {
 	 */
 	public void run() {
 		// Gestion de la mise à jour de l'état de la partie
-		Timeline timeline = new Timeline(new KeyFrame(
+		this.updateTimeline = new Timeline(new KeyFrame(
 					Duration.millis(2000),
 					ae -> this.getEtatEtMaj()));
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
+		this.updateTimeline.setCycleCount(Timeline.INDEFINITE);
+		this.updateTimeline.play();
 
-		Stage stage = new Stage();
+		this.stage = new Stage();
 
-		stage.setTitle("Connect 4");
+		this.stage.setTitle("Connect 4");
 
-		stage.setScene(this.laScene());
-		stage.getScene().getStylesheets().add("connect4/style/style.css");
-		stage.setOnCloseRequest(new ActionFermer(this));
+		this.stage.setScene(this.laScene());
+		this.stage.getScene().getStylesheets().add("connect4/style/style.css");
+		this.stage.show();
 
-		stage.show();
+		this.stage.setOnCloseRequest(new ActionFermer(this));
 		this.majAffichage();
 	}
 
