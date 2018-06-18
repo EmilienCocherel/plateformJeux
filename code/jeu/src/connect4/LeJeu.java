@@ -58,6 +58,10 @@ public class LeJeu extends application.Jeu {
 	 */
 	private List<HBox> joueurs;
 	/**
+	 * Le pion qui indique à quel joueur c'est le tour.
+	 */
+	private Circle pionTour;
+	/**
 	 * La scène
 	 */
 	private BorderPane cont;
@@ -110,6 +114,7 @@ public class LeJeu extends application.Jeu {
 	private VBox lesJoueurs() {
 		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		Circle p1 = new Circle(30), p2 = new Circle(30);
+		this.pionTour = new Circle(30);
 		Button pause;
 		if (this.pause)
 			pause = new Button("Resume game");
@@ -117,15 +122,18 @@ public class LeJeu extends application.Jeu {
 			pause = new Button("Pause game");
 		p1.getStyleClass().add("pion");
 		p2.getStyleClass().add("pion");
+		this.pionTour.getStyleClass().add("pion");
 		PlateauGUI.setCouleur(j1.getPion(), p1);
 		PlateauGUI.setCouleur(j2.getPion(), p2);
 		this.joueurs = new ArrayList<>();
+		this.joueurs.add(new HBox());
 		this.joueurs.add(new HBox());
 		this.joueurs.add(new HBox());
 		this.joueurs.get(0).getChildren().addAll(p1, new Label(j1.getNom()));
 		this.joueurs.get(0).getStyleClass().add("joueur");
 		this.joueurs.get(1).getChildren().addAll(p2, new Label(j2.getNom()));
 		this.joueurs.get(1).getStyleClass().add("joueur");
+		this.joueurs.get(2).getChildren().addAll(this.pionTour, new Label("'s turn"));
 		pause.setOnAction(new ActionPause(this));
 		VBox res = new VBox(2);
 		res.getChildren().addAll(this.joueurs);
@@ -193,6 +201,10 @@ public class LeJeu extends application.Jeu {
 			this.cont.getStyleClass().add("autre-tour");
 		else if (this.isTour())
 			this.cont.getStyleClass().removeAll("autre-tour");
+		if (this.puissance4.isTour())
+			PlateauGUI.setCouleur(this.puissance4.getJoueurCourant().getPion(), this.pionTour);
+		else
+			PlateauGUI.setCouleur(this.puissance4.getAdversaire().getPion(), this.pionTour);
 		this.plateau.maj();
 	}
 
@@ -298,6 +310,10 @@ public class LeJeu extends application.Jeu {
 	 */
 	public boolean isTour() {
 		return this.puissance4.isTour();
+	}
+
+	public Circle getPionTour() {
+		return this.pionTour;
 	}
 
 	/**
