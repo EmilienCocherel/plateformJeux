@@ -12,6 +12,22 @@ public class Pion extends Circle{
     this.setFill(couleur);
   }
 
+  public Pion(String coul,int val){
+    this.setRadius(10.0);
+    if(coul == "rouge"){
+      this.setFill(Color.RED);
+    }
+    if(coul == "bleu"){
+      this.setFill(Color.BLUE);
+    }
+    if(coul == "vert"){
+      this.setFill(Color.GREEN);
+    }
+    if(coul == "jaune"){
+      this.setFill(Color.YELLOW);
+    }
+  }
+
   public int getVal(){
     return this.val;
   }

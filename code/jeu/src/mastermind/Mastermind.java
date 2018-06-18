@@ -96,7 +96,7 @@ public class Mastermind extends application.Jeu{
     }
 
     public void fromJson(JSONObject json) {
-        Long id = (Long) json.get("id"), tour = (Long) json.get("tour");
+        Long id = (Long) json.get("id"), tour = (Long) json.get("tour"), combi1p1 = (long) json.get("combi1p1"), combi1p2 = (long) json.get("combi1p2"), combi1p3 = (long) json.get("combi1p3"), combi1p4 = (long) json.get("combi1p4") ;
         if (this.joueur.getIdentifiant()==this.idJoueurJ1){
             this.joueur.fromJson((JSONObject) json.get("joueur1"));
         }
@@ -108,20 +108,35 @@ public class Mastermind extends application.Jeu{
         }
         if (tour != null)
             this.manche.setNbCoup(tour.intValue());
+        if (combi1p1 != null){
+            this.combis.set(0,new Combinaison(combi1p1.toString(), combi1p2.toString(), combi1p3.toString(), combi1p4.toString()));
+        }
     }
 
     public JSONObject toJson() {
         JSONObject obj = new JSONObject();
+        obj.put("combi1p1", this.combis.get(0).getP1());
+        obj.put("combi1p2", this.combis.get(0).getP2());
+        obj.put("combi1p3", this.combis.get(0).getP3());
+        obj.put("combi1p4", this.combis.get(0).getP4());
+
+        obj.put("combi2p1", this.combis.get(1).getP1());
+        obj.put("combi2p2", this.combis.get(1).getP2());
+        obj.put("combi2p3", this.combis.get(1).getP3());
+        obj.put("combi2p4", this.combis.get(1).getP4());
+
+        obj.put("combi3p1", this.combis.get(2).getP1());
+        obj.put("combi3p2", this.combis.get(2).getP2());
+        obj.put("combi3p3", this.combis.get(2).getP3());
+        obj.put("combi3p4", this.combis.get(2).getP4());
+
+        obj.put("id", this.id);
         if(this.joueur.getIdentifiant()==this.idJoueurJ1){
-            obj.put("combisJ1", this.combis);
             obj.put("joueur1", this.joueur.toJson());
-            obj.put("id", this.id);
             obj.put("tourJ1", this.manche.getNbCoup());
         }
         else{
-            obj.put("combisJ2", this.combis);
             obj.put("joueur2", this.joueur.toJson());
-            obj.put("id", this.id);
             obj.put("tourJ2", this.manche.getNbCoup());
         }
         return obj;
