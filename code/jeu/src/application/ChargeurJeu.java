@@ -31,8 +31,8 @@ public class ChargeurJeu{
 		Jeu jeu = ((Jeu) Class.forName(nomClasse).newInstance());
 		//jeu.setId(1);
 		//jeu.setJ1(new Joueur(10));
-		jeu.setPartie(partie, idJoueur);
 		jeu.setPartieBD(partieBD);
+		jeu.setPartie(partie, idJoueur);
 		Platform.runLater(jeu);
 		//Platform.runLater(new Mastermind(1,new JoueurMastermind(10)));
 
