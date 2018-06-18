@@ -74,17 +74,23 @@ public class Joueur extends application.Joueur {
 	}
 
 	/**
-	 * Importer un joueur au format JSON
+	 * Mettre à jour les variables par rapport au JSONObject donné
 	 */
-	public static Joueur fromJson(JSONObject json) {
+	public void fromJson(JSONObject json) {
 		Long id = (Long) json.get("id"),
 			 pion = (Long) json.get("pion"),
 			 nbPions = (Long) json.get("nbPions"),
 			 nbPionsInitial = (Long) json.get("nbPionsInitial");
-		return new Joueur(id.intValue(),
-				(String) json.get("nom"),
-				pion.intValue(),
-				nbPions.intValue(),
-				nbPionsInitial.intValue());
+		String nom = (String) json.get("nom");
+		if (id != null)
+			this.id = id.intValue();
+		if (nom != null)
+			this.nom = nom;
+		if (pion != null)
+			this.pion = pion.intValue();
+		if (nbPions != null)
+			this.nbPions = nbPions.intValue();
+		if (nbPionsInitial != null)
+			this.nbPionsInitial = nbPionsInitial.intValue();
 	}
 }

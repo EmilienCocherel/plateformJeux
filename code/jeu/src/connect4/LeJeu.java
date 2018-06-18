@@ -90,13 +90,13 @@ public class LeJeu extends application.Jeu {
 	public void setPartie(application.Partie partie, int idJoueur) {
 		this.partie = partie;
 		application.Joueur joueur1 = partie.getJoueur1(), joueur2 = partie.getJoueur2();
-		if (!this.getEtat(idJoueur)) {
-			this.puissance4 = new Puissance4(
-					new Joueur(joueur1.getIdentifiant(), joueur1.getPseudo(), 1, 18),
-					new Joueur(joueur2.getIdentifiant(), joueur2.getPseudo(), 2, 18),
-					idJoueur
-				);
-		}
+		this.puissance4 = new Puissance4(
+				new Joueur(joueur1.getIdentifiant(), joueur1.getPseudo(), 1, 18),
+				new Joueur(joueur2.getIdentifiant(), joueur2.getPseudo(), 2, 18),
+				idJoueur
+			);
+		this.getEtat(idJoueur);
+		this.setEtat();
 	}
 
 	@Override
@@ -328,7 +328,7 @@ public class LeJeu extends application.Jeu {
 			int id = this.partie.getId();
 			String etat = this.partieBD.getEtat(id);
 			JSONObject obj = (JSONObject) parser.parse(etat);
-			this.puissance4 = Puissance4.fromJson(obj, actuel);
+			this.puissance4.fromJson(obj);
 			this.pause = (boolean) obj.get("pause");
 			System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj OK");
 			return true;

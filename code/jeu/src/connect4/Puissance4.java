@@ -32,7 +32,6 @@ public class Puissance4 {
 		else
 			this.actuel = 2;
 		this.tour = this.actuel;
-		System.out.println(this.actuel);
     }
 
 	/**
@@ -133,19 +132,20 @@ public class Puissance4 {
 		return obj;
 	}
 
-	public static Puissance4 fromJson(JSONObject json, int actuel) {
+	/**
+	 * Mettre à jour les variables par rapport au JSONObject donné
+	 */
+	public void fromJson(JSONObject json) {
 		Long id = (Long) json.get("id"),
 			 tour = (Long) json.get("tour");
-		System.out.println("actuel: "+actuel);
-		System.out.println("tour: "+tour.intValue());
-		return new Puissance4(Plateau.fromJson((JSONArray) json.get("plateau")),
-					(List<Joueur>) json.get("gagnants"),
-					Joueur.fromJson((JSONObject) json.get("joueur1")),
-					Joueur.fromJson((JSONObject) json.get("joueur2")),
-					id.intValue(),
-					actuel,
-					tour.intValue()
-					);
+		this.plateau.fromJson((JSONArray) json.get("plateau"));
+		this.joueur1.fromJson((JSONObject) json.get("joueur1"));
+		this.joueur2.fromJson((JSONObject) json.get("joueur2"));
+		if (id != null)
+			this.id = id.intValue();
+		if (tour != null)
+			this.tour = tour.intValue();
+		// TODO: Gagnants
 	}
 
 	/**
