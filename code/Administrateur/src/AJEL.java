@@ -87,9 +87,13 @@ public class AJEL extends Application {
     public void passerEnModeCompte(){
         this.laBase.setCenter(new BorderCompte(this));
     }
+
+    public void passerEnModeRapport(){
+        this.laBase.setCenter(new BorderRapport(this));
+    }
 //
     public void passerEnModeRapportLire(){
-        this.laBase.setCenter(new BorderLireRapport(this));
+        this.laBase.setCenter(new BorderRapport(this));
     }
 //
     public void passerEnModeRapportRediger(){
