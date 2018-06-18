@@ -90,6 +90,10 @@ public class    Manche {
         return this.nbCoup;
     }
 
+    public void setNbCoup(int val){
+        this.nbCoup = val;
+    }
+
     public void incrNbCoup(int nbCouleurOkPositionOk,int nbCouleurOkPositionPasOk){
         Combinaison combi = this.partie.getATester();
         this.CombiParTour.get(this.nbCoup).setCouleurP1(combi.getP1().getCouleur());
@@ -161,7 +165,5 @@ public class    Manche {
     public String getLog(){
       return this.log;
     }
-
-
 
 }

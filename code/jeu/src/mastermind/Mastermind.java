@@ -11,15 +11,20 @@ import javafx.stage.Stage;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import org.json.simple.*;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import application.*;
 
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class Mastermind extends application.Jeu{
-    private JoueurMastermind j1;
+    private JoueurMastermind joueur;
     private int id;
     private ArrayList<Combinaison> combis;
     private Combinaison aTester;
@@ -30,12 +35,10 @@ public class Mastermind extends application.Jeu{
     private HBox interfaceChoix;
     private VBox historiqueCombinaison;
     private application.Partie partie;
-    private int idJoueur;
+    private int idJoueurJ1;
+    private int idJoueurJ2;
+    private application.PartieBD partieBD;
 
-    public Mastermind(int id,JoueurMastermind j1){
-      this.id=id;
-      this.j1=j1;
-    }
     public Mastermind(){}
 
     @Override
@@ -51,12 +54,103 @@ public class Mastermind extends application.Jeu{
         this.partie = partie;
         application.Joueur joueur1 = partie.getJoueur1();
         application.Joueur joueur2 = partie.getJoueur2();
-        this.idJoueur=idJoueur;
-        this.j1=new JoueurMastermind(this.idJoueur);
+        this.joueur=new JoueurMastermind(idJoueur);
+        this.idJoueurJ1=joueur1.getIdentifiant();
+        this.idJoueurJ2=joueur2.getIdentifiant();
+        this.combis=new ArrayList<>();
+        this.combis.add(new Combinaison(new Pion(Color.RED,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
+        this.combis.add(new Combinaison(new Pion(Color.GREEN,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.BLUE,4)));
+        this.combis.add(new Combinaison(new Pion(Color.BLUE,1),new Pion(Color.YELLOW,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
+        this.aTester = new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4));
+        this.joueur.nouvelleManche(new Manche(this.combis.get(0),this, this.joueur,0));
+        this.manche=this.joueur.getMancheCourante();
+        this.manche.initCombiParTour();
+        this.manche.initResParTour();
+        this.getEtat(idJoueur);
     }
 
     @Override
-    public void setPartieBD(application.PartieBD partieBD) {}
+    public void setPartieBD(application.PartieBD partieBD) {
+        this.partieBD = partieBD;
+    }
+
+    public boolean getEtat(int actuel) {
+        JSONParser parser = new JSONParser();
+        try {
+            int id = this.partie.getId();
+            String etat = this.partieBD.getEtat(id);
+            JSONObject obj = (JSONObject) parser.parse(etat);
+            this.fromJson(obj);
+            System.out.println(this.joueur.getIdentifiant()+" get màj OK");
+            return true;
+        } catch (ParseException ex) {
+            System.out.println(ex.getCause());
+            return false;
+        } catch (SQLException ex) {
+            System.out.println(this.joueur.getIdentifiant()+" get màj FAIL sql exception");
+            return false;
+        }
+    }
+
+    public void setEtat() {
+        // TODO: envoyer l'état au format JSON
+        JSONObject json = this.toJson();
+        System.out.println(json);
+        try {
+            this.partieBD.majEtat(this.partie.getId(), json.toString());
+            System.out.println(this.joueur.getIdentifiant()+" insert màj OK");
+        } catch (SQLException ex) {
+            System.out.println(this.joueur.getIdentifiant()+" insert màj FAIL");
+        }
+    }
+
+    public void fromJson(JSONObject json) {
+        Long id = (Long) json.get("id"), tour = (Long) json.get("tour");
+        String combi1p1 = (String) json.get("combi1p1"), combi1p2 = (String) json.get("combi1p2"), combi1p3 = (String) json.get("combi1p3"), combi1p4 = (String) json.get("combi1p4") ;
+        if (this.joueur.getIdentifiant()==this.idJoueurJ1){
+            this.joueur.fromJson((JSONObject) json.get("joueur1"));
+        }
+        else{
+            this.joueur.fromJson((JSONObject) json.get("joueur2"));
+        }
+        if (id != null){
+            this.id = id.intValue();
+        }
+        if (tour != null)
+            this.manche.setNbCoup(tour.intValue());
+        if (combi1p1 != null){
+            this.combis.set(0,new Combinaison(combi1p1, combi1p2, combi1p3, combi1p4));
+        }
+    }
+
+    public JSONObject toJson() {
+        JSONObject obj = new JSONObject();
+        obj.put("combi1p1", this.combis.get(0).getP1());
+        obj.put("combi1p2", this.combis.get(0).getP2());
+        obj.put("combi1p3", this.combis.get(0).getP3());
+        obj.put("combi1p4", this.combis.get(0).getP4());
+
+        obj.put("combi2p1", this.combis.get(1).getP1());
+        obj.put("combi2p2", this.combis.get(1).getP2());
+        obj.put("combi2p3", this.combis.get(1).getP3());
+        obj.put("combi2p4", this.combis.get(1).getP4());
+
+        obj.put("combi3p1", this.combis.get(2).getP1());
+        obj.put("combi3p2", this.combis.get(2).getP2());
+        obj.put("combi3p3", this.combis.get(2).getP3());
+        obj.put("combi3p4", this.combis.get(2).getP4());
+
+        obj.put("id", this.id);
+        if(this.joueur.getIdentifiant()==this.idJoueurJ1){
+            obj.put("joueur1", this.joueur.toJson());
+            obj.put("tourJ1", this.manche.getNbCoup());
+        }
+        else{
+            obj.put("joueur2", this.joueur.toJson());
+            obj.put("tourJ2", this.manche.getNbCoup());
+        }
+        return obj;
+    }
 
     public Combinaison getATester(){
       return this.aTester;
@@ -80,8 +174,8 @@ public class Mastermind extends application.Jeu{
 
     public void prochaineManche(Manche precedent,boolean gagne){
         try{
-            this.j1.nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueurMastermind(),precedent.getNum()+1));
-            this.manche=j1.getMancheCourante();
+            this.joueur.nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueurMastermind(),precedent.getNum()+1));
+            this.manche=joueur.getMancheCourante();
             this.manche.initCombiParTour();
             this.manche.initResParTour();
             Alert info = new Alert(CONFIRMATION);
@@ -127,7 +221,7 @@ public class Mastermind extends application.Jeu{
 
 
     public JoueurMastermind getJ1() {
-        return j1;
+        return joueur;
     }
 
     public int getId() {
@@ -139,7 +233,7 @@ public class Mastermind extends application.Jeu{
     }
 
     public void setJ1(Joueur joueur) {
-      this.j1 = new JoueurMastermind(joueur.getIdentifiant());
+      this.joueur = new JoueurMastermind(joueur.getIdentifiant());
     }
 
     public String getStringPion(int nbPion){
@@ -188,7 +282,7 @@ public class Mastermind extends application.Jeu{
         BoutonRadio rexpert = new BoutonRadio("jaune",val);
         rexpert.setToggleGroup(group);
         res.getChildren().add(rexpert);
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.j1).getMancheCourante());
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
         rfacile.setOnAction(actionNiveau);
         rmoyen.setOnAction(actionNiveau);
         rdifficile.setOnAction(actionNiveau);
@@ -211,7 +305,6 @@ public class Mastermind extends application.Jeu{
     private VBox choixCouleursP4(){
         return this.choixCouleurDuPion(3);
     }
-
 
     private void initHistoriqueCombinaison(){
         VBox res=new VBox(5);
@@ -236,7 +329,7 @@ public class Mastermind extends application.Jeu{
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
         Button brestart = new Button("tester");
-        ActionTester actionTester = new ActionTester(this,this.j1.getMancheCourante());
+        ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
         brestart.setOnAction(actionTester);
         res.getChildren().add(brestart);
         res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
@@ -288,16 +381,7 @@ public class Mastermind extends application.Jeu{
          @Override
          public void run(){
             this.stage = new Stage();
-            this.combis=new ArrayList<>();
-            this.combis.add(new Combinaison(new Pion(Color.RED,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
-            this.combis.add(new Combinaison(new Pion(Color.GREEN,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.BLUE,4)));
-            this.combis.add(new Combinaison(new Pion(Color.BLUE,1),new Pion(Color.YELLOW,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
-            this.aTester = new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4));
             stage.setTitle("Mastermind");
-            this.j1.nouvelleManche(new Manche(this.combis.get(0),this, this.j1,0));
-            this.manche=this.j1.getMancheCourante();
-            this.manche.initCombiParTour();
-            this.manche.initResParTour();
             this.initInterfaceChoix();
             this.initHistoriqueCombinaison();
             this.laScene();

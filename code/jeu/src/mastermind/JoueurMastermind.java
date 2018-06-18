@@ -1,7 +1,7 @@
 package mastermind;
 
 import java.util.ArrayList;
-import application.*;
+import org.json.simple.*;
 
 public class JoueurMastermind extends application.Joueur {
     private int score;
@@ -28,4 +28,28 @@ public class JoueurMastermind extends application.Joueur {
     public int getScore(){return this.score;}
 
     public void setScore(int val){this.score=val;}
+
+    /**
+     * Convertir le joueur au format JSON
+     */
+    public JSONObject toJson(){
+        JSONObject res = new JSONObject();
+        res.put("id", this.identifiant);
+        res.put("score", this.score);
+        return res;
+    }
+
+    /**
+     * Mettre à jour les variables par rapport au JSONObject donné
+     */
+    public void fromJson(JSONObject json){
+        Long id = (Long) json.get("id"),
+                score = (Long) json.get("score");
+        if (id != null){
+            this.identifiant = id.intValue();
+        }
+        if (score != null){
+            this.score = score.intValue();
+        }
+    }
 }
