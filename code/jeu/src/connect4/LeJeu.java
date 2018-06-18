@@ -185,14 +185,14 @@ public class LeJeu extends application.Jeu {
 	public void majAffichage() {
 		// A implémenter
 		System.out.println(this.cont);
-		if (this.pause && !this.cont.getStylesheets().contains("pause"))
+		if (this.pause && !this.cont.getStyleClass().contains("pause"))
 			this.cont.getStyleClass().add("pause");
-		else
+		else if (!this.pause)
 			this.cont.getStyleClass().remove("pause");
-		if (!this.puissance4.isTour() && !this.cont.getStylesheets().contains("autre-tour"))
+		if (!this.isTour() && !this.cont.getStyleClass().contains("autre-tour"))
 			this.cont.getStyleClass().add("autre-tour");
-		else
-			this.cont.getStyleClass().remove("autre-tour");
+		else if (this.isTour())
+			this.cont.getStyleClass().removeAll("autre-tour");
 		this.plateau.maj();
 	}
 
