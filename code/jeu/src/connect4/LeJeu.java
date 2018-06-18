@@ -69,6 +69,14 @@ public class LeJeu extends application.Jeu {
 	 * Pour interagir avec la base de données
 	 */
 	private application.PartieBD partieBD;
+	/**
+	 * Le stage du jeu
+	 */
+	private Stage stage;
+	/**
+	 * La timeline de mise à jour du jeu
+	 */
+	private Timeline updateTimeline;
 
 	/**
 	 * @return le clavier avec les 27 caractères et le controleur des touches
@@ -193,6 +201,14 @@ public class LeJeu extends application.Jeu {
 	}
 
 	/**
+	 * Fermer le jeu.
+	 */
+	public void fermer() {
+		this.updateTimeline.stop();
+		this.stage.close();
+	}
+
+	/**
 	 * Créer le graphe de scène et lance le jeu
 	 */
 	public void run() {
@@ -209,6 +225,8 @@ public class LeJeu extends application.Jeu {
 
 		stage.setScene(this.laScene());
 		stage.getScene().getStylesheets().add("connect4/style/style.css");
+		stage.setOnCloseRequest(new ActionFermer(this));
+
 		stage.show();
 		this.majAffichage();
 	}
