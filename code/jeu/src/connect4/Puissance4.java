@@ -32,29 +32,6 @@ public class Puissance4 {
 		else
 			this.actuel = 2;
 		this.tour = this.actuel;
-    }
-
-	/**
-	 * @param plateau Le plateau
-	 * @param gagnants La liste des gagnants
-	 * @param joueur1 Le premier joueur
-	 * @param joueur2 Le second joueur
-	 * @param id L'id
-	 * @param actuel L'id du joueur actuel
-	 * @param tour Si c'est le tour du joueur actuel
-	 */
-	public Puissance4(Plateau plateau, List<Joueur> gagnants, Joueur joueur1, Joueur joueur2,
-			int id, int actuel, int tour) {
-		this.plateau = plateau;
-		this.gagnants = gagnants;
-		this.joueur1 = joueur1;
-		this.joueur2 = joueur2;
-		this.id = id;
-		if (actuel == joueur1.getId())
-			this.actuel = 1;
-		else
-			this.actuel = 2;
-		this.tour = tour;
 	}
 
     public Integer getPion(int ligne, int colonne) {
