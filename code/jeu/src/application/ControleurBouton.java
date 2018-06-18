@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import java.util.ArrayList;
 
 import java.sql.SQLException;
 
@@ -67,6 +68,7 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
+
             case "Rechercher un joueur par numéro":
                 try{
                     j = jbd.rechercherJoueurParNum(ficheJoueur.getNumJoueur());
@@ -210,6 +212,32 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                   alertEchec(ex);
               }
               break;
+
+            case "Filtrer les rapports":
+              String laListeRapports="";
+              try {
+                  ArrayList<Rapport> res = this.AppliJDBC.getRapportBD().listeDesRapportsFiltree(ficheRapport.getSujetRapport());
+                  for (Rapport rappo:res){
+                    laListeRapports += rappo.getIdRapport()+" "+ rappo.getContenuRapport() +" " + rappo.getDateRapport() +"\n";
+                  }
+              }catch (SQLException ex){
+                  laListeRapports="La requête a échoué\nVoici le message du serveur\n"+ex.getMessage();
+              }
+              this.AppliJDBC.showFicheResultat(laListeRapports);
+              break;
+
+            case "Rédiger":
+                r = ficheRapport.getRapport();
+                try {
+                    int nr = rbd.creerRapport(r);
+                    ficheRapport.setIdRapport(nr);
+                    alertOK("Insertion du rapport a réussi\nLe nouveau rapport porte le numéro "+nr);
+                    ficheRapport.viderFicheRapport();
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
+
         }
 
     }
