@@ -46,6 +46,10 @@ public class LeJeu extends application.Jeu {
 	 */
 	private boolean pause;
 	/**
+	 * Le numéro de la manche actuelle (pour les messages de défaites)
+	 */
+	private int round;
+	/**
 	 * Les différents contrôles qui seront mis à jour
 	 * ou consultés pour l'affichage
 	 */
@@ -188,10 +192,9 @@ public class LeJeu extends application.Jeu {
 	}
 
 	/**
-	 * raffraichit l'affichage en fonction du modèle
+	 * rafraichit l'affichage en fonction du modèle
 	 */
 	public void majAffichage() {
-		System.out.println(this.cont);
 		// La pause
 		if (this.pause && !this.cont.getStyleClass().contains("pause"))
 			this.cont.getStyleClass().add("pause");
@@ -209,7 +212,28 @@ public class LeJeu extends application.Jeu {
 			PlateauGUI.setCouleur(this.puissance4.getJoueurCourant().getPion(), this.pionTour);
 		else
 			PlateauGUI.setCouleur(this.puissance4.getAdversaire().getPion(), this.pionTour);
+
 		this.plateau.maj();
+
+		// Si le joueur actuel a perdu une manche
+		if (this.round == this.puissance4.getRound()-1) {
+			int index = this.puissance4.getGagnants().size()-1;
+			if (this.puissance4.getGagnants().get(index) == this.puissance4.getAdversaire()) {
+				this.perdreManche(this.round);
+				this.round ++;
+				if (this.round == 3) {
+					if (this.puissance4.getGagnant() == this.puissance4.getJoueurCourant())
+						this.gagner();
+					else
+						this.perdre();
+				}
+
+				// Remettre tout à zéro
+				this.puissance4.getJoueur1().reset();
+				this.puissance4.getJoueur2().reset();
+				this.puissance4.getPlateau().reset();
+			}
+		}
 	}
 
 	public PlateauGUI getPlateau() {
@@ -244,6 +268,8 @@ public class LeJeu extends application.Jeu {
 		this.stage.show();
 
 		this.stage.setOnCloseRequest(new ActionFermer(this));
+
+		this.round = 1;
 		this.majAffichage();
 	}
 
@@ -278,7 +304,19 @@ public class LeJeu extends application.Jeu {
 		Alert alert = new Alert(AlertType.INFORMATION, "You've won the game! Good job.");
 		alert.setTitle("Victory");
 		alert.setHeaderText("Victory");
-		alert.showAndWait();
+		alert.setOnHidden(ev -> alert.close());
+		alert.show();
+	}
+
+	/**
+	 * Annoncer au joueur courant qu'il a gagné la manche.
+	 */
+	public void gagnerManche(int manche) {
+		Alert alert = new Alert(AlertType.INFORMATION, "You've won round "+manche+"!");
+		alert.setTitle("Victory");
+		alert.setHeaderText("Victory");
+		alert.setOnHidden(ev -> alert.close());
+		alert.show();
 	}
 
 	/**
@@ -288,7 +326,19 @@ public class LeJeu extends application.Jeu {
 		Alert alert = new Alert(AlertType.INFORMATION, "You've lost the game.");
 		alert.setTitle("Defeat");
 		alert.setHeaderText("Defeat");
-		alert.showAndWait();
+		alert.setOnHidden(ev -> alert.close());
+		alert.show();
+	}
+
+	/**
+	 * Annoncer au joueur courant qu'il a perdu la manche.
+	 */
+	public void perdreManche(int manche) {
+		Alert alert = new Alert(AlertType.INFORMATION, "You've lost round "+manche+".");
+		alert.setTitle("Defeat");
+		alert.setHeaderText("Defeat");
+		alert.setOnHidden(ev -> alert.close());
+		alert.show();
 	}
 
 	/**
@@ -327,7 +377,6 @@ public class LeJeu extends application.Jeu {
 		// TODO: envoyer l'état au format JSON
 		JSONObject json = this.puissance4.toJson();
 		json.put("pause", this.pause);
-		System.out.println(json);
 		try {
 			this.partieBD.majEtat(this.partie.getId(), json.toString());
 			System.out.println(this.puissance4.getJoueurCourant().getId()+" insert màj OK");
