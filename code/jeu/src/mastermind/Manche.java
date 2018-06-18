@@ -69,7 +69,7 @@ public class    Manche {
 
     public void finManche(boolean gagne){
         if (gagne){
-            this.getJoueurMastermind().setScore(this.getJoueurMastermind().getScore()+10-this.getNbCoup());
+            this.getJoueurMastermind().setScore(this.getJoueurMastermind().getScore()+11-this.getNbCoup());
             this.partie.prochaineManche(this,gagne);
         }
         else{
@@ -109,49 +109,46 @@ public class    Manche {
         dico.put(this.partie.getATester().getCouleurP2(),dico.getOrDefault(this.partie.getATester().getCouleurP2(), 0)+1);
         dico.put(this.partie.getATester().getCouleurP3(),dico.getOrDefault(this.partie.getATester().getCouleurP3(), 0)+1);
         dico.put(this.partie.getATester().getCouleurP4(),dico.getOrDefault(this.partie.getATester().getCouleurP4(), 0)+1);
-        if(this.resParTour.get(this.nbCoup).getPionsRes().get(0).getFill().equals(this.partie.getATester().getCouleurP1())){
+        if(this.combi.getCouleurP1().equals(this.partie.getATester().getCouleurP1())){
             nbCouleurOkPositionOk+=1;
         }
-        if(this.resParTour.get(this.nbCoup).getPionsRes().get(1).getFill().equals(this.partie.getATester().getCouleurP2())){
+        if(this.combi.getCouleurP2().equals(this.partie.getATester().getCouleurP2())){
             nbCouleurOkPositionOk+=1;
         }
-        if(this.resParTour.get(this.nbCoup).getPionsRes().get(2).getFill().equals(this.partie.getATester().getCouleurP3())){
+        if(this.combi.getCouleurP3().equals(this.partie.getATester().getCouleurP3())){
             nbCouleurOkPositionOk+=1;
         }
-        if(this.resParTour.get(this.nbCoup).getPionsRes().get(3).getFill().equals(this.partie.getATester().getCouleurP4())){
+        if(this.combi.getCouleurP4().equals(this.partie.getATester().getCouleurP4())){
             nbCouleurOkPositionOk+=1;
         }
 
-        if(dico.containsKey(this.resParTour.get(this.nbCoup).getPionsRes().get(0).getFill())){
-            if(dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(0).getFill())>0){
+        if(dico.containsKey(this.combi.getCouleurP1())){
+            if(dico.get(this.combi.getCouleurP1())>0){
                 nbCouleurOkPositionPasOk+=1;
-                dico.replace(this.resParTour.get(this.nbCoup).getPionsRes().get(0).getFill(), dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(0).getFill())-1);
+                dico.replace(this.combi.getCouleurP1(), dico.get(this.combi.getCouleurP1())-1);
             }
         }
 
-        if(dico.containsKey(this.resParTour.get(this.nbCoup).getPionsRes().get(1).getFill())){
-            if(dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(1).getFill())>0){
+        if(dico.containsKey(this.combi.getCouleurP2())){
+            if(dico.get(this.combi.getCouleurP2())>0){
                 nbCouleurOkPositionPasOk+=1;
-                dico.replace(this.resParTour.get(this.nbCoup).getPionsRes().get(1).getFill(), dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(1).getFill())-1);
+                dico.replace(this.combi.getCouleurP2(), dico.get(this.combi.getCouleurP2())-1);
             }
         }
 
-        if(dico.containsKey(this.resParTour.get(this.nbCoup).getPionsRes().get(2).getFill())){
-            if(dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(2).getFill())>0){
+        if(dico.containsKey(this.combi.getCouleurP3())){
+            if(dico.get(this.combi.getCouleurP3())>0){
                 nbCouleurOkPositionPasOk+=1;
-                dico.replace(this.resParTour.get(this.nbCoup).getPionsRes().get(2).getFill(), dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(2).getFill())-1);
+                dico.replace(this.combi.getCouleurP3(), dico.get(this.combi.getCouleurP3())-1);
             }
         }
 
-        if(dico.containsKey(this.resParTour.get(this.nbCoup).getPionsRes().get(3).getFill())){
-            if(dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(3).getFill())>0){
+        if(dico.containsKey(this.combi.getCouleurP4())){
+            if(dico.get(this.combi.getCouleurP4())>0){
                 nbCouleurOkPositionPasOk+=1;
-                dico.replace(this.resParTour.get(this.nbCoup).getPionsRes().get(3).getFill(), dico.get(this.resParTour.get(this.nbCoup).getPionsRes().get(3).getFill())-1);
+                dico.replace(this.combi.getCouleurP4(), dico.get(this.combi.getCouleurP4())-1);
             }
         }
-
-        System.out.println(nbCouleurOkPositionOk);
-        System.out.println(nbCouleurOkPositionPasOk);
         res.add(nbCouleurOkPositionOk);
         res.add(nbCouleurOkPositionPasOk-nbCouleurOkPositionOk);
         return res;
@@ -165,13 +162,6 @@ public class    Manche {
       return this.log;
     }
 
-    public void setLog(String text){
-      this.log=text;
-    }
-
-    public void addToLog(String text){
-      this.log+=text;
-    }
 
 
 }

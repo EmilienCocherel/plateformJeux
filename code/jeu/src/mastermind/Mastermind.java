@@ -66,20 +66,19 @@ public class Mastermind extends application.Jeu{
 
     public void prochaineManche(Manche precedent,boolean gagne){
         try{
-            System.out.println(precedent.getNum()+1);
             this.j1.nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueurMastermind(),precedent.getNum()+1));
             this.manche=j1.getMancheCourante();
             this.manche.initCombiParTour();
-            System.out.println(this.manche.getNum()+1);
-            System.out.println("nouvelle manche");
+            this.manche.initResParTour();
             Alert info = new Alert(CONFIRMATION);
             if (gagne){
                 info.setHeaderText("Combinaison trouvé");
-                info.setContentText("Bravo ! voulez-vous passer à la suivante?");
+                info.setContentText("Vous avez remporté la manche!\n voulez-vous passer à la suivante?");
             }
             else{
                 info.setHeaderText("Manche termine");
-                info.setContentText("La manche est terminé voulez-vous passer à la suivante?");
+                String solution = precedent.getCombi().toString();
+                info.setContentText("La manche est terminé vous avez perdu \n La solution était: "+solution+"\n passer à la prochaine manche ?");
             }
             Optional<ButtonType> result = info.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -94,11 +93,21 @@ public class Mastermind extends application.Jeu{
             }
         }
         catch(IndexOutOfBoundsException e){
-            Alert info = new Alert(CONFIRMATION);
-            info.setHeaderText("La Partie est terminé");
-            info.setContentText("bien joué");
-            info.showAndWait();
-            stage.close();
+            if (gagne){
+                Alert info = new Alert(CONFIRMATION);
+                info.setHeaderText("La Partie est terminé");
+                info.setContentText("Vous avez remporté la dernière manche!");
+                info.showAndWait();
+                stage.close();
+            }
+            else{
+                Alert info = new Alert(CONFIRMATION);
+                info.setHeaderText("La Partie est terminé");
+                String solution = precedent.getCombi().toString();
+                info.setContentText("Vous avez perdu la dernière Manche \n La solution était: "+solution);
+                info.showAndWait();
+                stage.close();
+            }
         }
     }
 
@@ -253,12 +262,6 @@ public class Mastermind extends application.Jeu{
 
 
         /**
-         * charge les images à afficher en fonction des erreurs
-         * @param repertoire répertoire où se trouvent les images
-         */
-
-
-        /**
          * raffraichit l'affichage en fonction du modèle
          */
         public void majAffichage(){
@@ -266,8 +269,6 @@ public class Mastermind extends application.Jeu{
           this.aTester.getP2().setFill(this.aTester.getCouleurP2());
           this.aTester.getP3().setFill(this.aTester.getCouleurP3());
           this.aTester.getP4().setFill(this.aTester.getCouleurP4());
-          //this.initHistoriqueCombinaison();
-          //this.historique.setText(this.manche.getLog());
         }
 
 

@@ -67,9 +67,16 @@ public class Combinaison {
         this.p4.setFill(couleur);
     }
 
+
+
     @Override
     public boolean equals(Object o){
         Combinaison c2=(Combinaison)o;
         return this.p1.getCouleur().equals(c2.p1.getCouleur()) && this.p2.getCouleur().equals(c2.p2.getCouleur()) && this.p3.getCouleur().equals(c2.p3.getCouleur()) && this.p4.getCouleur().equals(c2.p4.getCouleur());
+    }
+
+    @Override
+    public String toString(){
+        return this.p1.toString()+" "+this.p2.toString()+" "+this.p3.toString()+" "+this.p4.toString();
     }
 }
