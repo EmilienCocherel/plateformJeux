@@ -53,7 +53,7 @@ public abstract class PageAdmin extends BorderPane{
 
     public Label labelGrosPageAdmin(String nom) {
 
-        Font fontGros = new Font("Arial", 25);
+        Font fontGros = new Font("Arial", 15);
         Label label = new Label(nom);
         label.setTextFill(Color.rgb(196, 196, 196));
         label.setAlignment(Pos.CENTER);
@@ -84,6 +84,17 @@ public abstract class PageAdmin extends BorderPane{
     public HBox hboxTypePageAdmin(String nom){
         HBox hbox = new HBox();
         Label label = this.labelTypePageAdmin(nom);
+        TextField text = new TextField();
+
+        hbox.getChildren().addAll(label, text);
+        hbox.setPadding(new Insets(10, 50, 10, 50));
+
+        return hbox;
+    }
+
+    public HBox hboxTypeGrosPageAdmin(String nom){
+        HBox hbox = new HBox();
+        Label label = this.labelGrosPageAdmin(nom);
         TextField text = new TextField();
 
         hbox.getChildren().addAll(label, text);
@@ -165,10 +176,8 @@ public abstract class PageAdmin extends BorderPane{
         hbox.setPadding(new Insets(10, 50, 10, 50));
 
         return hbox;
-
-
-
     }
+
     public TableView tableauTypePageAdmin(String... nomsColonnes){
 
         TableView tableau = new TableView();
@@ -234,7 +243,7 @@ public abstract class PageAdmin extends BorderPane{
         TextArea tmessage = new TextArea();
         tmessage.setWrapText(true);
         tmessage.setEditable(false);
-        tmessage.setMinSize(200, 500);
+        tmessage.setMinSize(200, 600);
 
         return tmessage;
     }

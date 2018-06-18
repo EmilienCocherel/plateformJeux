@@ -17,7 +17,7 @@ public class BorderGererJeux extends PageAdmin {
         Button bAccueil = this.buttonTypePageAdmin("Accueil");
         bAccueil.setOnAction(event -> this.app.passerEnModeAccueil());
 
-        this.setTop(this.hboxTypePageAdmin("Jeu : "));
+        this.setTop(this.hboxTypeGrosPageAdmin("Jeu : "));
         this.setCenter(this.tableauTypePageAdmin("Nom du jeu","Prix","Actif"));
         this.setBottom(this.buttonBarTypePageAdmin(bAccueil));
 

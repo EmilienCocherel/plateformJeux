@@ -142,6 +142,7 @@ public class AJEL extends Application {
 
         this.creerMenu();
         this.colorerLaBase();
+        this.laBase.setCenter(new BorderAccueil(this));
 
         stage.setScene( new Scene(this.laBase,1000,800));
         stage.setTitle("AJEL");

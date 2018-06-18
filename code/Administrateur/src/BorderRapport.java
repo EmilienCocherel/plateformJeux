@@ -21,7 +21,7 @@ public class BorderRapport extends PageAdmin {
         this.setPadding(new Insets(0,20,0,20));
         this.setMaxSize(800, 700);
 
-        this.setTop(this.hboxTypePageAdmin("Nom du rapport : "));
+        this.setTop(this.hboxTypeGrosPageAdmin("Nom du rapport : "));
         this.setCenter(this.tableauTypePageAdmin("Titre", "Auteur", "Sujet", "Date publication"));
         this.setBottom(this.buttonBarTypePageAdmin(bAccueil, bLire));
     }

@@ -21,7 +21,7 @@ public class BorderCompte extends PageAdmin {
         this.setPadding(new Insets(0,20,0,20));
         this.setMaxSize(800, 700);
 
-        this.setTop(this.hboxTypePageAdmin("Pseudo : "));
+        this.setTop(this.hboxTypeGrosPageAdmin("Pseudo : "));
         this.setCenter(this.tableauTypePageAdmin("Joueur\n(Nom du compte)", "Pseudo", "Email", "Actif"));
         this.setBottom(this.buttonBarTypePageAdmin(bMenu, bEnregistrer));
     }
