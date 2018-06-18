@@ -1,13 +1,18 @@
 .pion {
 	-fx-fill: #C5D0EA;
+	-fx-stroke: #8895B8;
+	-fx-stroke-type: inside;
+	-fx-stroke-width: 10px;
 }
 
 .pion#joueur1 {
 	-fx-fill: #F4E28A;
+	-fx-stroke: #C2B05B;
 }
 
 .pion#joueur2 {
 	-fx-fill: #F43A68;
+	-fx-stroke: #C21B44;
 }
 
 .bouton_jouer {
@@ -29,8 +34,8 @@
 
 #plateau {
 	-fx-background-color: #445785;
-	-fx-hgap: 5;
-	-fx-vgap: 5;
+	-fx-hgap: 15;
+	-fx-vgap: 15;
 	-fx-padding: 15;
 	-fx-alignment: center;
 }
