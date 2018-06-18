@@ -43,7 +43,7 @@ public class AJEL extends Application {
         gererCompte.setOnAction(event -> this.passerEnModeCompte());
 
         MenuItem lireRapport = new MenuItem("Lire un rapport");
-        lireRapport.setOnAction(event -> this.passerEnModeRapportLire());
+        lireRapport.setOnAction(event -> this.passerEnModeRapport());
 
         MenuItem redigerRapport = new MenuItem("Rédiger un rapport");
         redigerRapport.setOnAction(event -> this.passerEnModeRapportRediger());
@@ -93,7 +93,7 @@ public class AJEL extends Application {
     }
 //
     public void passerEnModeRapportLire(){
-        this.laBase.setCenter(new BorderRapport(this));
+        this.laBase.setCenter(new BorderLireRapport(this));
     }
 //
     public void passerEnModeRapportRediger(){
