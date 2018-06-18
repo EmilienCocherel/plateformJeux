@@ -37,7 +37,7 @@ public class AJEL extends Application {
         ajouterJeu.setOnAction(event -> this.passerEnModeAjouterJeu());
 
         MenuItem gererJeu = new MenuItem("Gérer un jeu");
-        //gererJeu.setOnAction(event -> this.passerEnModeGererJeu());
+        gererJeu.setOnAction(event -> this.passerEnModeGererJeux());
 
         MenuItem gererCompte = new MenuItem("Gérer un compte");
         gererCompte.setOnAction(event -> this.passerEnModeCompte());
@@ -82,6 +82,10 @@ public class AJEL extends Application {
 
     public void passerEnModeAjouterJeu(){
         this.laBase.setCenter(new BorderAjouterJeu(this));
+   }
+
+   public void passerEnModeGererJeux(){
+        this.laBase.setCenter(new BorderGererJeux(this));
    }
 
     public void passerEnModeCompte(){
