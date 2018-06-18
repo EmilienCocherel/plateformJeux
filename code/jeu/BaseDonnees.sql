@@ -125,6 +125,7 @@ CREATE TABLE JOUEUR (
   admin char(1) DEFAULT NULL,
   PRIMARY KEY (idJo),
   UNIQUE KEY idJo (idJo),
+  UNIQUE KEY pseudo (pseudo),
   UNIQUE KEY emailJo (emailJo)
 )
 ENGINE=InnoDB DEFAULT CHARSET=latin1;
