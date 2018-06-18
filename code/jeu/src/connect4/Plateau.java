@@ -110,17 +110,20 @@ public class Plateau extends Matrice<Integer> {
 	}
 
 	/**
-	 * Importer un plateau au format JSON
+	 * Mettre à jour les variables par rapport au JSONObject donné
 	 */
-	public static Plateau fromJson(JSONArray json) {
-		Plateau res = new Plateau();
+	public void fromJson(JSONArray json) {
 		JSONArray elem;
-		for (int colonne = 0 ; colonne < res.getNbColonnes(); colonne ++) {
+		Long value;
+		for (int colonne = 0 ; colonne < this.getNbColonnes(); colonne ++) {
 			elem = (JSONArray) json.get(colonne);
-			for (int ligne = 0 ; ligne < res.getNbLignes(); ligne ++) {
-				res.set(ligne, colonne, (Integer) elem.get(ligne));
+			for (int ligne = 0 ; ligne < this.getNbLignes(); ligne ++) {
+				value = (Long) elem.get(ligne);
+				if (value != null)
+					this.set(colonne, ligne, value.intValue());
+				else
+					this.set(colonne, ligne, null);
 			}
 		}
-		return res;
 	}
 }

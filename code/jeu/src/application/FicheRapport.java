@@ -7,6 +7,13 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
+
 
 public class FicheRapport extends GridPane{
     private AppliJDBC AppliJDBC;
@@ -89,6 +96,7 @@ public class FicheRapport extends GridPane{
 
     void viderFicheRapport(){
         this.idRapport.setText("");
+        this.dateRapport.setText("");
         this.titreRapport.setText("");
         this.contenuRapport.setText("");
         this.idJo.setText("");
@@ -123,9 +131,17 @@ public class FicheRapport extends GridPane{
         this.add(this.idRapport,2,2);
         this.add(new Label("Corps:"),1,3);
         this.add(this.contenuRapport,1,4);
+        this.add(new Label("Date de rédaction:"),1,5);
 
-        this.add(new Label("Sujet:"),1,5);
-        this.add(this.cb,2,5);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date today = Calendar.getInstance().getTime();
+        String datenow = dateFormat.format(today);
+        this.dateRapport.setText(datenow);
+        this.add(this.dateRapport,2,5);
+
+
+        this.add(new Label("Sujet:"),1,6);
+        this.add(this.cb,2,6);
         this.add(bouton,1,9,2,1);
 
     }
@@ -137,9 +153,44 @@ public class FicheRapport extends GridPane{
         this.bouton.setDisable(false);
     }
 
+    public void activerDateRapport(boolean actif){
+        for (Node n: this.getChildren()){
+            n.setDisable(actif);
+        }
+        this.dateRapport.setDisable(!actif);
+        this.bouton.setDisable(false);
+    }
+
     public int getIdRapport(){
         return Integer.parseInt(this.idRapport.getText());
     }
+
+    public void activerSujetRapport(boolean actif){
+        for (Node n: this.getChildren()){
+            n.setDisable(actif);
+        }
+        this.cb.setDisable(!actif);
+        this.bouton.setDisable(false);
+    }
+
+    public int getSujetRapport(){
+      int sujetRapport;
+      if (cb.getValue().equals("Bug"))
+          sujetRapport = 1;
+      else if (cb.getValue().equals("Information"))
+          sujetRapport = 2;
+      else if (cb.getValue().equals("Message"))
+          sujetRapport = 3;
+      else if (cb.getValue().equals("Bannissement"))
+          sujetRapport = 4;
+      else if (cb.getValue().equals("Debannissement"))
+          sujetRapport = 5;
+      else
+          sujetRapport = 6;
+      return sujetRapport;
+    }
+
+
 
     // public void activerNomJeu(boolean actif){
     //     for (Node n: this.getChildren()){

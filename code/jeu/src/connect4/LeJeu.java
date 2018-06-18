@@ -18,13 +18,20 @@ import javafx.scene.Scene;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
 
 import javafx.stage.Stage;
 
 import java.util.List;
 import java.util.ArrayList;
 
+import java.sql.SQLException;
+
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 /**
  * Vue du Puissance 4
@@ -54,6 +61,22 @@ public class LeJeu extends application.Jeu {
 	 * La scène
 	 */
 	private BorderPane cont;
+	/**
+	 * La partie (pour récupérer les informations de la partie et des joueurs)
+	 */
+	private application.Partie partie;
+	/**
+	 * Pour interagir avec la base de données
+	 */
+	private application.PartieBD partieBD;
+	/**
+	 * Le stage du jeu
+	 */
+	private Stage stage;
+	/**
+	 * La timeline de mise à jour du jeu
+	 */
+	private Timeline updateTimeline;
 
 	/**
 	 * @return le clavier avec les 27 caractères et le controleur des touches
@@ -64,16 +87,21 @@ public class LeJeu extends application.Jeu {
 	}
 
 	@Override
-	public void setJ1(application.Joueur joueur) {
-		this.puissance4.setJoueur1((Joueur) joueur);
-	}
-
-	public void setJ2(application.Joueur joueur) {
-		this.puissance4.setJoueur2((Joueur) joueur);
+	public void setPartie(application.Partie partie, int idJoueur) {
+		this.partie = partie;
+		application.Joueur joueur1 = partie.getJoueur1(), joueur2 = partie.getJoueur2();
+		this.puissance4 = new Puissance4(
+				new Joueur(joueur1.getIdentifiant(), joueur1.getPseudo(), 1, 18),
+				new Joueur(joueur2.getIdentifiant(), joueur2.getPseudo(), 2, 18),
+				idJoueur
+			);
+		this.getEtat(idJoueur);
+		this.setEtat();
 	}
 
 	@Override
-	public void setId(int id) {
+	public void setPartieBD(application.PartieBD partieBD) {
+		this.partieBD = partieBD;
 	}
 
 	/**
@@ -82,7 +110,11 @@ public class LeJeu extends application.Jeu {
 	private VBox lesJoueurs() {
 		Joueur j1 = this.puissance4.getJoueur1(), j2 = this.puissance4.getJoueur2();
 		Circle p1 = new Circle(30), p2 = new Circle(30);
-		Button pause = new Button("Pause game");
+		Button pause;
+		if (this.pause)
+			pause = new Button("Resume game");
+		else
+			pause = new Button("Pause game");
 		p1.getStyleClass().add("pion");
 		p2.getStyleClass().add("pion");
 		PlateauGUI.setCouleur(j1.getPion(), p1);
@@ -152,14 +184,15 @@ public class LeJeu extends application.Jeu {
 	 */
 	public void majAffichage() {
 		// A implémenter
-		if (this.pause)
+		System.out.println(this.cont);
+		if (this.pause && !this.cont.getStyleClass().contains("pause"))
 			this.cont.getStyleClass().add("pause");
-		else
+		else if (!this.pause)
 			this.cont.getStyleClass().remove("pause");
-		if (!this.puissance4.isTour())
+		if (!this.isTour() && !this.cont.getStyleClass().contains("autre-tour"))
 			this.cont.getStyleClass().add("autre-tour");
-		else
-			this.cont.getStyleClass().remove("autre-tour");
+		else if (this.isTour())
+			this.cont.getStyleClass().removeAll("autre-tour");
 		this.plateau.maj();
 	}
 
@@ -168,24 +201,34 @@ public class LeJeu extends application.Jeu {
 	}
 
 	/**
-	 * Crée le modèle, créer le graphe de scène et lance le jeu
-	 * @param stage la fenêtre principale
+	 * Fermer le jeu.
+	 */
+	public void fermer() {
+		this.updateTimeline.stop();
+		this.stage.close();
+	}
+
+	/**
+	 * Créer le graphe de scène et lance le jeu
 	 */
 	public void run() {
-		Stage stage = new Stage();
-		// création du modèle
-		this.puissance4 = new Puissance4(
-				new Joueur("Nat", 1, 18),
-				new Joueur("Cyber Nat", 2, 18),
-				1
-				);
+		// Gestion de la mise à jour de l'état de la partie
+		this.updateTimeline = new Timeline(new KeyFrame(
+					Duration.millis(2000),
+					ae -> this.getEtatEtMaj()));
+		this.updateTimeline.setCycleCount(Timeline.INDEFINITE);
+		this.updateTimeline.play();
 
-		stage.setTitle("Connect 4");
+		this.stage = new Stage();
 
-		stage.setScene(this.laScene());
-		stage.getScene().getStylesheets().add("style/style.css");
-		stage.show();
-		System.out.println("?");
+		this.stage.setTitle("Connect 4");
+
+		this.stage.setScene(this.laScene());
+		this.stage.getScene().getStylesheets().add("connect4/style/style.css");
+		this.stage.show();
+
+		this.stage.setOnCloseRequest(new ActionFermer(this));
+		this.majAffichage();
 	}
 
     @Override
@@ -209,6 +252,7 @@ public class LeJeu extends application.Jeu {
 	public void abandonner() {
 		this.puissance4.abandonner();
 		this.perdre();
+		this.setEtat();
 	}
 
 	/**
@@ -219,7 +263,6 @@ public class LeJeu extends application.Jeu {
 		alert.setTitle("Victory");
 		alert.setHeaderText("Victory");
 		alert.showAndWait();
-		Platform.exit();
 	}
 
 	/**
@@ -230,7 +273,6 @@ public class LeJeu extends application.Jeu {
 		alert.setTitle("Defeat");
 		alert.setHeaderText("Defeat");
 		alert.showAndWait();
-		Platform.exit();
 	}
 
 	/**
@@ -265,12 +307,44 @@ public class LeJeu extends application.Jeu {
 		// TODO: envoyer l'état au format JSON
 		JSONObject json = this.puissance4.toJson();
 		json.put("pause", this.pause);
+		System.out.println(json);
+		try {
+			this.partieBD.majEtat(this.partie.getId(), json.toString());
+			System.out.println(this.puissance4.getJoueurCourant().getId()+" insert màj OK");
+		} catch (SQLException ex) {
+			if (this.puissance4 != null)
+				System.out.println(this.puissance4.getJoueurCourant().getId()+" insert màj FAIL");
+		}
 	}
 
 	/**
 	 * Charger l'état actuel depuis l'application
+	 * @param actuel L'id du joueur actuel
+	 * @return si l'opération a réussie
 	 */
-	public void getEtat() {
-		// TODO: récupérer l'état en JSON et le charger
+	public boolean getEtat(int actuel) {
+		JSONParser parser = new JSONParser();
+		try {
+			int id = this.partie.getId();
+			String etat = this.partieBD.getEtat(id);
+			JSONObject obj = (JSONObject) parser.parse(etat);
+			this.puissance4.fromJson(obj);
+			this.pause = (boolean) obj.get("pause");
+			System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj OK");
+			return true;
+		} catch (ParseException ex) {
+			if (this.puissance4 != null)
+				System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj FAIL");
+			return false;
+		} catch (SQLException ex) {
+			if (this.puissance4 != null)
+				System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj FAIL");
+			return false;
+		}
+	}
+
+	public void getEtatEtMaj() {
+		if (this.getEtat(this.puissance4.getJoueurCourant().getId()))
+			this.majAffichage();
 	}
 }

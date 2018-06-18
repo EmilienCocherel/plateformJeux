@@ -53,7 +53,7 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 			this.puissance4.getJoueur2().reset();
 			this.puissance4.getPlateau().reset();
 		}
-		// TODO: envoyer l'état de la partie à la bdd
+		this.gui.setEtat();
 		this.gui.majAffichage();
 	}
 }
