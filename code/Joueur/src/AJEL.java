@@ -89,20 +89,16 @@ public class AJEL extends Application {
     }
 
     private void passerEnModeInscription(){
-        this.laBase.setCenter(new GridInscrire());
+        this.laBase.setCenter(new GridInscrire(this));
     }
 
-    private void passerEnModeConnexion(){
+    public void passerEnModeConnexion(){
         this.creerMenuConnexion();
         this.laBase.setCenter(new GridConnexion(this));
     }
 
     public void passerEnModeMDPOublie(){
         this.laBase.setCenter(new GridForgotPassword());
-    }
-
-    public void passerEnModeJoueur(){
-        this.creerMenuJoueur();
     }
 
     public void passerEnModeJeuxPossede(){
@@ -187,6 +183,7 @@ public class AJEL extends Application {
 
         this.creerMenuConnexion();
         this.colorerLaBase();
+        this.laBase.setCenter(new BorderAcceuilConnexion(this));
 
         stage.setScene( new Scene(this.laBase,1000,800));
         stage.setTitle("AJEL");
