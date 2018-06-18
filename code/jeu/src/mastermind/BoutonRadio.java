@@ -3,14 +3,14 @@ package mastermind;
 import javafx.scene.control.RadioButton;
 
 public class BoutonRadio extends RadioButton{
-  private Pion pion;
+  private int valPion;
 
   public BoutonRadio(String text,int val){
     this.setText(text);
-    this.pion= new Pion(val);
+    this.valPion= val;
   }
 
-  public Pion getPion(){
-    return this.pion;
+  public int getValPion(){
+    return this.valPion;
   }
 }
