@@ -32,43 +32,42 @@ public class Morpion extends application.Jeu{
 	this.numTour=0;
     }
     public String getEtat(){
-	JSONObject res=new JSONObject();
-	res.put("joueurCourant",joueurCourant);
-	res.put("joueurGagnant",joueurGagnant);
-	res.put("taille",taille);
-	res.put("nbAlignes",nbAlignes);
-	res.put("numTour",numTour);
-	JSONArray gr=new JSONArray();
-	for (int i=0;i<taille;i++){
-	    JSONArray li=new JSONArray();
-	    for (int j=0;j<taille;j++){
-		li.add(grille[i][j]);
-	    }
-	    gr.add(li);
-	}
-	res.put("grille",gr);
-	return res.toString();
+    	JSONObject res=new JSONObject();
+    	res.put("joueurCourant",joueurCourant);
+    	res.put("joueurGagnant",joueurGagnant);
+    	res.put("taille",taille);
+    	res.put("nbAlignes",nbAlignes);
+    	res.put("numTour",numTour);
+    	JSONArray gr=new JSONArray();
+    	for (int i=0;i<taille;i++){
+    	    JSONArray li=new JSONArray();
+    	    for (int j=0;j<taille;j++){
+    		li.add(grille[i][j]);
+    	    }
+    	    gr.add(li);
+    	}
+    	res.put("grille",gr);
+    	return res.toString();
     }
 
     public void setEtat(String json){
+	     JSONParser p= new JSONParser();
+	     try{
+  	    JSONObject res=(JSONObject)p.parse(json);
+  	    this.joueurCourant=((Long)res.get("joueurCourant")).intValue();
+  	    this.joueurGagnant=((Long)res.get("joueurGagnant")).intValue();
+  	    this.nbAlignes=((Long)res.get("nbAlignes")).intValue();
+  	    this.taille=((Long)res.get("taille")).intValue();
+  	    this.numTour=((Long)res.get("numTour")).intValue();
 
-	JSONParser p= new JSONParser();
-	try{
-	    JSONObject res=(JSONObject)p.parse(json);
-	    this.joueurCourant=((Long)res.get("joueurCourant")).intValue();
-	    this.joueurGagnant=((Long)res.get("joueurGagnant")).intValue();
-	    this.nbAlignes=((Long)res.get("nbAlignes")).intValue();
-	    this.taille=((Long)res.get("taille")).intValue();
-	    this.numTour=((Long)res.get("numTour")).intValue();
-
-	    this.grille=new int[taille][taille];
-	    JSONArray gr=(JSONArray)res.get("grille");
-	    for (int i=0;i<taille;i++){
-		JSONArray li=(JSONArray)gr.get(i);
-		for (int j=0;j<taille;j++){
-		    grille[i][j]=((Long)li.get(j)).intValue();
-		}
-	    }
+  	    this.grille=new int[taille][taille];
+  	    JSONArray gr=(JSONArray)res.get("grille");
+  	    for (int i=0;i<taille;i++){
+  		 JSONArray li=(JSONArray)gr.get(i);
+  		for (int j=0;j<taille;j++){
+  		    grille[i][j]=((Long)li.get(j)).intValue();
+  		}
+  	    }
 	}catch (ParseException e) {
 	    System.out.println(e);
 	}
