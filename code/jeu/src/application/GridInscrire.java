@@ -3,6 +3,7 @@ package application;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
@@ -22,6 +23,7 @@ public class GridInscrire extends PageConnexion{
     private Button sInscrireButton;
     private ControleurConnexion cc;
     private boolean verifie;
+    private Label error;
     // private JoueurBD joueurBD;
 
     public GridInscrire(AppliJDBC appli, ControleurConnexion cc){
@@ -37,6 +39,7 @@ public class GridInscrire extends PageConnexion{
         this.email = new TextField("TestPrenom");
         this.mdp = new TextField("TestMdp");
         this.confMdp = new TextField("TestTest");
+        this.error = new Label();
         this.sInscrireNode = this.buttonType("Créer mon compte");
         this.sInscrireButton = (Button) this.sInscrireNode;
 
@@ -64,6 +67,13 @@ public class GridInscrire extends PageConnexion{
     public TextField getNom() {
       return this.nom;
     }
+    public Label getError(){
+      return this.error;
+    }
+
+    // public void setError(String mess){
+    //   this.error.setText(mess);
+    // }
     public TextField getEmail() {
       return this.email;
     }
@@ -86,6 +96,13 @@ public class GridInscrire extends PageConnexion{
         }
         else{
           res = false;
+          this.getChildren().remove(this.error);
+
+          this.getEmail().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
+          // Node messageEmail =
+          this.add(this.labelType("Veuillez rentrer un email valide"),1,7);
+          // this.getChildren.remove(this.labelType("Veuillez rentrer un email valide"),1,7);
+          this.setHeight(this.getHeight()+100);
           throw new EmailInvalideException("Email invalide");
         }
         return res;
