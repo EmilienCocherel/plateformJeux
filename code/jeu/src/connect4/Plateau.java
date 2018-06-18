@@ -63,7 +63,7 @@ public class Plateau extends Matrice<Integer> {
 		// Vérifier la diagonale secondaire
 		diagonale_x = ligne;
 		diagonale_y = colonne;
-		while (diagonale_x > 0 && diagonale_y < 5) {
+		while (diagonale_x < 5 && diagonale_y > 0) {
 			diagonale_x ++;
 			diagonale_y --;
 		}
