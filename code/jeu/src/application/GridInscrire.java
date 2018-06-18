@@ -10,6 +10,9 @@ import java.sql.*;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class GridInscrire extends PageConnexion{
 
@@ -49,8 +52,11 @@ public class GridInscrire extends PageConnexion{
         this.add(this.confMdp,1,4);
         this.add(this.checkBoxType("J'accepte les termes d'utilisation \n et la politique de confidentialité"),1,5);
         this.add(this.sInscrireButton, 1, 6);
-        this.sInscrireButton.setOnAction(this.cc);
-        this.sInscrireButton.setOnAction(event -> this.insertionDeJoueur());
+        ActionInsererJoueur insere = new ActionInsererJoueur(this);
+        this.sInscrireButton.setOnAction(insere);
+
+
+
 
 
     }
@@ -70,48 +76,42 @@ public class GridInscrire extends PageConnexion{
     public Button getsInscrire(){
       return this.sInscrireButton;
     }
-    // public boolean changerVerfie(){
-    //   if(!this.verifie){
-    //     this.verifie = true;
-    //   }
-    //   return this.verifie;
-    // }
 
-    public boolean insertionDeJoueur(){
-      try{
-        System.out.println("insertion joueur");
-        this.appli.getJoueurBD().insererJoueur(this.creerJoueur());
-        return true;
-      }
-      catch (SQLException e)
-      {
-        System.out.println(e);
-        return false;
-      }
+
+    public boolean insertionDeJoueur() throws EmailInvalideException, SQLException{
+        Boolean res = null;
+        if (this.isValid(this.getEmail().getText())){
+          this.appli.getJoueurBD().insererJoueur(this.creerJoueur());
+          res = true;
+        }
+        else{
+          res = false;
+          throw new EmailInvalideException("Email invalide");
+        }
+        return res;
     }
-    public Joueur creerJoueur() throws SQLException{
+    public Joueur creerJoueur() throws SQLException, EmailInvalideException{
       byte [] b1 = new byte[1];
-      // JoueurBD connexion = new JoueurBD(this.appli.getConnexion());
-      return new Joueur(this.appli.getJoueurBD().maxNumJoueur(), this.getNom().getText(), this.getMdp().getText(), "F".charAt(0), false, 1, b1, this.getEmail().getText(), true, false);
+      if (this.isValid(this.getEmail().getText())){
+        return new Joueur(this.appli.getJoueurBD().maxNumJoueur(), this.getNom().getText(), this.getMdp().getText(), "F".charAt(0), false, 1, b1, this.getEmail().getText(), true, false);
+      }
+      else{
+        throw new EmailInvalideException("Email invalide");
+      }
     }
 
-//     import java.util.regex.Matcher;
-// import java.util.regex.Pattern;
-//
-// class Test
-// {
-//     public static boolean isValid(String email)
-//     {
-//         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
-//                             "[a-zA-Z0-9_+&*-]+)*@" +
-//                             "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
-//                             "A-Z]{2,7}$";
-//
-//         Pattern pat = Pattern.compile(emailRegex);
-//         if (email == null)
-//             return false;
-//         return pat.matcher(email).matches();
-//     }
+    public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                            "[a-zA-Z0-9_+&*-]+)*@" +
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                            "A-Z]{2,7}$";
+
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
 
 
 
