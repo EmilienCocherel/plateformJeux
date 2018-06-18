@@ -209,4 +209,30 @@ public abstract class PageJoueur extends BorderPane{
         return res;
     }
 
+
+    public HBox imageTypePageConnexion(){
+
+        Image test = new Image("logo_moyen.png");
+
+        ImageView iv1 = new ImageView();
+        iv1.setImage(test);
+        iv1.setFitWidth(200);
+        iv1.setFitHeight(200);
+        iv1.setPreserveRatio(true);
+        iv1.setSmooth(true);
+        iv1.setCache(true);
+
+        Button imageClicable = new Button();
+        imageClicable.setGraphic(iv1);
+        imageClicable.setStyle("-fx-background-color: transparent;");
+
+        HBox res = new HBox();
+        res.getChildren().add(imageClicable);
+        res.setStyle("-fx-background-color: transparent;");
+        res.setPadding(new Insets(75, 75, 10, 50));
+
+
+        return res;
+    }
+
 }

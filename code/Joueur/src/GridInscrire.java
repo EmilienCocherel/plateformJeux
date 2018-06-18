@@ -1,4 +1,5 @@
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -7,8 +8,14 @@ import javafx.scene.paint.Color;
 
 public class GridInscrire extends PageConnexion{
 
-    public GridInscrire(){
+    AJEL app;
+
+    public GridInscrire(AJEL app){
         super();
+        this.app = app;
+
+        Button brevenir = this.buttonType("S'inscrire");
+        brevenir.setOnAction(event -> this.app.passerEnModeConnexion());
 
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(400, 300);
@@ -23,7 +30,7 @@ public class GridInscrire extends PageConnexion{
         this.add(this.labelType("*Confirmer : "),0,4);
         this.add(new TextField(),1,4);
         this.add(this.checkBoxType("J'accepte les termes d'utilisation \n et la politique de confidentialité"),1,5);
-        this.add(this.buttonType("Se connecter"), 1, 6);
+        this.add(brevenir, 1, 6);
 
     }
 }
