@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Plateau extends Matrice<Integer> {
     public Plateau() {
-        super(7, 7);
+        super(6, 7);
     }
 
 	/**
@@ -56,18 +56,18 @@ public class Plateau extends Matrice<Integer> {
 			diagonale_x --;
 			diagonale_y --;
 		}
-		List<Integer> d = this.getDiagonalePrincipale(diagonale_y, diagonale_x);
+		List<Integer> d = this.getDiagonalePrincipale(diagonale_x, diagonale_y);
 		if (Plateau.finie(d, pion))
 			return true;
 
 		// Vérifier la diagonale secondaire
 		diagonale_x = ligne;
 		diagonale_y = colonne;
-		while (diagonale_x > 0 && diagonale_y < 6) {
-			diagonale_x --;
-			diagonale_y ++;
+		while (diagonale_x > 0 && diagonale_y < 5) {
+			diagonale_x ++;
+			diagonale_y --;
 		}
-		d = this.getDiagonaleSecondaire(diagonale_y, diagonale_x);
+		d = this.getDiagonaleSecondaire(diagonale_x, diagonale_y);
 		if (Plateau.finie(d, pion))
 			return true;
 
@@ -115,14 +115,14 @@ public class Plateau extends Matrice<Integer> {
 	public void fromJson(JSONArray json) {
 		JSONArray elem;
 		Long value;
-		for (int colonne = 0 ; colonne < this.getNbColonnes(); colonne ++) {
-			elem = (JSONArray) json.get(colonne);
-			for (int ligne = 0 ; ligne < this.getNbLignes(); ligne ++) {
-				value = (Long) elem.get(ligne);
+		for (int ligne = 0 ; ligne < this.getNbLignes(); ligne ++) {
+			elem = (JSONArray) json.get(ligne);
+			for (int colonne = 0 ; colonne < this.getNbColonnes(); colonne ++) {
+				value = (Long) elem.get(colonne);
 				if (value != null)
-					this.set(colonne, ligne, value.intValue());
+					this.set(ligne, colonne, value.intValue());
 				else
-					this.set(colonne, ligne, null);
+					this.set(ligne, colonne, null);
 			}
 		}
 	}
