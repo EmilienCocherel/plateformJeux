@@ -55,14 +55,17 @@
 
 .pause .pion :not(.no-pause) {
 	-fx-fill: #DEDEDE;
+	-fx-stroke: #9A9FAB;
 }
 
 .pause .joueurs .pion#joueur1 {
 	-fx-fill: #C2C1BC;
+	-fx-stroke: #8F8C7C;
 }
 
 .pause .joueurs .pion#joueur2 {
 	-fx-fill: #C2909C;
+	-fx-stroke: #8F5B68;
 }
 
 .pause #plateau, .autre-tour #plateau {
