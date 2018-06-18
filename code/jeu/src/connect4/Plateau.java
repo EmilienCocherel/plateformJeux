@@ -115,10 +115,15 @@ public class Plateau extends Matrice<Integer> {
 	public static Plateau fromJson(JSONArray json) {
 		Plateau res = new Plateau();
 		JSONArray elem;
+		Long value;
 		for (int colonne = 0 ; colonne < res.getNbColonnes(); colonne ++) {
 			elem = (JSONArray) json.get(colonne);
 			for (int ligne = 0 ; ligne < res.getNbLignes(); ligne ++) {
-				res.set(ligne, colonne, (Integer) elem.get(ligne));
+				value = (Long) elem.get(ligne);
+				if (value != null)
+					res.set(colonne, ligne, value.intValue());
+				else
+					res.set(colonne, ligne, null);
 			}
 		}
 		return res;

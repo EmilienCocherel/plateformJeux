@@ -25,7 +25,7 @@ public class ActionPause implements EventHandler<ActionEvent> {
 			b.setText("Resume game");
 		else
 			b.setText("Pause game");
-		// TODO: envoyer l'état de la partie à la bdd
+		this.gui.setEtat();
 		this.gui.majAffichage();
 	}
 }
