@@ -29,6 +29,8 @@ public class Mastermind extends application.Jeu{
     private Scene scene;
     private HBox interfaceChoix;
     private VBox historiqueCombinaison;
+    private application.Partie partie;
+    private int idJoueur;
 
     public Mastermind(int id,JoueurMastermind j1){
       this.id=id;
@@ -45,7 +47,13 @@ public class Mastermind extends application.Jeu{
     }
 
     @Override
-    public void setPartie(application.Partie partie, int idJoueur) {}
+    public void setPartie(application.Partie partie, int idJoueur) {
+        this.partie = partie;
+        application.Joueur joueur1 = partie.getJoueur1(), joueur2 = partie.getJoueur2();
+        new JoueurMastermind(joueur1.getIdentifiant());
+        new JoueurMastermind(joueur2.getIdentifiant());
+        this.idJoueur=idJoueur;
+    }
 
     @Override
     public void setPartieBD(application.PartieBD partieBD) {}
