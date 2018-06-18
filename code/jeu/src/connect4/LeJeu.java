@@ -69,6 +69,14 @@ public class LeJeu extends application.Jeu {
 	 * Pour interagir avec la base de données
 	 */
 	private application.PartieBD partieBD;
+	/**
+	 * Le stage du jeu
+	 */
+	private Stage stage;
+	/**
+	 * La timeline de mise à jour du jeu
+	 */
+	private Timeline updateTimeline;
 
 	/**
 	 * @return le clavier avec les 27 caractères et le controleur des touches
@@ -82,13 +90,13 @@ public class LeJeu extends application.Jeu {
 	public void setPartie(application.Partie partie, int idJoueur) {
 		this.partie = partie;
 		application.Joueur joueur1 = partie.getJoueur1(), joueur2 = partie.getJoueur2();
-		if (!this.getEtat()) {
-			this.puissance4 = new Puissance4(
-					new Joueur(joueur1.getIdentifiant(), joueur1.getPseudo(), 1, 18),
-					new Joueur(joueur2.getIdentifiant(), joueur2.getPseudo(), 2, 18),
-					idJoueur
-				);
-		}
+		this.puissance4 = new Puissance4(
+				new Joueur(joueur1.getIdentifiant(), joueur1.getPseudo(), 1, 18),
+				new Joueur(joueur2.getIdentifiant(), joueur2.getPseudo(), 2, 18),
+				idJoueur
+			);
+		this.getEtat(idJoueur);
+		this.setEtat();
 	}
 
 	@Override
@@ -177,14 +185,14 @@ public class LeJeu extends application.Jeu {
 	public void majAffichage() {
 		// A implémenter
 		System.out.println(this.cont);
-		if (this.pause && !this.cont.getStylesheets().contains("pause"))
+		if (this.pause && !this.cont.getStyleClass().contains("pause"))
 			this.cont.getStyleClass().add("pause");
-		else
+		else if (!this.pause)
 			this.cont.getStyleClass().remove("pause");
-		if (!this.puissance4.isTour() && !this.cont.getStylesheets().contains("autre-tour"))
+		if (!this.isTour() && !this.cont.getStyleClass().contains("autre-tour"))
 			this.cont.getStyleClass().add("autre-tour");
-		else
-			this.cont.getStyleClass().remove("autre-tour");
+		else if (this.isTour())
+			this.cont.getStyleClass().removeAll("autre-tour");
 		this.plateau.maj();
 	}
 
@@ -193,23 +201,33 @@ public class LeJeu extends application.Jeu {
 	}
 
 	/**
+	 * Fermer le jeu.
+	 */
+	public void fermer() {
+		this.updateTimeline.stop();
+		this.stage.close();
+	}
+
+	/**
 	 * Créer le graphe de scène et lance le jeu
 	 */
 	public void run() {
 		// Gestion de la mise à jour de l'état de la partie
-		Timeline timeline = new Timeline(new KeyFrame(
+		this.updateTimeline = new Timeline(new KeyFrame(
 					Duration.millis(2000),
 					ae -> this.getEtatEtMaj()));
-		timeline.setCycleCount(Timeline.INDEFINITE);
-		timeline.play();
+		this.updateTimeline.setCycleCount(Timeline.INDEFINITE);
+		this.updateTimeline.play();
 
-		Stage stage = new Stage();
+		this.stage = new Stage();
 
-		stage.setTitle("Connect 4");
+		this.stage.setTitle("Connect 4");
 
-		stage.setScene(this.laScene());
-		stage.getScene().getStylesheets().add("connect4/style/style.css");
-		stage.show();
+		this.stage.setScene(this.laScene());
+		this.stage.getScene().getStylesheets().add("connect4/style/style.css");
+		this.stage.show();
+
+		this.stage.setOnCloseRequest(new ActionFermer(this));
 		this.majAffichage();
 	}
 
@@ -301,15 +319,16 @@ public class LeJeu extends application.Jeu {
 
 	/**
 	 * Charger l'état actuel depuis l'application
+	 * @param actuel L'id du joueur actuel
 	 * @return si l'opération a réussie
 	 */
-	public boolean getEtat() {
+	public boolean getEtat(int actuel) {
 		JSONParser parser = new JSONParser();
 		try {
 			int id = this.partie.getId();
 			String etat = this.partieBD.getEtat(id);
 			JSONObject obj = (JSONObject) parser.parse(etat);
-			this.puissance4 = Puissance4.fromJson(obj);
+			this.puissance4.fromJson(obj);
 			this.pause = (boolean) obj.get("pause");
 			System.out.println(this.puissance4.getJoueurCourant().getId()+" get màj OK");
 			return true;
@@ -325,7 +344,7 @@ public class LeJeu extends application.Jeu {
 	}
 
 	public void getEtatEtMaj() {
-		if (this.getEtat())
+		if (this.getEtat(this.puissance4.getJoueurCourant().getId()))
 			this.majAffichage();
 	}
 }

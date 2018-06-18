@@ -19,6 +19,7 @@ public class Puissance4 {
 	/**
 	 * @param joueur1 Le premier joueur
 	 * @param joueur2 Le second joueur
+	 * @param actuel Lequel des deux est le joueur actuel
 	 */
     public Puissance4(Joueur j1, Joueur j2, int actuel) {
 		this.plateau = new Plateau();
@@ -26,7 +27,10 @@ public class Puissance4 {
 		this.joueur1 = j1;
 		this.joueur2 = j2;
 		this.id = -1;
-		this.actuel = actuel;
+		if (actuel == joueur1.getId())
+			this.actuel = 1;
+		else
+			this.actuel = 2;
 		this.tour = this.actuel;
     }
 
@@ -36,7 +40,7 @@ public class Puissance4 {
 	 * @param joueur1 Le premier joueur
 	 * @param joueur2 Le second joueur
 	 * @param id L'id
-	 * @param actuel Le joueur actuel
+	 * @param actuel L'id du joueur actuel
 	 * @param tour Si c'est le tour du joueur actuel
 	 */
 	public Puissance4(Plateau plateau, List<Joueur> gagnants, Joueur joueur1, Joueur joueur2,
@@ -123,24 +127,25 @@ public class Puissance4 {
 		obj.put("plateau", this.plateau.toJson());
 		obj.put("joueur1", this.joueur1.toJson());
 		obj.put("joueur2", this.joueur2.toJson());
-		obj.put("actuel", this.actuel);
 		obj.put("id", this.id);
 		obj.put("tour", this.tour);
 		return obj;
 	}
 
-	public static Puissance4 fromJson(JSONObject json) {
-		Long actuel = (Long) json.get("actuel"),
-			 id = (Long) json.get("id"),
+	/**
+	 * Mettre à jour les variables par rapport au JSONObject donné
+	 */
+	public void fromJson(JSONObject json) {
+		Long id = (Long) json.get("id"),
 			 tour = (Long) json.get("tour");
-		return new Puissance4(Plateau.fromJson((JSONArray) json.get("plateau")),
-					(List<Joueur>) json.get("gagnants"),
-					Joueur.fromJson((JSONObject) json.get("joueur1")),
-					Joueur.fromJson((JSONObject) json.get("joueur2")),
-					actuel.intValue(),
-					id.intValue(),
-					tour.intValue()
-					);
+		this.plateau.fromJson((JSONArray) json.get("plateau"));
+		this.joueur1.fromJson((JSONObject) json.get("joueur1"));
+		this.joueur2.fromJson((JSONObject) json.get("joueur2"));
+		if (id != null)
+			this.id = id.intValue();
+		if (tour != null)
+			this.tour = tour.intValue();
+		// TODO: Gagnants
 	}
 
 	/**
