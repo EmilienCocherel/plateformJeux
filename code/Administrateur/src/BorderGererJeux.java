@@ -11,7 +11,7 @@ public class BorderGererJeux extends PageAdmin {
     AJEL app;
 
     BorderGererJeux(AJEL app) {
-
+        super();
         this.app = app;
 
         Button bAccueil = this.buttonTypePageAdmin("Accueil");
