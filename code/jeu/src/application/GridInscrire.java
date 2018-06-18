@@ -17,13 +17,16 @@ public class GridInscrire extends PageConnexion{
     private TextField nom,email,mdp,confMdp;
     private Node sInscrireNode;
     private Button sInscrireButton;
-    private ControleurConnexion CC;
+    private ControleurConnexion cc;
+    private boolean verifie;
     // private JoueurBD joueurBD;
 
-    public GridInscrire(AppliJDBC appli){
+    public GridInscrire(AppliJDBC appli, ControleurConnexion cc){
         super();
         this.appli = appli;
-        this.CC = new ControleurConnexion(appli);
+        this.cc = cc;
+        this.verifie = false;
+        // this.CC = new ControleurConnexion(appli);
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(400, 300);
 
@@ -46,7 +49,9 @@ public class GridInscrire extends PageConnexion{
         this.add(this.confMdp,1,4);
         this.add(this.checkBoxType("J'accepte les termes d'utilisation \n et la politique de confidentialité"),1,5);
         this.add(this.sInscrireButton, 1, 6);
-        this.sInscrireButton.setOnAction(new ControleurConnexion(appli));
+        this.sInscrireButton.setOnAction(this.cc);
+        this.sInscrireButton.setOnAction(event -> this.insertionDeJoueur());
+
 
     }
 
@@ -65,22 +70,48 @@ public class GridInscrire extends PageConnexion{
     public Button getsInscrire(){
       return this.sInscrireButton;
     }
+    // public boolean changerVerfie(){
+    //   if(!this.verifie){
+    //     this.verifie = true;
+    //   }
+    //   return this.verifie;
+    // }
 
-    public void insertionDeJoueur(){
-      System.out.println("insertion joueur");
+    public boolean insertionDeJoueur(){
       try{
+        System.out.println("insertion joueur");
         this.appli.getJoueurBD().insererJoueur(this.creerJoueur());
+        return true;
       }
       catch (SQLException e)
       {
         System.out.println(e);
+        return false;
       }
     }
     public Joueur creerJoueur() throws SQLException{
       byte [] b1 = new byte[1];
-      JoueurBD connexion = new JoueurBD(this.appli.getConnexion());
-      return new Joueur(connexion.maxNumJoueur(), this.getNom().getText(), this.getMdp().getText(), "F".charAt(0), false, 1, b1, this.getEmail().getText(), true, false);
+      // JoueurBD connexion = new JoueurBD(this.appli.getConnexion());
+      return new Joueur(this.appli.getJoueurBD().maxNumJoueur(), this.getNom().getText(), this.getMdp().getText(), "F".charAt(0), false, 1, b1, this.getEmail().getText(), true, false);
     }
+
+//     import java.util.regex.Matcher;
+// import java.util.regex.Pattern;
+//
+// class Test
+// {
+//     public static boolean isValid(String email)
+//     {
+//         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+//                             "[a-zA-Z0-9_+&*-]+)*@" +
+//                             "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+//                             "A-Z]{2,7}$";
+//
+//         Pattern pat = Pattern.compile(emailRegex);
+//         if (email == null)
+//             return false;
+//         return pat.matcher(email).matches();
+//     }
 
 
 

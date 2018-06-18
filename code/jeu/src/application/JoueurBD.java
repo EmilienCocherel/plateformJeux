@@ -1,13 +1,17 @@
 package application;
 
 import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class JoueurBD {
 	ConnexionMySQL laConnexion;
+	GridConnexion cg;
+
 
 	JoueurBD(ConnexionMySQL laConnexion){
 		this.laConnexion=laConnexion;
+		// this.cg = new GridConnexion();
 	}
 
 	// recherche nombre de joueurs au total
@@ -18,6 +22,28 @@ public class JoueurBD {
 		int dernierJoueur = res.getInt("lemax");
 		res.close();
 		return dernierJoueur;
+	}
+
+	// rec le nom ou l'email si y'a un @ il faut faire avec lemail ou le Login
+	// on récupere alors le numéro
+	// si le nuémro est dans la bd on se connecte
+	// sinon on pop alert.
+	Joueur seConnecter(String login, String mdp) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + login);
+		res.next();
+		int numJ = res.getInt("idJo");
+		String nomJ = res.getString("pseudo");
+		String motdp = res.getString("motdepasse");
+		String sexe = res.getString("sexe");
+		boolean abo = res.getString("abonne").equals("O");
+		int level = res.getInt("niveau");
+		byte[] image = res.getBytes("avatar");
+		String email = res.getString("emailJo");
+		boolean actif = res.getString("activeJo").equals("O");
+		boolean admin = res.getString("admin").equals("O");
+		res.close();
+		return new Joueur(numJ, nomJ, motdp, sexe.charAt(0), abo, level, image, email, actif, admin);
 	}
 
 	Joueur rechercherJoueurParNum(int num) throws SQLException{

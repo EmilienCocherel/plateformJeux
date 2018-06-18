@@ -1,6 +1,7 @@
 package application;
 
 import java.sql.*;
+import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -32,20 +33,28 @@ public class AppliJDBC extends Application {
     private Label message;
     private FicheResultat ficheResultat;
     private GridInscrire inscrire;
+    private ControleurConnexion cc;
 
     private BorderPane laBase;
 
     public void init(){
         try {
+            this.cc = new ControleurConnexion(this);
             this.Connexion = new ConnexionMySQL();
             this.laBase = new BorderPane();
             this.ApplicationAJEL = new ApplicationAJEL(this);
-            this.inscrire = new GridInscrire(this);
+            this.inscrire = new GridInscrire(this,this.cc);
         }catch (ClassNotFoundException ex){
             System.out.println("Driver MySQL non trouvé!!!");
             System.exit(1);
         }
         this.Login        = new Login(this);
+        try {
+        this.Connexion.connecter(this.Login.getNomServeur(),this.Login.getNomBD(),this.Login.getLogin(),this.Login.getMotDePasse());
+        }
+        catch (SQLException e){
+          System.out.print("PB de connexion"+e);
+        }
         this.ficheJoueur  = new FicheJoueur(this);
         this.ficheJeu     = new FicheJeu(this);
         this.ficheRapport = new FicheRapport(this);
@@ -77,7 +86,11 @@ public class AppliJDBC extends Application {
         this.ApplicationAJEL.creerMenuConnexion();
         this.ApplicationAJEL.colorerLaBase();
 
-        stage.setScene( new Scene(this.laBase,1000,800));
+
+        this.scene = new Scene(this.laBase,1000,800);
+
+
+        stage.setScene(this.scene);
         stage.setTitle("AJEL");
         stage.show();
     }
@@ -87,7 +100,7 @@ public class AppliJDBC extends Application {
     }
     // Anicen fichier AJEL.java
     public void passerEnModeInscription(){
-        this.laBase.setCenter(new GridInscrire(this));
+        this.laBase.setCenter(new GridInscrire(this,this.cc));
     }
 
     public void passerEnModeConnexion(){
@@ -147,44 +160,44 @@ public class AppliJDBC extends Application {
 
     public void connexionReussie(){
         this.message.setText("Vous êtes connecté");
-        VBox fp=((VBox)scene.getRoot());
+        BorderPane fp=((BorderPane)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.message);
-        this.ApplicationAJEL.connecter();
+        // this.ApplicationAJEL.connecter();
     }
 
     public void deconnexionReussie(){
         this.message.setText("Vous êtes déconnecté");
-        VBox fp=((VBox)scene.getRoot());
+        BorderPane fp=((BorderPane)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.message);
         this.ApplicationAJEL.deconnecter();
     }
     public void showFenetreConnexion(){
-        VBox fp=((VBox)scene.getRoot());
+        BorderPane fp=((BorderPane)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.Login);
     }
     public void showFicheJoueur(){
-        VBox fp=((VBox)scene.getRoot());
+        BorderPane fp=((BorderPane)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.ficheJoueur);
     }
 
     public void showFicheJeu(){
-      VBox fp =((VBox)scene.getRoot());
+      BorderPane fp =((BorderPane)scene.getRoot());
       fp.getChildren().remove(1);
       fp.getChildren().addAll(this.ficheJeu);
     }
 
     public void showFicheRapport(){
-      VBox fp =((VBox)scene.getRoot());
+      BorderPane fp =((BorderPane)scene.getRoot());
       fp.getChildren().remove(1);
       fp.getChildren().addAll(this.ficheRapport);
     }
 
     public void showChoixJeu(){
-      VBox fp =((VBox)scene.getRoot());
+      BorderPane fp =((BorderPane)scene.getRoot());
       fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion));
       fp.getChildren().remove(1);
       // fp.getChildren().addAll(this.choixJeu);
@@ -192,14 +205,14 @@ public class AppliJDBC extends Application {
 
     public void showFicheResultat(String resultat){
         this.ficheResultat.setTexte(resultat);
-        VBox fp=((VBox)scene.getRoot());
+        BorderPane fp=((BorderPane)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.ficheResultat);
     }
 
     public void setMessage(String message){
         this.message.setText(message);
-         VBox fp=((VBox)scene.getRoot());
+        BorderPane fp=((BorderPane)scene.getRoot());
         fp.getChildren().remove(1);
         fp.getChildren().addAll(this.message);
     }
