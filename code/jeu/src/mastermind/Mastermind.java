@@ -49,10 +49,10 @@ public class Mastermind extends application.Jeu{
     @Override
     public void setPartie(application.Partie partie, int idJoueur) {
         this.partie = partie;
-        application.Joueur joueur1 = partie.getJoueur1(), joueur2 = partie.getJoueur2();
-        new JoueurMastermind(joueur1.getIdentifiant());
-        new JoueurMastermind(joueur2.getIdentifiant());
+        application.Joueur joueur1 = partie.getJoueur1();
+        application.Joueur joueur2 = partie.getJoueur2();
         this.idJoueur=idJoueur;
+        this.j1=new JoueurMastermind(this.idJoueur);
     }
 
     @Override
