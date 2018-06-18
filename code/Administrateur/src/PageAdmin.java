@@ -230,7 +230,7 @@ public abstract class PageAdmin extends BorderPane{
         return res;
     }
 
-    public TextArea textAeraVertical(){
+    public TextArea textAeraVerticalNonEditable(){
         TextArea tmessage = new TextArea();
         tmessage.setWrapText(true);
         tmessage.setEditable(false);
@@ -239,10 +239,28 @@ public abstract class PageAdmin extends BorderPane{
         return tmessage;
     }
 
-    public TextArea textAeraHorizontal(){
+    public TextArea textAeraVertical(){
+        TextArea tmessage = new TextArea();
+        tmessage.setWrapText(true);
+        tmessage.setEditable(true);
+        tmessage.setMinSize(200, 500);
+
+        return tmessage;
+    }
+
+    public TextArea textAeraHorizontalNonEditable(){
         TextArea tmessage = new TextArea();
         tmessage.setWrapText(true);
         tmessage.setEditable(false);
+        tmessage.setMinSize(500, 200);
+
+        return tmessage;
+    }
+
+    public TextArea textAeraHorizontal(){
+        TextArea tmessage = new TextArea();
+        tmessage.setWrapText(true);
+        tmessage.setEditable(true);
         tmessage.setMinSize(500, 200);
 
         return tmessage;
