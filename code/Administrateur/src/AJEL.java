@@ -49,7 +49,7 @@ public class AJEL extends Application {
         redigerRapport.setOnAction(event -> this.passerEnModeRapportRediger());
 
         MenuItem lireStats = new MenuItem("Lire des statistiques");
-        //lireStats.setOnAction(event -> this.passerEnModeStats());
+        lireStats.setOnAction(event -> this.passerEnModeStats());
 
         MenuItem accesAide = new MenuItem("Accéder aux aides");
         //accesAide.setOnAction(event -> this.laBase.passerEnModeAide());
@@ -83,7 +83,7 @@ public class AJEL extends Application {
     public void passerEnModeAjouterJeu(){
         this.laBase.setCenter(new BorderAjouterJeu(this));
    }
-//
+
     public void passerEnModeCompte(){
         this.laBase.setCenter(new BorderCompte(this));
     }
@@ -91,19 +91,19 @@ public class AJEL extends Application {
     public void passerEnModeRapport(){
         this.laBase.setCenter(new BorderRapport(this));
     }
-//
+
     public void passerEnModeRapportLire(){
         this.laBase.setCenter(new BorderLireRapport(this));
     }
-//
+
     public void passerEnModeRapportRediger(){
         this.laBase.setCenter(new BorderRedigerRapport(this));
     }
-//
-//    public void passerEnModeStats(){
-//        this.laBase.setCenter(new BorderStats(this));
-//    }
-//
+
+    public void passerEnModeStats(){
+        this.laBase.setCenter(new BorderStatistiques(this));
+    }
+
 //    public void passerEnModeAide(){
 //        this.laBase.setCenter(new BorderAide(this));
 //    }
