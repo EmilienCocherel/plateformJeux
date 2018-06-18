@@ -191,16 +191,20 @@ public class LeJeu extends application.Jeu {
 	 * raffraichit l'affichage en fonction du modèle
 	 */
 	public void majAffichage() {
-		// A implémenter
 		System.out.println(this.cont);
+		// La pause
 		if (this.pause && !this.cont.getStyleClass().contains("pause"))
 			this.cont.getStyleClass().add("pause");
 		else if (!this.pause)
 			this.cont.getStyleClass().remove("pause");
+
+		// Si le tour est terminé pour le joueur actuel
 		if (!this.isTour() && !this.cont.getStyleClass().contains("autre-tour"))
 			this.cont.getStyleClass().add("autre-tour");
 		else if (this.isTour())
 			this.cont.getStyleClass().removeAll("autre-tour");
+
+		// L'affichage du tour
 		if (this.puissance4.isTour())
 			PlateauGUI.setCouleur(this.puissance4.getJoueurCourant().getPion(), this.pionTour);
 		else
