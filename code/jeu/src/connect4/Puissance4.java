@@ -124,11 +124,19 @@ public class Puissance4 {
 
 	public JSONObject toJson() {
 		JSONObject obj = new JSONObject();
+		List<Integer> gagnants = new ArrayList<>();
+		for (Joueur joueur : this.gagnants) {
+			if (joueur == this.joueur1)
+				gagnants.add(1);
+			else
+				gagnants.add(2);
+		}
 		obj.put("plateau", this.plateau.toJson());
 		obj.put("joueur1", this.joueur1.toJson());
 		obj.put("joueur2", this.joueur2.toJson());
 		obj.put("id", this.id);
 		obj.put("tour", this.tour);
+		obj.put("gagnants", gagnants);
 		return obj;
 	}
 
@@ -138,6 +146,7 @@ public class Puissance4 {
 	public void fromJson(JSONObject json) {
 		Long id = (Long) json.get("id"),
 			 tour = (Long) json.get("tour");
+		JSONArray gagnants = (JSONArray) json.get("gagnants");
 		this.plateau.fromJson((JSONArray) json.get("plateau"));
 		this.joueur1.fromJson((JSONObject) json.get("joueur1"));
 		this.joueur2.fromJson((JSONObject) json.get("joueur2"));
@@ -145,7 +154,18 @@ public class Puissance4 {
 			this.id = id.intValue();
 		if (tour != null)
 			this.tour = tour.intValue();
-		// TODO: Gagnants
+
+		// Gagnants
+		this.gagnants = new ArrayList<>();
+		for (Object elem : gagnants) {
+			id = (Long) elem;
+			if (id != null) {
+				if (id == 1)
+					this.gagnants.add(this.joueur1);
+				else
+					this.gagnants.add(this.joueur2);
+			}
+		}
 	}
 
 	/**
