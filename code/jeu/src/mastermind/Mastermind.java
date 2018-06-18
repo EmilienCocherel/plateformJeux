@@ -44,6 +44,12 @@ public class Mastermind extends application.Jeu{
     public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
     }
 
+    @Override
+    public void setPartie(application.Partie partie, int idJoueur) {}
+
+    @Override
+    public void setPartieBD(application.PartieBD partieBD) {}
+
     public Combinaison getATester(){
       return this.aTester;
     }
@@ -120,15 +126,14 @@ public class Mastermind extends application.Jeu{
         return id;
     }
 
-    @Override
     public void setId(int id) {
         this.id = id;
     }
 
-    @Override
     public void setJ1(Joueur joueur) {
       this.j1 = new JoueurMastermind(joueur.getIdentifiant());
     }
+
     public String getStringPion(int nbPion){
         switch (nbPion){
             case 0:
