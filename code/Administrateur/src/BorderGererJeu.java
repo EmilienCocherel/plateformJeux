@@ -7,11 +7,11 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class BorderAjouterJeu extends PageAdmin {
+public class BorderGererJeu extends PageAdmin {
 
     AJEL app;
 
-    public BorderAjouterJeu(AJEL app){
+    public BorderGererJeu(AJEL app){
         super();
         this.app = app;
 
@@ -19,15 +19,15 @@ public class BorderAjouterJeu extends PageAdmin {
         bMenu.setOnAction(event -> this.app.passerEnModeAccueil());
 
         Button bEnregistrer = this.buttonTypePageAdmin("Enregistrer");
-        bEnregistrer.setOnAction(event -> this.app.passerEnModeGererJeu());
+        bEnregistrer.setOnAction(event -> this.app.passerEnModeGererJeux());
 
         GridPane cotegauche = new GridPane();
 
         cotegauche.add(this.labelTypePageAdmin("Titre :"),0,0);
-        cotegauche.add(new TextField(),1,0);
+        cotegauche.add(this.labelTypePageAdmin("<Titre>"),1,0);
         cotegauche.add(this.checkBoxTypePageAdmin("Payant"),0,1);
         cotegauche.add(this.labelTypePageAdmin("Prix : "),0,2);
-        cotegauche.add(new TextField(),1,2);
+        cotegauche.add(this.labelTypePageAdmin("<Prix>"),1,2);
         cotegauche.add(this.checkBoxTypePageAdmin("Actif"),0,3);
         cotegauche.add(this.labelTypePageAdmin("Type de jeu : "),0,4);
         cotegauche.add(this.comboBoxAdmin("TpT","Simultané"),1,4);

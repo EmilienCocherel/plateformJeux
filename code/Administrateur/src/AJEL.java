@@ -84,6 +84,10 @@ public class AJEL extends Application {
         this.laBase.setCenter(new BorderAjouterJeu(this));
    }
 
+    public void passerEnModeGererJeu(){
+        this.laBase.setCenter(new BorderGererJeu(this));
+    }
+
    public void passerEnModeGererJeux(){
         this.laBase.setCenter(new BorderGererJeux(this));
    }

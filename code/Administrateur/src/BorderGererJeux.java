@@ -26,7 +26,6 @@ public class BorderGererJeux extends PageAdmin {
         this.setMaxSize(800, 700);
 
 
-
     }
 
 
