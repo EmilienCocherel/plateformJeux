@@ -57,6 +57,15 @@ public class Mastermind extends application.Jeu{
         this.joueur=new JoueurMastermind(idJoueur);
         this.idJoueurJ1=joueur1.getIdentifiant();
         this.idJoueurJ2=joueur2.getIdentifiant();
+        this.combis=new ArrayList<>();
+        this.combis.add(new Combinaison(new Pion(Color.RED,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
+        this.combis.add(new Combinaison(new Pion(Color.GREEN,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.BLUE,4)));
+        this.combis.add(new Combinaison(new Pion(Color.BLUE,1),new Pion(Color.YELLOW,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
+        this.aTester = new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4));
+        this.joueur.nouvelleManche(new Manche(this.combis.get(0),this, this.joueur,0));
+        this.manche=this.joueur.getMancheCourante();
+        this.manche.initCombiParTour();
+        this.manche.initResParTour();
         this.getEtat(idJoueur);
     }
 
@@ -75,7 +84,7 @@ public class Mastermind extends application.Jeu{
             System.out.println(this.joueur.getIdentifiant()+" get màj OK");
             return true;
         } catch (ParseException ex) {
-            System.out.println(this.joueur.getIdentifiant()+" get màj FAIL parse exception");
+            System.out.println(ex.getCause());
             return false;
         } catch (SQLException ex) {
             System.out.println(this.joueur.getIdentifiant()+" get màj FAIL sql exception");
@@ -96,7 +105,8 @@ public class Mastermind extends application.Jeu{
     }
 
     public void fromJson(JSONObject json) {
-        Long id = (Long) json.get("id"), tour = (Long) json.get("tour"), combi1p1 = (long) json.get("combi1p1"), combi1p2 = (long) json.get("combi1p2"), combi1p3 = (long) json.get("combi1p3"), combi1p4 = (long) json.get("combi1p4") ;
+        Long id = (Long) json.get("id"), tour = (Long) json.get("tour");
+        String combi1p1 = (String) json.get("combi1p1"), combi1p2 = (String) json.get("combi1p2"), combi1p3 = (String) json.get("combi1p3"), combi1p4 = (String) json.get("combi1p4") ;
         if (this.joueur.getIdentifiant()==this.idJoueurJ1){
             this.joueur.fromJson((JSONObject) json.get("joueur1"));
         }
@@ -109,7 +119,7 @@ public class Mastermind extends application.Jeu{
         if (tour != null)
             this.manche.setNbCoup(tour.intValue());
         if (combi1p1 != null){
-            this.combis.set(0,new Combinaison(combi1p1.toString(), combi1p2.toString(), combi1p3.toString(), combi1p4.toString()));
+            this.combis.set(0,new Combinaison(combi1p1, combi1p2, combi1p3, combi1p4));
         }
     }
 
@@ -371,16 +381,7 @@ public class Mastermind extends application.Jeu{
          @Override
          public void run(){
             this.stage = new Stage();
-            this.combis=new ArrayList<>();
-            this.combis.add(new Combinaison(new Pion(Color.RED,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
-            this.combis.add(new Combinaison(new Pion(Color.GREEN,1),new Pion(Color.RED,2),new Pion(Color.RED,3),new Pion(Color.BLUE,4)));
-            this.combis.add(new Combinaison(new Pion(Color.BLUE,1),new Pion(Color.YELLOW,2),new Pion(Color.RED,3),new Pion(Color.RED,4)));
-            this.aTester = new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4));
             stage.setTitle("Mastermind");
-            this.joueur.nouvelleManche(new Manche(this.combis.get(0),this, this.joueur,0));
-            this.manche=this.joueur.getMancheCourante();
-            this.manche.initCombiParTour();
-            this.manche.initResParTour();
             this.initInterfaceChoix();
             this.initHistoriqueCombinaison();
             this.laScene();
