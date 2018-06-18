@@ -254,7 +254,7 @@ public class LeJeu extends application.Jeu {
 	public void run() {
 		// Gestion de la mise à jour de l'état de la partie
 		this.updateTimeline = new Timeline(new KeyFrame(
-					Duration.millis(2000),
+					Duration.millis(500),
 					ae -> this.getEtatEtMaj()));
 		this.updateTimeline.setCycleCount(Timeline.INDEFINITE);
 		this.updateTimeline.play();
