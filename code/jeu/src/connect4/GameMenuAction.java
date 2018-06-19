@@ -46,7 +46,9 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 					j2++;
 				}
 			}
-			Alert alert = new Alert(AlertType.CONFIRMATION, "manche gagné par J1:"+j1+"\nmanche gagné par J2:"+j2);
+			Alert alert = new Alert(AlertType.INFORMATION, "round win by Player1:"+j1+"\nround win by Player2:"+j2);
+			alert.setTitle("Score Tab");
+			alert.setHeaderText("Score Tab");
 			alert.showAndWait();
 			System.out.println(j1);
 			System.out.println(j2);
