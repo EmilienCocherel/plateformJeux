@@ -52,7 +52,6 @@ public class Pion extends Circle{
 	}
 
 	public void setCouleur(String coul) {
-		System.out.println(coul);
 		this.setFill(this.couleurs.get(coul));
 	}
 }
