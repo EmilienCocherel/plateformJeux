@@ -151,10 +151,6 @@ public class Mastermind extends application.Jeu{
         return obj;
     }
 
-    public Combinaison getATester(){
-      return this.aTester;
-    }
-
     //public boolean estFinie(){ // À IMPLÉMENTER
     //    if (this.manche.estFini() && this.manche.getNum() == 3){
     //        return true;
@@ -166,11 +162,10 @@ public class Mastermind extends application.Jeu{
 
     public void finPartie(){}
 
-    public Label getHistorique(){
-      return this.historique;
-    }
 
-
+      /**
+      * passe prochaine manche
+      */
     public void prochaineManche(Manche precedent,boolean gagne){
         try{
             this.joueur.nouvelleManche(new Manche(this.combis.get(precedent.getNum()+1),this, precedent.getJoueurMastermind(),precedent.getNum()+1));
@@ -218,6 +213,15 @@ public class Mastermind extends application.Jeu{
         }
     }
 
+    //getter et setter
+
+    public Label getHistorique(){
+      return this.historique;
+    }
+
+    public Combinaison getATester(){
+      return this.aTester;
+    }
 
     public JoueurMastermind getJ1() {
         return joueur;
@@ -235,6 +239,10 @@ public class Mastermind extends application.Jeu{
       this.joueur = new JoueurMastermind(joueur.getIdentifiant());
     }
 
+
+    /**
+    * @return un string correspondant au numéro de pion
+    */
     public String getStringPion(int nbPion){
         switch (nbPion){
             case 0:
@@ -249,6 +257,10 @@ public class Mastermind extends application.Jeu{
         return null;
     }
 
+
+    /**
+    * @return Pion à l'emplacement nbPion de la combinaison à tester
+    */
     private Circle getPion(int nbPion){
         switch (nbPion){
             case 0:
@@ -262,6 +274,10 @@ public class Mastermind extends application.Jeu{
         }
         return null;
     }
+
+    /**
+    * @return une VBox contenant les radio boutons permettant de changer la couleurs des pions de la combinaison à tester
+    */
     private VBox choixCouleurDuPion(int val){
         VBox res=new VBox(5);
         res.getChildren().add(this.getPion(val));
@@ -289,22 +305,29 @@ public class Mastermind extends application.Jeu{
         return res;
     }
 
-    private VBox choixCouleursP1(){
-        return this.choixCouleurDuPion(0);
+    /**
+     * initialise l'interface de choix de couleur des pions de la combinaison à tester
+     */
+    private void initInterfaceChoix(){
+        HBox res=new HBox(5);
+        res.setAlignment(Pos.CENTER);
+        Button brestart = new Button("tester");
+        ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
+        brestart.setOnAction(actionTester);
+        res.getChildren().add(brestart);
+        res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
+        res.getChildren().add(this.choixCouleurDuPion(0));
+        res.getChildren().add(this.choixCouleurDuPion(1));
+        res.getChildren().add(this.choixCouleurDuPion(2));
+        res.getChildren().add(this.choixCouleurDuPion(3));
+        this.historique = new Label();
+        res.getChildren().add(historique);
+        this.interfaceChoix=res;
     }
 
-    private VBox choixCouleursP2(){
-        return this.choixCouleurDuPion(1);
-    }
-
-    private VBox choixCouleursP3(){
-        return this.choixCouleurDuPion(2);
-    }
-
-    private VBox choixCouleursP4(){
-        return this.choixCouleurDuPion(3);
-    }
-
+    /**
+     * initialise l'interface des combinaisons déjà tester par l'utilisateur
+     */
     private void initHistoriqueCombinaison(){
         VBox res=new VBox(5);
         res.setAlignment(Pos.CENTER);
@@ -324,67 +347,52 @@ public class Mastermind extends application.Jeu{
         this.historiqueCombinaison=res;
     }
 
-    private void initInterfaceChoix(){
-        HBox res=new HBox(5);
-        res.setAlignment(Pos.CENTER);
-        Button brestart = new Button("tester");
-        ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
-        brestart.setOnAction(actionTester);
-        res.getChildren().add(brestart);
-        res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
-        res.getChildren().add(this.choixCouleursP1());
-        res.getChildren().add(this.choixCouleursP2());
-        res.getChildren().add(this.choixCouleursP3());
-        res.getChildren().add(this.choixCouleursP4());
-        this.historique = new Label();
-        res.getChildren().add(historique);
-        this.interfaceChoix=res;
-    }
+      /**
+      * @return le panel contenant le titre du jeu
+      */
+      private FlowPane titre(){
+          FlowPane res = new FlowPane();
+          res.setPadding(new Insets(10,10,10,10));
+          Label nom = new Label("Mastermind");
+          res.getChildren().add(nom);
+          res.setAlignment(Pos.CENTER);
+          return res;
+      }
 
-        /**
-         * @return le panel contenant le titre du jeu
-         */
-        private FlowPane titre(){
-            FlowPane res = new FlowPane();
-            res.setPadding(new Insets(10,10,10,10));
-            Label nom = new Label("Mastermind");
-            res.getChildren().add(nom);
-            res.setAlignment(Pos.CENTER);
-            return res;
-        }
-
-        /**
-         * @return  le graphe de scène de la vue à partir de methodes précédantes
-         */
-        private void laScene(){
-            BorderPane cont = new BorderPane();
-            cont.setTop(this.titre());
-            cont.setCenter(this.historiqueCombinaison);
-            cont.setBottom(this.interfaceChoix);
-            cont.setBackground(new Background(new BackgroundFill(Color.PINK,null,null)));
-            this.scene = new Scene(cont,500,600);
-        }
+      /**
+       * initialise le graphe de scène de la vue à partir de methodes précédantes
+       */
+      private void laScene(){
+          BorderPane cont = new BorderPane();
+          cont.setTop(this.titre());
+          cont.setCenter(this.historiqueCombinaison);
+          cont.setBottom(this.interfaceChoix);
+          cont.setBackground(new Background(new BackgroundFill(Color.PINK,null,null)));
+          this.scene = new Scene(cont,500,600);
+      }
 
 
-        /**
-         * raffraichit l'affichage en fonction du modèle
-         */
-        public void majAffichage(){
-          this.aTester.getP1().setFill(this.aTester.getCouleurP1());
-          this.aTester.getP2().setFill(this.aTester.getCouleurP2());
-          this.aTester.getP3().setFill(this.aTester.getCouleurP3());
-          this.aTester.getP4().setFill(this.aTester.getCouleurP4());
-        }
+      /**
+       * raffraichit l'affichage en fonction du modèle
+       */
+      public void majAffichage(){
+        this.aTester.getP1().setFill(this.aTester.getCouleurP1());
+        this.aTester.getP2().setFill(this.aTester.getCouleurP2());
+        this.aTester.getP3().setFill(this.aTester.getCouleurP3());
+        this.aTester.getP4().setFill(this.aTester.getCouleurP4());
+      }
 
-
-         @Override
-         public void run(){
-            this.stage = new Stage();
-            stage.setTitle("Mastermind");
-            this.initInterfaceChoix();
-            this.laScene();
-            stage.setScene(this.scene);
-            stage.show();
-            this.majAffichage();
-         }
+      /**
+       * lance le jeu
+       */
+       @Override
+       public void run(){
+          this.stage = new Stage();
+          stage.setTitle("Mastermind");
+          this.initInterfaceChoix();
+          this.laScene();
+          stage.setScene(this.scene);
+          stage.show();
+          this.majAffichage();
+       }
     }
