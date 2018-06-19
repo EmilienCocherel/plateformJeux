@@ -38,6 +38,7 @@ public class Mastermind extends application.Jeu{
     private int idJoueurJ1;
     private int idJoueurJ2;
     private application.PartieBD partieBD;
+	private Button tester;
 
     public Mastermind(){}
 
@@ -311,10 +312,11 @@ public class Mastermind extends application.Jeu{
     private void initInterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
-        Button brestart = new Button("tester");
+        this.tester = new Button("Tester");
         ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
-        brestart.setOnAction(actionTester);
-        res.getChildren().add(brestart);
+        this.tester.setOnAction(actionTester);
+		this.tester.setDisable(true);
+        res.getChildren().add(this.tester);
         res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
         res.getChildren().add(this.choixCouleurDuPion(0));
         res.getChildren().add(this.choixCouleurDuPion(1));
@@ -380,6 +382,10 @@ public class Mastermind extends application.Jeu{
         this.aTester.getP2().setFill(this.aTester.getCouleurP2());
         this.aTester.getP3().setFill(this.aTester.getCouleurP3());
         this.aTester.getP4().setFill(this.aTester.getCouleurP4());
+		this.tester.setDisable(this.aTester.getCouleurP1().equals(Color.WHITE) ||
+				this.aTester.getCouleurP2().equals(Color.WHITE) ||
+				this.aTester.getCouleurP3().equals(Color.WHITE) ||
+				this.aTester.getCouleurP4().equals(Color.WHITE));
       }
 
       /**
