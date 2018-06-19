@@ -36,6 +36,9 @@ public class HelpMenuAction implements EventHandler<ActionEvent> {
 			Alert alert = new Alert(AlertType.INFORMATION, "Each player is assign to a disk's color.\nThe first player is the yellow one.\n\nEach player takes turns dropping one colored disc\nfrom the top into a seven-column,\nsix-row vertically suspended grid.\n\nThe pieces fall straight down, occupying\nthe next available space within the column.\n\nThe objective of the game is to be\nthe first to form a horizontal,\nvertical, or diagonal line of\nfour of one's own discs.");
 			alert.setTitle("Tutorial");
 			alert.setHeaderText("Tutorial");
+			alert.setGraphic(new ImageView("./img/connect4.gif"));
+			((ImageView)alert.getGraphic()).setFitHeight(180.0);
+			((ImageView)alert.getGraphic()).setFitWidth(180.0);
 			alert.showAndWait();
 		}
 	}
