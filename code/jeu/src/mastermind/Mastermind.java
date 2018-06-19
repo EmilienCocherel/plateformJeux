@@ -134,6 +134,8 @@ public class Mastermind extends application.Jeu{
 			combinaisons.add(combi.toJson());
 		obj.put("combinaisons", combinaisons);
 
+		obj.put("manche", this.manche.toJson());
+
         obj.put("id", this.id);
         if(this.joueur.getIdentifiant()==this.idJoueurJ1){
             obj.put("joueur1", this.joueur.toJson());
