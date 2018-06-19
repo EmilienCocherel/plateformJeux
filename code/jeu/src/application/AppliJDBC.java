@@ -85,6 +85,7 @@ public class AppliJDBC extends Application {
         // primaryStage.setScene(this.scene);
         // primaryStage.setTitle("Application AJEL");
         // primaryStage.show();
+        stage.setResizable(false);
         this.ApplicationAJEL.creerMenuConnexion();
         this.ApplicationAJEL.colorerLaBase();
 
@@ -106,7 +107,6 @@ public class AppliJDBC extends Application {
     }
 
     public void passerEnModeConnexion(){
-        this.ApplicationAJEL = new ApplicationAJEL(this);
         // this.ApplicationAJEL.creerMenuConnexion();
         this.laBase.setCenter(new GridConnexion(this));
     }

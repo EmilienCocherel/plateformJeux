@@ -76,10 +76,22 @@ public class GridConnexion extends PageConnexion{
         boolean mailInvalide = false;
         String sauvegardeMail = this.getEmail().getText();
         String sauvegardeMdp = this.getMdp().getText();
-        if (!this.verifierEmailDansLaBase()){
-          res = false;
+        if (this.verifierEmailDansLaBase()){
+          this.getChildren.remove(this.email);
+          this.add(this.email = new labelType(sauvegardeMail));
+          if (this.verifierMDPInvalide()){
+            if(this.verifierAdmin()){
+              this.appli.passerEnModeAdministrateur();
+            }
+            else{
+            this.appli.passerEnModeJoueur();
+            }
+          }
+          else{ // mot de passe invalide
+
+          }
         }
-        else{
+        else{ // email pas dans la base de données
           res = true;
         }
         return res;
