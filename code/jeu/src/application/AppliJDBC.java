@@ -200,7 +200,7 @@ public class AppliJDBC extends Application {
 
     public void showChoixJeu(){
       BorderPane fp =((BorderPane)scene.getRoot());
-      fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion));
+      fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion,this.partieBD,this.jeuBD,this.joueurBD));
       fp.getChildren().remove(1);
       // fp.getChildren().addAll(this.choixJeu);
     }

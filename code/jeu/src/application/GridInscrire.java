@@ -43,7 +43,7 @@ public class GridInscrire extends PageConnexion{
         this.mdp = new TextField("TestMdp");
         this.confMdp = new TextField("TestTest");
         this.error = this.labelType("");
-        this.condiUse = this.checkBoxType("J'accepte les termes d'utilisation \n et la politique de confidentialité");
+        this.condiUse = this.checkBoxType("J'accepte les termes d'utilisations");
         this.sInscrireNode = this.buttonType("Créer mon compte");
         this.sInscrireButton = (Button) this.sInscrireNode;
         this.add(this.title("S'inscrire"),0,0);
@@ -93,66 +93,77 @@ public class GridInscrire extends PageConnexion{
         String sauvegardeMail = this.getEmail().getText();
         String sauvegardeMdp = this.getMdp().getText();
         String sauvegardeConfMdp = this.getConfMdp().getText();
-        if (this.verifierPseudoDejaInscrit()){
-          if (this.verifierEmailDejaInscrit()){
-            if (this.isValid(this.getEmail().getText())){
+        String sauvegardePseudo = this.getNom().getText();
+        if (!this.verifierPseudoDejaInscrit()){
+          this.getChildren().remove(this.nom);
+          this.add(this.nom = new TextField(sauvegardePseudo),1,1);
+          if (this.isValid(this.getEmail().getText())){
+            if (!this.verifierEmailDejaInscrit()){
               mailInvalide = false;
               this.getChildren().remove(this.email);
               this.add(this.email = new TextField(sauvegardeMail),1,2);
               res = true;
-              if (this.getMdp().getText().equals(this.getConfMdp().getText()) && !mailInvalide){
+              }
+              else{
+                System.out.println("Email utilisé : "+this.getEmail().getText());
                 this.getChildren().remove(this.error);
-                this.getChildren().remove(this.mdp);
-                this.getChildren().remove(this.confMdp);
-                this.add(this.mdp = new TextField(sauvegardeMdp),1,3);
-                this.add(this.confMdp = new TextField(sauvegardeConfMdp),1,4);
-                res = false;
-                if (this.condiUse.isSelected()){
-                  this.getChildren().remove(this.error);
-                  this.appli.getJoueurBD().insererJoueur(this.creerJoueur());
-                  this.appli.passerEnModeConnexion();
-                }
-                else{
-                  this.getChildren().remove(this.error);
-                  this.error = this.labelType("Acceptez les conditions d'utilisations");
-                  this.add(this.error,1,7);
-                  throw new CondiUseException("Veuillez accepter les conditions d'utilisations");
-                }
+                this.error = this.labelType("Email déjà utilisé");
+                this.getEmail().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
+                this.add(this.error,1,7);
+              }
+            if (this.getMdp().getText().equals(this.getConfMdp().getText()) && !mailInvalide){
+              this.getChildren().remove(this.error);
+              this.getChildren().remove(this.mdp);
+              this.getChildren().remove(this.confMdp);
+              this.add(this.mdp = new TextField(sauvegardeMdp),1,3);
+              this.add(this.confMdp = new TextField(sauvegardeConfMdp),1,4);
+              res = false;
+              if (this.condiUse.isSelected()){
+                this.getChildren().remove(this.error);
+                this.appli.getJoueurBD().insererJoueur(this.creerJoueur());
+                this.appli.passerEnModeConnexion();
               }
               else{
                 this.getChildren().remove(this.error);
-                this.error = this.labelType("Mot de passe mal recopié");
+                this.error = this.labelType("Acceptez les conditions d'utilisations");
                 this.add(this.error,1,7);
+                throw new CondiUseException("Veuillez accepter les conditions d'utilisations");
               }
             }
             else{
-              if (this.getMdp().getText().equals(this.getConfMdp().getText())){
-              this.getEmail().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
               this.getChildren().remove(this.error);
-              this.error = this.labelType("Veuillez rentrer un email valide");
+              this.error = this.labelType("Mot de passe mal recopié");
               this.add(this.error,1,7);
-              mailInvalide = true;
-              throw new EmailInvalideException("Email invalide");
-              }
-              else{
-                this.getChildren().remove(this.error);
-                this.error = this.labelType("Mauvais mail ET mot de passe");
-                this.getEmail().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
-                this.getMdp().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
-                this.getConfMdp().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
-                this.add(this.error,1,7);
-                throw new MdpInvalideException("Mot de passe mal recopié");
-              }
+          }
+        }
+          else{
+            if (this.getMdp().getText().equals(this.getConfMdp().getText())){
+            this.getEmail().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
+            this.getChildren().remove(this.error);
+            this.error = this.labelType("Veuillez rentrer un email valide");
+            this.add(this.error,1,7);
+            mailInvalide = true;
+            throw new EmailInvalideException("Email invalide");
+            }
+            else{
+              this.getChildren().remove(this.error);
+              this.error = this.labelType("Mauvais mail ET mot de passe");
+              this.getEmail().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
+              this.getMdp().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
+              this.getConfMdp().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
+              this.add(this.error,1,7);
+              throw new MdpInvalideException("Mot de passe mal recopié");
             }
           }
         }
         else {
+          this.getNom().requestFocus();
+          System.out.println("Pseudo utilisé : "+this.getNom().getText());
           this.getChildren().remove(this.error);
           this.getNom().setStyle("-fx-border-color: red ; -fx-border-width: 1px ; -fx-text-fill: red;");
           this.error = this.labelType("Identifiant déjà utilisé");
           this.add(this.error,1,7);
         }
-        System.out.println(this.getMdp().getText().equals(this.getConfMdp().getText()));
         return res;
       }
 
@@ -161,15 +172,12 @@ public class GridInscrire extends PageConnexion{
       if (this.isValid(this.getEmail().getText())){
         inscrit = this.appli.getJoueurBD().mailDejaInscrit(this.getEmail().getText());
       }
-      else{
-        throw new EmailInvalideException("Mail déjà inscrit");
-      }
       return inscrit;
     }
 
     public boolean verifierPseudoDejaInscrit() throws SQLException{
 
-        return this.appli.getJoueurBD().mailDejaInscrit(this.getEmail().getText());
+        return this.appli.getJoueurBD().joueurDejaInscrit(this.getNom().getText());
 
     }
 
@@ -196,6 +204,7 @@ public class GridInscrire extends PageConnexion{
             return false;
         return pat.matcher(email).matches();
     }
+
     @Override
     public boolean equals(Object o){
       if (o == null){
