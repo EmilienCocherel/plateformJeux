@@ -32,29 +32,6 @@ public class Puissance4 {
 		else
 			this.actuel = 2;
 		this.tour = this.actuel;
-    }
-
-	/**
-	 * @param plateau Le plateau
-	 * @param gagnants La liste des gagnants
-	 * @param joueur1 Le premier joueur
-	 * @param joueur2 Le second joueur
-	 * @param id L'id
-	 * @param actuel L'id du joueur actuel
-	 * @param tour Si c'est le tour du joueur actuel
-	 */
-	public Puissance4(Plateau plateau, List<Joueur> gagnants, Joueur joueur1, Joueur joueur2,
-			int id, int actuel, int tour) {
-		this.plateau = plateau;
-		this.gagnants = gagnants;
-		this.joueur1 = joueur1;
-		this.joueur2 = joueur2;
-		this.id = id;
-		if (actuel == joueur1.getId())
-			this.actuel = 1;
-		else
-			this.actuel = 2;
-		this.tour = tour;
 	}
 
     public Integer getPion(int ligne, int colonne) {
@@ -124,11 +101,19 @@ public class Puissance4 {
 
 	public JSONObject toJson() {
 		JSONObject obj = new JSONObject();
+		List<Integer> gagnants = new ArrayList<>();
+		for (Joueur joueur : this.gagnants) {
+			if (joueur == this.joueur1)
+				gagnants.add(1);
+			else
+				gagnants.add(2);
+		}
 		obj.put("plateau", this.plateau.toJson());
 		obj.put("joueur1", this.joueur1.toJson());
 		obj.put("joueur2", this.joueur2.toJson());
 		obj.put("id", this.id);
 		obj.put("tour", this.tour);
+		obj.put("gagnants", gagnants);
 		return obj;
 	}
 
@@ -138,6 +123,7 @@ public class Puissance4 {
 	public void fromJson(JSONObject json) {
 		Long id = (Long) json.get("id"),
 			 tour = (Long) json.get("tour");
+		JSONArray gagnants = (JSONArray) json.get("gagnants");
 		this.plateau.fromJson((JSONArray) json.get("plateau"));
 		this.joueur1.fromJson((JSONObject) json.get("joueur1"));
 		this.joueur2.fromJson((JSONObject) json.get("joueur2"));
@@ -145,7 +131,18 @@ public class Puissance4 {
 			this.id = id.intValue();
 		if (tour != null)
 			this.tour = tour.intValue();
-		// TODO: Gagnants
+
+		// Gagnants
+		this.gagnants = new ArrayList<>();
+		for (Object elem : gagnants) {
+			id = (Long) elem;
+			if (id != null) {
+				if (id == 1)
+					this.gagnants.add(this.joueur1);
+				else
+					this.gagnants.add(this.joueur2);
+			}
+		}
 	}
 
 	/**

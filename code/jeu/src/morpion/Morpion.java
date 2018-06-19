@@ -1,5 +1,6 @@
 package morpion;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 import org.json.simple.*;
 import org.json.simple.parser.*;
@@ -21,6 +22,7 @@ public class Morpion extends application.Jeu{
     public Morpion(String json){
 	     setEtat(json);
     }
+
     public Morpion(int taille, int nbAlignes, int joueurCourant){
 	this.taille=taille;
 	this.nbAlignes=nbAlignes;
@@ -100,6 +102,25 @@ public class Morpion extends application.Jeu{
     public void setVal(int i, int j,int val){
 	grille[i][j]=val;
     }
+
+	public void setEtat() {
+	}
+
+	@Override
+	public void setPartie(application.Partie partie, int idJoueur) {
+	}
+
+	@Override
+	public void setPartieBD(application.PartieBD partieBD) {
+	}
+
+	@Override
+	public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+	}
+
+	@Override
+	public void jouerCoup(int idPartie, int joueur, Object partage){
+	}
 
     public void jouer(int lin, int col){
 	grille[lin][col]=joueurCourant;
@@ -262,6 +283,9 @@ public class Morpion extends application.Jeu{
 	System.out.println("Le gagnant est le joueur "+m.getProchainJoueur());
 
     }
+
+	@Override
+	public void run(){}
 
     // @Override
     // public void jouerCoup(int idPartie, int joueur, Object partage){
