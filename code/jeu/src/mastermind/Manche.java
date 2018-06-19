@@ -42,7 +42,7 @@ public class    Manche {
 
     public void initCombiParTour(){
         for (int i=0; i<10;i++){
-            this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4)));
+            this.CombiParTour.add(new Combinaison());
         }
     }
 
