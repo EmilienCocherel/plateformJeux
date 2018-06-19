@@ -66,6 +66,7 @@ public class Mastermind extends application.Jeu{
         this.manche=this.joueur.getMancheCourante();
         this.manche.initCombiParTour();
         this.manche.initResParTour();
+		this.initHistoriqueCombinaison();
         this.getEtat(idJoueur);
     }
 
@@ -121,6 +122,8 @@ public class Mastermind extends application.Jeu{
         }
         if (tour != null)
             this.manche.setNbCoup(tour.intValue());
+
+		this.manche.fromJson((JSONObject) json.get("manche"));
 
 		for (int i=0; i < combinaisons.size(); i++) {
 			this.combis.get(i).fromJson((JSONObject) combinaisons.get(i));
@@ -379,7 +382,6 @@ public class Mastermind extends application.Jeu{
             this.stage = new Stage();
             stage.setTitle("Mastermind");
             this.initInterfaceChoix();
-            this.initHistoriqueCombinaison();
             this.laScene();
             stage.setScene(this.scene);
             stage.show();
