@@ -36,7 +36,21 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 				.filter(response -> response == ButtonType.OK)
 				.ifPresent(response -> this.gui.abandonner());
 		} else if (text.equals("Score tab")) {
-			// TODO
+			int j1=0;
+			int j2=0;
+			for (Joueur gagnant : this.puissance4.getGagnants()) {
+				if (gagnant == this.puissance4.getJoueur1()){
+					j1++;
+				}
+				if (gagnant == this.puissance4.getJoueur2()){
+					j2++;
+				}
+			}
+			Alert alert = new Alert(AlertType.CONFIRMATION, "manche gagné par J1:"+j1+"\nmanche gagné par J2:"+j2);
+			alert.showAndWait();
+			System.out.println(j1);
+			System.out.println(j2);
+			System.out.println(alert);
 			System.out.println("Score tab");
 		}
 	}

@@ -7,8 +7,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.JSONArray;
 
 public class Puissance4 {
-    private List<Joueur> gagnants;
-    private int id;
+  private List<Joueur> gagnants;
+  private int id;
 	private Joueur joueur1, joueur2;
 	private Plateau plateau;
 	/** Joueur actuel (celui qui utilise ce client) */
@@ -161,7 +161,7 @@ public class Puissance4 {
 			if (gagnant == this.joueur1)
 				j1++;
 		}
-		if (j1 > 1)
+		if (j1 > this.gagnants.size()/2)
 			return this.joueur1;
 		else
 			return this.joueur2;
