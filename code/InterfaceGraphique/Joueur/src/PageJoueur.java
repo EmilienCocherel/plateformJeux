@@ -1,6 +1,7 @@
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.CycleMethod;
@@ -9,6 +10,10 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonBar;
+
+import javafx.scene.image.ImageView;
+
+import static java.awt.Font.BOLD;
 
 public abstract class PageJoueur extends BorderPane{
 
@@ -24,7 +29,7 @@ public abstract class PageJoueur extends BorderPane{
 
     public Label titlePageJouer(String titre) {
 
-        Font fonttitre = new Font("Arial", 25);
+        Font fonttitre = new Font("Arial", 32);
         Label title = new Label(titre);
         title.setTextFill(Color.rgb(179, 71, 91));
         title.setPadding(new Insets(10, 0, 10, 10));
@@ -36,10 +41,26 @@ public abstract class PageJoueur extends BorderPane{
 
     public Label labelTypePageJoueur(String nom) {
 
+
         Label label = new Label(nom);
         label.setTextFill(Color.rgb(196, 196, 196));
         label.setAlignment(Pos.CENTER);
         label.setPadding(new Insets(10, 0, 10, 10));
+
+
+        return label;
+
+    }
+
+
+    public Label labelGrosPageJoueur(String nom) {
+
+        Font fontGros = new Font("Arial", 25);
+        Label label = new Label(nom);
+        label.setTextFill(Color.rgb(196, 196, 196));
+        label.setAlignment(Pos.CENTER);
+        label.setPadding(new Insets(10, 0, 10, 10));
+        label.setFont(fontGros);
 
         return label;
 
@@ -73,11 +94,21 @@ public abstract class PageJoueur extends BorderPane{
         return hbox;
     }
 
-    public VBox vboxTypePageJoueur(String nom, TextField textfield){
+    public HBox hboxTypePageJoueur(String nom, Button b){
+        HBox hbox = new HBox();
+        Label label = this.labelTypePageJoueur(nom);
+
+        hbox.getChildren().addAll(label, b);
+        hbox.setPadding(new Insets(10, 50, 10, 50));
+
+        return hbox;
+    }
+
+    public VBox vboxTypePageJoueur(String nom, TextArea textarea){
         VBox vbox = new VBox();
         Label label = this.labelTypePageJoueur(nom);
 
-        vbox.getChildren().addAll(label, textfield);
+        vbox.getChildren().addAll(label, textarea);
         vbox.setPadding(new Insets(20, 100, 10, 100));
 
         return vbox;
@@ -109,7 +140,6 @@ public abstract class PageJoueur extends BorderPane{
 
 
     }
-
 
     public Button buttonTypePageJoueur(String nom){
         Button bouton = new Button(nom);
@@ -154,6 +184,70 @@ public abstract class PageJoueur extends BorderPane{
         }
         barBouton.setPadding(new Insets(10, 50, 10, 50));
         return barBouton;
+    }
+
+    public HBox imageTypePageJoueur(){
+
+        Image test = new Image("inconnu.png");
+
+        ImageView iv1 = new ImageView();
+        iv1.setImage(test);
+        iv1.setFitWidth(200);
+        iv1.setFitHeight(200);
+        iv1.setPreserveRatio(true);
+        iv1.setSmooth(true);
+        iv1.setCache(true);
+
+        Button imageClicable = new Button();
+        imageClicable.setGraphic(iv1);
+        imageClicable.setStyle("-fx-background-color: transparent;");
+
+        HBox res = new HBox();
+        res.getChildren().add(imageClicable);
+        res.setStyle("-fx-background-color: transparent;");
+        res.setPadding(new Insets(75, 75, 10, 50));
+
+
+        return res;
+    }
+
+
+    public HBox imageTypePageConnexion(){
+
+        Image test = new Image("logo_moyen.png");
+
+        ImageView iv1 = new ImageView();
+        iv1.setImage(test);
+        iv1.setFitWidth(200);
+        iv1.setFitHeight(200);
+        iv1.setPreserveRatio(true);
+        iv1.setSmooth(true);
+        iv1.setCache(true);
+
+        Button imageClicable = new Button();
+        imageClicable.setGraphic(iv1);
+        imageClicable.setStyle("-fx-background-color: transparent;");
+
+        HBox res = new HBox();
+        res.getChildren().add(imageClicable);
+        res.setStyle("-fx-background-color: transparent;");
+        res.setPadding(new Insets(75, 75, 10, 50));
+
+
+        return res;
+    }
+
+    public Label grosTitle(String titre){
+
+        Font fonttitre = new Font("Arial", 80);
+        Label title = new Label(titre);
+        title.setTextFill(Color.rgb(179, 71, 91));
+        title.setPadding(new Insets(10, 0, 10, 10));
+        title.setFont(fonttitre);
+        title.setAlignment(Pos.TOP_LEFT);
+
+        return title;
+
     }
 
 }

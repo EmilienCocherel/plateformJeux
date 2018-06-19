@@ -80,6 +80,7 @@ public class AJEL extends Application {
         invitations.setOnAction(event -> this.passerEnModeInvitations());
         amis.setOnAction(event -> this.passerEnModeMesAmis());
         messagerie.setOnAction(event -> this.passerEnModeMessagerieRecus());
+        compte.setOnAction(event -> this.passerEnModeProfilUtilisateur());
         seDeconnecter.setOnAction(event -> this.passerEnModeConnexion());
 
         bar.getChildren().add(menu);
@@ -88,20 +89,16 @@ public class AJEL extends Application {
     }
 
     private void passerEnModeInscription(){
-        this.laBase.setCenter(new GridInscrire());
+        this.laBase.setCenter(new GridInscrire(this));
     }
 
-    private void passerEnModeConnexion(){
+    public void passerEnModeConnexion(){
         this.creerMenuConnexion();
         this.laBase.setCenter(new GridConnexion(this));
     }
 
     public void passerEnModeMDPOublie(){
         this.laBase.setCenter(new GridForgotPassword());
-    }
-
-    public void passerEnModeJoueur(){
-        this.creerMenuJoueur();
     }
 
     public void passerEnModeJeuxPossede(){
@@ -129,6 +126,8 @@ public class AJEL extends Application {
         this.laBase.setCenter(new BorderMesAmis(this));
     }
 
+    public void passerEnModeMesDemandes() {this.laBase.setCenter(new BorderAmisDemande(this));}
+
     public void passerEnModeMessagerieRecus(){
         this.laBase.setCenter(new BorderMessagerieRecus(this));
     }
@@ -140,6 +139,23 @@ public class AJEL extends Application {
     public void passerEnModeRedigerMessage(){
         this.laBase.setCenter(new BorderRedigerMessage(this));
     }
+
+    public void passerEnModeProfilUtilisateur(){
+        this.laBase.setCenter(new BorderProfilUtilisateur(this));
+    }
+
+    public void passerEnModeChgmntInfo(){
+        this.laBase.setCenter(new BorderChgmntInfo(this));
+    }
+
+    public void passerEnModeConsulterStatsJeux(){
+        this.laBase.setCenter(new BorderConsutlerStatsJeux(this));
+    }
+
+    public void passerEnModeConsulterStatsAdversaire(){
+        this.laBase.setCenter(new BorderConsulterStatsAdversaire(this));
+    }
+
 
     private void colorerLaBase(){
         this.laBase.setBackground(new Background(new BackgroundFill(this.couleurDegradeCentre(), null, null)));
@@ -167,6 +183,7 @@ public class AJEL extends Application {
 
         this.creerMenuConnexion();
         this.colorerLaBase();
+        this.laBase.setCenter(new BorderAcceuilConnexion(this));
 
         stage.setScene( new Scene(this.laBase,1000,800));
         stage.setTitle("AJEL");
