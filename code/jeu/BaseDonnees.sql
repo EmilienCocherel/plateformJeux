@@ -4,7 +4,7 @@
 -- ------------------------------------------------------
 -- Server version	5.7.22-0ubuntu0.16.04.1
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+-- /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
@@ -125,6 +125,7 @@ CREATE TABLE JOUEUR (
   admin char(1) DEFAULT NULL,
   PRIMARY KEY (idJo),
   UNIQUE KEY idJo (idJo),
+  UNIQUE KEY pseudo (pseudo),
   UNIQUE KEY emailJo (emailJo)
 )
 ENGINE=InnoDB DEFAULT CHARSET=latin1;

@@ -5,7 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Optional;
 
 /**
@@ -35,6 +35,12 @@ public class ActionInsererJoueur implements EventHandler<ActionEvent> {
 		}
 		catch(SQLException e){
 			System.out.println("SQL exception");
+		}
+		catch (MdpInvalideException e){
+			System.out.println("Erreur confirmation mot de passe");
+		}
+		catch (CondiUseException e){
+			System.out.println("Acceptez les conditions d'utilisations");
 		}
 	}
 }
