@@ -8,6 +8,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -16,7 +17,8 @@ import javafx.scene.paint.Color;
 public class GridConnexion extends PageConnexion{
 
     private AppliJDBC appli;
-    private TextField email, mdp;
+    private TextField email;
+    private PasswordField mdp;
     private String login, motdepasse;
     private String type;
     private Button seConnecterButton;
@@ -38,8 +40,8 @@ public class GridConnexion extends PageConnexion{
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(400, 300);
 
-        this.email = new TextField("");
-        this.mdp = new TextField("");
+        this.email = new TextField("mario@gmail.com");
+        this.mdp = new PasswordField();
         this.error = this.labelType("");
 
         this.add(this.title("Connexion"), 0, 0);
@@ -54,7 +56,8 @@ public class GridConnexion extends PageConnexion{
 
         // this.seConnecterButton.setOnAction(this.cc);
         // this.seConnecterButton.setOnAction(event -> this.seConnecterBD());
-        seConnecterBouton.setOnAction(event -> this.seConnecterBD());
+        ActionConnectionJoueur action = new ActionConnectionJoueur(this);
+        seConnecterBouton.setOnAction(action);
 
 
     }
@@ -63,7 +66,7 @@ public class GridConnexion extends PageConnexion{
       return this.email;
     }
 
-    public TextField getMdp(){
+    public PasswordField getMdp(){
       return this.mdp;
     }
 
@@ -77,11 +80,11 @@ public class GridConnexion extends PageConnexion{
         String sauvegardeMail = this.getEmail().getText();
         String sauvegardeMdp = this.getMdp().getText();
         if (this.verifierEmailDansLaBase()){
-          this.getChildren.remove(this.email);
-          this.add(this.email = new labelType(sauvegardeMail));
+          this.getChildren().remove(this.email);
+          this.add(this.email = new TextField(sauvegardeMail), 1, 1);
           if (this.verifierMDPInvalide()){
             if(this.verifierAdmin()){
-              this.appli.passerEnModeAdministrateur();
+              this.appli.passerEnModeAccueil();
             }
             else{
             this.appli.passerEnModeJoueur();

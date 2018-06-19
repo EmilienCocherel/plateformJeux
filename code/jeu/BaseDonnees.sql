@@ -197,6 +197,6 @@ ALTER TABLE INVITATION ADD FOREIGN KEY (idJo1) REFERENCES JOUEUR (idJo);
 ALTER TABLE INVITATION ADD FOREIGN KEY (idJo) REFERENCES JOUEUR (idJo);
 -- ALTER TABLE JEU ADD FOREIGN KEY (idTy) REFERENCES TYPEJEU (idTy);
 
-INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'N');
+INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'O');
 insert into TYPEJEU VALUES (1, 'test');
 insert into RAPPORT values(1, '2018-05-11 10:04:18', 'titre rapport', 1, 'contenu raport', 1);

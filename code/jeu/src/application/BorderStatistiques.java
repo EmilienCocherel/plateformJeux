@@ -1,3 +1,4 @@
+package application;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -7,9 +8,9 @@ import javafx.scene.paint.Color;
 
 public class BorderStatistiques extends PageAdmin {
 
-    AJEL app;
+    AppliJDBC app;
 
-    public BorderStatistiques(AJEL app){
+    public BorderStatistiques(AppliJDBC app){
         super();
         this.app = app;
 

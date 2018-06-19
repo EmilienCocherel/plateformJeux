@@ -1,3 +1,4 @@
+package application;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
@@ -12,9 +13,9 @@ import javafx.stage.Stage;
 
 public class BorderLireRapport extends PageAdmin {
 
-    AJEL app;
+    AppliJDBC app;
 
-    BorderLireRapport(AJEL app){
+    BorderLireRapport(AppliJDBC app){
         super();
         this.app = app;
 

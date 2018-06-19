@@ -1,3 +1,4 @@
+package application;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -7,9 +8,9 @@ import javafx.scene.paint.Color;
 
 public class BorderRedigerRapport extends PageAdmin {
 
-    AJEL app;
+    AppliJDBC app;
 
-    public BorderRedigerRapport(AJEL app) {
+    public BorderRedigerRapport(AppliJDBC app) {
         super();
         this.app = app;
 

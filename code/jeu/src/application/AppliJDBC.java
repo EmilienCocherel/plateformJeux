@@ -112,7 +112,7 @@ public class AppliJDBC extends Application {
     }
 
     public void passerEnModePartieEnCours(){
-        // this.ApplicationAJEL.creerMenuJoueur();
+        this.ApplicationAJEL.creerMenuJoueur();
         this.laBase.setCenter(new BorderPartieEnCours(this));
     }
 
@@ -155,6 +155,48 @@ public class AppliJDBC extends Application {
     public void passerEnModePartieHistorique(){
         this.laBase.setCenter(new BorderPartieHistorique(this));
     }
+
+
+    //ADMIN
+    public void passerEnModeAccueil(){
+        this.laBase.setCenter(new BorderAccueil(this));
+    }
+
+    public void passerEnModeAjouterJeu(){
+        this.laBase.setCenter(new BorderAjouterJeu(this));
+   }
+
+    public void passerEnModeGererJeu(){
+        this.laBase.setCenter(new BorderGererJeu(this));
+    }
+
+   public void passerEnModeGererJeux(){
+        this.laBase.setCenter(new BorderGererJeux(this));
+   }
+
+    public void passerEnModeCompte(){
+        this.laBase.setCenter(new BorderCompte(this));
+    }
+
+    public void passerEnModeRapport(){
+        this.laBase.setCenter(new BorderRapport(this));
+    }
+
+    public void passerEnModeRapportLire(){
+        this.laBase.setCenter(new BorderLireRapport(this));
+    }
+
+    public void passerEnModeRapportRediger(){
+        this.laBase.setCenter(new BorderRedigerRapport(this));
+    }
+
+    public void passerEnModeStats(){
+        this.laBase.setCenter(new BorderStatistiques(this));
+    }
+
+//    public void passerEnModeAide(){
+//        this.laBase.setCenter(new BorderAide(this));
+//    }
 
     public Login getLogin() {
         return Login;

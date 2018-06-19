@@ -97,6 +97,7 @@ public class JoueurBD {
 	boolean estUnAdmin(String email) throws SQLException {
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		res.next();
 		boolean admin = res.getString("admin").equals("O");
 		return admin;
 	}
@@ -104,6 +105,7 @@ public class JoueurBD {
 	boolean estUnActif(String email) throws SQLException {
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		res.next();
 		boolean actif = res.getString("activeJo").equals("O");
 		return actif;
 	}
@@ -116,7 +118,8 @@ public class JoueurBD {
 
 	boolean motDePasseInvalideConnection(String email, String mdp) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JOUEUR where email =" + "''" + email + "''");
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		res.next();
 		String mdpS = res.getString("motdepasse");
 		if (mdp.equals(mdpS)){
 			return true;

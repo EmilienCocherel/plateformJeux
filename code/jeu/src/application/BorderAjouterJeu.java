@@ -1,3 +1,4 @@
+package application;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -7,11 +8,11 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class BorderGererJeu extends PageAdmin {
+public class BorderAjouterJeu extends PageAdmin {
 
-    AJEL app;
+    AppliJDBC app;
 
-    public BorderGererJeu(AJEL app){
+    public BorderAjouterJeu(AppliJDBC app){
         super();
         this.app = app;
 
@@ -19,15 +20,15 @@ public class BorderGererJeu extends PageAdmin {
         bMenu.setOnAction(event -> this.app.passerEnModeAccueil());
 
         Button bEnregistrer = this.buttonTypePageAdmin("Enregistrer");
-        bEnregistrer.setOnAction(event -> this.app.passerEnModeGererJeux());
+        bEnregistrer.setOnAction(event -> this.app.passerEnModeGererJeu());
 
         GridPane cotegauche = new GridPane();
 
         cotegauche.add(this.labelTypePageAdmin("Titre :"),0,0);
-        cotegauche.add(this.labelTypePageAdmin("<Titre>"),1,0);
+        cotegauche.add(new TextField(),1,0);
         cotegauche.add(this.checkBoxTypePageAdmin("Payant"),0,1);
         cotegauche.add(this.labelTypePageAdmin("Prix : "),0,2);
-        cotegauche.add(this.labelTypePageAdmin("<Prix>"),1,2);
+        cotegauche.add(new TextField(),1,2);
         cotegauche.add(this.checkBoxTypePageAdmin("Actif"),0,3);
         cotegauche.add(this.labelTypePageAdmin("Type de jeu : "),0,4);
         cotegauche.add(this.comboBoxAdmin("TpT","Simultané"),1,4);

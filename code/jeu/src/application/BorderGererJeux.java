@@ -1,3 +1,4 @@
+package application;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Background;
@@ -8,9 +9,9 @@ import javafx.scene.paint.Color;
 
 public class BorderGererJeux extends PageAdmin {
 
-    AJEL app;
+    AppliJDBC app;
 
-    BorderGererJeux(AJEL app) {
+    BorderGererJeux(AppliJDBC app) {
 
         this.app = app;
 
