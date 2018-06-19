@@ -19,15 +19,15 @@ public class ChoixJeu extends GridPane {
     private ComboBox<String> lesJeux;
     private ChargeurJeu chargeur;
     TextField numJoueur,numPartie;
-	private PartieBD partieBD;
-	private JeuBD jeuBD;
-	private JoueurBD joueurBD;
+  	private PartieBD partieBD;
+  	private JeuBD jeuBD;
+  	private JoueurBD joueurBD;
 
     public ChoixJeu(ConnexionMySQL laConnexion, PartieBD partieBD, JeuBD jeuBD, JoueurBD joueurBD) {
     	super();
-		this.partieBD = partieBD;
-		this.jeuBD = jeuBD;
-		this.joueurBD = joueurBD;
+  		this.partieBD = partieBD;
+  		this.jeuBD = jeuBD;
+  		this.joueurBD = joueurBD;
     	this.chargeur = new ChargeurJeu("./jar");
     	this.laConnexion=laConnexion;
     	GridPane grid = new GridPane();
@@ -60,10 +60,9 @@ public class ChoixJeu extends GridPane {
 
 	public void chargerJeu(String nomJeu) {
 		Jeu jeu=null;
-       String nomClasse=""+nomJeu.charAt(0);
-       nomClasse=nomClasse.toUpperCase();
-       nomClasse+=nomJeu.substring(1);
-
+    String nomClasse=""+nomJeu.charAt(0);
+    nomClasse=nomClasse.toUpperCase();
+    nomClasse+=nomJeu.substring(1);
 		int idJoueur = Integer.parseInt(this.numJoueur.getText());
 		Joueur joueur1, joueur2 = new Joueur(2);
 		try {
@@ -80,7 +79,6 @@ public class ChoixJeu extends GridPane {
 		JeuProfil jeuP;
 		try {
 			jeuP = jeuBD.rechercherJeuParNom(nomJeu);
-
 			Partie partie;
 			try {
 				partie = partieBD.rechercherPartieParNum(Integer.parseInt(this.numPartie.getText()));
