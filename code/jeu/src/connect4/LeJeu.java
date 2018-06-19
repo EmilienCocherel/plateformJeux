@@ -241,6 +241,7 @@ public class LeJeu extends application.Jeu {
 	 * Fermer le jeu.
 	 */
 	public void fermer() {
+		this.setEtat();
 		this.updateTimeline.stop();
 		this.stage.close();
 	}
@@ -291,7 +292,7 @@ public class LeJeu extends application.Jeu {
 	public void abandonner() {
 		this.puissance4.abandonner();
 		this.perdre();
-		this.setEtat();
+		this.fermer();
 	}
 
 	/**
@@ -324,7 +325,7 @@ public class LeJeu extends application.Jeu {
 		alert.setTitle("Defeat");
 		alert.setHeaderText("Defeat");
 		alert.setOnHidden(ev -> alert.close());
-		alert.show();
+		alert.showAndWait();
 	}
 
 	/**
