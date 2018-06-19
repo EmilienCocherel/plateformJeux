@@ -126,7 +126,7 @@ public class AppliJDBC extends Application {
     }
 
     public void passerEnModeJeuxPossede(){
-        this.laBase.setCenter(new BorderJeuxPossede(this));
+        this.laBase.setCenter(new BorderJeuxPossede(this,this.jeuBD));
     }
 
     public void passerEnModeJeuxBoutique(){
