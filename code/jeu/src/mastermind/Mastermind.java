@@ -203,7 +203,6 @@ public class Mastermind extends application.Jeu{
                 info.setHeaderText("La Partie est terminé");
                 info.setContentText("Vous avez remporté la dernière manche!");
                 info.showAndWait();
-                stage.close();
             }
             else{
                 Alert info = new Alert(CONFIRMATION);
@@ -211,7 +210,6 @@ public class Mastermind extends application.Jeu{
                 String solution = precedent.getCombi().toString();
                 info.setContentText("Vous avez perdu la dernière Manche \n La solution était: "+solution);
                 info.showAndWait();
-                stage.close();
             }
 			PartieFinie p = new PartieFinie(this);
 			this.stage.setScene(p.getScene());
