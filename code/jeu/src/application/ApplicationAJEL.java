@@ -28,18 +28,19 @@ import static javafx.scene.control.ButtonBar.BUTTON_ORDER_NONE;
 public class ApplicationAJEL extends ButtonBar{
     private List<String>  menuPrinc;
     private ArrayList<MenuItem> lesItems;
-    private AppliJDBC AppliJDBC;
+    private AppliJDBC app;
     private ControleurMenu controleurMenu;
+    private VBox bar;
 
 
-    ApplicationAJEL(AppliJDBC AppliJDBC){
+    ApplicationAJEL(AppliJDBC app){
         super();
         // this.menuPrinc = new ArrayList<>();
         // this.menuPrinc.add("Se connecter");
         // this.menuPrinc.add("Créer un compte");
-        this.AppliJDBC=AppliJDBC;
+        this.app=app;
         // this.lesItems=new ArrayList<MenuItem>();
-        this.controleurMenu = new ControleurMenu(AppliJDBC);
+        this.controleurMenu = new ControleurMenu(app);
         // for (String menu:this.menuPrinc){
         //     Button m = new Button(menu);
         //     // m.setDisable(true);
@@ -87,6 +88,19 @@ public class ApplicationAJEL extends ButtonBar{
         return boutonMenu;
     }
 
+    private Menu MenuConnexion(String textB){
+        Menu menu = new Menu();
+        Text texteBoutonMenu = new Text(textB);
+        texteBoutonMenu.setFont(new Font(14));
+        menu.setStyle("-fx-background-color: transparent;");
+        texteBoutonMenu.setFill(Color.WHITE);
+        menu.setGraphic(texteBoutonMenu);
+
+        return menu;
+
+    }
+
+
     public void creerMenuConnexion(){
         VBox bar = new VBox();
         // ButtonBar menu = new ButtonBar();
@@ -103,15 +117,15 @@ public class ApplicationAJEL extends ButtonBar{
         this.setBackground(new Background(new BackgroundFill(this.couleurDegradeBar(), null, null)));
 
 
-        creerCompte.setOnAction(event -> this.AppliJDBC.passerEnModeInscription());
-        seConnecter.setOnAction(event -> this.AppliJDBC.passerEnModeConnexion());
+        creerCompte.setOnAction(event -> this.app.passerEnModeInscription());
+        seConnecter.setOnAction(event -> this.app.passerEnModeDeConnexion());
 
         bar.getChildren().add(this);
-        this.AppliJDBC.getLaBase().setTop(bar);
+        this.app.getLaBase().setTop(bar);
     }
 
     public void creerMenuJoueur(){
-        VBox bar = new VBox();
+        this.bar = new VBox();
         ButtonBar menu = new ButtonBar();
 
         Button partie = this.boutonMenuConnexion("Partie");
@@ -134,16 +148,65 @@ public class ApplicationAJEL extends ButtonBar{
         menu.getButtons().addAll(partie, jeux, invitations, amis, messagerie, compte, seDeconnecter);
         menu.setBackground(new Background(new BackgroundFill(this.couleurDegradeBar(), null, null)));
 
-        partie.setOnAction(event -> this.AppliJDBC.passerEnModePartieEnCours());
-        jeux.setOnAction(event -> this.AppliJDBC.passerEnModeJeuxBoutique());
-        invitations.setOnAction(event -> this.AppliJDBC.passerEnModeInvitations());
-        amis.setOnAction(event -> this.AppliJDBC.passerEnModeMesAmis());
-        messagerie.setOnAction(event -> this.AppliJDBC.passerEnModeMessagerieRecus());
-        seDeconnecter.setOnAction(event -> this.AppliJDBC.passerEnModeConnexion());
+        partie.setOnAction(event -> this.app.passerEnModePartieEnCours());
+        jeux.setOnAction(event -> this.app.passerEnModeJeuxPossede());
+        invitations.setOnAction(event -> this.app.passerEnModeInvitations());
+        amis.setOnAction(event -> this.app.passerEnModeMesAmis());
+        messagerie.setOnAction(event -> this.app.passerEnModeMessagerieRecus());
+        seDeconnecter.setOnAction(event -> this.app.passerEnModeConnexion());
+
+        this.bar.getChildren().add(menu);
+        this.app.getLaBase().setTop(this.bar);
+
+    }
+    public VBox getBarJoueur(){
+      return this.bar;
+    }
+    public void creerMenuAdministrateur(){
+        VBox bar = new VBox();
+        MenuBar menu = new MenuBar();
+
+        MenuItem ajouterJeu = new MenuItem("Ajouter un jeu");
+        ajouterJeu.setOnAction(event -> this.app.passerEnModeAjouterJeu());
+
+        MenuItem gererJeu = new MenuItem("Gérer un jeu");
+        gererJeu.setOnAction(event -> this.app.passerEnModeGererJeux());
+
+        MenuItem gererCompte = new MenuItem("Gérer un compte");
+        gererCompte.setOnAction(event -> this.app.passerEnModeCompte());
+
+        MenuItem lireRapport = new MenuItem("Lire un rapport");
+        lireRapport.setOnAction(event -> this.app.passerEnModeRapport());
+
+        MenuItem redigerRapport = new MenuItem("Rédiger un rapport");
+        redigerRapport.setOnAction(event -> this.app.passerEnModeRapportRediger());
+
+        MenuItem lireStats = new MenuItem("Lire des statistiques");
+        lireStats.setOnAction(event -> this.app.passerEnModeStats());
+
+        MenuItem accesAide = new MenuItem("Accéder aux aides");
+        //accesAide.setOnAction(event -> this.laBase.passerEnModeAide());
+
+        Menu jeu = this.MenuConnexion("Jeu");
+        jeu.getItems().addAll(ajouterJeu, gererJeu);
+
+        Menu compte = this.MenuConnexion("Compte");
+        compte.getItems().addAll(gererCompte);
+
+        Menu rapport = this.MenuConnexion("Rapport");
+        rapport.getItems().addAll(lireRapport, redigerRapport);
+
+        Menu stats = this.MenuConnexion("Statistiques");
+        stats.getItems().addAll(lireStats);
+
+        Menu aide = this.MenuConnexion("Aide");
+        aide.getItems().addAll(accesAide);
+
+        menu.getMenus().addAll(jeu, compte, rapport, stats, aide);
+        menu.setBackground(new Background(new BackgroundFill(this.couleurDegradeBar(), null, null)));
 
         bar.getChildren().add(menu);
-        this.AppliJDBC.getLaBase().setTop(bar);
-
+        this.app.getLaBase().setTop(bar);
     }
 
     public LinearGradient couleurDegradeCentre(){
@@ -159,7 +222,7 @@ public class ApplicationAJEL extends ButtonBar{
     }
 
     public void colorerLaBase(){
-        this.AppliJDBC.getLaBase().setBackground(new Background(new BackgroundFill(this.couleurDegradeCentre(), null, null)));
+        this.app.getLaBase().setBackground(new Background(new BackgroundFill(this.couleurDegradeCentre(), null, null)));
     }
 
 }

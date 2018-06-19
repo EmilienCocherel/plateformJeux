@@ -12,6 +12,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.scene.Node;
 
 public class AppliJDBC extends Application {
 
@@ -35,7 +36,6 @@ public class AppliJDBC extends Application {
     private FicheResultat ficheResultat;
     private GridInscrire inscrire;
     private ControleurConnexion cc;
-
     private BorderPane laBase;
 
     public void init() {
@@ -107,8 +107,13 @@ public class AppliJDBC extends Application {
     }
 
     public void passerEnModeConnexion(){
-        // this.ApplicationAJEL.creerMenuConnexion();
+        this.ApplicationAJEL.creerMenuConnexion();
         this.laBase.setCenter(new GridConnexion(this));
+    }
+
+    public void passerEnModeDeConnexion(){
+        this.laBase.setCenter(new GridConnexion(this));
+        // this.ApplicationAJEL.creerMenuConnexion();
     }
 
     public void passerEnModePartieEnCours(){
@@ -118,10 +123,6 @@ public class AppliJDBC extends Application {
 
     public void passerEnModeMDPOublie(){
         this.laBase.setCenter(new GridForgotPassword());
-    }
-
-    public void passerEnModeJoueur(){
-        this.ApplicationAJEL.creerMenuJoueur();
     }
 
     public void passerEnModeJeuxPossede(){
@@ -159,7 +160,9 @@ public class AppliJDBC extends Application {
 
     //ADMIN
     public void passerEnModeAccueil(){
+        this.ApplicationAJEL.creerMenuAdministrateur();
         this.laBase.setCenter(new BorderAccueil(this));
+
     }
 
     public void passerEnModeAjouterJeu(){

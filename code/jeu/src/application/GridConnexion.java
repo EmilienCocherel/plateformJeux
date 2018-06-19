@@ -87,7 +87,7 @@ public class GridConnexion extends PageConnexion{
               this.appli.passerEnModeAccueil();
             }
             else{
-            this.appli.passerEnModeJoueur();
+              this.appli.passerEnModePartieEnCours();
             }
           }
           else{ // mot de passe invalide
