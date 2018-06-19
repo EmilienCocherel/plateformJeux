@@ -41,22 +41,13 @@ public class Pion extends Circle{
       return this.getCouleur().equals(p2.getCouleur());
   }
 
-  @Override
-  public String toString(){
-    if(this.getCouleur().equals(Color.RED)){
-      return "rouge";
-    }
-    if(this.getCouleur().equals(Color.BLUE)){
-      return "bleu";
-    }
-    if(this.getCouleur().equals(Color.GREEN)){
-      return "vert";
-    }
-    if(this.getCouleur().equals(Color.YELLOW)){
-      return "jaune";
-    }
-    return "";
-  }
+	@Override
+	public String toString() {
+		for (Map.Entry<String,Color> entry : this.couleurs.entrySet())
+			if (entry.getValue().equals(this.getCouleur()))
+				return entry.getKey();
+		return "";
+	}
 
 	public void setCouleur(String coul) {
 		System.out.println(coul);
