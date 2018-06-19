@@ -4,28 +4,26 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import java.util.Map;
+import java.util.HashMap;
+
 public class Pion extends Circle{
   private int val;
+  private Map<String, Color> couleurs = new HashMap<String, Color>() {{
+		put("rouge", Color.RED);
+		put("bleu", Color.BLUE);
+		put("vert", Color.GREEN);
+		put("jaune", Color.YELLOW);
+  }};
 
   public Pion(Paint couleur,int val){
     this.setRadius(10.0);
     this.setFill(couleur);
   }
 
-  public Pion(String coul,int val){
+  public Pion(String coul,int val) {
     this.setRadius(10.0);
-    if(coul == "rouge"){
-      this.setFill(Color.RED);
-    }
-    if(coul == "bleu"){
-      this.setFill(Color.BLUE);
-    }
-    if(coul == "vert"){
-      this.setFill(Color.GREEN);
-    }
-    if(coul == "jaune"){
-      this.setFill(Color.YELLOW);
-    }
+	this.setCouleur(coul);
   }
 
   public int getVal(){
@@ -61,17 +59,7 @@ public class Pion extends Circle{
   }
 
 	public void setCouleur(String coul) {
-		if(coul == "rouge"){
-		  this.setFill(Color.RED);
-		}
-		if(coul == "bleu"){
-		  this.setFill(Color.BLUE);
-		}
-		if(coul == "vert"){
-		  this.setFill(Color.GREEN);
-		}
-		if(coul == "jaune"){
-		  this.setFill(Color.YELLOW);
-		}
+		System.out.println(coul);
+		this.setFill(this.couleurs.get(coul));
 	}
 }
