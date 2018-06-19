@@ -14,16 +14,16 @@ public class Pion extends Circle{
 
   public Pion(String coul,int val){
     this.setRadius(10.0);
-    if(coul == "rouge"){
+    if(coul.equals("rouge")){
       this.setFill(Color.RED);
     }
-    if(coul == "bleu"){
+    if(coul.equals("bleu")){
       this.setFill(Color.BLUE);
     }
-    if(coul == "vert"){
+    if(coul.equals("vert")){
       this.setFill(Color.GREEN);
     }
-    if(coul == "jaune"){
+    if(coul.equals("jaune")){
       this.setFill(Color.YELLOW);
     }
   }
@@ -59,4 +59,19 @@ public class Pion extends Circle{
     }
     return "";
   }
+
+	public void setCouleur(String coul) {
+		if(coul.equals("rouge")){
+		  this.setFill(Color.RED);
+		}
+		if(coul.equals("bleu")){
+		  this.setFill(Color.BLUE);
+		}
+		if(coul.equals("vert")){
+		  this.setFill(Color.GREEN);
+		}
+		if(coul.equals("jaune")){
+		  this.setFill(Color.YELLOW);
+		}
+	}
 }

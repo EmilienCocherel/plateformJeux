@@ -6,6 +6,9 @@ import javafx.scene.paint.Paint;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+
 public class    Manche {
     private JoueurMastermind j;
     private int num;
@@ -166,4 +169,42 @@ public class    Manche {
       return this.log;
     }
 
+	public JSONObject toJson() {
+		JSONObject res = new JSONObject();
+		JSONArray combiParTour = new JSONArray(), resParTour = new JSONArray();
+		res.put("j", this.j.toJson());
+		res.put("num", this.num);
+		res.put("combi", this.combi.toJson());
+		res.put("nbCoup", this.nbCoup);
+		res.put("fini", this.fini);
+
+		// CombiParTour
+		for (Combinaison combi : this.CombiParTour)
+			combiParTour.add(combi.toJson());
+		res.put("CombiParTour", combiParTour);
+
+		// resParTour
+		for (Resultat resultat : this.resParTour)
+			resParTour.add(resultat.toJson());
+		res.put("resParTour", resParTour);
+
+		return res;
+	}
+
+	public void fromJson(JSONObject json) {
+		Long num = (Long) json.get("num"), nbCoup = (Long) json.get("nbCoup");
+		JSONArray combiParTour = (JSONArray) json.get("CombiParTour");
+		this.j.fromJson((JSONObject) json.get("j"));
+		this.num = num.intValue();
+		this.combi.fromJson((JSONObject) json.get("combi"));
+		this.nbCoup = nbCoup.intValue();
+		this.fini = (boolean) json.get("fini");
+
+		// CombiParTour
+		for (int i=0; i < combiParTour.size(); i++) {
+			JSONObject combi = (JSONObject) combiParTour.get(i);
+			if (this.CombiParTour.size() > i)
+				this.CombiParTour.get(i).fromJson(combi);
+		}
+	}
 }

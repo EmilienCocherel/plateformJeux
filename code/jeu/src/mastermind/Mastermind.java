@@ -66,6 +66,7 @@ public class Mastermind extends application.Jeu{
         this.manche=this.joueur.getMancheCourante();
         this.manche.initCombiParTour();
         this.manche.initResParTour();
+		this.initHistoriqueCombinaison();
         this.getEtat(idJoueur);
     }
 
@@ -75,17 +76,20 @@ public class Mastermind extends application.Jeu{
     }
 
     public boolean getEtat(int actuel) {
-        JSONParser parser = new JSONParser();
-        try {
-            int id = this.partie.getId();
-            String etat = this.partieBD.getEtat(id);
-            JSONObject obj = (JSONObject) parser.parse(etat);
-            this.fromJson(obj);
-            System.out.println(this.joueur.getIdentifiant()+" get màj OK");
-            return true;
-        } catch (ParseException ex) {
-            System.out.println(ex.getCause());
-            return false;
+		int id = this.partie.getId();
+		try {
+			String etat = this.partieBD.getEtat(id);
+			JSONParser parser = new JSONParser();
+			try {
+				JSONObject obj = (JSONObject) parser.parse(etat);
+				this.fromJson(obj);
+				System.out.println(this.joueur.getIdentifiant()+" get màj OK");
+				return true;
+			} catch (ParseException ex) {
+				System.out.println(ex.getCause());
+				System.out.println(etat);
+				return false;
+			}
         } catch (SQLException ex) {
             System.out.println(this.joueur.getIdentifiant()+" get màj FAIL sql exception");
             return false;
@@ -106,7 +110,7 @@ public class Mastermind extends application.Jeu{
 
     public void fromJson(JSONObject json) {
         Long id = (Long) json.get("id"), tour = (Long) json.get("tour");
-        String combi1p1 = (String) json.get("combi1p1"), combi1p2 = (String) json.get("combi1p2"), combi1p3 = (String) json.get("combi1p3"), combi1p4 = (String) json.get("combi1p4") ;
+		JSONArray combinaisons = (JSONArray) json.get("combinaisons");
         if (this.joueur.getIdentifiant()==this.idJoueurJ1){
             this.joueur.fromJson((JSONObject) json.get("joueur1"));
         }
@@ -118,27 +122,22 @@ public class Mastermind extends application.Jeu{
         }
         if (tour != null)
             this.manche.setNbCoup(tour.intValue());
-        if (combi1p1 != null){
-            this.combis.set(0,new Combinaison(combi1p1, combi1p2, combi1p3, combi1p4));
-        }
+
+		this.manche.fromJson((JSONObject) json.get("manche"));
+
+		for (int i=0; i < combinaisons.size(); i++) {
+			this.combis.get(i).fromJson((JSONObject) combinaisons.get(i));
+		}
     }
 
     public JSONObject toJson() {
         JSONObject obj = new JSONObject();
-        obj.put("combi1p1", this.combis.get(0).getP1());
-        obj.put("combi1p2", this.combis.get(0).getP2());
-        obj.put("combi1p3", this.combis.get(0).getP3());
-        obj.put("combi1p4", this.combis.get(0).getP4());
+		JSONArray combinaisons = new JSONArray();
+		for (Combinaison combi : this.combis)
+			combinaisons.add(combi.toJson());
+		obj.put("combinaisons", combinaisons);
 
-        obj.put("combi2p1", this.combis.get(1).getP1());
-        obj.put("combi2p2", this.combis.get(1).getP2());
-        obj.put("combi2p3", this.combis.get(1).getP3());
-        obj.put("combi2p4", this.combis.get(1).getP4());
-
-        obj.put("combi3p1", this.combis.get(2).getP1());
-        obj.put("combi3p2", this.combis.get(2).getP2());
-        obj.put("combi3p3", this.combis.get(2).getP3());
-        obj.put("combi3p4", this.combis.get(2).getP4());
+		obj.put("manche", this.manche.toJson());
 
         obj.put("id", this.id);
         if(this.joueur.getIdentifiant()==this.idJoueurJ1){
@@ -383,7 +382,6 @@ public class Mastermind extends application.Jeu{
             this.stage = new Stage();
             stage.setTitle("Mastermind");
             this.initInterfaceChoix();
-            this.initHistoriqueCombinaison();
             this.laScene();
             stage.setScene(this.scene);
             stage.show();
