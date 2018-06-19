@@ -81,7 +81,7 @@ public class JoueurBD {
 		res.close();
 		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
 	}
-	
+
 	boolean joueurDejaInscrit(String nom) throws SQLException {
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+nom+'"');
@@ -90,8 +90,52 @@ public class JoueurBD {
 
 	boolean mailDejaInscrit(String mail) throws SQLException {
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+mail+'"');
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+mail+'"');
 		return res.next();
+	}
+
+	boolean estUnAdmin(String email) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		boolean admin = res.getString("admin").equals("O");
+		return admin;
+	}
+
+	boolean estUnActif(String email) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		boolean actif = res.getString("activeJo").equals("O");
+		return actif;
+	}
+
+	boolean emailPasDansLaBase(String email) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		return res.next();
+	}
+
+	boolean motDePasseInvalideConnection(String email, String mdp) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where email =" + "''" + email + "''");
+		String mdpS = res.getString("motdepasse");
+		if (mdp.equals(mdpS)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+	boolean motDePasseInvalideConnection(String email, String mdp) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where email =" + "''" + email + "''");
+		String mdpS = res.getString("motdepasse");
+		if (mdp.equals(mdpS)){
+			return true;
+		}
+		else{
+			return false;
+		}
 	}
 
 	int creerMonCompteJoueur( Joueur j) throws SQLException{
