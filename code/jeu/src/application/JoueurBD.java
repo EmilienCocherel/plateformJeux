@@ -81,6 +81,18 @@ public class JoueurBD {
 		res.close();
 		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
 	}
+	
+	boolean joueurDejaInscrit(String nom) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+nom+'"');
+		return res.next();
+	}
+
+	boolean mailDejaInscrit(String mail) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+mail+'"');
+		return res.next();
+	}
 
 	int creerMonCompteJoueur( Joueur j) throws SQLException{
 		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?)");
