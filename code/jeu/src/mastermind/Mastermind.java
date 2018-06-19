@@ -213,7 +213,7 @@ public class Mastermind extends application.Jeu{
         }
     }
 
-    //getter et setter
+    //    Getter et Setter
 
     public Label getHistorique(){
       return this.historique;

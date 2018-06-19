@@ -32,53 +32,14 @@ public class    Manche {
         this.resParTour=new ArrayList<>();
     }
 
-    public ArrayList<Combinaison> getCombiParTour() {
-        return CombiParTour;
+    //    Getter et Setter
+
+    public int getNum(){
+        return this.num;
     }
 
-    public void setCombiParTour(ArrayList<Combinaison> combiParTour) {
-        this.CombiParTour = combiParTour;
-    }
-
-    public void initCombiParTour(){
-        for (int i=0; i<10;i++){
-            this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4)));
-        }
-    }
-
-    public ArrayList<Resultat> getResParTour() {
-        return this.resParTour;
-    }
-
-    public void setResParTour(ArrayList<Resultat> resParTour) {
-        this.resParTour = resParTour;
-    }
-
-    public void initResParTour(){
-        for (int i=0; i<10;i++){
-            this.resParTour.add(new Resultat());
-        }
-    }
-
-    public boolean estFini(){
-        if (this.getCombi().equals(this.getCombi())){
-            return true;
-        }
-
-        else{
-            return false;
-        }
-    }
-
-    public void finManche(boolean gagne){
-        if (gagne){
-            this.getJoueurMastermind().setScore(this.getJoueurMastermind().getScore()+11-this.getNbCoup());
-            this.partie.prochaineManche(this,gagne);
-        }
-        else{
-            this.getJoueurMastermind().setScore(this.getJoueurMastermind().getScore()-3);
-            this.partie.prochaineManche(this,gagne);
-        }
+    public String getLog(){
+      return this.log;
     }
 
     public JoueurMastermind getJoueurMastermind(){
@@ -97,6 +58,70 @@ public class    Manche {
         this.nbCoup = val;
     }
 
+    public ArrayList<Combinaison> getCombiParTour() {
+        return CombiParTour;
+    }
+
+    public void setCombiParTour(ArrayList<Combinaison> combiParTour) {
+        this.CombiParTour = combiParTour;
+    }
+
+    public ArrayList<Resultat> getResParTour() {
+        return this.resParTour;
+    }
+
+    public void setResParTour(ArrayList<Resultat> resParTour) {
+        this.resParTour = resParTour;
+    }
+
+    /**
+     * initialise CombiParTour en le remplissant de pions blanc
+     */
+    public void initCombiParTour(){
+        for (int i=0; i<10;i++){
+            this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4)));
+        }
+    }
+
+    /**
+     * initialise resParTour avec des resultat null
+     */
+    public void initResParTour(){
+        for (int i=0; i<10;i++){
+            this.resParTour.add(new Resultat());
+        }
+    }
+
+    /**
+    * @return si la manche est fini ou non
+    */
+    public boolean estFini(){
+        if (this.getCombi().equals(this.getCombi())){
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+    /**
+     * effectu les action après la fin d'une manche en fonction de si la manche à était remporté ou perdu
+     */
+    public void finManche(boolean gagne){
+        if (gagne){
+            this.getJoueurMastermind().setScore(this.getJoueurMastermind().getScore()+11-this.getNbCoup());
+            this.partie.prochaineManche(this,gagne);
+        }
+        else{
+            this.getJoueurMastermind().setScore(this.getJoueurMastermind().getScore()-3);
+            this.partie.prochaineManche(this,gagne);
+        }
+    }
+
+    /**
+     * augmente le nombre de coup joué de 1 et actualisé l'historique de jeu
+     */
     public void incrNbCoup(int nbCouleurOkPositionOk,int nbCouleurOkPositionPasOk){
         Combinaison combi = this.partie.getATester();
         this.CombiParTour.get(this.nbCoup).setCouleurP1(combi.getP1().getCouleur());
@@ -107,6 +132,9 @@ public class    Manche {
         this.nbCoup+=1;
     }
 
+    /**
+     * calculs le nombre de pions de la bonne couleur à la bonne position et le nombre de pions de la bonne couleur à la mauvaise position
+     */
     public ArrayList<Integer> calculBonPions(){
         ArrayList res = new ArrayList<>();
         Integer nbCouleurOkPositionOk = 0;
@@ -159,14 +187,6 @@ public class    Manche {
         res.add(nbCouleurOkPositionOk);
         res.add(nbCouleurOkPositionPasOk-nbCouleurOkPositionOk);
         return res;
-    }
-
-    public int getNum(){
-        return this.num;
-    }
-
-    public String getLog(){
-      return this.log;
     }
 
 	public JSONObject toJson() {
