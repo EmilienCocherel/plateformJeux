@@ -27,7 +27,7 @@ public class Pion extends Circle{
 	this.setCouleur(coul);
   }
 
-  //getter setter
+  //    Getter et Setter
 
   public Paint getCouleur(){
     return this.getFill();
