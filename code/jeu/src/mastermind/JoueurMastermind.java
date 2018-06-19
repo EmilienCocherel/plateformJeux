@@ -21,8 +21,6 @@ public class JoueurMastermind extends application.Joueur {
         this.manches.add(manche);
     }
 
-//    Getter et Setter
-
     public Manche getMancheCourante(){
         return this.manches.get(this.manches.size()-1);
     }

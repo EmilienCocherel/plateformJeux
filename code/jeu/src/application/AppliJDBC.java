@@ -27,6 +27,7 @@ public class AppliJDBC extends Application {
     private JeuBD jeuBD;
     private JoueurBD joueurBD;
     private RapportBD rapportBD;
+	private PartieBD partieBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -37,7 +38,7 @@ public class AppliJDBC extends Application {
 
     private BorderPane laBase;
 
-    public void init(){
+    public void init() {
         try {
             this.cc = new ControleurConnexion(this);
             this.Connexion = new ConnexionMySQL();
@@ -63,6 +64,7 @@ public class AppliJDBC extends Application {
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion);
+		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
@@ -198,7 +200,7 @@ public class AppliJDBC extends Application {
 
     public void showChoixJeu(){
       BorderPane fp =((BorderPane)scene.getRoot());
-      fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion));
+      fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion,this.partieBD,this.jeuBD,this.joueurBD));
       fp.getChildren().remove(1);
       // fp.getChildren().addAll(this.choixJeu);
     }

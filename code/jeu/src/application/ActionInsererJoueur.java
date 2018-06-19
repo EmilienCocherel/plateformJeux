@@ -31,16 +31,16 @@ public class ActionInsererJoueur implements EventHandler<ActionEvent> {
 			this.grid.insertionDeJoueur();
 		}
 		catch(EmailInvalideException e){
-			System.out.println("Exception email");
+			System.out.println(e);
 		}
 		catch(SQLException e){
-			System.out.println("SQL exception");
+			System.out.println(e);
 		}
 		catch (MdpInvalideException e){
-			System.out.println("Erreur confirmation mot de passe");
+			System.out.println(e);
 		}
 		catch (CondiUseException e){
-			System.out.println("Acceptez les conditions d'utilisations");
+			System.out.println(e);
 		}
 	}
 }

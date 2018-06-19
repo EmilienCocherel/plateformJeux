@@ -2,15 +2,10 @@ package mastermind;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.RadioButton;
 
-import java.util.Optional;
+import java.util.ArrayList;
 
-/**
- * Controleur des radio boutons gérant le niveau
- */
+
 public class ActionTester implements EventHandler<ActionEvent> {
 
 
@@ -23,12 +18,19 @@ public class ActionTester implements EventHandler<ActionEvent> {
 	    this.manche = manche;
 	}
 
-	/**
-	 * gère le changement de niveau
-	 * @param actionEvent
-	 */
+
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		partie.majAffichage();
+	    this.partie.getHistorique().setText(this.manche.getLog());
+        ArrayList<Integer> verif = this.manche.calculBonPions();
+        this.manche.incrNbCoup(verif.get(0),verif.get(1));
+        if (this.partie.getATester().equals(this.manche.getCombi())){
+            this.manche.finManche(true);
+        }
+        else{
+          if(this.manche.getNbCoup()==10){
+              this.manche.finManche(false);
+          }
+        }
 	}
 }
