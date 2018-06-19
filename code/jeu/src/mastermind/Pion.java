@@ -14,6 +14,8 @@ public class Pion extends Circle{
 		put("bleu", Color.BLUE);
 		put("vert", Color.GREEN);
 		put("jaune", Color.YELLOW);
+		put("violet", Color.PURPLE);
+		put("orange", Color.ORANGE);
   }};
 
   public Pion(Paint couleur,int val){
