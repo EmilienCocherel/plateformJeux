@@ -189,6 +189,7 @@ public class Mastermind extends application.Jeu{
                 this.initInterfaceChoix();
                 this.initHistoriqueCombinaison();
                 this.laScene();
+				this.setEtat();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 stage.setScene(this.scene);
             }
