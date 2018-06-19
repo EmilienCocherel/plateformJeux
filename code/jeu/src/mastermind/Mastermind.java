@@ -69,6 +69,7 @@ public class Mastermind extends application.Jeu{
         this.manche.initResParTour();
 		this.initHistoriqueCombinaison();
         this.getEtat(idJoueur);
+		this.setEtat();
     }
 
     @Override
@@ -184,11 +185,11 @@ public class Mastermind extends application.Jeu{
                 info.setContentText("La manche est terminé vous avez perdu \n La solution était: "+solution+"\n passer à la prochaine manche ?");
             }
             Optional<ButtonType> result = info.showAndWait();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
                 this.aTester = new Combinaison();
                 this.initInterfaceChoix();
                 this.initHistoriqueCombinaison();
                 this.laScene();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
                 stage.setScene(this.scene);
             }
             else{
@@ -211,6 +212,8 @@ public class Mastermind extends application.Jeu{
                 info.showAndWait();
                 stage.close();
             }
+			PartieFinie p = new PartieFinie(this);
+			this.stage.setScene(p.getScene());
         }
     }
 
@@ -231,6 +234,10 @@ public class Mastermind extends application.Jeu{
     public int getId() {
         return id;
     }
+
+	public int getIdJoueur1() {
+		return this.idJoueurJ1;
+	}
 
     public void setId(int id) {
         this.id = id;
@@ -386,19 +393,19 @@ public class Mastermind extends application.Jeu{
 				this.aTester.getCouleurP2().equals(Color.WHITE) ||
 				this.aTester.getCouleurP3().equals(Color.WHITE) ||
 				this.aTester.getCouleurP4().equals(Color.WHITE));
-      }
+	}
 
-      /**
-       * lance le jeu
-       */
-       @Override
-       public void run(){
-          this.stage = new Stage();
-          stage.setTitle("Mastermind");
-          this.initInterfaceChoix();
-          this.laScene();
-          stage.setScene(this.scene);
-          stage.show();
-          this.majAffichage();
-       }
-    }
+	/**
+	* lance le jeu
+	*/
+	@Override
+	public void run(){
+		this.stage = new Stage();
+		stage.setTitle("Mastermind");
+		this.initInterfaceChoix();
+		this.laScene();
+		stage.setScene(this.scene);
+		stage.show();
+		this.majAffichage();
+	}
+}
