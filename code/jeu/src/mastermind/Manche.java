@@ -6,6 +6,9 @@ import javafx.scene.paint.Paint;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+
 public class    Manche {
     private JoueurMastermind j;
     private int num;
@@ -165,5 +168,27 @@ public class    Manche {
     public String getLog(){
       return this.log;
     }
+
+	public JSONObject toJson() {
+		JSONObject res = new JSONObject();
+		JSONArray combiParTour = new JSONArray(), resParTour = new JSONArray();
+		res.put("j", this.j.toJson());
+		res.put("num", this.num);
+		res.put("combi", this.combi.toJson());
+		res.put("nbCoup", this.nbCoup);
+		res.put("fini", this.fini);
+
+		// CombiParTour
+		for (Combinaison combi : this.CombiParTour)
+			combiParTour.add(combi.toJson());
+		res.put("CombiParTour", combiParTour);
+
+		// resParTour
+		for (Resultat resultat : this.resParTour)
+			resParTour.add(resultat.toJson());
+		res.put("resParTour", resParTour);
+
+		return res;
+	}
 
 }
