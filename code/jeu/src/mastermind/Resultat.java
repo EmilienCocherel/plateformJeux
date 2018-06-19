@@ -5,6 +5,8 @@ import javafx.scene.shape.Circle;
 
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
+
 public class Resultat {
     private int nbCouleurOkPositionOk;
     private int nbCouleurOkPositionPasOk;
@@ -33,4 +35,11 @@ public class Resultat {
             this.pionsRes.get(i+this.nbCouleurOkPositionOk).setFill(Color.BLACK);
         }
     }
+
+	public JSONObject toJson() {
+		JSONObject res = new JSONObject();
+		res.put("nbCouleurOkPositionOk", this.nbCouleurOkPositionOk);
+		res.put("nbCouleurOkPositionPasOk", this.nbCouleurOkPositionPasOk);
+		return res;
+	}
 }
