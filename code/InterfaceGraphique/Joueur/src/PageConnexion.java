@@ -39,6 +39,8 @@ public abstract class PageConnexion extends GridPane{
     }
 
 
+
+
     public Label labelType(String nom) {
 
         Label label = new Label(nom);
