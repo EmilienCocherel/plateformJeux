@@ -18,23 +18,25 @@ public class Pion extends Circle{
 		put("orange", Color.ORANGE);
   }};
 
-  public Pion(Paint couleur,int val){
+  public Pion(Paint couleur){
     this.setRadius(10.0);
     this.setFill(couleur);
   }
 
-  public Pion(String coul,int val) {
+  public Pion(String coul) {
     this.setRadius(10.0);
-	this.setCouleur(coul);
+	  this.setCouleur(coul);
   }
 
-  public int getVal(){
-    return this.val;
-  }
+  //getter setter
 
   public Paint getCouleur(){
     return this.getFill();
   }
+
+  public void setCouleur(String coul) {
+		this.setFill(this.couleurs.get(coul));
+	}
 
 
   @Override
@@ -49,9 +51,5 @@ public class Pion extends Circle{
 			if (entry.getValue().equals(this.getCouleur()))
 				return entry.getKey();
 		return "";
-	}
-
-	public void setCouleur(String coul) {
-		this.setFill(this.couleurs.get(coul));
 	}
 }
