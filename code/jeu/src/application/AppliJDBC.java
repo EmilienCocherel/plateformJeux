@@ -27,7 +27,7 @@ public class AppliJDBC extends Application {
     private JeuBD jeuBD;
     private JoueurBD joueurBD;
     private RapportBD rapportBD;
-	private PartieBD partieBD;
+	  private PartieBD partieBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -44,7 +44,7 @@ public class AppliJDBC extends Application {
             this.Connexion = new ConnexionMySQL();
             this.laBase = new BorderPane();
             this.ApplicationAJEL = new ApplicationAJEL(this);
-            this.inscrire = new GridInscrire(this,this.cc);
+            // this.inscrire = new GridInscrire(this,this.cc);
         }catch (ClassNotFoundException ex){
             System.out.println("Driver MySQL non trouvé!!!");
             System.exit(1);
@@ -64,7 +64,7 @@ public class AppliJDBC extends Application {
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion);
-		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
+		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
@@ -107,12 +107,12 @@ public class AppliJDBC extends Application {
 
     public void passerEnModeConnexion(){
         this.ApplicationAJEL = new ApplicationAJEL(this);
-        this.ApplicationAJEL.creerMenuConnexion();
+        // this.ApplicationAJEL.creerMenuConnexion();
         this.laBase.setCenter(new GridConnexion(this));
     }
 
     public void passerEnModePartieEnCours(){
-        this.ApplicationAJEL.creerMenuJoueur();
+        // this.ApplicationAJEL.creerMenuJoueur();
         this.laBase.setCenter(new BorderPartieEnCours(this));
     }
 

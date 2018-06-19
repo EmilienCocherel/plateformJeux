@@ -108,7 +108,7 @@ public class JoueurBD {
 		return actif;
 	}
 
-	boolean emailPasDansLaBase(String email) throws SQLException {
+	boolean emailDansLaBase(String email) throws SQLException {
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
 		return res.next();
@@ -126,17 +126,6 @@ public class JoueurBD {
 		}
 	}
 
-	boolean motDePasseInvalideConnection(String email, String mdp) throws SQLException{
-		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JOUEUR where email =" + "''" + email + "''");
-		String mdpS = res.getString("motdepasse");
-		if (mdp.equals(mdpS)){
-			return true;
-		}
-		else{
-			return false;
-		}
-	}
 
 	int creerMonCompteJoueur( Joueur j) throws SQLException{
 		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?)");
