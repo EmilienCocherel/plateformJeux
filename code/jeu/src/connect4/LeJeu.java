@@ -164,7 +164,7 @@ public class LeJeu extends application.Jeu {
 				new MenuItem("Send messages")
 				);
 		help.getItems().addAll(
-				new MenuItem("About"),
+				new MenuItem("About us"),
 				new MenuItem("Tutorial")
 				);
 		for (MenuItem item : game.getItems())

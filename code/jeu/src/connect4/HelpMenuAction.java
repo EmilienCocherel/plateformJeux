@@ -7,6 +7,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.ImageView;
 
 public class HelpMenuAction implements EventHandler<ActionEvent> {
 	/**
@@ -22,11 +23,14 @@ public class HelpMenuAction implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent actionEvent) {
 		MenuItem menu = (MenuItem) actionEvent.getSource();
 		String text = menu.getText();
-		if (text.equals("About")) {
+		if (text.equals("About us")) {
 			Alert alert = new Alert(AlertType.INFORMATION, "");
+			alert.setTitle("About us");
+			alert.setHeaderText("About us");
+			alert.setGraphic(new ImageView("./img/about_us.gif"));
 			alert.showAndWait();
 		} else if (text.equals("Tutorial")) {
-			Alert alert = new Alert(AlertType.INFORMATION, "each player is assign to a disk's color.\nThe first player is the yellow one.\n\nEach palyer takes turns dropping one colored disc\nfrom the top into a seven-column,\nsix-row vertically suspended grid.\n\nThe pieces fall straight down, occupying\nthe next available space within the column.\n\nThe objective of the game is to be\nthe first to form a horizontal,\nvertical, or diagonal line of\nfour of one's own discs.");
+			Alert alert = new Alert(AlertType.INFORMATION, "Each player is assign to a disk's color.\nThe first player is the yellow one.\n\nEach player takes turns dropping one colored disc\nfrom the top into a seven-column,\nsix-row vertically suspended grid.\n\nThe pieces fall straight down, occupying\nthe next available space within the column.\n\nThe objective of the game is to be\nthe first to form a horizontal,\nvertical, or diagonal line of\nfour of one's own discs.");
 			alert.setTitle("Tutorial");
 			alert.setHeaderText("Tutorial");
 			alert.showAndWait();
