@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.control.Slider;
+import javafx.scene.shape.Circle;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,6 +45,7 @@ public class Mastermind extends application.Jeu{
     private int idJoueurJ1;
     private int idJoueurJ2;
     private application.PartieBD partieBD;
+	private Button tester;
 
     private BorderPane laBase;
 
@@ -317,7 +319,7 @@ public class Mastermind extends application.Jeu{
 
     private VBox choixCouleurDuPion2(int val){
         VBox res=new VBox(5);
-        res.setPadding(new Insets(0,10,10,10));
+        res.setPadding(new Insets(10,10,10,10));
 
         GridPane boutonNiveau = new GridPane();
 
@@ -332,14 +334,13 @@ public class Mastermind extends application.Jeu{
 
         ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
 
-        //SliderCouleur sliderNiveau = new SliderCouleur(0,1,0,val);
-          SliderCouleur sliderNiveau = new SliderCouleur(val);
-        //sliderNiveau.setMin(0);
-        //sliderNiveau.setMax(5);
-        //sliderNiveau.setShowTickLabels(false);
-        //sliderNiveau.setShowTickMarks(false);
-        //sliderNiveau.setBlockIncrement(1);
-        //sliderNiveau.setOrientation(Orientation.VERTICAL);
+        Slider sliderNiveau = new Slider(0,1,4);
+        sliderNiveau.setMin(0);
+        sliderNiveau.setMax(5);
+        sliderNiveau.setShowTickLabels(false);
+        sliderNiveau.setShowTickMarks(false);
+        sliderNiveau.setBlockIncrement(1);
+        sliderNiveau.setOrientation(Orientation.VERTICAL);
         boutonNiveau.add(sliderNiveau,0,0);
         boutonNiveau.add(rondEtLabel,1,0);
 
@@ -350,9 +351,34 @@ public class Mastermind extends application.Jeu{
 
     }
 
-//    private VBox boxCouleur(){
-//
-//    }
+    private VBox boxCouleur(){
+        VBox res=new VBox(5);
+        res.setPadding(new Insets(10,10,10,10));
+
+        Circle pionBlanc= new Circle(12);
+
+        Circle pionBleu= new Circle(12,Color.BLUE);
+
+        Circle pionVert= new Circle(12,Color.GREEN);
+
+        Circle pionJaune= new Circle(12,Color.YELLOW);
+
+        Circle pionRouge= new Circle(12,Color.RED);
+
+        Circle pionViolet= new Circle(12,Color.PURPLE);
+
+        GridPane barrePion = new GridPane();
+        barrePion.add(pionBlanc,0,0);
+        barrePion.add(pionBleu,0,1);
+        barrePion.add(pionVert,0,2);
+        barrePion.add(pionJaune,0,3);
+        barrePion.add(pionRouge,0,4);
+        barrePion.add(pionViolet,0,5);
+
+        res.getChildren().add(barrePion);
+
+        return res;
+    }
 
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
@@ -360,11 +386,24 @@ public class Mastermind extends application.Jeu{
     private void initInterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
-
-        Button brestart = new Button("tester");
-
+        this.tester = new Button("Tester");
         ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
-        brestart.setOnAction(actionTester);
+        this.tester.setOnAction(actionTester);
+		this.tester.setDisable(true);
+        res.getChildren().add(this.tester);
+        res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
+        res.getChildren().add(this.choixCouleurDuPion(0));
+        res.getChildren().add(this.choixCouleurDuPion(1));
+        res.getChildren().add(this.choixCouleurDuPion(2));
+        res.getChildren().add(this.choixCouleurDuPion(3));
+        this.tester.setStyle("-fx-background-color:\n"+
+                "#c3c4c4,\n"+
+                "linear-gradient(#d6d6d6 50%, white 100%),\n"+
+                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);\n"+
+        "-fx-background-radius: 30;\n"+
+        "-fx-background-insets: 0,1,1;\n"+
+        "-fx-text-fill: black;\n"+
+        "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1);\n");
 
         res.setBackground(new Background(new BackgroundFill(Color.rgb(68, 87, 133),null,null)));
         res.getChildren().add(this.choixCouleurDuPion2(0));
@@ -374,8 +413,9 @@ public class Mastermind extends application.Jeu{
 
         this.historique = new Label();
 
+        res.getChildren().add(this.boxCouleur());
         res.getChildren().add(historique);
-        res.getChildren().add(brestart);
+        res.getChildren().add(this.tester);
         this.interfaceChoix=res;
     }
 

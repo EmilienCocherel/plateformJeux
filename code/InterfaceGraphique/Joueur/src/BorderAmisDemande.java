@@ -13,7 +13,7 @@ public class BorderAmisDemande extends PageJoueur {
 
         HBox bartop = this.hBoxTypetextBouton("Demande en ami");
 
-        Button mesAmis = this.buttonTypePageJoueur("Mas amis");
+        Button mesAmis = this.buttonTypePageJoueur("Mes amis");
         mesAmis.setOnAction(event -> this.app.passerEnModeMesAmis());
 
         Button mesDemandes= this.buttonTypePageJoueur("Mes demandes");
