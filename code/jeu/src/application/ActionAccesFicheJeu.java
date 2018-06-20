@@ -5,6 +5,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableView;
 import java.sql.*;
 import java.util.Optional;
 
@@ -13,11 +14,18 @@ import java.util.Optional;
  */
 public class ActionAccesFicheJeu implements EventHandler<ActionEvent> {
 
-	private BorderFicheJeu fiche;
+	private ListeJeux jeux;
+	private JeuProfil jeuProfil;
+	private JeuBD accesBD;
+	private AppliJDBC appli;
+	private TableView table;
 
-
-	public ActionAccesFicheJeu(BorderFicheJeu fiche) {
-	    this.fiche = fiche ;
+	public ActionAccesFicheJeu(ListeJeux jeux, JeuBD accesBD, AppliJDBC appli,TableView table) throws SQLException{
+	    this.jeux = jeux ;
+			this.jeuProfil = null;
+			this.accesBD = accesBD;
+			this.appli = appli;
+			this.table = table;
 
 	}
 
@@ -27,11 +35,16 @@ public class ActionAccesFicheJeu implements EventHandler<ActionEvent> {
 	 */
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		// try{
-		// 	this.fiche.connexionJoueur();
-		// }
-		// catch(SQLException e){
-		// 	System.out.println(e);
-		// }
+		System.out.println(((ListeJeux)this.table.getSelectionModel().getSelectedItem()).getNom());
+		if((((ListeJeux)this.table.getSelectionModel().getSelectedItem()).getNom()).equals("mastermind")){
+			try{
+				this.jeuProfil = this.accesBD.rechercherJeuParNom(this.jeux.getNom());
+				this.appli.getFicheBorderJeu().remplirJeuProfil(this.jeuProfil);
+				this.appli.passerEnModeFicheDeJeu();
+			}
+			catch(SQLException e){
+				System.out.println(e);
+			}
+		}
 	}
 }
