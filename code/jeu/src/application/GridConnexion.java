@@ -126,7 +126,7 @@ public class GridConnexion extends PageConnexion{
             this.add(this.error,1,7);
           }
         }
-		this.appli.setJoueur(this.appli.getJoueurBD().rechercherJoueurParEmail(sauvegardeMail));
+		this.appli.setClient(this.appli.getJoueurBD().rechercherJoueurParEmail(sauvegardeMail));
         return res;
     }
 
