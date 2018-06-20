@@ -98,24 +98,6 @@ public class JeuBD {
 		return Liste;
   }
 
-	public ArrayList<ListeJeux> listeDesJeuxSimple() throws SQLException{
-		ArrayList<ListeJeux> Liste = new ArrayList<ListeJeux>();
-		String typeString = "Tour par tour";
-		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JEU");
-		while (res.next()){
-			String nomJ = res.getString("nomJeu");
-			String description = res.getString("regleJeu");
-			int idType = res.getInt("idTy");
-			if (idType == 2){
-				typeString = "Simultané";
-			}
-			Liste.add(new ListeJeux(nomJ,typeString,description));
-		}
-		res.close();
-		return Liste;
-  }
-
   public String rapportMessage() throws SQLException{
 		Statement st = laConnexion.createStatement();
 		ResultSet rs=st.executeQuery(
