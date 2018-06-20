@@ -29,6 +29,7 @@ public class AppliJDBC extends Application {
     private RapportBD rapportBD;
 	private PartieBD partieBD;
 	private MessageBD messageBD;
+	private InvitationBD invitationBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -68,6 +69,7 @@ public class AppliJDBC extends Application {
         this.rapportBD    = new RapportBD(this.Connexion);
 		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
 		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
+		this.invitationBD = new InvitationBD(this.Connexion, this.jeuBD, this.joueurBD);
         this.borderficheJeu     = null;
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
@@ -300,6 +302,10 @@ public class AppliJDBC extends Application {
     public RapportBD getRapportBD(){
       return rapportBD;
     }
+
+	public InvitationBD getInvitationBD() {
+		return this.invitationBD;
+	}
 
     public FicheRapport getFicheRapport(){
       return ficheRapport;
