@@ -40,7 +40,7 @@ public class InvitationBD {
 	}
 
 	/**
-	 * Créée un message
+	 * Créée une invitation
 	 * @param inv L'invitation à envoyer
 	 * @return L'id de l'invitation
 	 */
@@ -50,7 +50,7 @@ public class InvitationBD {
 		String etat;
 		if (inv.getEtat().equals("en attente"))
 			etat = "E";
-		else if(inv.getEtat().equals("accepté"))
+		else if(inv.getEtat().equals("acceptée"))
 			etat = "A";
 		else
 			etat = "R";
@@ -63,5 +63,44 @@ public class InvitationBD {
 		ps.executeUpdate();
 		inv.setId(id);
 		return id;
+	}
+
+	/**
+	 * Met à jour une invitation
+	 * @param inv l'invitation à mettre à jour
+	 */
+	public void majInvitation(Invitation inv) throws SQLException {
+		PreparedStatement ps = laConnexion.prepareStatement("Update INVITATION set dateInv = ?,etatInv = ?, idJo = ?,idJo1 = ?, idJeu = ? where idInv = ?");
+		String etat;
+		if (inv.getEtat().equals("en attente"))
+			etat = "E";
+		else if(inv.getEtat().equals("acceptée"))
+			etat = "A";
+		else
+			etat = "R";
+		ps.setTimestamp(1, new Timestamp(inv.getDate().getTime()));
+		ps.setString(2, etat);
+		ps.setInt(3, inv.getJoueur1().getIdentifiant());
+		ps.setInt(4, inv.getJoueur2().getIdentifiant());
+		ps.setInt(5, inv.getJeu().getIdJeu());
+		ps.executeUpdate();
+	}
+
+	public List<Invitation> listeInvitationsRecuesEnAttente(Joueur joueur) throws SQLException {
+		List<Invitation> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement("Select * from INVITATION where idJo = ? and etatInv = 'E'");
+		ps.setInt(1, joueur.getIdentifiant());
+		ResultSet res = ps.executeQuery();
+		while (res.next()) {
+			int idInv = res.getInt("idInv");
+			Date dateInv = res.getTimestamp("dateInv");
+			Joueur joueur1 = this.joueurBD.rechercherJoueurParNum(res.getInt("idJo"));
+			JeuProfil jeu = this.jeuBD.rechercherJeuParNum(res.getInt("idJeu"));
+
+			liste.add(new Invitation(idInv, dateInv, "en attente", joueur1, joueur, jeu));
+		}
+		res.close();
+		System.out.println(liste);
+		return liste;
 	}
 }
