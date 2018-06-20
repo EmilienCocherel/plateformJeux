@@ -24,7 +24,6 @@ public class AppliJDBC extends Application {
     private FicheJoueur ficheJoueur;
     private FicheJeu ficheJeu;
     private FicheRapport ficheRapport;
-    private ChoixJeu choixJeu;
     private JeuBD jeuBD;
     private JoueurBD joueurBD;
     private RapportBD rapportBD;
@@ -243,13 +242,6 @@ public class AppliJDBC extends Application {
       fp.getChildren().addAll(this.ficheRapport);
     }
 
-    public void showChoixJeu(){
-      BorderPane fp =((BorderPane)scene.getRoot());
-      fp.getChildren().add(this.choixJeu=new ChoixJeu(this.Connexion,this.partieBD,this.jeuBD,this.joueurBD));
-      fp.getChildren().remove(1);
-      // fp.getChildren().addAll(this.choixJeu);
-    }
-
     public void showFicheResultat(String resultat){
         this.ficheResultat.setTexte(resultat);
         BorderPane fp=((BorderPane)scene.getRoot());
@@ -290,9 +282,5 @@ public class AppliJDBC extends Application {
 
     public FicheRapport getFicheRapport(){
       return ficheRapport;
-    }
-
-    public ChoixJeu getChoixJeu(){
-      return choixJeu;
     }
 }
