@@ -47,7 +47,11 @@ public class    Manche {
     }
 
     public Combinaison getCombi() {
-        return combi;
+        return this.combi;
+    }
+
+    public void setCombi(Combinaison combi) {
+        this.combi = combi;
     }
 
     public int getNbCoup(){
@@ -79,15 +83,6 @@ public class    Manche {
     public void setResParTour(ArrayList<Resultat> resParTour) {
         this.resParTour = resParTour;
     }
-
-    /**
-     * initialise CombiParTour en le remplissant de pions blanc
-     */
-    // public void initCombiParTour(){
-    //     for (int i=0; i<10;i++){
-    //         this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE)));
-    //     }
-    // }
 
     /**
      * initialise resParTour avec des resultat null
@@ -199,7 +194,6 @@ public class    Manche {
 		JSONObject res = new JSONObject();
 		JSONArray combiParTour = new JSONArray(), resParTour = new JSONArray();
 		res.put("num", this.num);
-		res.put("combi", this.combi.toJson());
 		res.put("nbCoup", this.nbCoup);
 		res.put("fini", this.fini);
 
@@ -221,7 +215,6 @@ public class    Manche {
 		JSONArray combiParTour = (JSONArray) json.get("CombiParTour"),
 				  resParTour = (JSONArray) json.get("resParTour");
 		this.num = num.intValue();
-		this.combi.fromJson((JSONObject) json.get("combi"));
 		this.nbCoup = nbCoup.intValue();
 		this.fini = (boolean) json.get("fini");
 

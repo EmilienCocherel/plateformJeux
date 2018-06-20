@@ -8,7 +8,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class Pion extends Circle{
-  private int val;
   private Map<String, Color> couleurs = new HashMap<String, Color>() {{
 		put("rouge", Color.RED);
 		put("bleu", Color.BLUE);
@@ -24,8 +23,8 @@ public class Pion extends Circle{
   }
 
   public Pion(String coul) {
-    this.setRadius(10.0);
-	  this.setCouleur(coul);
+	this.setRadius(10.0);
+	this.setCouleur(coul);
   }
 
   //    Getter et Setter
@@ -34,8 +33,9 @@ public class Pion extends Circle{
     return this.getFill();
   }
 
-  public void setCouleur(String coul) {
-		this.setFill(this.couleurs.get(coul));
+	public void setCouleur(String coul) {
+		if (this.couleurs.containsKey(coul))
+			this.setFill(this.couleurs.get(coul));
 	}
 
 
