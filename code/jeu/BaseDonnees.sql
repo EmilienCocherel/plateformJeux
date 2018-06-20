@@ -4,7 +4,7 @@
 -- ------------------------------------------------------
 -- Server version	5.7.22-0ubuntu0.16.04.1
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+-- /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
@@ -32,7 +32,7 @@
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+-- /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
@@ -114,7 +114,7 @@ CREATE TABLE ETREAMI (
 
 CREATE TABLE JOUEUR (
   idJo decimal(6,0) NOT NULL,
-  pseudo varchar(10) DEFAULT NULL,
+  pseudo varchar(16) DEFAULT NULL,
   motdepasse varchar(500) DEFAULT NULL,
   sexe char(1) DEFAULT NULL,
   abonne char(1) DEFAULT NULL,
@@ -124,8 +124,12 @@ CREATE TABLE JOUEUR (
   activeJo char(1) DEFAULT NULL,
   admin char(1) DEFAULT NULL,
   PRIMARY KEY (idJo),
-  UNIQUE KEY idJo (idJo)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY idJo (idJo),
+  UNIQUE KEY pseudo (pseudo),
+  UNIQUE KEY emailJo (emailJo)
+)
+ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 DROP TABLE IF EXISTS RAPPORT;
 CREATE TABLE RAPPORT (
@@ -170,7 +174,7 @@ CREATE TABLE JEU (
   idJeu decimal(6,0),
   nomJeu varchar(20),
   regleJeu text,
-  jarJeu blob,
+  jarJeu longblob,
   activeJeu char(1),
   idTy decimal(6,0),
   PRIMARY KEY (idJeu)
@@ -193,4 +197,6 @@ ALTER TABLE INVITATION ADD FOREIGN KEY (idJo1) REFERENCES JOUEUR (idJo);
 ALTER TABLE INVITATION ADD FOREIGN KEY (idJo) REFERENCES JOUEUR (idJo);
 -- ALTER TABLE JEU ADD FOREIGN KEY (idTy) REFERENCES TYPEJEU (idTy);
 
-INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'N');
+INSERT INTO JOUEUR VALUES (1,'mario','mario','M','O',1,'�PNG�','mario@gmail.com','O', 'O');
+insert into TYPEJEU VALUES (1, 'test');
+insert into RAPPORT values(1, '2018-05-11 10:04:18', 'titre rapport', 1, 'contenu raport', 1);
