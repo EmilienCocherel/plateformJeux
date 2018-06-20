@@ -333,7 +333,11 @@ public class Mastermind extends application.Jeu{
         ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
 
         //SliderCouleur sliderNiveau = new SliderCouleur(0,1,0,val);
-          SliderCouleur sliderNiveau = new SliderCouleur(val);
+        SliderCouleur sliderNiveau = new SliderCouleur(val);
+        sliderNiveau.valueProperty().addListener((observable, oldValue, newValue) -> {
+          System.out.println("Slider Value Changed (newValue: " + newValue.intValue() + ")");
+          this.changementCouleur(sliderNiveau);
+        });
         //sliderNiveau.setMin(0);
         //sliderNiveau.setMax(5);
         //sliderNiveau.setShowTickLabels(false);
@@ -342,12 +346,72 @@ public class Mastermind extends application.Jeu{
         //sliderNiveau.setOrientation(Orientation.VERTICAL);
         boutonNiveau.add(sliderNiveau,0,0);
         boutonNiveau.add(rondEtLabel,1,0);
-
-
         res.getChildren().add(boutonNiveau);
-
         return res;
 
+    }
+
+    public void changementCouleur(SliderCouleur sc){
+      if (sc.getValPion()==0){
+      if (sc.getValue()==0.0){
+        this.getATester().getP1().setFill(Color.RED);
+      }
+      if (sc.getValue()==1.0){
+        this.getATester().getP1().setFill(Color.BLUE);
+      }
+      if (sc.getValue()==2.0){
+        this.getATester().getP1().setFill(Color.GREEN);
+      }
+      if (sc.getValue()==3.0){
+        this.getATester().getP1().setFill(Color.YELLOW);
+      }
+     }
+
+     if (sc.getValPion()==1){
+      if (sc.getValue()==0.0){
+        this.getATester().getP2().setFill(Color.RED);
+      }
+      if (sc.getValue()==1.0){
+        this.getATester().getP2().setFill(Color.BLUE);
+      }
+      if (sc.getValue()==2.0){
+        this.getATester().getP2().setFill(Color.GREEN);
+      }
+      if (sc.getValue()==3.0){
+        this.getATester().getP2().setFill(Color.YELLOW);
+      }
+     }
+
+     if (sc.getValPion()==2){
+      if (sc.getValue()==0.0){
+        this.getATester().getP3().setFill(Color.RED);
+      }
+      if (sc.getValue()==1.0){
+        this.getATester().getP3().setFill(Color.BLUE);
+      }
+      if (sc.getValue()==2.0){
+        this.getATester().getP3().setFill(Color.GREEN);
+      }
+      if (sc.getValue()==3.0){
+        this.getATester().getP3().setFill(Color.YELLOW);
+      }
+     }
+
+     if (sc.getValPion()==3){
+      if (sc.getValue()==0.0){
+        this.getATester().getP4().setFill(Color.RED);
+      }
+      if (sc.getValue()==1.0){
+        this.getATester().getP4().setFill(Color.BLUE);
+      }
+      if (sc.getValue()==2.0){
+        this.getATester().getP4().setFill(Color.GREEN);
+      }
+      if (sc.getValue()==3.0){
+        this.getATester().getP4().setFill(Color.YELLOW);
+      }
+     }
+     this.majAffichage();
     }
 
 //    private VBox boxCouleur(){
