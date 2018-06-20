@@ -297,6 +297,7 @@ public class Mastermind extends application.Jeu{
         //SliderCouleur sliderNiveau = new SliderCouleur(0,1,0,val);
         SliderCouleur sliderNiveau = new SliderCouleur(val);
         sliderNiveau.valueProperty().addListener((observable, oldValue, newValue) -> {
+          System.out.println(sliderNiveau.getValue());
           System.out.println("Slider Value Changed (newValue: " + newValue.intValue() + ")");
           this.changementCouleur(sliderNiveau);
         });
@@ -314,62 +315,63 @@ public class Mastermind extends application.Jeu{
     }
 
     public void changementCouleur(SliderCouleur sc){
+      System.out.println("test");
       if (sc.getValPion()==0){
-      if (sc.getValue()==0.0){
+      if ((int)sc.getValue()==0){
         this.getATester().getP1().setFill(Color.RED);
       }
-      if (sc.getValue()==1.0){
+      if ((int)sc.getValue()==1){
         this.getATester().getP1().setFill(Color.BLUE);
       }
-      if (sc.getValue()==2.0){
+      if ((int)sc.getValue()==2){
         this.getATester().getP1().setFill(Color.GREEN);
       }
-      if (sc.getValue()==3.0){
+      if ((int)sc.getValue()==3){
         this.getATester().getP1().setFill(Color.YELLOW);
       }
      }
 
      if (sc.getValPion()==1){
-      if (sc.getValue()==0.0){
+      if ((int)sc.getValue()==0){
         this.getATester().getP2().setFill(Color.RED);
       }
-      if (sc.getValue()==1.0){
+      if ((int)sc.getValue()==1){
         this.getATester().getP2().setFill(Color.BLUE);
       }
-      if (sc.getValue()==2.0){
+      if ((int)sc.getValue()==2){
         this.getATester().getP2().setFill(Color.GREEN);
       }
-      if (sc.getValue()==3.0){
+      if ((int)sc.getValue()==3){
         this.getATester().getP2().setFill(Color.YELLOW);
       }
      }
 
      if (sc.getValPion()==2){
-      if (sc.getValue()==0.0){
+      if ((int)sc.getValue()==0){
         this.getATester().getP3().setFill(Color.RED);
       }
-      if (sc.getValue()==1.0){
+      if ((int)sc.getValue()==1){
         this.getATester().getP3().setFill(Color.BLUE);
       }
-      if (sc.getValue()==2.0){
+      if ((int)sc.getValue()==2){
         this.getATester().getP3().setFill(Color.GREEN);
       }
-      if (sc.getValue()==3.0){
+      if ((int)sc.getValue()==3){
         this.getATester().getP3().setFill(Color.YELLOW);
       }
      }
 
      if (sc.getValPion()==3){
-      if (sc.getValue()==0.0){
+      if ((int)sc.getValue()==0){
         this.getATester().getP4().setFill(Color.RED);
       }
-      if (sc.getValue()==1.0){
+      if ((int)sc.getValue()==1){
         this.getATester().getP4().setFill(Color.BLUE);
       }
-      if (sc.getValue()==2.0){
+      if ((int)sc.getValue()==2){
         this.getATester().getP4().setFill(Color.GREEN);
       }
-      if (sc.getValue()==3.0){
+      if ((int)sc.getValue()==3){
         this.getATester().getP4().setFill(Color.YELLOW);
       }
      }
