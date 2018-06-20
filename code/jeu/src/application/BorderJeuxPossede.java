@@ -17,12 +17,16 @@ public class BorderJeuxPossede extends PageJoueur {
     private AppliJDBC appli;
     private JeuBD jeuBD;
     private ObservableList<ListeJeux> data;
+    private JeuProfil jeuProfil;
+    private String nomDuJeu;
 
     public BorderJeuxPossede(AppliJDBC appli,JeuBD jeuBD){
 
         super();
         this.appli = appli;
         this.jeuBD = jeuBD;
+        this.jeuProfil = null;
+        this.nomDuJeu = "";
 
         Button mesJeux = this.buttonTypePageJoueur("Mes jeux");
         mesJeux.setOnAction(event -> this.appli.passerEnModeJeuxPossede());
@@ -66,7 +70,9 @@ public class BorderJeuxPossede extends PageJoueur {
 
         table.setItems(this.data);
         for (ListeJeux jeux : table.getItems()){
+          this.appli.getJoueurBD().rechercherJeuParNom(jeux.getNom());
           System.out.println(jeux);
+
         }
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
         this.setCenter(table);
