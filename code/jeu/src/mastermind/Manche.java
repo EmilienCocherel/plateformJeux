@@ -193,7 +193,6 @@ public class    Manche {
 		JSONObject res = new JSONObject();
 		JSONArray combiParTour = new JSONArray(), resParTour = new JSONArray();
 		res.put("num", this.num);
-		res.put("combi", this.combi.toJson());
 		res.put("nbCoup", this.nbCoup);
 		res.put("fini", this.fini);
 
@@ -215,7 +214,6 @@ public class    Manche {
 		JSONArray combiParTour = (JSONArray) json.get("CombiParTour"),
 				  resParTour = (JSONArray) json.get("resParTour");
 		this.num = num.intValue();
-		this.combi.fromJson((JSONObject) json.get("combi"));
 		this.nbCoup = nbCoup.intValue();
 		this.fini = (boolean) json.get("fini");
 
