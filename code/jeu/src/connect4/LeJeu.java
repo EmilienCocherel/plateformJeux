@@ -272,11 +272,11 @@ public class LeJeu extends application.Jeu {
 	}
 
     @Override
-    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2){
     }
 
     @Override
-    public void jouerCoup(int idPartie, int joueur, Object partage){
+    public void jouerCoup(int idPartie, int joueur){
     }
 
 	/**

@@ -66,18 +66,8 @@ public class BorderJeuxPossede extends PageJoueur {
                 new PropertyValueFactory<ListeJeux, String>("comment"));
 
         table.setItems(this.data);
-        // table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        // table.getSelectionModel().getSelectedItems().addListener(new Array<ListeJeux>() {
-        //     public void onChanged(ListChangeListener.Change<? extends ListeJeux> c) {
-        //
-        //         for (ListeJeux p : c.getList()) {
-        //             System.out.println(p.getNom());
-        //         }
-        //
-        //     }
-        // });
-        for (ListeJeux jeu: table.getItems()){
-          System.out.println(jeu.getNom());
+        for (ListeJeux jeux : table.getItems()){
+          System.out.println(jeux);
         }
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
         this.setCenter(table);

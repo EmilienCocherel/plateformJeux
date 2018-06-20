@@ -161,9 +161,6 @@ public class ControleurMenuAccueil implements EventHandler<ActionEvent> {
                   }
                   this.AppliJDBC.showFicheResultat(laListeJeu);
                   break;
-                case "Jouer":
-                   this.AppliJDBC.showChoixJeu();
-                   break;
 
 
                 //RAPPORT

@@ -69,13 +69,6 @@ public class    Manche {
     public void setCombiParTour(ArrayList<Combinaison> combiParTour) {
         this.CombiParTour = combiParTour;
     }
-
-    public void initCombiParTour(){
-        for (int i=0; i<10;i++){
-            this.CombiParTour.add(new Combinaison());
-        }
-    }
-
     public ArrayList<Resultat> getResParTour() {
         return this.resParTour;
     }
