@@ -175,7 +175,7 @@ public abstract class PageJoueur extends BorderPane{
         return tmessage;
     }
 
-    public TextArea textAeraHorizontalNonEditable(){
+    public TextArea textAeraHorizontalNonEditable(String desc){
         TextArea tmessage = new TextArea();
         tmessage.setWrapText(true);
         tmessage.setEditable(false);
