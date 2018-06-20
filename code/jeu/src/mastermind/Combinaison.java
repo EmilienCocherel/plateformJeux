@@ -1,6 +1,7 @@
 package mastermind;
 
 import javafx.scene.paint.Paint;
+import org.json.simple.JSONObject;
 
 public class Combinaison {
 
@@ -11,6 +12,13 @@ public class Combinaison {
         this.p2 = p2;
         this.p3 = p3;
         this.p4 = p4;
+    }
+
+    public Combinaison(String p1, String p2, String p3, String p4){
+        this.p1=new Pion(p1);
+        this.p2=new Pion(p2);
+        this.p3=new Pion(p3);
+        this.p4=new Pion(p4);
     }
 
 //    Getter et Setter
@@ -79,4 +87,20 @@ public class Combinaison {
     public String toString(){
         return this.p1.toString()+" "+this.p2.toString()+" "+this.p3.toString()+" "+this.p4.toString();
     }
+
+	public JSONObject toJson() {
+		JSONObject res = new JSONObject();
+		res.put("p1", this.p1.toString());
+		res.put("p2", this.p2.toString());
+		res.put("p3", this.p3.toString());
+		res.put("p4", this.p4.toString());
+		return res;
+	}
+
+	public void fromJson(JSONObject json) {
+		this.p1.setCouleur((String) json.get("p1"));
+		this.p2.setCouleur((String) json.get("p2"));
+		this.p3.setCouleur((String) json.get("p3"));
+		this.p4.setCouleur((String) json.get("p4"));
+	}
 }

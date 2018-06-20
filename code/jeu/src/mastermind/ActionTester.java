@@ -32,5 +32,6 @@ public class ActionTester implements EventHandler<ActionEvent> {
               this.manche.finManche(false);
           }
         }
+        this.partie.setEtat();
 	}
 }
