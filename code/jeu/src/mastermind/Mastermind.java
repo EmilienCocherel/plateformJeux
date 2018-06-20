@@ -331,31 +331,6 @@ public class Mastermind extends application.Jeu{
 
         return res;
     }
-
-//    private Vbox choixCouleurDuPion2(int val){
-//        VBox res=new VBox(5);
-//
-//        res.getChildren().add(this.getPion(val));
-//        res.setPadding(new Insets(10,10,10,10));
-//        Label nom = new Label(this.getStringPion(val));
-//        res.getChildren().add(nom);
-//
-//        GridPane boutonSlider = new GridPane();
-//
-//        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
-//
-//        Slider sliderNiveau = new Slider();
-//        slider.setMin(0);
-//        slider.setMax(5);
-//        slider.setShowTickLabels(true);
-//        slider.setShowTickMarks(true);
-//        slider.setBlockIncrement(5);
-//
-//        boutonSlider
-//
-//
-//    }
-
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
      */
@@ -364,8 +339,9 @@ public class Mastermind extends application.Jeu{
         res.setAlignment(Pos.CENTER);
         this.tester = new Button("Tester");
         ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
-        brestart.setOnAction(actionTester);
-        res.getChildren().add(brestart);
+        this.tester.setOnAction(actionTester);
+		    this.tester.setDisable(true);
+        res.getChildren().add(this.tester);
         res.setBackground(new Background(new BackgroundFill(Color.GRAY,null,null)));
         res.getChildren().add(this.choixCouleurDuPion(0));
         res.getChildren().add(this.choixCouleurDuPion(1));

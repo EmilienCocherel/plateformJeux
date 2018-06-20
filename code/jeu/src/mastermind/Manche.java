@@ -70,21 +70,18 @@ public class    Manche {
         this.CombiParTour = combiParTour;
     }
 
+    public void initCombiParTour(){
+        for (int i=0; i<10;i++){
+            this.CombiParTour.add(new Combinaison());
+        }
+    }
+
     public ArrayList<Resultat> getResParTour() {
         return this.resParTour;
     }
 
     public void setResParTour(ArrayList<Resultat> resParTour) {
         this.resParTour = resParTour;
-    }
-
-    /**
-     * initialise CombiParTour en le remplissant de pions blanc
-     */
-    public void initCombiParTour(){
-        for (int i=0; i<10;i++){
-            this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE)));
-        }
     }
 
     /**
