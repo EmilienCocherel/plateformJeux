@@ -2,6 +2,7 @@ package mastermind;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
@@ -12,10 +13,12 @@ import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+import javafx.scene.control.Slider;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
+
 
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
@@ -35,9 +38,8 @@ public class Mastermind extends application.Jeu{
     private Label historique;
     private Scene scene;
     private HBox interfaceChoix;
-    private VBox historiqueCombinaison;
-    private VBox historiqueCombinaisonCentre;
-    private VBox historiqueCombinaisonDroite;
+    //private VBox historiqueCombinaison;
+    private GridPane gridPaneCentre;
     private application.Partie partie;
     private int idJoueurJ1;
     private int idJoueurJ2;
@@ -46,15 +48,6 @@ public class Mastermind extends application.Jeu{
     private BorderPane laBase;
 
     public Mastermind(){}
-
-    @Override
-    public void jouerCoup(int idPartie, int joueur){
-    }
-
-    @Override
-    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2){
-    }
-
     @Override
     public void setPartie(application.Partie partie, int idJoueur) {
         this.partie = partie;
@@ -72,9 +65,8 @@ public class Mastermind extends application.Jeu{
         this.manche=this.joueur.getMancheCourante();
         this.manche.initCombiParTour();
         this.manche.initResParTour();
-		this.initHistoriqueCombinaison();
-        this.initHistoriqueCombinaisonCentre();
-        this.initHistoriqueCombinaisonDroite();
+		//this.initHistoriqueCombinaison();
+        this.initgridPaneCentre();
         this.getEtat(idJoueur);
     }
 
@@ -194,9 +186,8 @@ public class Mastermind extends application.Jeu{
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 this.aTester = new Combinaison();
                 this.initInterfaceChoix();
-                this.initHistoriqueCombinaison();
-                this.initHistoriqueCombinaisonCentre();
-                this.initHistoriqueCombinaisonDroite();
+                //this.initHistoriqueCombinaison();
+                this.initgridPaneCentre();
                 this.laScene();
                 stage.setScene(this.scene);
             }
@@ -223,7 +214,7 @@ public class Mastermind extends application.Jeu{
         }
     }
 
-    //    Getter et Setter
+    //getter et setter
 
     public Label getHistorique(){
       return this.historique;
@@ -324,83 +315,120 @@ public class Mastermind extends application.Jeu{
         return res;
     }
 
+    private VBox choixCouleurDuPion2(int val){
+        VBox res=new VBox(5);
+        res.setPadding(new Insets(0,10,10,10));
+
+        GridPane boutonNiveau = new GridPane();
+
+        VBox rondEtLabel = new VBox();
+        rondEtLabel.getChildren().add(this.getPion(val));
+        rondEtLabel.setPadding(new Insets(50,10,0,10));
+        Label nom = new Label(this.getStringPion(val));
+        nom.setPadding(new Insets(10,10,10,8));
+        rondEtLabel.getChildren().add(nom);
+
+        VBox boutonSlider = new VBox();
+
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
+
+        Slider sliderNiveau = new Slider(0,1,0);
+        sliderNiveau.setMin(0);
+        sliderNiveau.setMax(5);
+        sliderNiveau.setShowTickLabels(false);
+        sliderNiveau.setShowTickMarks(false);
+        sliderNiveau.setBlockIncrement(1);
+        sliderNiveau.setOrientation(Orientation.VERTICAL);
+        boutonNiveau.add(sliderNiveau,0,0);
+        boutonNiveau.add(rondEtLabel,1,0);
+
+
+        res.getChildren().add(boutonNiveau);
+
+        return res;
+
+    }
+
+//    private VBox boxCouleur(){
+//
+//    }
+
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
      */
     private void initInterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
+
         Button brestart = new Button("tester");
+
         ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
         brestart.setOnAction(actionTester);
-        res.getChildren().add(brestart);
-        res.setBackground(new Background(new BackgroundFill(Color.GRAY,null,null)));
-        res.getChildren().add(this.choixCouleurDuPion(0));
-        res.getChildren().add(this.choixCouleurDuPion(1));
-        res.getChildren().add(this.choixCouleurDuPion(2));
-        res.getChildren().add(this.choixCouleurDuPion(3));
+
+        res.setBackground(new Background(new BackgroundFill(Color.rgb(68, 87, 133),null,null)));
+        res.getChildren().add(this.choixCouleurDuPion2(0));
+        res.getChildren().add(this.choixCouleurDuPion2(1));
+        res.getChildren().add(this.choixCouleurDuPion2(2));
+        res.getChildren().add(this.choixCouleurDuPion2(3));
+
         this.historique = new Label();
+
         res.getChildren().add(historique);
+        res.getChildren().add(brestart);
         this.interfaceChoix=res;
     }
 
     /**
      * initialise l'interface des combinaisons déjà tester par l'utilisateur
      */
-    private void initHistoriqueCombinaison(){
-        VBox res=new VBox(5);
-        res.setAlignment(Pos.CENTER);
-        for(int i =0; i<this.manche.getCombiParTour().size();i++){
-            Combinaison combi = this.manche.getCombiParTour().get(i);
-            HBox box = new HBox();
-            box.getChildren().add(combi.getP1());
-            box.getChildren().add(combi.getP2());
-            box.getChildren().add(combi.getP3());
-            box.getChildren().add(combi.getP4());
-            Resultat resultat = this.manche.getResParTour().get(i);
+//    private void initHistoriqueCombinaison(){
+//        VBox res=new VBox(5);
+//        res.setAlignment(Pos.CENTER);
+//        for(int i =0; i<this.manche.getCombiParTour().size();i++){
+//            Combinaison combi = this.manche.getCombiParTour().get(i);
+//            HBox box = new HBox();
+//            box.getChildren().add(combi.getP1());
+//            box.getChildren().add(combi.getP2());
+//            box.getChildren().add(combi.getP3());
+//            box.getChildren().add(combi.getP4());
+//            Resultat resultat = this.manche.getResParTour().get(i);
 //            for (Circle cercle :resultat.getPionsRes()){
 //                box.getChildren().add(cercle);
 //            }
-            res.getChildren().add(box);
-        }
-        this.historiqueCombinaison=res;
-    }
+//            res.getChildren().add(box);
+//        }
+//        this.historiqueCombinaison=res;
+//    }
 
-    private void initHistoriqueCombinaisonCentre(){
-        VBox res=new VBox(5);
-        res.setAlignment(Pos.CENTER);
+
+    private void initgridPaneCentre(){
+        GridPane res = new GridPane();
         for(int i =0; i<this.manche.getCombiParTour().size();i++){
             Combinaison combi = this.manche.getCombiParTour().get(i);
             HBox box = new HBox();
+            box.setPadding(new Insets(5,20,5,10));
+
+            HBox box2 = new HBox();
+            box2.setPadding(new Insets(5, 18, 5, 40));
+            Label tour = new Label("Tour "+(i+1)+" : ");
+            box2.getChildren().add(tour);
+
             box.getChildren().add(combi.getP1());
             box.getChildren().add(combi.getP2());
             box.getChildren().add(combi.getP3());
             box.getChildren().add(combi.getP4());
-            Resultat resultat = this.manche.getResParTour().get(i);
-            res.getChildren().add(box);
-        }
-        this.historiqueCombinaisonCentre=res;
-    }
-
-    private void initHistoriqueCombinaisonDroite(){
-        VBox res=new VBox(5);
-        res.setAlignment(Pos.CENTER_LEFT);
-        for(int i =0; i<this.manche.getCombiParTour().size();i++){
-            Combinaison combi = this.manche.getCombiParTour().get(i);
-            HBox box = new HBox();
-            box.setPadding(new Insets(10, 10, 10, 10));
-            Label tour = new Label("Tour "+(i+1)+": \n");
-            box.getChildren().add(tour);
+;
 
             Resultat resultat = this.manche.getResParTour().get(i);
             for (Circle cercle :resultat.getPionsRes()){
-                box.getChildren().add(cercle);
+                box2.getChildren().add(cercle);
             }
 
-            res.getChildren().add(box);
-
+            res.add(box,0,i);
+            res.add(box2,1,i);
         }
-        this.historiqueCombinaisonDroite=res;
+        this.gridPaneCentre = res;
+        this.gridPaneCentre.setMaxSize(320,420);
 
     }
 
@@ -441,10 +469,9 @@ public class Mastermind extends application.Jeu{
       private void laScene(){
           BorderPane cont = new BorderPane();
           cont.setTop(this.barreMenus());
-          cont.setCenter(this.historiqueCombinaisonCentre);
-          cont.setRight(this.historiqueCombinaisonDroite);
+          cont.setCenter(this.gridPaneCentre);
           cont.setBottom(this.interfaceChoix);
-          cont.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,null,null)));
+          cont.setBackground(new Background(new BackgroundFill(Color.rgb(197, 208, 234),null,null)));
           this.scene = new Scene(cont,500,600);
       }
 
