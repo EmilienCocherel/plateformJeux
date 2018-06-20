@@ -17,8 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class BorderMessagerieRecus extends PageJoueur{
-
+public class BorderMessagerieRecus extends PageJoueur implements IMessagerie {
     private AppliJDBC appli;
 	private TableView<Message> tableau;
 
@@ -71,4 +70,14 @@ public class BorderMessagerieRecus extends PageJoueur{
         this.setCenter(tableau);
         this.setBottom(this.buttonBarTypePageJoueur(supprimer, redigerMessage));
     }
+
+	@Override
+	public AppliJDBC getAppli() {
+		return this.appli;
+	}
+
+	@Override
+	public TableView getTableau() {
+		return this.tableau;
+	}
 }
