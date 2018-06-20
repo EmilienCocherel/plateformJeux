@@ -70,10 +70,10 @@ public abstract class AbstractMessagerie extends PageJoueur {
         this.setBottom(this.buttonBarTypePageJoueur(supprimer, redigerMessage));
     }
 
-	public TableView getTableau() {
+	public TableView<Message> getTableau() {
 		return this.tableau;
 	}
 	public AppliJDBC getAppli() {
-		return this.tableau;
+		return this.appli;
 	}
 }
