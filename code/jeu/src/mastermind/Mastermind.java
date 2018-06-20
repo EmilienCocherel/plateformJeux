@@ -332,13 +332,14 @@ public class Mastermind extends application.Jeu{
 
         ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
 
-        Slider sliderNiveau = new Slider(0,1,0);
-        sliderNiveau.setMin(0);
-        sliderNiveau.setMax(5);
-        sliderNiveau.setShowTickLabels(false);
-        sliderNiveau.setShowTickMarks(false);
-        sliderNiveau.setBlockIncrement(1);
-        sliderNiveau.setOrientation(Orientation.VERTICAL);
+        //SliderCouleur sliderNiveau = new SliderCouleur(0,1,0,val);
+          SliderCouleur sliderNiveau = new SliderCouleur(val);
+        //sliderNiveau.setMin(0);
+        //sliderNiveau.setMax(5);
+        //sliderNiveau.setShowTickLabels(false);
+        //sliderNiveau.setShowTickMarks(false);
+        //sliderNiveau.setBlockIncrement(1);
+        //sliderNiveau.setOrientation(Orientation.VERTICAL);
         boutonNiveau.add(sliderNiveau,0,0);
         boutonNiveau.add(rondEtLabel,1,0);
 
