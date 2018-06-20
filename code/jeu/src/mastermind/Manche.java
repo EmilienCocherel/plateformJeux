@@ -66,15 +66,12 @@ public class    Manche {
         this.CombiParTour = combiParTour;
     }
 
-<<<<<<< HEAD
-=======
     public void initCombiParTour(){
         for (int i=0; i<10;i++){
             this.CombiParTour.add(new Combinaison());
         }
     }
 
->>>>>>> quentin/master
     public ArrayList<Resultat> getResParTour() {
         return this.resParTour;
     }

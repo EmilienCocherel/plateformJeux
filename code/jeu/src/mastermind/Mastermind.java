@@ -68,11 +68,7 @@ public class Mastermind extends application.Jeu{
         this.combis.add(new Combinaison(new Pion(Color.RED),new Pion(Color.RED),new Pion(Color.RED),new Pion(Color.RED)));
         this.combis.add(new Combinaison(new Pion(Color.GREEN),new Pion(Color.RED),new Pion(Color.RED),new Pion(Color.BLUE)));
         this.combis.add(new Combinaison(new Pion(Color.BLUE),new Pion(Color.YELLOW),new Pion(Color.RED),new Pion(Color.RED)));
-<<<<<<< HEAD
-        this.aTester = new Combinaison(new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE));
-=======
         this.aTester = new Combinaison();
->>>>>>> quentin/master
         this.joueur.nouvelleManche(new Manche(this.combis.get(0),this, this.joueur,0));
         this.manche=this.joueur.getMancheCourante();
         this.manche.initCombiParTour();
@@ -196,11 +192,7 @@ public class Mastermind extends application.Jeu{
             }
             Optional<ButtonType> result = info.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-<<<<<<< HEAD
-                this.aTester = new Combinaison(new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE));
-=======
                 this.aTester = new Combinaison();
->>>>>>> quentin/master
                 this.initInterfaceChoix();
                 //this.initHistoriqueCombinaison();
                 this.initgridPaneCentre();

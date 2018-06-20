@@ -12,11 +12,7 @@ public class BorderGererJeu extends PageAdmin {
 
     AppliJDBC app;
 
-<<<<<<< HEAD:code/jeu/src/application/BorderGererJeu.java
     public BorderGererJeu(AppliJDBC app){
-=======
-    public BorderGererJeu(AJEL app) {
->>>>>>> quentin/master:code/InterfaceGraphique/Administrateur/src/BorderGererJeu.java
         super();
         this.app = app;
 
