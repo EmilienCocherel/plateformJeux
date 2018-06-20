@@ -69,11 +69,11 @@ public class BorderJeuxPossede extends PageJoueur {
                 new PropertyValueFactory<ListeJeux, String>("comment"));
 
         table.setItems(this.data);
-        for (ListeJeux jeux : table.getItems()){
-          this.appli.getJoueurBD().rechercherJeuParNom(jeux.getNom());
-          System.out.println(jeux);
-
-        }
+        // for (ListeJeux jeux : table.getItems()){
+        //   this.appli.getJoueurBD().rechercherJeuParNom(jeux.getNom());
+        //   System.out.println(jeux);
+        //
+        // }
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
         this.setCenter(table);
 
