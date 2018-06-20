@@ -39,6 +39,10 @@ public class Invitation {
 		return this.joueur2;
 	}
 
+	public JeuProfil getJeu() {
+		return this.jeu;
+	}
+
 	public String getNomJoueur1() {
 		return this.joueur1.getPseudo();
 	}
@@ -47,8 +51,8 @@ public class Invitation {
 		return this.joueur2.getPseudo();
 	}
 
-	public JeuProfil getJeu() {
-		return this.jeu;
+	public String getNomJeu() {
+		return this.jeu.getNomJeu();
 	}
 
 	public void setId(int id) {
