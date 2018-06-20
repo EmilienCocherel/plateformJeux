@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.control.Slider;
+import javafx.scene.shape.Circle;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -326,7 +327,7 @@ public class Mastermind extends application.Jeu{
 
     private VBox choixCouleurDuPion2(int val){
         VBox res=new VBox(5);
-        res.setPadding(new Insets(0,10,10,10));
+        res.setPadding(new Insets(10,10,10,10));
 
         GridPane boutonNiveau = new GridPane();
 
@@ -341,7 +342,7 @@ public class Mastermind extends application.Jeu{
 
         ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
 
-        Slider sliderNiveau = new Slider(0,1,0);
+        Slider sliderNiveau = new Slider(0,1,4);
         sliderNiveau.setMin(0);
         sliderNiveau.setMax(5);
         sliderNiveau.setShowTickLabels(false);
@@ -358,9 +359,34 @@ public class Mastermind extends application.Jeu{
 
     }
 
-//    private VBox boxCouleur(){
-//
-//    }
+    private VBox boxCouleur(){
+        VBox res=new VBox(5);
+        res.setPadding(new Insets(10,10,10,10));
+
+        Circle pionBlanc= new Circle(12);
+
+        Circle pionBleu= new Circle(12,Color.BLUE);
+
+        Circle pionVert= new Circle(12,Color.GREEN);
+
+        Circle pionJaune= new Circle(12,Color.YELLOW);
+
+        Circle pionRouge= new Circle(12,Color.RED);
+
+        Circle pionViolet= new Circle(12,Color.PURPLE);
+
+        GridPane barrePion = new GridPane();
+        barrePion.add(pionBlanc,0,0);
+        barrePion.add(pionBleu,0,1);
+        barrePion.add(pionVert,0,2);
+        barrePion.add(pionJaune,0,3);
+        barrePion.add(pionRouge,0,4);
+        barrePion.add(pionViolet,0,5);
+
+        res.getChildren().add(barrePion);
+
+        return res;
+    }
 
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
@@ -369,7 +395,15 @@ public class Mastermind extends application.Jeu{
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
 
-        Button brestart = new Button("tester");
+        Button brestart = new Button("Tester");
+        brestart.setStyle("-fx-background-color:\n"+
+                "#c3c4c4,\n"+
+                "linear-gradient(#d6d6d6 50%, white 100%),\n"+
+                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);\n"+
+        "-fx-background-radius: 30;\n"+
+        "-fx-background-insets: 0,1,1;\n"+
+        "-fx-text-fill: black;\n"+
+        "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1);\n");
 
         ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
         brestart.setOnAction(actionTester);
@@ -382,6 +416,7 @@ public class Mastermind extends application.Jeu{
 
         this.historique = new Label();
 
+        res.getChildren().add(this.boxCouleur());
         res.getChildren().add(historique);
         res.getChildren().add(brestart);
         this.interfaceChoix=res;
