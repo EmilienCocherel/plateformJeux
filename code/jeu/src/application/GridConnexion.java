@@ -79,42 +79,52 @@ public class GridConnexion extends PageConnexion{
         boolean mailInvalide = false;
         String sauvegardeMail = this.getEmail().getText();
         String sauvegardeMdp = this.getMdp().getText();
-        if (this.verifierEmailDansLaBase()){
-          this.getChildren().remove(this.email);
-          this.add(this.email = new TextField(sauvegardeMail), 1, 1);
-          if (this.verifierMDPInvalide()){
-            if (this.verifierJoueurActif()){
-              if(this.verifierAdmin()){
-                this.appli.passerEnModeAccueil();
-                res = true;
+        if (this.getEmail().getText().equals("")){
+          System.out.println("Rentrer un email.");
+          this.getChildren().remove(this.error);
+          this.error = this.labelType("Veuillez rentrer un email");
+          this.add(this.error,1,7);
+          res = false;
+        }
+        else{
+          if (this.verifierEmailDansLaBase()){
+            this.getChildren().remove(this.email);
+            this.add(this.email = new TextField(sauvegardeMail), 1, 1);
+            // this.email.isResizable(false);
+            if (this.verifierMDPInvalide()){
+              if (this.verifierJoueurActif()){
+                if(this.verifierAdmin()){
+                  this.appli.passerEnModeAccueil();
+                  res = true;
+                }
+                else{
+                  this.appli.passerEnModePartieEnCours();
+                  res = true;
+                }
               }
-              else{
-                this.appli.passerEnModePartieEnCours();
-                res = true;
+              else{   // est inactif
+                System.out.println("Le compte est inactif pour le moment.");
+                this.getChildren().remove(this.error);
+                this.error = this.labelType("Le compte est inactif");
+                this.add(this.error,1,7);
+                res = false;
               }
             }
-            else{   // est inactif
-              System.out.println("Le compte est inactif pour le moment.");
-              this.getChildren().remove(this.error);
-              this.error = this.labelType("Le compte est inactif");
-              this.add(this.error,1,7);
+            else{ // mot de passe invalide
+              System.out.println("Mot de passe incorrect");
               res = false;
+              this.getChildren().remove(this.error);
+              this.error = this.labelType("Email et/ou mot de passe invalide(s)");
+              this.add(this.error,1,7);
             }
           }
-          else{ // mot de passe invalide
-            System.out.println("Mot de passe incorrect");
+          else{ // email pas dans la base de données
+            System.out.println("Ce compte est inconnu");
             res = false;
             this.getChildren().remove(this.error);
-            this.error = this.labelType("Mot de passe incorrect");
+            this.error = this.labelType("Ce compte est iconnu");
             this.add(this.error,1,7);
           }
-        }
-        else{ // email pas dans la base de données
-          System.out.println("Cette email est incorrect");
-          res = false;
-          this.getChildren().remove(this.error);
-          this.error = this.labelType("Cet email est incorrect");
-          this.add(this.error,1,7);
         }
         return res;
     }
