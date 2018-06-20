@@ -278,6 +278,10 @@ public class Mastermind extends application.Jeu{
         return null;
     }
 
+	private VBox choixCouleurDuPion(int val) {
+		return this.choixCouleurDuPion2(val);
+	}
+
     /**
     * @return une VBox contenant les radio boutons permettant de changer la couleurs des pions de la combinaison à tester
     */
