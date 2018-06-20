@@ -127,6 +127,8 @@ public class Mastermind extends application.Jeu{
 
 		this.manche.fromJson((JSONObject) json.get("manche"));
 
+		this.manche.setCombi(this.combis.get(this.manche.getNum()));
+
 		for (int i=0; i < combinaisons.size(); i++) {
 			this.combis.get(i).fromJson((JSONObject) combinaisons.get(i));
 		}
