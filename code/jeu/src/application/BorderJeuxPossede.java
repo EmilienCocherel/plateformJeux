@@ -9,6 +9,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.ListChangeListener;
 import java.util.ArrayList;
 import java.sql.*;
 
@@ -65,8 +66,18 @@ public class BorderJeuxPossede extends PageJoueur {
                 new PropertyValueFactory<ListeJeux, String>("comment"));
 
         table.setItems(this.data);
-        for (Object row ; table.getItems()){
-
+        // table.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+        // table.getSelectionModel().getSelectedItems().addListener(new Array<ListeJeux>() {
+        //     public void onChanged(ListChangeListener.Change<? extends ListeJeux> c) {
+        //
+        //         for (ListeJeux p : c.getList()) {
+        //             System.out.println(p.getNom());
+        //         }
+        //
+        //     }
+        // });
+        for (ListeJeux jeu: table.getItems()){
+          System.out.println(jeu.getNom());
         }
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
         this.setCenter(table);
