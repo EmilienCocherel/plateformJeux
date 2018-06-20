@@ -192,5 +192,4 @@ public abstract class PageJoueur extends BorderPane{
 
         return tmessage;
     }
-
 }

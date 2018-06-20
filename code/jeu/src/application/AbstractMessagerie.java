@@ -1,4 +1,5 @@
 package application;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -17,11 +18,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.SQLException;
 import java.util.Date;
 
-public class BorderMessagerieRecus extends PageJoueur implements IMessagerie {
-    private AppliJDBC appli;
-	private TableView<Message> tableau;
+public abstract class AbstractMessagerie extends PageJoueur {
+    protected AppliJDBC appli;
+	protected TableView<Message> tableau;
 
-    public BorderMessagerieRecus(AppliJDBC appli) {
+    public AbstractMessagerie(AppliJDBC appli) {
         super();
         this.appli = appli;
 
@@ -58,10 +59,8 @@ public class BorderMessagerieRecus extends PageJoueur implements IMessagerie {
 		objet.setCellValueFactory(new PropertyValueFactory("objet"));
 		TableColumn<Message,String> lu = new TableColumn<>("Lu");
 		lu.setCellValueFactory(new PropertyValueFactory("luTexte"));
-		TableColumn<Message,String> auteur = new TableColumn<>("Auteur");
-		auteur.setCellValueFactory(new PropertyValueFactory("nomJoueur2"));
 
-		tableau.getColumns().setAll(date, objet, lu, auteur);
+		tableau.getColumns().setAll(date, objet, lu);
 
         tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		//tableau.getOnMouseClicked(event -> lireMessage());
@@ -71,13 +70,10 @@ public class BorderMessagerieRecus extends PageJoueur implements IMessagerie {
         this.setBottom(this.buttonBarTypePageJoueur(supprimer, redigerMessage));
     }
 
-	@Override
-	public AppliJDBC getAppli() {
-		return this.appli;
-	}
-
-	@Override
 	public TableView getTableau() {
+		return this.tableau;
+	}
+	public AppliJDBC getAppli() {
 		return this.tableau;
 	}
 }

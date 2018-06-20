@@ -40,7 +40,7 @@ public class BorderFicheJeu extends PageJoueur {
 
         this.cotehaut= new GridPane();
 
-        // cotehaut.add(this.imageTypePageAdmin(),0,0);
+        // cotehaut.add(this.imageTypePageJoueur(),0,0);
         this.cotehaut.add(cotegauche,1,0);
         this.cotehaut.setPadding(new Insets(30, 30, 10, 10));
 

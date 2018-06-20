@@ -26,7 +26,6 @@ public class ActionAccesFicheJeu implements EventHandler<ActionEvent> {
 			this.accesBD = accesBD;
 			this.appli = appli;
 			this.table = table;
-
 	}
 
 	@Override

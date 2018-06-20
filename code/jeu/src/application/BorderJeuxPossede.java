@@ -9,7 +9,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ListChangeListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.*;
@@ -31,8 +30,6 @@ public class BorderJeuxPossede extends PageJoueur {
         this.appli = appli;
         this.jeux = jeux;
         this.jeuBD = jeuBD;
-        this.jeuProfil = null;
-        this.nomDuJeu = "";
 
         Button mesJeux = this.buttonTypePageJoueur("Mes jeux");
         mesJeux.setOnAction(event -> this.appli.passerEnModeJeuxPossede());

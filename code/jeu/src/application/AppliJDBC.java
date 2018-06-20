@@ -27,7 +27,8 @@ public class AppliJDBC extends Application {
     private JeuBD jeuBD;
     private JoueurBD joueurBD;
     private RapportBD rapportBD;
-	  private PartieBD partieBD;
+	private PartieBD partieBD;
+	private MessageBD messageBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -36,6 +37,7 @@ public class AppliJDBC extends Application {
     private GridInscrire inscrire;
     private ControleurConnexion cc;
     private BorderPane laBase;
+	private Joueur client;
     private BorderFicheJeu borderficheJeu;
 
     public void init() {
@@ -64,11 +66,13 @@ public class AppliJDBC extends Application {
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion);
-		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
+		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
+		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
         this.borderficheJeu     = null;
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
+		this.client = null;
     }
 
     public ConnexionMySQL getConnexionMySql(){
@@ -285,6 +289,10 @@ public class AppliJDBC extends Application {
       return jeuBD;
     }
 
+	public MessageBD getMessageBD() {
+		return this.messageBD;
+	}
+
     public FicheJeu getFicheJeu(){
       return ficheJeu;
     }
@@ -299,4 +307,12 @@ public class AppliJDBC extends Application {
     public FicheRapport getFicheRapport(){
       return ficheRapport;
     }
+
+	public Joueur getClient() {
+		return this.client;
+	}
+
+	public void setClient(Joueur client) {
+		this.client = client;
+	}
 }
