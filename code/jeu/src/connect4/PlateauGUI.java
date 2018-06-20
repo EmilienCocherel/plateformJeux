@@ -31,8 +31,8 @@ public class PlateauGUI extends GridPane {
 		this.pions = new ArrayList<>();
 		Circle c;
 		Integer pion;
-		for (int i=0; i < 49; i++) {
-			pion = this.plateau.get(i%7, i/7);
+		for (int i=0; i < 42; i++) {
+			pion = this.plateau.get(i/7, i%7);
 			c = new Circle(40);
 			c.getStyleClass().add("pion");
 			PlateauGUI.setCouleur(pion, c);
@@ -50,7 +50,7 @@ public class PlateauGUI extends GridPane {
 				this.controles.get(i).setDisable(false);
 		}
 		Integer pion;
-		for (int i=0; i < 49; i++) {
+		for (int i=0; i < 42; i++) {
 			pion = this.plateau.get(i/7, i%7);
 			PlateauGUI.setCouleur(pion, this.pions.get(i));
 		}

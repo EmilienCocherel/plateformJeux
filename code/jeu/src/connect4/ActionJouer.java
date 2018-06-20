@@ -33,10 +33,7 @@ public class ActionJouer implements EventHandler<ActionEvent> {
 		int i = Integer.parseInt(b.getText())-1;
 		if (this.puissance4.jouer(i%7)) {
 			this.gui.majAffichage();
-			Alert alert = new Alert(AlertType.INFORMATION, "You've won round "+this.puissance4.getRound()+"!");
-			alert.setTitle("Victory");
-			alert.setHeaderText("Victory");
-			alert.showAndWait();
+			this.gui.gagnerManche(this.puissance4.getRound());
 			this.puissance4.getGagnants().add(courant);
 
 			// Si la partie est finie
