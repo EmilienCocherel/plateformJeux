@@ -36,6 +36,7 @@ public class AppliJDBC extends Application {
     private GridInscrire inscrire;
     private ControleurConnexion cc;
     private BorderPane laBase;
+	private Joueur client;
 
     public void init() {
         try {
@@ -67,6 +68,7 @@ public class AppliJDBC extends Application {
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
+		this.client = null;
     }
 
     public ConnexionMySQL getConnexionMySql(){
@@ -283,4 +285,12 @@ public class AppliJDBC extends Application {
     public FicheRapport getFicheRapport(){
       return ficheRapport;
     }
+
+	public Joueur getClient() {
+		return this.client;
+	}
+
+	public void setClient(Joueur client) {
+		this.client = client;
+	}
 }
