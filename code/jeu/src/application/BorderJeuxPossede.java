@@ -11,19 +11,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ListChangeListener;
 import java.util.ArrayList;
+import java.util.List;
 import java.sql.*;
+import javafx.geometry.Point2D;
 
 public class BorderJeuxPossede extends PageJoueur {
 
     private AppliJDBC appli;
     private JeuBD jeuBD;
     private ObservableList<ListeJeux> data;
+    private JeuProfil jeuProfil;
+    private String nomDuJeu;
+    private ListeJeux jeux;
+    private TableView<ListeJeux> table;
 
     public BorderJeuxPossede(AppliJDBC appli,JeuBD jeuBD){
 
         super();
         this.appli = appli;
+        this.jeux = jeux;
         this.jeuBD = jeuBD;
+        this.jeuProfil = null;
+        this.nomDuJeu = "";
 
         Button mesJeux = this.buttonTypePageJoueur("Mes jeux");
         mesJeux.setOnAction(event -> this.appli.passerEnModeJeuxPossede());
@@ -31,14 +40,17 @@ public class BorderJeuxPossede extends PageJoueur {
         Button boutique = this.buttonTypePageJoueur("Boutique");
         boutique.setOnAction(event -> this.appli.passerEnModeJeuxBoutique());
 
+        Button afficheFiche = this.buttonTypePageJoueur("Afficher la fiche");
+
+
         this.setStyle("-fx-background-color: transparent;");
         this.setMaxSize(800, 700);
 
-        this.setTop(this.buttonBarTypePageJoueur(mesJeux,boutique));
+        this.setTop(this.buttonBarTypePageJoueur(mesJeux,boutique,afficheFiche));
         // TableView table = this.tableauTypePageJouer("Nom","Type","Commentaire");
         // this.setCenter(table);
 
-        TableView<ListeJeux> table = new TableView<>();
+        this.table = new TableView<>();
         try {
 
         ArrayList<ListeJeux> listeJeu = this.jeuBD.listeDesJeuxSimple();
@@ -67,7 +79,22 @@ public class BorderJeuxPossede extends PageJoueur {
 
         table.setItems(this.data);
         for (ListeJeux jeux : table.getItems()){
-          System.out.println(jeux);
+          String nomJ = jeux.getNom();
+          List<Integer> nombreColonne = new ArrayList<>();
+          for (int i=1; i<(table.getItems().size()); i++){
+            nombreColonne.add(i);
+          }
+          // System.out.println(table.getFocusModel().getFocusedCell().getTableColumn());
+          // if (nombreColonne.contains(table.getFocusModel().getFocusedCell().getColumn())){
+          //   System.out.println("dans le if");
+            try{
+              ActionAccesFicheJeu actionAffiche = new ActionAccesFicheJeu(jeux,this.jeuBD,this.appli,this.table);
+              afficheFiche.setOnAction(actionAffiche);
+            }
+            catch(SQLException e){
+              System.out.println("Erreur sql");
+            }
+          // }
         }
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
         this.setCenter(table);

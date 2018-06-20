@@ -36,6 +36,7 @@ public class AppliJDBC extends Application {
     private GridInscrire inscrire;
     private ControleurConnexion cc;
     private BorderPane laBase;
+    private BorderFicheJeu borderficheJeu;
 
     public void init() {
         try {
@@ -64,6 +65,7 @@ public class AppliJDBC extends Application {
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion);
 		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
+        this.borderficheJeu     = null;
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
@@ -156,6 +158,10 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new BorderPartieHistorique(this));
     }
 
+    public void passerEnModeFicheDeJeu(JeuProfil profil){
+      this.laBase.setCenter(new BorderFicheJeu(this,profil));
+    }
+
 
     //ADMIN
     public void passerEnModeAccueil(){
@@ -204,6 +210,9 @@ public class AppliJDBC extends Application {
         return Login;
     }
 
+    public BorderFicheJeu getFicheBorderJeu(){
+      return this.borderficheJeu;
+    }
     public void connexionReussie(){
         this.message.setText("Vous êtes connecté");
         BorderPane fp=((BorderPane)scene.getRoot());
