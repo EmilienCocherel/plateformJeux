@@ -49,7 +49,7 @@ public class Login extends GridPane {
         this.login.setAlignment(Pos.BASELINE_LEFT);
         this.nomServeur = new TextField("servinfo-db");
         this.nomServeur.setAlignment(Pos.BASELINE_LEFT);
-        this.nomBD = new TextField();
+        this.nomBD = new TextField("dbcharlotte");
         this.nomBD.setAlignment(Pos.BASELINE_LEFT);
 
         Button b= new Button("Valider");

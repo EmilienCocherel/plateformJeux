@@ -48,11 +48,11 @@ public class Mastermind extends application.Jeu{
     public Mastermind(){}
 
     @Override
-    public void jouerCoup(int idPartie, int joueur, Object partage){
+    public void jouerCoup(int idPartie, int joueur){
     }
 
     @Override
-    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2){
     }
 
     @Override
@@ -223,7 +223,7 @@ public class Mastermind extends application.Jeu{
         }
     }
 
-    //getter et setter
+    //    Getter et Setter
 
     public Label getHistorique(){
       return this.historique;

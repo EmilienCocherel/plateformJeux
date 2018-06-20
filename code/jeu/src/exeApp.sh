@@ -1,3 +1,6 @@
+rm  application/*.class
+rm  mastermind/*.class
+rm  connect4/*.class
 javac -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar application/*.java
 javac -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar mastermind/*.java
 javac -cp .:/pub/1A/json-simple.jar:/usr/share/java/mysql.jar connect4/*.java

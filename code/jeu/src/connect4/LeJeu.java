@@ -164,7 +164,7 @@ public class LeJeu extends application.Jeu {
 				new MenuItem("Send messages")
 		);
 		help.getItems().addAll(
-				new MenuItem("About"),
+				new MenuItem("About us"),
 				new MenuItem("Tutorial")
 		);
         for (MenuItem item : game.getItems())
@@ -241,6 +241,7 @@ public class LeJeu extends application.Jeu {
 	 * Fermer le jeu.
 	 */
 	public void fermer() {
+		this.setEtat();
 		this.updateTimeline.stop();
 		this.stage.close();
 	}
@@ -271,11 +272,11 @@ public class LeJeu extends application.Jeu {
 	}
 
     @Override
-    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2){
     }
 
     @Override
-    public void jouerCoup(int idPartie, int joueur, Object partage){
+    public void jouerCoup(int idPartie, int joueur){
     }
 
 	/**
@@ -291,7 +292,7 @@ public class LeJeu extends application.Jeu {
 	public void abandonner() {
 		this.puissance4.abandonner();
 		this.perdre();
-		this.setEtat();
+		this.fermer();
 	}
 
 	/**
@@ -324,7 +325,7 @@ public class LeJeu extends application.Jeu {
 		alert.setTitle("Defeat");
 		alert.setHeaderText("Defeat");
 		alert.setOnHidden(ev -> alert.close());
-		alert.show();
+		alert.showAndWait();
 	}
 
 	/**

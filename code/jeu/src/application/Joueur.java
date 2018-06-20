@@ -18,7 +18,7 @@ public class Joueur {
 
 
     public Joueur(int identifiant, String pseudo, String motdepasse, char sexe, boolean abonne, int niveau, byte[] avatar, String emailJo, boolean activeJo, boolean admin) {
-        this.identifiant = identifiant;
+        this.identifiant = 0;
         this.pseudo = pseudo;
         this.motdepasse = motdepasse;
         this.sexe = sexe;

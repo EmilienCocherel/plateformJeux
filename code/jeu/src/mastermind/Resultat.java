@@ -25,6 +25,9 @@ public class Resultat {
         return pionsRes;
     }
 
+    /**
+     * change la couleur des pions de résultat en fonction du des bon pions trouvé
+     */
     public void initPionRes(int nbCouleurOkPositionOk, int nbCouleurOkPositionPasOk){
         this.nbCouleurOkPositionOk=nbCouleurOkPositionOk;
         this.nbCouleurOkPositionPasOk=nbCouleurOkPositionPasOk;
