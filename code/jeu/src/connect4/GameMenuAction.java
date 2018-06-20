@@ -29,15 +29,30 @@ public class GameMenuAction implements EventHandler<ActionEvent> {
 		MenuItem menu = (MenuItem) actionEvent.getSource();
 		String text = menu.getText();
 		if (text.equals("Leave")) {
-			// TODO
-			//this.gui.stop();
+			this.gui.fermer();
 		} else if (text.equals("Surrender")) {
 			Alert alert = new Alert(AlertType.CONFIRMATION, "Are you sure you want to surrender?");
 			alert.showAndWait()
 				.filter(response -> response == ButtonType.OK)
 				.ifPresent(response -> this.gui.abandonner());
 		} else if (text.equals("Score tab")) {
-			// TODO
+			int j1=0;
+			int j2=0;
+			for (Joueur gagnant : this.puissance4.getGagnants()) {
+				if (gagnant == this.puissance4.getJoueur1()){
+					j1++;
+				}
+				if (gagnant == this.puissance4.getJoueur2()){
+					j2++;
+				}
+			}
+			Alert alert = new Alert(AlertType.INFORMATION, "round win by Player1: "+j1+"\nround win by Player2: "+j2);
+			alert.setTitle("Score Tab");
+			alert.setHeaderText("Score Tab");
+			alert.showAndWait();
+			System.out.println(j1);
+			System.out.println(j2);
+			System.out.println(alert);
 			System.out.println("Score tab");
 		}
 	}
