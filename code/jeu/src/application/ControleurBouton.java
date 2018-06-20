@@ -58,6 +58,18 @@ public class ControleurBouton implements EventHandler<ActionEvent> {
                     alertEchec(ex);
                 }
                 break;
+
+            case "Créer mon compte":
+                j = ficheJoueur.getJoueur();
+                try {
+                    int nj = jbd.insererJoueur(j);
+                    ficheJoueur.setNumJoueur(nj);
+                    alertOK("Insertion du joueur a réussi\nLe nouveau joueur porte le numéro "+nj);
+                    ficheJoueur.viderFiche();
+                } catch (SQLException ex) {
+                    alertEchec(ex);
+                }
+                break;
             case "Ajouter":
                 jp = ficheJeu.getJeu();
                 try {
