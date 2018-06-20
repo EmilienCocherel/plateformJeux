@@ -158,6 +158,10 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new BorderRedigerMessage(this));
     }
 
+    public void passerEnModeLireMessage(Message message){
+        this.laBase.setCenter(new BorderLireMessage(this, message));
+    }
+
     public void passerEnModePartieHistorique(){
         this.laBase.setCenter(new BorderPartieHistorique(this));
     }
