@@ -4,9 +4,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.event.EventHandler;
 
 public class ActionClicMessage implements EventHandler<MouseEvent> {
-	private IMessagerie messagerie;
+	private AbstractMessagerie messagerie;
 
-	public ActionClicMessage(IMessagerie messagerie) {
+	public ActionClicMessage(AbstractMessagerie messagerie) {
 		this.messagerie = messagerie;
 	}
 
