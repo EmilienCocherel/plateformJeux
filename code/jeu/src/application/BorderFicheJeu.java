@@ -8,11 +8,11 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class BorderGererJeu extends PageAdmin {
+public class BorderFicheJeu extends PageAdmin {
 
     AppliJDBC app;
 
-    public BorderGererJeu(AppliJDBC app){
+    public BorderFicheJeu(AppliJDBC app){
         super();
         this.app = app;
 
@@ -25,7 +25,7 @@ public class BorderGererJeu extends PageAdmin {
         GridPane cotegauche = new GridPane();
 
         cotegauche.add(this.labelTypePageAdmin("Titre :"), 0, 0);
-        cotegauche.add(this.labelTypePageAdmin("<Titre>"), 1, 0);
+        cotegauche.add(this.labelTypePageAdmin(""), 1, 0);
         cotegauche.add(this.checkBoxTypePageAdmin("Actif"), 0, 3);
         cotegauche.add(this.labelTypePageAdmin("Type de jeu : "), 0, 4);
         cotegauche.add(this.comboBoxAdmin("TpT", "Simultané"), 1, 4);
@@ -39,11 +39,12 @@ public class BorderGererJeu extends PageAdmin {
 
         GridPane cotebas = new GridPane();
 
+        TextField textNonEditable = new TextField();
+        textNonEditable.setEditable(false);
 
-        cotebas.add(this.labelTypePageAdmin("Fichier : "), 0, 0);
-        cotebas.add(new TextField(), 1, 0);
+
         cotebas.add(this.labelTypePageAdmin("Description : "), 0, 1);
-        cotebas.add(this.textAeraHorizontal(), 1, 1);
+        cotebas.add(this.textAeraHorizontalNonEditable(), 1, 1);
         cotebas.setPadding(new Insets(30, 30, 10, 10));
 
 
