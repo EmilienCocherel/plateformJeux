@@ -47,7 +47,11 @@ public class    Manche {
     }
 
     public Combinaison getCombi() {
-        return combi;
+        return this.combi;
+    }
+
+    public void setCombi(Combinaison combi) {
+        this.combi = combi;
     }
 
     public int getNbCoup(){
