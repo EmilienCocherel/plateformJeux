@@ -74,7 +74,7 @@ public class GridConnexion extends PageConnexion{
       return this.error;
     }
 
-    public boolean connexionJoueur() throws SQLException{
+    public Joueur connexionJoueur() throws SQLException{
         Boolean res = true;
         boolean mailInvalide = false;
         String sauvegardeMail = this.getEmail().getText();
@@ -122,11 +122,11 @@ public class GridConnexion extends PageConnexion{
             System.out.println("Ce compte est inconnu");
             res = false;
             this.getChildren().remove(this.error);
-            this.error = this.labelType("Ce compte est iconnu");
+            this.error = this.labelType("Ce compte est inconnu");
             this.add(this.error,1,7);
           }
         }
-        return res;
+        return this.appli.getJoueurBD().rechercherJoueurParEmail(sauvegardeMail);
     }
 
 
