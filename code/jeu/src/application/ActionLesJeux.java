@@ -2,22 +2,17 @@ package application;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.ComboBox;
+import java.util.EventObject;
 
 class ActionLesJeux implements EventHandler<ActionEvent> {
+    private BoutonJouer bj;
 
-    private ConnexionMySQL laConnexion;
-    private ChoixJeu vue;
-
-    public ActionLesJeux(ChoixJeu  vue, ConnexionMySQL laConnexion){
-    	this.vue=vue;
-    	this.laConnexion=laConnexion;
+    public ActionLesJeux(BoutonJouer bj){
+      this.bj=bj;
     }
 
     @Override
-    public void handle(ActionEvent e) {
-    	ComboBox c=(ComboBox) e.getSource();
-    	String jeu=(String)c.getValue();
-    	vue.chargerJeu(jeu);
+    public void handle(ActionEvent e){
+    	bj.chargerJeu();
     }
 }

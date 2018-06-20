@@ -10,6 +10,8 @@ public class BoutonRadio extends RadioButton{
     this.valPion= val;
   }
 
+  //    Getter et Setter
+
   public int getValPion(){
     return this.valPion;
   }
