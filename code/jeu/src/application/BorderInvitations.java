@@ -43,8 +43,29 @@ public class BorderInvitations extends PageJoueur {
 		accepter.setOnAction(event -> this.accepter());
 		refuser.setOnAction(event -> this.refuser());
 
+		this.trecues = new TableView<>();
+		ObservableList<Invitation> liste;
+		try {
+			liste = FXCollections.observableList(
+					this.app.getInvitationBD().listeInvitationsRecuesEnAttente(
+						this.app.getClient()
+						));
+		} catch (SQLException ex) {
+			liste = FXCollections.emptyObservableList();
+		}
+		trecues.setItems(liste);
+
+		TableColumn<Invitation,Date> date = new TableColumn<>("Jeu");
+		date.setCellValueFactory(new PropertyValueFactory("nomJeu"));
+		TableColumn<Invitation,String> objet = new TableColumn<>("Joueur");
+		objet.setCellValueFactory(new PropertyValueFactory("nomJoueur2"));
+		TableColumn<Invitation,String> lu = new TableColumn<>("Date");
+		lu.setCellValueFactory(new PropertyValueFactory("date"));
+
+		this.trecues.getColumns().setAll(date, objet, lu);
+
         recues.add(this.titlePageJouer("Reçues"), 0, 0);
-        recues.add(this.tableauTypePageJouer("Jeu", "Joueur", "Date"),0,1);
+        recues.add(this.trecues,0,1);
         recues.add(this.buttonBarTypePageJoueur(accepter, refuser),0,2);
         recues.setPadding(new Insets(10, 10, 10, 30));
 
@@ -96,6 +117,13 @@ public class BorderInvitations extends PageJoueur {
 	}
 
 	public void accepter() {
+		Invitation inv = this.trecues.getSelectionModel().getSelectedItem();
+		inv.setEtat("acceptée");
+		try {
+			this.app.getInvitationBD().majInvitation(inv);
+		} catch (SQLException e) {
+			System.out.println("Impossible de mettre à jour l'invitation n°"+inv.getId());
+		}
 	}
 
 	public void refuser() {
