@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ControleurMenu implements EventHandler<ActionEvent> {
     AppliJDBC AppliJDBC;
-    ControleurMenu(AppliJDBC AppliJDBC){
+    public ControleurMenu(AppliJDBC AppliJDBC){
         this.AppliJDBC=AppliJDBC;
     }
     @Override

@@ -8,15 +8,16 @@ import javafx.scene.control.RadioButton;
 import java.sql.*;
 import java.util.Optional;
 
+/**
+ * Controleur des radio boutons gérant le niveau
+ */
 public class ActionAccesFicheJeu implements EventHandler<ActionEvent> {
 
-	private ListeJeux jeu;
-  private AppliJDBC app;
+	private BorderFicheJeu fiche;
 
 
-	public ActionAccesFicheJeu(ListeJeux jeu,AppliJDBC app) {
-	    this.jeu = jeu ;
-      this.app = app;
+	public ActionAccesFicheJeu(BorderFicheJeu fiche) {
+	    this.fiche = fiche ;
 
 	}
 
@@ -26,8 +27,11 @@ public class ActionAccesFicheJeu implements EventHandler<ActionEvent> {
 	 */
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		if (this.jeu.getNom().equals("mastermind")){
-
-    }
+		// try{
+		// 	this.fiche.connexionJoueur();
+		// }
+		// catch(SQLException e){
+		// 	System.out.println(e);
+		// }
 	}
 }

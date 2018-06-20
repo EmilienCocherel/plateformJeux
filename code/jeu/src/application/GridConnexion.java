@@ -40,7 +40,7 @@ public class GridConnexion extends PageConnexion{
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(400, 300);
 
-        this.email = new TextField("dwindwin@gmail.com");
+        this.email = new TextField("mario@gmail.com");
         this.mdp = new PasswordField();
         this.error = this.labelType("");
 
