@@ -1,12 +1,17 @@
 package application;
 
 import java.sql.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class JoueurBD {
 	ConnexionMySQL laConnexion;
+	GridConnexion cg;
+
+
 	JoueurBD(ConnexionMySQL laConnexion){
 		this.laConnexion=laConnexion;
+		// this.cg = new GridConnexion();
 	}
 
 	// recherche nombre de joueurs au total
@@ -17,6 +22,28 @@ public class JoueurBD {
 		int dernierJoueur = res.getInt("lemax");
 		res.close();
 		return dernierJoueur;
+	}
+
+	// rec le nom ou l'email si y'a un @ il faut faire avec lemail ou le Login
+	// on récupere alors le numéro
+	// si le nuémro est dans la bd on se connecte
+	// sinon on pop alert.
+	Joueur seConnecter(String login, String mdp) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + login);
+		res.next();
+		int numJ = res.getInt("idJo");
+		String nomJ = res.getString("pseudo");
+		String motdp = res.getString("motdepasse");
+		String sexe = res.getString("sexe");
+		boolean abo = res.getString("abonne").equals("O");
+		int level = res.getInt("niveau");
+		byte[] image = res.getBytes("avatar");
+		String email = res.getString("emailJo");
+		boolean actif = res.getString("activeJo").equals("O");
+		boolean admin = res.getString("admin").equals("O");
+		res.close();
+		return new Joueur(numJ, nomJ, motdp, sexe.charAt(0), abo, level, image, email, actif, admin);
 	}
 
 	Joueur rechercherJoueurParNum(int num) throws SQLException{
@@ -53,6 +80,74 @@ public class JoueurBD {
 		boolean admin = res.getString("admin").equals("O");
 		res.close();
 		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
+	}
+
+	boolean joueurDejaInscrit(String nom) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+nom+'"');
+		return res.next();
+	}
+
+	boolean mailDejaInscrit(String mail) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+mail+'"');
+		return res.next();
+	}
+
+	boolean estUnAdmin(String email) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		res.next();
+		boolean admin = res.getString("admin").equals("O");
+		return admin;
+	}
+
+	boolean estUnActif(String email) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		res.next();
+		boolean actif = res.getString("activeJo").equals("O");
+		return actif;
+	}
+
+	boolean emailDansLaBase(String email) throws SQLException {
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		return res.next();
+	}
+
+	boolean motDePasseInvalideConnection(String email, String mdp) throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from JOUEUR where emailJo =" + '"'+email+'"');
+		res.next();
+		String mdpS = res.getString("motdepasse");
+		if (mdp.equals(mdpS)){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+
+
+	int creerMonCompteJoueur( Joueur j) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("insert into JOUEUR values (?,?,?,?,?,?,?,?,?,?)");
+		int numJ = this.maxNumJoueur() + 1;
+		ps.setInt(1,numJ);
+		ps.setString(2,j.getPseudo());
+		ps.setString(3,j.getMotdepasse());
+		ps.setString(4,j.getSexe() + "");
+		String abo = "N";
+		ps.setString(5,abo);
+		ps.setInt(6,j.getNiveau());
+		ps.setBytes(7,j.getAvatar());
+		ps.setString(8,j.getEmailJo());
+		String actif = "O";
+		ps.setString(9,actif);
+		String estAdmin = "N";
+		ps.setString(10,estAdmin);
+		ps.executeUpdate();
+		return numJ;
 	}
 
 	int insererJoueur( Joueur j) throws SQLException{

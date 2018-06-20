@@ -25,6 +25,9 @@ public class Resultat {
         return pionsRes;
     }
 
+    /**
+     * change la couleur des pions de résultat en fonction du des bon pions trouvé
+     */
     public void initPionRes(int nbCouleurOkPositionOk, int nbCouleurOkPositionPasOk){
         this.nbCouleurOkPositionOk=nbCouleurOkPositionOk;
         this.nbCouleurOkPositionPasOk=nbCouleurOkPositionPasOk;
@@ -38,8 +41,14 @@ public class Resultat {
 
 	public JSONObject toJson() {
 		JSONObject res = new JSONObject();
-		res.put("nbCouleurOkPositionOk", this.nbCouleurOkPositionOk);
-		res.put("nbCouleurOkPositionPasOk", this.nbCouleurOkPositionPasOk);
+		res.put("nbCoulOkPosOk", this.nbCouleurOkPositionOk);
+		res.put("nbCoulOkPosPasOk", this.nbCouleurOkPositionPasOk);
 		return res;
+	}
+
+	public void fromJson(JSONObject json) {
+		Long nbCouleurOkPositionOk = (Long) json.get("nbCoulOkPosOk"),
+			 nbCouleurOkPositionPasOk = (Long) json.get("nbCoulOkPosPasOk");
+		this.initPionRes(nbCouleurOkPositionOk.intValue(), nbCouleurOkPositionPasOk.intValue());
 	}
 }

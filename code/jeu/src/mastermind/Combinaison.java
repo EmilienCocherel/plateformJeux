@@ -1,11 +1,19 @@
 package mastermind;
 
+import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import org.json.simple.JSONObject;
 
 public class Combinaison {
 
     private Pion p1, p2, p3, p4;
+
+	public Combinaison() {
+		this.p1 = new Pion(Color.WHITE);
+		this.p2 = new Pion(Color.WHITE);
+		this.p3 = new Pion(Color.WHITE);
+		this.p4 = new Pion(Color.WHITE);
+	}
 
     public Combinaison(Pion p1, Pion p2, Pion p3, Pion p4){
         this.p1 = p1;
@@ -15,10 +23,10 @@ public class Combinaison {
     }
 
     public Combinaison(String p1, String p2, String p3, String p4){
-        this.p1=new Pion(p1,1);
-        this.p2=new Pion(p2,2);
-        this.p3=new Pion(p3,3);
-        this.p4=new Pion(p4,4);
+        this.p1=new Pion(p1);
+        this.p2=new Pion(p2);
+        this.p3=new Pion(p3);
+        this.p4=new Pion(p4);
     }
 
 //    Getter et Setter

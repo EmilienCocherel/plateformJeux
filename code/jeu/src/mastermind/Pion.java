@@ -4,37 +4,39 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
-public class Pion extends Circle{
-  private int val;
+import java.util.Map;
+import java.util.HashMap;
 
-  public Pion(Paint couleur,int val){
+public class Pion extends Circle{
+  private Map<String, Color> couleurs = new HashMap<String, Color>() {{
+		put("rouge", Color.RED);
+		put("bleu", Color.BLUE);
+		put("vert", Color.GREEN);
+		put("jaune", Color.YELLOW);
+		put("violet", Color.PURPLE);
+		put("orange", Color.ORANGE);
+  }};
+
+  public Pion(Paint couleur){
     this.setRadius(10.0);
     this.setFill(couleur);
   }
 
-  public Pion(String coul,int val){
-    this.setRadius(10.0);
-    if(coul.equals("rouge")){
-      this.setFill(Color.RED);
-    }
-    if(coul.equals("bleu")){
-      this.setFill(Color.BLUE);
-    }
-    if(coul.equals("vert")){
-      this.setFill(Color.GREEN);
-    }
-    if(coul.equals("jaune")){
-      this.setFill(Color.YELLOW);
-    }
+  public Pion(String coul) {
+	this.setRadius(10.0);
+	this.setCouleur(coul);
   }
 
-  public int getVal(){
-    return this.val;
-  }
+  //    Getter et Setter
 
   public Paint getCouleur(){
     return this.getFill();
   }
+
+	public void setCouleur(String coul) {
+		if (this.couleurs.containsKey(coul))
+			this.setFill(this.couleurs.get(coul));
+	}
 
 
   @Override
@@ -43,35 +45,11 @@ public class Pion extends Circle{
       return this.getCouleur().equals(p2.getCouleur());
   }
 
-  @Override
-  public String toString(){
-    if(this.getCouleur().equals(Color.RED)){
-      return "rouge";
-    }
-    if(this.getCouleur().equals(Color.BLUE)){
-      return "bleu";
-    }
-    if(this.getCouleur().equals(Color.GREEN)){
-      return "vert";
-    }
-    if(this.getCouleur().equals(Color.YELLOW)){
-      return "jaune";
-    }
-    return "";
-  }
-
-	public void setCouleur(String coul) {
-		if(coul.equals("rouge")){
-		  this.setFill(Color.RED);
-		}
-		if(coul.equals("bleu")){
-		  this.setFill(Color.BLUE);
-		}
-		if(coul.equals("vert")){
-		  this.setFill(Color.GREEN);
-		}
-		if(coul.equals("jaune")){
-		  this.setFill(Color.YELLOW);
-		}
+	@Override
+	public String toString() {
+		for (Map.Entry<String,Color> entry : this.couleurs.entrySet())
+			if (entry.getValue().equals(this.getCouleur()))
+				return entry.getKey();
+		return "";
 	}
 }
