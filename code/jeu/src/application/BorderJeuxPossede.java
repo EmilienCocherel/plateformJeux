@@ -19,13 +19,10 @@ public class BorderJeuxPossede extends PageJoueur {
     private AppliJDBC appli;
     private JeuBD jeuBD;
     private ObservableList<ListeJeux> data;
-<<<<<<< HEAD
-=======
     private JeuProfil jeuProfil;
     private String nomDuJeu;
     private ListeJeux jeux;
     private TableView<ListeJeux> table;
->>>>>>> edwin/sauvergardeConflit
 
     public BorderJeuxPossede(AppliJDBC appli,JeuBD jeuBD){
 
@@ -79,9 +76,9 @@ public class BorderJeuxPossede extends PageJoueur {
 
         table.setItems(this.data);
         for (ListeJeux jeux : table.getItems()){
-<<<<<<< HEAD
+
           System.out.println(jeux);
-=======
+
           String nomJ = jeux.getNom();
           List<Integer> nombreColonne = new ArrayList<>();
           for (int i=1; i<(table.getItems().size()); i++){
@@ -98,7 +95,7 @@ public class BorderJeuxPossede extends PageJoueur {
               System.out.println("Erreur sql");
             }
           // }
->>>>>>> edwin/sauvergardeConflit
+
         }
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
         this.setCenter(table);

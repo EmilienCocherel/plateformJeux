@@ -37,11 +37,7 @@ public class AppliJDBC extends Application {
     private GridInscrire inscrire;
     private ControleurConnexion cc;
     private BorderPane laBase;
-<<<<<<< HEAD
-	private Joueur client;
-=======
     private BorderFicheJeu borderficheJeu;
->>>>>>> edwin/sauvergardeConflit
 
     public void init() {
         try {
@@ -69,13 +65,9 @@ public class AppliJDBC extends Application {
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion);
-<<<<<<< HEAD
-		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
-		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
-=======
 		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
         this.borderficheJeu     = new BorderFicheJeu(this);
->>>>>>> edwin/sauvergardeConflit
+
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
