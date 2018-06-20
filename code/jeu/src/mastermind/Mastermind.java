@@ -209,23 +209,23 @@ public class Mastermind extends application.Jeu{
                 this.stage.close();
             }
         }
-        catch(IndexOutOfBoundsException e){
-            if (gagne){
-                Alert info = new Alert(CONFIRMATION);
-                info.setHeaderText("La Partie est terminé");
-                info.setContentText("Vous avez remporté la dernière manche!");
-                info.showAndWait();
-            }
-            else{
-                Alert info = new Alert(CONFIRMATION);
-                info.setHeaderText("La Partie est terminé");
-                String solution = precedent.getCombi().toString();
-                info.setContentText("Vous avez perdu la dernière Manche \n La solution était: "+solution);
-                info.showAndWait();
-            }
-			PartieFinie p = new PartieFinie(this);
-			this.stage.setScene(p.getScene());
+    }
+    catch(IndexOutOfBoundsException e){
+        if (gagne){
+            Alert info = new Alert(CONFIRMATION);
+            info.setHeaderText("La Partie est terminé");
+            info.setContentText("Vous avez remporté la dernière manche!");
+            info.showAndWait();
         }
+        else{
+            Alert info = new Alert(CONFIRMATION);
+            info.setHeaderText("La Partie est terminé");
+            String solution = precedent.getCombi().toString();
+            info.setContentText("Vous avez perdu la dernière Manche \n La solution était: "+solution);
+            info.showAndWait();
+        }
+  PartieFinie p = new PartieFinie(this);
+  this.stage.setScene(p.getScene());
     }
   }
 
