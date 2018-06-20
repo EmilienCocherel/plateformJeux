@@ -307,6 +307,5 @@ public class AppliJDBC extends Application {
 
 	public void setClient(Joueur client) {
 		this.client = client;
-		System.out.println(this.client.getIdentifiant());
 	}
 }
