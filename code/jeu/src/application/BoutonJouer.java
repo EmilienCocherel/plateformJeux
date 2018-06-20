@@ -1,5 +1,7 @@
 package application;
 
+import java.io.*;
+import java.net.*;
 import javafx.scene.control.Button;
 import java.sql.SQLException;
 import java.util.Date;
@@ -27,7 +29,18 @@ public class BoutonJouer extends Button{
     this.jeuBD=jeuBD;
     this.joueurBD=joueurBD;
     this.chargeur = new ChargeurJeu("./jar");
-    this.jeu = ((Jeu) Class.forName(nomClasse).newInstance());
+    try {
+      this.jeu = ((Jeu) Class.forName(nomClasse).newInstance());
+    }
+    catch(ClassNotFoundException e){
+      System.out.println("Classe non trouvée");
+    }
+    catch(InstantiationException e){
+      System.out.println("Problème d'instanciation");
+    }
+    catch(IllegalAccessException e){
+      System.out.println("Accès interdit");
+    }
     this.setText("Jouer");
     ActionLesJeux actionLesJeux = new ActionLesJeux(this);
     this.setOnAction(actionLesJeux);

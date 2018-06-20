@@ -26,11 +26,11 @@ public class BorderFicheJeu extends PageJoueur {
         this.titre = labelTypePageJoueur(this.jeu.getNomJeu());
         this.description = textAeraHorizontalNonEditable(this.jeu.getDescription());
         String nomClasse = this.jeu.getNomJeu().charAt(0)+"";
-        nomClasse.toUpperCase();
-        nomClasse+=this.jeu.getNomJeu().substring(1,this.jeu.getNomJeu().size()-1);
-        Bouton jouer = new BoutonJouer(this.app.getConnexion(),this.jeu.getNomJeu(),nomClasse,this.jeu.getNomJeu()+".jar",this.app.getPartieBD(),this.app.getJeuBD(),this.app.getJoueurBD(),this.app.getClie)
+        nomClasse = nomClasse.toUpperCase();
+        nomClasse+=this.jeu.getNomJeu().substring(1,this.jeu.getNomJeu().length());
+        BoutonJouer jouer = new BoutonJouer(this.app.getConnexion(),this.jeu.getNomJeu(),nomClasse,this.jeu.getNomJeu()+".jar",this.app.getPartieBD(),this.app.getJeuBD(),this.app.getJoueurBD(),this.app.getClient().getIdentifiant());
 
-         this.cotegauche = new GridPane();
+        this.cotegauche = new GridPane();
 
         this.cotegauche.add(this.labelTypePageJoueur("Titre :"),0,0);
         this.cotegauche.add(this.titre,1,0);
@@ -50,6 +50,7 @@ public class BorderFicheJeu extends PageJoueur {
         this.cotebas.add(this.labelTypePageJoueur("Description : "),0,1);
         // cotebas.add(this.labelTypePageJoueur(this.description), 0,2);
         this.cotebas.add(this.description,1,1);
+        this.cotebas.add(jouer,3,0);
         this.cotebas.setPadding(new Insets(30, 30, 10, 10));
 
         this.setTop(this.cotehaut);
