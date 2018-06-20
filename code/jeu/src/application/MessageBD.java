@@ -73,7 +73,11 @@ public class MessageBD {
 			Date dateMsg = res.getTimestamp("dateMsg");
 			List<String> contenu = Arrays.asList(res.getString("contenuMsg").split("\n"));
 			String objet = contenu.get(0),
-				   message = String.join("\n", contenu.subList(1, contenu.size()-1));
+				   message;
+			if (contenu.size() > 1)
+				message = String.join("\n", contenu.subList(1, contenu.size()-1));
+			else
+				message = "";
 			boolean luMsg = res.getString("luMsg").equals("O") ? true : false;
 
 			liste.add(new Message(idMsg, dateMsg, objet, message, luMsg, joueur, joueur1));
