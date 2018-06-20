@@ -36,8 +36,12 @@ public class Message {
 		return this.objet;
 	}
 
-	public boolean isLu() {
+	public boolean getLu() {
 		return this.lu;
+	}
+
+	public String getLuTexte() {
+		return this.lu ? "V" : "X";
 	}
 
 	public Joueur getJoueur1() {
@@ -46,6 +50,14 @@ public class Message {
 
 	public Joueur getJoueur2() {
 		return this.joueur2;
+	}
+
+	public String getNomJoueur1() {
+		return this.joueur1.getPseudo();
+	}
+
+	public String getNomJoueur2() {
+		return this.joueur2.getPseudo();
 	}
 
 	public void setId(int id) {
