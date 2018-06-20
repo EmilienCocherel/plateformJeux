@@ -17,7 +17,7 @@ public class BoutonJouer extends Button{
   private int idJoueur;
   private ChargeurJeu chargeur;
 
-  public BoutonJouer(ConnexionMySQL laConnexion, Jeu jeu, String nomJeu,String nomClasse, String nomJar, PartieBD partieBD, JeuBD jeuBD, JoueurBD joueurBD, int idJoueur){
+  public BoutonJouer(ConnexionMySQL laConnexion,String nomJeu,String nomClasse, String nomJar, PartieBD partieBD, JeuBD jeuBD, JoueurBD joueurBD, int idJoueur){
     super();
     this.jeu=jeu;
     this.nomJeu=nomJeu;
@@ -27,6 +27,7 @@ public class BoutonJouer extends Button{
     this.jeuBD=jeuBD;
     this.joueurBD=joueurBD;
     this.chargeur = new ChargeurJeu("./jar");
+    this.jeu = ((Jeu) Class.forName(nomClasse).newInstance());
     this.setText("Jouer");
     ActionLesJeux actionLesJeux = new ActionLesJeux(this);
     this.setOnAction(actionLesJeux);

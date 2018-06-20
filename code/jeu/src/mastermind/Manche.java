@@ -85,11 +85,11 @@ public class    Manche {
     /**
      * initialise resParTour avec des resultat null
      */
-    // public void initResParTour(){
-    //     for (int i=0; i<10;i++){
-    //         this.resParTour.add(new Resultat());
-    //     }
-    // }
+    public void initResParTour(){
+        for (int i=0; i<10;i++){
+            this.resParTour.add(new Resultat());
+        }
+    }
 
     /**
     * @return si la manche est fini ou non

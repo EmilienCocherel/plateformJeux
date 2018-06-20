@@ -126,8 +126,8 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new GridForgotPassword());
     }
 
-    public void passerEnModeAfficheJeu(){
-        this.laBase.setCenter(new BorderFicheJeu(this));
+    public void passerEnModeAfficheJeu(JeuProfil profil){
+        this.laBase.setCenter(new BorderFicheJeu(this,profil));
     }
 
     public void passerEnModeJeuxPossede(){
@@ -287,6 +287,9 @@ public class AppliJDBC extends Application {
 
     public FicheJeu getFicheJeu(){
       return ficheJeu;
+    }
+    public PartieBD getPartieBD(){
+      return partieBD;
     }
 
     public RapportBD getRapportBD(){

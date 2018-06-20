@@ -25,8 +25,10 @@ public class BorderFicheJeu extends PageJoueur {
         this.type = labelTypePageJoueur(this.jeu.getIdString());
         this.titre = labelTypePageJoueur(this.jeu.getNomJeu());
         this.description = textAeraHorizontalNonEditable(this.jeu.getDescription());
-
-
+        String nomClasse = this.jeu.getNomJeu().charAt(0)+"";
+        nomClasse.toUpperCase();
+        nomClasse+=this.jeu.getNomJeu().substring(1,this.jeu.getNomJeu().size()-1);
+        Bouton jouer = new BoutonJouer(this.app.getConnexion(),this.jeu.getNomJeu(),nomClasse,this.jeu.getNomJeu()+".jar",this.app.getPartieBD(),this.app.getJeuBD(),this.app.getJoueurBD(),this.app.getClie)
 
          this.cotegauche = new GridPane();
 
