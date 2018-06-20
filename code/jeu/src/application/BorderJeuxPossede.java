@@ -65,7 +65,7 @@ public class BorderJeuxPossede extends PageJoueur {
                 new PropertyValueFactory<ListeJeux, String>("comment"));
 
         table.setItems(this.data);
-        for (Object row ; table.getItems()){
+        for (Object row : table.getItems()){
 
         }
         table.getColumns().addAll(firstNameCol, lastNameCol, emailCol);
