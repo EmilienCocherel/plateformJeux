@@ -12,6 +12,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+import javafx.scene.control.Slider;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -322,10 +323,29 @@ public class Mastermind extends application.Jeu{
         return res;
     }
 
-    private Vbox choixCouleurDuPion(int val){
-        VBox res=new VBox(5);
-
-    }
+//    private Vbox choixCouleurDuPion2(int val){
+//        VBox res=new VBox(5);
+//
+//        res.getChildren().add(this.getPion(val));
+//        res.setPadding(new Insets(10,10,10,10));
+//        Label nom = new Label(this.getStringPion(val));
+//        res.getChildren().add(nom);
+//
+//        GridPane boutonSlider = new GridPane();
+//
+//        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
+//
+//        Slider sliderNiveau = new Slider();
+//        slider.setMin(0);
+//        slider.setMax(5);
+//        slider.setShowTickLabels(true);
+//        slider.setShowTickMarks(true);
+//        slider.setBlockIncrement(5);
+//
+//        boutonSlider
+//
+//
+//    }
 
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
