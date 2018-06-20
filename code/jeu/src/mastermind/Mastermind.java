@@ -279,42 +279,6 @@ public class Mastermind extends application.Jeu{
     /**
     * @return une VBox contenant les radio boutons permettant de changer la couleurs des pions de la combinaison à tester
     */
-    private VBox choixCouleurDuPion(int val){
-
-        VBox res=new VBox(5);
-
-        res.getChildren().add(this.getPion(val));
-        res.setPadding(new Insets(10,10,10,10));
-        Label nom = new Label(this.getStringPion(val));
-        res.getChildren().add(nom);
-
-        ToggleGroup group = new ToggleGroup();
-        BoutonRadio rfacile = new BoutonRadio("rouge",val);
-        rfacile.setToggleGroup(group);
-        res.getChildren().add(rfacile);
-
-        BoutonRadio rmoyen = new BoutonRadio("bleu",val);
-        rmoyen.setToggleGroup(group);
-        res.getChildren().add(rmoyen);
-
-        BoutonRadio rdifficile = new BoutonRadio("vert",val);
-        rdifficile.setToggleGroup(group);
-        res.getChildren().add(rdifficile);
-
-        BoutonRadio rexpert = new BoutonRadio("jaune",val);
-        rexpert.setToggleGroup(group);
-        res.getChildren().add(rexpert);
-
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
-
-        rfacile.setOnAction(actionNiveau);
-        rmoyen.setOnAction(actionNiveau);
-        rdifficile.setOnAction(actionNiveau);
-        rexpert.setOnAction(actionNiveau);
-
-        return res;
-    }
-
     private VBox choixCouleurDuPion2(int val){
         VBox res=new VBox(5);
         res.setPadding(new Insets(0,10,10,10));
@@ -329,8 +293,6 @@ public class Mastermind extends application.Jeu{
         rondEtLabel.getChildren().add(nom);
 
         VBox boutonSlider = new VBox();
-
-        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
 
         //SliderCouleur sliderNiveau = new SliderCouleur(0,1,0,val);
         SliderCouleur sliderNiveau = new SliderCouleur(val);
