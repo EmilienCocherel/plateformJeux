@@ -18,13 +18,13 @@ public class Pion extends Circle{
   }};
 
   public Pion(Paint couleur){
-    this.setRadius(10.0);
+    this.setRadius(15.0);
     this.setFill(couleur);
   }
 
   public Pion(String coul) {
-	this.setRadius(10.0);
-	this.setCouleur(coul);
+    this.setRadius(15.0);
+	  this.setCouleur(coul);
   }
 
   //    Getter et Setter

@@ -271,14 +271,6 @@ public class LeJeu extends application.Jeu {
 		this.majAffichage();
 	}
 
-    @Override
-    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
-    }
-
-    @Override
-    public void jouerCoup(int idPartie, int joueur, Object partage){
-    }
-
 	/**
 	 * Si la partie est finie
 	 */
