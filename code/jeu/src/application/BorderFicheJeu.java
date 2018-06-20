@@ -50,7 +50,7 @@ public class BorderFicheJeu extends PageJoueur {
         this.cotebas.add(this.labelTypePageJoueur("Description : "),0,1);
         // cotebas.add(this.labelTypePageJoueur(this.description), 0,2);
         this.cotebas.add(this.description,1,1);
-        this.cotebas.add(jouer,3,0);
+        this.cotebas.add(jouer,2,3);
         this.cotebas.setPadding(new Insets(30, 30, 10, 10));
 
         this.setTop(this.cotehaut);
