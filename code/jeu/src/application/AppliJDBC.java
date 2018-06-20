@@ -65,7 +65,7 @@ public class AppliJDBC extends Application {
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion);
 		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
-        this.borderficheJeu     = new BorderFicheJeu(this);
+        this.borderficheJeu     = null;
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
@@ -158,8 +158,8 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new BorderPartieHistorique(this));
     }
 
-    public void passerEnModeFicheDeJeu(){
-      this.laBase.setCenter(new BorderFicheJeu(this));
+    public void passerEnModeFicheDeJeu(JeuProfil profil){
+      this.laBase.setCenter(new BorderFicheJeu(this,profil));
     }
 
 

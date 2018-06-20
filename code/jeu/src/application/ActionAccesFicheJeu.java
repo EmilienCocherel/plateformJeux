@@ -38,9 +38,8 @@ public class ActionAccesFicheJeu implements EventHandler<ActionEvent> {
 		System.out.println(((ListeJeux)this.table.getSelectionModel().getSelectedItem()).getNom());
 		if((((ListeJeux)this.table.getSelectionModel().getSelectedItem()).getNom()).equals("mastermind")){
 			try{
-				this.jeuProfil = this.accesBD.rechercherJeuParNom(this.jeux.getNom());
-				this.appli.getFicheBorderJeu().remplirJeuProfil(this.jeuProfil);
-				this.appli.passerEnModeFicheDeJeu();
+				this.jeuProfil = this.accesBD.rechercherJeuParNom(((ListeJeux)this.table.getSelectionModel().getSelectedItem()).getNom());
+				this.appli.passerEnModeFicheDeJeu(this.jeuProfil);
 			}
 			catch(SQLException e){
 				System.out.println(e);
