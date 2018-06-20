@@ -2,6 +2,7 @@ package mastermind;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
@@ -323,27 +324,41 @@ public class Mastermind extends application.Jeu{
         return res;
     }
 
-//    private Vbox choixCouleurDuPion2(int val){
-//        VBox res=new VBox(5);
-//
-//        res.getChildren().add(this.getPion(val));
-//        res.setPadding(new Insets(10,10,10,10));
-//        Label nom = new Label(this.getStringPion(val));
-//        res.getChildren().add(nom);
-//
-//        GridPane boutonSlider = new GridPane();
-//
-//        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
-//
-//        Slider sliderNiveau = new Slider();
-//        slider.setMin(0);
-//        slider.setMax(5);
-//        slider.setShowTickLabels(true);
-//        slider.setShowTickMarks(true);
-//        slider.setBlockIncrement(5);
-//
-//        boutonSlider
-//
+    private VBox choixCouleurDuPion2(int val){
+        VBox res=new VBox(5);
+        res.setPadding(new Insets(0,10,10,10));
+
+        GridPane boutonNiveau = new GridPane();
+
+        VBox rondEtLabel = new VBox();
+        rondEtLabel.getChildren().add(this.getPion(val));
+        rondEtLabel.setPadding(new Insets(50,10,0,10));
+        Label nom = new Label(this.getStringPion(val));
+        nom.setPadding(new Insets(10,10,10,8));
+        rondEtLabel.getChildren().add(nom);
+
+        VBox boutonSlider = new VBox();
+
+        ChoixCouleur actionNiveau = new ChoixCouleur(this,((JoueurMastermind)this.joueur).getMancheCourante());
+
+        Slider sliderNiveau = new Slider(0,1,0);
+        sliderNiveau.setMin(0);
+        sliderNiveau.setMax(5);
+        sliderNiveau.setShowTickLabels(false);
+        sliderNiveau.setShowTickMarks(false);
+        sliderNiveau.setBlockIncrement(1);
+        sliderNiveau.setOrientation(Orientation.VERTICAL);
+        boutonNiveau.add(sliderNiveau,0,0);
+        boutonNiveau.add(rondEtLabel,1,0);
+
+
+        res.getChildren().add(boutonNiveau);
+
+        return res;
+
+    }
+
+//    private VBox boxCouleur(){
 //
 //    }
 
@@ -353,17 +368,22 @@ public class Mastermind extends application.Jeu{
     private void initInterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
+
         Button brestart = new Button("tester");
+
         ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
         brestart.setOnAction(actionTester);
-        res.getChildren().add(brestart);
-        res.setBackground(new Background(new BackgroundFill(Color.GRAY,null,null)));
-        res.getChildren().add(this.choixCouleurDuPion(0));
-        res.getChildren().add(this.choixCouleurDuPion(1));
-        res.getChildren().add(this.choixCouleurDuPion(2));
-        res.getChildren().add(this.choixCouleurDuPion(3));
+
+        res.setBackground(new Background(new BackgroundFill(Color.rgb(68, 87, 133),null,null)));
+        res.getChildren().add(this.choixCouleurDuPion2(0));
+        res.getChildren().add(this.choixCouleurDuPion2(1));
+        res.getChildren().add(this.choixCouleurDuPion2(2));
+        res.getChildren().add(this.choixCouleurDuPion2(3));
+
         this.historique = new Label();
+
         res.getChildren().add(historique);
+        res.getChildren().add(brestart);
         this.interfaceChoix=res;
     }
 
@@ -395,11 +415,11 @@ public class Mastermind extends application.Jeu{
         for(int i =0; i<this.manche.getCombiParTour().size();i++){
             Combinaison combi = this.manche.getCombiParTour().get(i);
             HBox box = new HBox();
-            box.setPadding(new Insets(5,50,5,10));
+            box.setPadding(new Insets(5,20,5,10));
 
             HBox box2 = new HBox();
-            box2.setPadding(new Insets(5, 10, 5, 50));
-            Label tour = new Label("Tour "+(i+1)+": \n");
+            box2.setPadding(new Insets(5, 18, 5, 40));
+            Label tour = new Label("Tour "+(i+1)+" : ");
             box2.getChildren().add(tour);
 
             box.getChildren().add(combi.getP1());
@@ -417,7 +437,7 @@ public class Mastermind extends application.Jeu{
             res.add(box2,1,i);
         }
         this.gridPaneCentre = res;
-        this.gridPaneCentre.setMaxSize(300,400);
+        this.gridPaneCentre.setMaxSize(320,420);
 
     }
 
@@ -459,9 +479,8 @@ public class Mastermind extends application.Jeu{
           BorderPane cont = new BorderPane();
           cont.setTop(this.barreMenus());
           cont.setCenter(this.gridPaneCentre);
-//          cont.setRight(this.historiqueCombinaisonDroite);
           cont.setBottom(this.interfaceChoix);
-          cont.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,null,null)));
+          cont.setBackground(new Background(new BackgroundFill(Color.rgb(197, 208, 234),null,null)));
           this.scene = new Scene(cont,500,600);
       }
 
