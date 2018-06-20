@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
 
+
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -35,9 +36,8 @@ public class Mastermind extends application.Jeu{
     private Label historique;
     private Scene scene;
     private HBox interfaceChoix;
-    private VBox historiqueCombinaison;
-    private VBox historiqueCombinaisonCentre;
-    private VBox historiqueCombinaisonDroite;
+    //private VBox historiqueCombinaison;
+    private GridPane gridPaneCentre;
     private application.Partie partie;
     private int idJoueurJ1;
     private int idJoueurJ2;
@@ -72,9 +72,8 @@ public class Mastermind extends application.Jeu{
         this.manche=this.joueur.getMancheCourante();
         this.manche.initCombiParTour();
         this.manche.initResParTour();
-		this.initHistoriqueCombinaison();
-        this.initHistoriqueCombinaisonCentre();
-        this.initHistoriqueCombinaisonDroite();
+		//this.initHistoriqueCombinaison();
+        this.initgridPaneCentre();
         this.getEtat(idJoueur);
     }
 
@@ -194,9 +193,8 @@ public class Mastermind extends application.Jeu{
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 this.aTester = new Combinaison();
                 this.initInterfaceChoix();
-                this.initHistoriqueCombinaison();
-                this.initHistoriqueCombinaisonCentre();
-                this.initHistoriqueCombinaisonDroite();
+                //this.initHistoriqueCombinaison();
+                this.initgridPaneCentre();
                 this.laScene();
                 stage.setScene(this.scene);
             }
@@ -324,6 +322,11 @@ public class Mastermind extends application.Jeu{
         return res;
     }
 
+    private Vbox choixCouleurDuPion(int val){
+        VBox res=new VBox(5);
+
+    }
+
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
      */
@@ -347,60 +350,54 @@ public class Mastermind extends application.Jeu{
     /**
      * initialise l'interface des combinaisons déjà tester par l'utilisateur
      */
-    private void initHistoriqueCombinaison(){
-        VBox res=new VBox(5);
-        res.setAlignment(Pos.CENTER);
-        for(int i =0; i<this.manche.getCombiParTour().size();i++){
-            Combinaison combi = this.manche.getCombiParTour().get(i);
-            HBox box = new HBox();
-            box.getChildren().add(combi.getP1());
-            box.getChildren().add(combi.getP2());
-            box.getChildren().add(combi.getP3());
-            box.getChildren().add(combi.getP4());
-            Resultat resultat = this.manche.getResParTour().get(i);
+//    private void initHistoriqueCombinaison(){
+//        VBox res=new VBox(5);
+//        res.setAlignment(Pos.CENTER);
+//        for(int i =0; i<this.manche.getCombiParTour().size();i++){
+//            Combinaison combi = this.manche.getCombiParTour().get(i);
+//            HBox box = new HBox();
+//            box.getChildren().add(combi.getP1());
+//            box.getChildren().add(combi.getP2());
+//            box.getChildren().add(combi.getP3());
+//            box.getChildren().add(combi.getP4());
+//            Resultat resultat = this.manche.getResParTour().get(i);
 //            for (Circle cercle :resultat.getPionsRes()){
 //                box.getChildren().add(cercle);
 //            }
-            res.getChildren().add(box);
-        }
-        this.historiqueCombinaison=res;
-    }
+//            res.getChildren().add(box);
+//        }
+//        this.historiqueCombinaison=res;
+//    }
 
-    private void initHistoriqueCombinaisonCentre(){
-        VBox res=new VBox(5);
-        res.setAlignment(Pos.CENTER);
+
+    private void initgridPaneCentre(){
+        GridPane res = new GridPane();
         for(int i =0; i<this.manche.getCombiParTour().size();i++){
             Combinaison combi = this.manche.getCombiParTour().get(i);
             HBox box = new HBox();
+            box.setPadding(new Insets(5,50,5,10));
+
+            HBox box2 = new HBox();
+            box2.setPadding(new Insets(5, 10, 5, 50));
+            Label tour = new Label("Tour "+(i+1)+": \n");
+            box2.getChildren().add(tour);
+
             box.getChildren().add(combi.getP1());
             box.getChildren().add(combi.getP2());
             box.getChildren().add(combi.getP3());
             box.getChildren().add(combi.getP4());
-            Resultat resultat = this.manche.getResParTour().get(i);
-            res.getChildren().add(box);
-        }
-        this.historiqueCombinaisonCentre=res;
-    }
-
-    private void initHistoriqueCombinaisonDroite(){
-        VBox res=new VBox(5);
-        res.setAlignment(Pos.CENTER_LEFT);
-        for(int i =0; i<this.manche.getCombiParTour().size();i++){
-            Combinaison combi = this.manche.getCombiParTour().get(i);
-            HBox box = new HBox();
-            box.setPadding(new Insets(10, 10, 10, 10));
-            Label tour = new Label("Tour "+(i+1)+": \n");
-            box.getChildren().add(tour);
+;
 
             Resultat resultat = this.manche.getResParTour().get(i);
             for (Circle cercle :resultat.getPionsRes()){
-                box.getChildren().add(cercle);
+                box2.getChildren().add(cercle);
             }
 
-            res.getChildren().add(box);
-
+            res.add(box,0,i);
+            res.add(box2,1,i);
         }
-        this.historiqueCombinaisonDroite=res;
+        this.gridPaneCentre = res;
+        this.gridPaneCentre.setMaxSize(300,400);
 
     }
 
@@ -441,8 +438,8 @@ public class Mastermind extends application.Jeu{
       private void laScene(){
           BorderPane cont = new BorderPane();
           cont.setTop(this.barreMenus());
-          cont.setCenter(this.historiqueCombinaisonCentre);
-          cont.setRight(this.historiqueCombinaisonDroite);
+          cont.setCenter(this.gridPaneCentre);
+//          cont.setRight(this.historiqueCombinaisonDroite);
           cont.setBottom(this.interfaceChoix);
           cont.setBackground(new Background(new BackgroundFill(Color.LIGHTGRAY,null,null)));
           this.scene = new Scene(cont,500,600);
