@@ -9,30 +9,57 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 
-public class BorderInvitations extends PageJoueur {
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
+import javafx.scene.control.ButtonBar;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.sql.SQLException;
+import java.util.Date;
 
+public class BorderInvitations extends PageJoueur {
     AppliJDBC app;
+	private TableView<Invitation> trecues;
+	private TableView<Invitation> tenvoyees;
+	private TextField pseudo, jeu;
 
     public BorderInvitations(AppliJDBC app){
         super();
         this.app = app;
 
-
-
         GridPane recues = new GridPane();
+		Button accepter = new Button("Accepter"),
+			   refuser = new Button("Refuser");
+		accepter.setOnAction(event -> this.accepter());
+		refuser.setOnAction(event -> this.refuser());
 
         recues.add(this.titlePageJouer("Reçues"), 0, 0);
         recues.add(this.tableauTypePageJouer("Jeu", "Joueur", "Date"),0,1);
-        recues.add(this.buttonBarTypePageJoueur("Accepter", "Refuser"),0,2);
+        recues.add(this.buttonBarTypePageJoueur(accepter, refuser),0,2);
         recues.setPadding(new Insets(10, 10, 10, 30));
 
         GridPane envoyees = new GridPane();
+		Button envoyer = new Button("Envoyer");
+		envoyer.setOnAction(event -> this.envoyer());
+		this.pseudo = new TextField();
+		this.jeu = new TextField();
 
         envoyees.add(this.titlePageJouer("Envoyées"), 1, 0);
         envoyees.add(this.tableauTypePageJouer("Jeu", "Joueur", "Date"), 1, 1);
         envoyees.add(this.titlePageJouer("Inviter des amis"), 1, 2);
-        envoyees.add(this.hboxTypePageJoueur("Ami : "), 1, 3);
-        envoyees.add(this.hboxTypePageJoueur("Jeu : "),1, 4);
+        envoyees.add(this.hboxTypePageJoueur("Ami : ", this.pseudo), 1, 3);
+        envoyees.add(this.hboxTypePageJoueur("Jeu : ", this.jeu),1, 4);
+		envoyees.add(this.buttonBarTypePageJoueur(envoyer),1, 5);
         envoyees.setPadding(new Insets(10, 30, 10, 10));
 
         GridPane sceneCentre = new GridPane();
@@ -43,4 +70,34 @@ public class BorderInvitations extends PageJoueur {
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setMaxSize(800, 700);
     }
+
+	public void envoyer() {
+		Joueur j2;
+		JeuProfil jeu;
+		try {
+			j2 = this.app.getJoueurBD().rechercherJoueurParPseudo(this.pseudo.getText());
+		} catch (SQLException e) {
+			System.out.println("Joueur inconnu : "+this.pseudo.getText());
+			j2 = null;
+		}
+
+		try {
+			jeu = this.app.getJeuBD().rechercherJeuParNom(this.jeu.getText());
+		} catch (SQLException e) {
+			System.out.println("Jeu inconnu : "+this.jeu.getText());
+			jeu = null;
+		}
+		Invitation inv = new Invitation(-1, new Date(), "en attente", this.app.getClient(), j2, jeu);
+		try {
+			this.app.getInvitationBD().creerInvitation(inv);
+		} catch (SQLException e) {
+			System.out.println("Impossible d'envoyer l'invitation.");
+		}
+	}
+
+	public void accepter() {
+	}
+
+	public void refuser() {
+	}
 }
