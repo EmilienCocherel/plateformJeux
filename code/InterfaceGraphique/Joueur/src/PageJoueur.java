@@ -13,6 +13,8 @@ import javafx.scene.control.ButtonBar;
 
 import javafx.scene.image.ImageView;
 
+import static java.awt.Font.BOLD;
+
 public abstract class PageJoueur extends BorderPane{
 
     public PageJoueur() {
@@ -233,6 +235,19 @@ public abstract class PageJoueur extends BorderPane{
 
 
         return res;
+    }
+
+    public Label grosTitle(String titre){
+
+        Font fonttitre = new Font("Arial", 80);
+        Label title = new Label(titre);
+        title.setTextFill(Color.rgb(179, 71, 91));
+        title.setPadding(new Insets(10, 0, 10, 10));
+        title.setFont(fonttitre);
+        title.setAlignment(Pos.TOP_LEFT);
+
+        return title;
+
     }
 
 }

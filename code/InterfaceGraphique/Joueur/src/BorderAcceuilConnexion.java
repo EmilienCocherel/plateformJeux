@@ -12,9 +12,9 @@ public class BorderAcceuilConnexion extends PageJoueur {
         super();
         this.app = app;
 
+        this.setTop(this.grosTitle("BIENVENUE"));
         this.setCenter(this.imageTypePageConnexion());
-
-        this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
-        this.setMaxSize(400, 300);
+        this.setStyle("-fx-background-color: transparent;");
+        this.setMaxSize(600, 500);
     }
 }
