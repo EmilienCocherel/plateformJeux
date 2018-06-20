@@ -157,4 +157,39 @@ public abstract class PageJoueur extends BorderPane{
         return barBouton;
     }
 
+    public TextArea textAeraVerticalNonEditable(){
+        TextArea tmessage = new TextArea();
+        tmessage.setWrapText(true);
+        tmessage.setEditable(false);
+        tmessage.setMinSize(200, 600);
+
+        return tmessage;
+    }
+
+    public TextArea textAeraVertical(){
+        TextArea tmessage = new TextArea();
+        tmessage.setWrapText(true);
+        tmessage.setEditable(true);
+        tmessage.setMinSize(200, 500);
+
+        return tmessage;
+    }
+
+    public TextArea textAeraHorizontalNonEditable(String desc){
+        TextArea tmessage = new TextArea();
+        tmessage.setWrapText(true);
+        tmessage.setEditable(false);
+        tmessage.setMinSize(500, 200);
+
+        return tmessage;
+    }
+
+    public TextArea textAeraHorizontal(){
+        TextArea tmessage = new TextArea();
+        tmessage.setWrapText(true);
+        tmessage.setEditable(true);
+        tmessage.setMinSize(500, 200);
+
+        return tmessage;
+    }
 }
