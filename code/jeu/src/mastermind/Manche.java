@@ -83,20 +83,20 @@ public class    Manche {
     /**
      * initialise CombiParTour en le remplissant de pions blanc
      */
-    public void initCombiParTour(){
-        for (int i=0; i<10;i++){
-            this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE)));
-        }
-    }
+    // public void initCombiParTour(){
+    //     for (int i=0; i<10;i++){
+    //         this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE),new Pion(Color.WHITE)));
+    //     }
+    // }
 
     /**
      * initialise resParTour avec des resultat null
      */
-    public void initResParTour(){
-        for (int i=0; i<10;i++){
-            this.resParTour.add(new Resultat());
-        }
-    }
+    // public void initResParTour(){
+    //     for (int i=0; i<10;i++){
+    //         this.resParTour.add(new Resultat());
+    //     }
+    // }
 
     /**
     * @return si la manche est fini ou non

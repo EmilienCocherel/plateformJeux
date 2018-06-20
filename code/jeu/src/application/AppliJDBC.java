@@ -125,6 +125,10 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new GridForgotPassword());
     }
 
+    public void passerEnModeAfficheJeu(){
+        this.laBase.setCenter(new BorderFicheJeu(this));
+    }
+
     public void passerEnModeJeuxPossede(){
         this.laBase.setCenter(new BorderJeuxPossede(this,this.jeuBD));
     }

@@ -10,24 +10,38 @@ import java.util.Optional;
 
 public class ActionAccesFicheJeu implements EventHandler<ActionEvent> {
 
-	private ListeJeux jeu;
+	private ListeJeux jeux;
   private AppliJDBC app;
+  private JeuProfil jeuProfil;
 
 
-	public ActionAccesFicheJeu(ListeJeux jeu,AppliJDBC app) {
-	    this.jeu = jeu ;
+	public ActionAccesFicheJeu(ListeJeux jeux, AppliJDBC app) {
+	    this.jeux = jeux;
       this.app = app;
+      this.jeuProfil = null;
 
 	}
 
-	/**
-	 * gère le changement de niveau
-	 * @param actionEvent
-	 */
 	@Override
 	public void handle(ActionEvent actionEvent) {
-		if (this.jeu.getNom().equals("mastermind")){
-
+		if (this.jeux.getNom().equals("mastermind")){
+      try{
+        this.jeuProfil = this.app.getJeuBD().rechercherJeuParNom(this.jeux.getNom());
+      }
+      catch(SQLException e){
+        System.out.println("Erreur SQL");
+      }
     }
-	}
+    if(this.jeux.getNom().equals("connect4")){
+      try{
+        this.jeuProfil = this.app.getJeuBD().rechercherJeuParNom(this.jeux.getNom());
+      }
+      catch(SQLException e){
+        System.out.println("Erreur SQL");
+      }
+    // else{
+    //   System.out.println("Pas de jeu");
+    // }
+	  }
+  }
 }
