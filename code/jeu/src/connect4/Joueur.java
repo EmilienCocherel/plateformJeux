@@ -16,14 +16,6 @@ public class Joueur extends application.Joueur {
         this.nbPionsInitial = nbPions;
     }
 
-	public Joueur(int id, String nom, Integer pion, int nbPions, int nbPionsInitial) {
-		this.id = id;
-        this.nom = nom;
-        this.pion = pion;
-        this.nbPions = nbPions;
-        this.nbPionsInitial = nbPionsInitial;
-	}
-
 	/**
 	 * Retire un pion au joueur
 	 */
