@@ -103,11 +103,11 @@ public class Matrice<T> {
 	 */
 	public List<T> getDiagonaleSecondaire(int ligne, int colonne) {
 		List<T> res = new ArrayList<>();
-		int x = colonne, y = ligne;
-		while (y >= 0 && x < this.getNbColonnes()) {
+		int x = ligne, y = colonne;
+		while (x >= 0 && y < this.getNbColonnes()) {
 			res.add(this.get(x, y));
-			x++;
-			y--;
+			x--;
+			y++;
 		}
 		return res;
 	}

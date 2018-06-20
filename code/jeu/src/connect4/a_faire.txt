@@ -1,3 +1,1 @@
 * rendre les menus fonctionnels
-* gérer les parties à 2 personnes
-* ajouter equals() et hashCode() pour Joueur

@@ -12,7 +12,6 @@ public class BorderGererJeux extends PageAdmin {
     AppliJDBC app;
 
     BorderGererJeux(AppliJDBC app) {
-
         this.app = app;
 
         Button bAccueil = this.buttonTypePageAdmin("Accueil");

@@ -6,6 +6,9 @@ import javafx.scene.paint.Paint;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.json.simple.JSONObject;
+import org.json.simple.JSONArray;
+
 public class    Manche {
     private JoueurMastermind j;
     private int num;
@@ -29,6 +32,36 @@ public class    Manche {
         this.resParTour=new ArrayList<>();
     }
 
+    //    Getter et Setter
+
+    public int getNum(){
+        return this.num;
+    }
+
+    public String getLog(){
+      return this.log;
+    }
+
+    public JoueurMastermind getJoueurMastermind(){
+        return this.j;
+    }
+
+    public Combinaison getCombi() {
+        return this.combi;
+    }
+
+    public void setCombi(Combinaison combi) {
+        this.combi = combi;
+    }
+
+    public int getNbCoup(){
+        return this.nbCoup;
+    }
+
+    public void setNbCoup(int val){
+        this.nbCoup = val;
+    }
+
     public ArrayList<Combinaison> getCombiParTour() {
         return CombiParTour;
     }
@@ -39,7 +72,7 @@ public class    Manche {
 
     public void initCombiParTour(){
         for (int i=0; i<10;i++){
-            this.CombiParTour.add(new Combinaison(new Pion(Color.WHITE,1),new Pion(Color.WHITE,2),new Pion(Color.WHITE,3),new Pion(Color.WHITE,4)));
+            this.CombiParTour.add(new Combinaison());
         }
     }
 
@@ -51,12 +84,18 @@ public class    Manche {
         this.resParTour = resParTour;
     }
 
-    public void initResParTour(){
-        for (int i=0; i<10;i++){
-            this.resParTour.add(new Resultat());
-        }
-    }
+    /**
+     * initialise resParTour avec des resultat null
+     */
+    // public void initResParTour(){
+    //     for (int i=0; i<10;i++){
+    //         this.resParTour.add(new Resultat());
+    //     }
+    // }
 
+    /**
+    * @return si la manche est fini ou non
+    */
     public boolean estFini(){
         if (this.getCombi().equals(this.getCombi())){
             return true;
@@ -67,6 +106,9 @@ public class    Manche {
         }
     }
 
+    /**
+     * effectu les action après la fin d'une manche en fonction de si la manche à était remporté ou perdu
+     */
     public void finManche(boolean gagne){
         if (gagne){
             this.getJoueurMastermind().setScore(this.getJoueurMastermind().getScore()+11-this.getNbCoup());
@@ -78,18 +120,9 @@ public class    Manche {
         }
     }
 
-    public JoueurMastermind getJoueurMastermind(){
-        return this.j;
-    }
-
-    public Combinaison getCombi() {
-        return combi;
-    }
-
-    public int getNbCoup(){
-        return this.nbCoup;
-    }
-
+    /**
+     * augmente le nombre de coup joué de 1 et actualisé l'historique de jeu
+     */
     public void incrNbCoup(int nbCouleurOkPositionOk,int nbCouleurOkPositionPasOk){
         Combinaison combi = this.partie.getATester();
         this.CombiParTour.get(this.nbCoup).setCouleurP1(combi.getP1().getCouleur());
@@ -100,6 +133,9 @@ public class    Manche {
         this.nbCoup+=1;
     }
 
+    /**
+     * calculs le nombre de pions de la bonne couleur à la bonne position et le nombre de pions de la bonne couleur à la mauvaise position
+     */
     public ArrayList<Integer> calculBonPions(){
         ArrayList res = new ArrayList<>();
         Integer nbCouleurOkPositionOk = 0;
@@ -154,14 +190,47 @@ public class    Manche {
         return res;
     }
 
-    public int getNum(){
-        return this.num;
-    }
+	public JSONObject toJson() {
+		JSONObject res = new JSONObject();
+		JSONArray combiParTour = new JSONArray(), resParTour = new JSONArray();
+		res.put("num", this.num);
+		res.put("nbCoup", this.nbCoup);
+		res.put("fini", this.fini);
 
-    public String getLog(){
-      return this.log;
-    }
+		// CombiParTour
+		for (Combinaison combi : this.CombiParTour)
+			combiParTour.add(combi.toJson());
+		res.put("CombiParTour", combiParTour);
 
+		// resParTour
+		for (Resultat resultat : this.resParTour)
+			resParTour.add(resultat.toJson());
+		res.put("resParTour", resParTour);
 
+		return res;
+	}
 
+	public void fromJson(JSONObject json) {
+		Long num = (Long) json.get("num"), nbCoup = (Long) json.get("nbCoup");
+		JSONArray combiParTour = (JSONArray) json.get("CombiParTour"),
+				  resParTour = (JSONArray) json.get("resParTour");
+		this.num = num.intValue();
+		this.nbCoup = nbCoup.intValue();
+		this.fini = (boolean) json.get("fini");
+
+		// CombiParTour
+		JSONObject combi;
+		for (int i=0; i < combiParTour.size(); i++) {
+			combi = (JSONObject) combiParTour.get(i);
+			if (this.CombiParTour.size() > i)
+				this.CombiParTour.get(i).fromJson(combi);
+		}
+
+		// resParTour
+		JSONObject res;
+		for (int i=0; i < resParTour.size(); i++) {
+			res = (JSONObject) resParTour.get(i);
+			this.resParTour.get(i).fromJson(res);
+		}
+	}
 }
