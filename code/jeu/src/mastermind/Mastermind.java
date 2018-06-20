@@ -227,6 +227,7 @@ public class Mastermind extends application.Jeu{
 			this.stage.setScene(p.getScene());
         }
     }
+  }
 
     //    Getter et Setter
 
