@@ -12,6 +12,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+import javafx.scene.control.Slider;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -194,12 +195,12 @@ public class Mastermind extends application.Jeu{
                 info.setContentText("La manche est terminé vous avez perdu \n La solution était: "+solution+"\n passer à la prochaine manche ?");
             }
             Optional<ButtonType> result = info.showAndWait();
-                this.aTester = new Combinaison();
-                this.initInterfaceChoix();
-                //this.initHistoriqueCombinaison();
-                this.initgridPaneCentre();
-                this.laScene();
-				this.setEtat();
+			this.aTester = new Combinaison();
+			this.initInterfaceChoix();
+			//this.initHistoriqueCombinaison();
+			this.initgridPaneCentre();
+			this.laScene();
+			this.setEtat();
             if (result.isPresent() && result.get() == ButtonType.OK) {
                 stage.setScene(this.scene);
             }
@@ -330,7 +331,6 @@ public class Mastermind extends application.Jeu{
 
         return res;
     }
-
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
      */
