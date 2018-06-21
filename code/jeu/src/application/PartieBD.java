@@ -111,6 +111,52 @@ public class PartieBD {
 		return liste;
 	}
 
+	public List<Partie> listeDesPartiesDuJoueurActuelleEnCours(Joueur joueur,AppliJDBC app) throws SQLException {
+		List<Partie> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement("Select * from PARTIE where idJo1 = ? or idJo2 = ? and numEtape = 0");
+		ps.setInt(1, joueur.getIdentifiant());
+		ps.setInt(2, joueur.getIdentifiant());
+		ResultSet res = ps.executeQuery();
+		while (res.next()) {
+			int idPa = res.getInt("idPa"),
+				numEtape = res.getInt("numEtape"),
+				score1 = res.getInt("score1"),
+				score2 = res.getInt("score2");
+			JeuProfil jeu = this.jeuBD.rechercherJeuParNum(res.getInt("idJeu"));
+			Joueur joueur1 = this.joueurBD.rechercherJoueurParNum(res.getInt("idJo1")),
+				   joueur2 = this.joueurBD.rechercherJoueurParNum(res.getInt("idJo2"));
+			Date debutPa = res.getTimestamp("debutPa");
+			String etatPartie = res.getString("etatPartie");
+
+			liste.add(new Partie(idPa, debutPa, numEtape, etatPartie, jeu, joueur1, score1, joueur2, score2));
+		}
+		res.close();
+		return liste;
+	}
+
+	public List<Partie> listeDesPartiesDuJoueurHistorique(Joueur joueur,AppliJDBC app) throws SQLException {
+		List<Partie> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement("Select * from PARTIE where idJo1 = ? or idJo2 = ? and numEtape = 1");
+		ps.setInt(1, joueur.getIdentifiant());
+		ps.setInt(2, app.getClient().getIdentifiant());
+		ResultSet res = ps.executeQuery();
+		while (res.next()) {
+			int idPa = res.getInt("idPa"),
+				numEtape = res.getInt("numEtape"),
+				score1 = res.getInt("score1"),
+				score2 = res.getInt("score2");
+			JeuProfil jeu = this.jeuBD.rechercherJeuParNum(res.getInt("idJeu"));
+			Joueur joueur1 = this.joueurBD.rechercherJoueurParNum(res.getInt("idJo1")),
+				   joueur2 = this.joueurBD.rechercherJoueurParNum(res.getInt("idJo2"));
+			Date debutPa = res.getTimestamp("debutPa");
+			String etatPartie = res.getString("etatPartie");
+
+			liste.add(new Partie(idPa, debutPa, numEtape, etatPartie, jeu, joueur1, score1, joueur2, score2));
+		}
+		res.close();
+		return liste;
+	}
+
 	public List<Partie> listeDesParties() throws SQLException{
 		List<Partie> liste = new ArrayList<>();
 		Statement s = laConnexion.createStatement();

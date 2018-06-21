@@ -193,7 +193,7 @@ public class AppliJDBC extends Application {
     }
 
    public void passerEnModeGererJeux(){
-        this.laBase.setCenter(new BorderGererJeux(this));
+        this.laBase.setCenter(new BorderGererJeux(this,this.jeuBD));
    }
 
     public void passerEnModeCompte(){
