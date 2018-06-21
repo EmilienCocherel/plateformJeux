@@ -75,9 +75,14 @@ public class BorderPartieEnCours extends PageJoueur{
 
 		try {
 			this.chargeur.chargerJeu(nomJar, nomClasse, p, this.appli.getPartieBD(), this.appli.getClient().getIdentifiant());
-		} catch (Exception e) {
-			System.out.println("erreur");
-			System.out.println(e.getMessage());
+		} catch (ClassNotFoundException e) {
+			System.out.println("ClassNotFoundException : "+e.getMessage());
+		} catch (InstantiationException e) {
+			System.out.println("InstantiationException : "+e.getMessage());
+		} catch (IllegalAccessException e) {
+			System.out.println("IllegalAccessException : "+e.getMessage());
+		} catch (java.net.MalformedURLException e) {
+			System.out.println("MalformedURLException : "+e.getMessage());
 		}
 	}
 }

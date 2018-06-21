@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.scene.layout.Background;
 import java.sql.*;
 import javafx.scene.layout.BackgroundFill;
@@ -40,8 +41,8 @@ public class GridInscrire extends PageConnexion{
 
         this.nom = new TextField("TestNom");
         this.email = new TextField("TestPrenom");
-        this.mdp = new TextField("TestMdp");
-        this.confMdp = new TextField("TestTest");
+        this.mdp = new TextField("");
+        this.confMdp = new TextField("");
         this.error = this.labelType("");
         this.condiUse = this.checkBoxType("J'accepte les termes d'utilisations");
         this.sInscrireNode = this.buttonType("Créer mon compte");
