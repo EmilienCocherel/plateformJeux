@@ -71,7 +71,7 @@ public abstract class PageJoueur extends BorderPane{
 
     public HBox imageTypePageJoueur(){
 
-      Image test = new Image("inconnu.png");
+      Image test = new Image("application/inconnu.png");
 
       ImageView iv1 = new ImageView();
       iv1.setImage(test);
