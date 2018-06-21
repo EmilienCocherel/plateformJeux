@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 
@@ -13,9 +12,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
-import javafx.scene.text.Text;
-import javafx.scene.text.Font;
-import javafx.scene.control.Slider;
 
 
 import java.sql.SQLException;
@@ -47,7 +43,6 @@ public class Mastermind extends application.Jeu{
     private int idJoueurJ2;
     private application.PartieBD partieBD;
     private Button tester;
-    private BorderPane laBase;
 
     public Mastermind(){}
     @Override

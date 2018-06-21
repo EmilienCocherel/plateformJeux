@@ -3,7 +3,6 @@ package mastermind;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.MenuItem;
 
 public class ActionMenuJeu implements EventHandler<ActionEvent>{

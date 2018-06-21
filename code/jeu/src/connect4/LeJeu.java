@@ -149,7 +149,7 @@ public class LeJeu extends application.Jeu {
 	private MenuBar barreMenus() {
 		MenuBar res = new MenuBar();
 		Menu game = new Menu("Game"),
-				player = new Menu("Player"),
+				//player = new Menu("Player"),
 				help = new Menu("Help");
         EventHandler<ActionEvent> game_handler= new GameMenuAction(this.puissance4, this),
                 player_handler = new PlayerMenuAction(this.puissance4),
@@ -159,21 +159,21 @@ public class LeJeu extends application.Jeu {
 				new MenuItem("Score tab"),
 				new MenuItem("Leave")
 		);
-		player.getItems().addAll(
-				new MenuItem("Opponent's stats"),
-				new MenuItem("Send messages")
-		);
+		//player.getItems().addAll(
+		//		new MenuItem("Opponent's stats"),
+		//		new MenuItem("Send messages")
+		//);
 		help.getItems().addAll(
 				new MenuItem("About us"),
 				new MenuItem("Tutorial")
 		);
         for (MenuItem item : game.getItems())
             item.setOnAction(game_handler);
-        for (MenuItem item : player.getItems())
-            item.setOnAction(player_handler);
+        //for (MenuItem item : player.getItems())
+        //    item.setOnAction(player_handler);
         for (MenuItem item : help.getItems())
             item.setOnAction(help_handler);
-		res.getMenus().addAll(game, player, help);
+		res.getMenus().addAll(game, help);
 		return res;
 	}
 

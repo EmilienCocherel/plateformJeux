@@ -2,8 +2,6 @@ package connect4;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 
 public class Matrice<T> {
     private List<List<T>> tableau;
