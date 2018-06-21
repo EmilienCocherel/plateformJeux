@@ -85,6 +85,15 @@ public class Partie {
 		return this.jeu.getNomJeu();
 	}
 
+	public String getVainqueur() {
+		if (this.score1 > this.score2)
+			return this.joueur1.getPseudo();
+		else if (this.score1 < this.score2)
+			return this.joueur2.getPseudo();
+		else
+			return "Aecquo";
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}

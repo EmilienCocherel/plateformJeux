@@ -60,6 +60,7 @@ public class BorderPartieEnCours extends PageJoueur{
 		lu.setCellValueFactory(new PropertyValueFactory("nomJeu"));
 
 		tableau.getColumns().setAll(date, objet, lu);
+        tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		tableau.setOnMouseClicked(event -> this.lancerPartie());
