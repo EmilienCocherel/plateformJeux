@@ -99,14 +99,14 @@ public class BorderInvitations extends PageJoueur {
 			j2 = this.app.getJoueurBD().rechercherJoueurParPseudo(this.pseudo.getText());
 		} catch (SQLException e) {
 			System.out.println("Joueur inconnu : "+this.pseudo.getText());
-			j2 = null;
+			return;
 		}
 
 		try {
 			jeu = this.app.getJeuBD().rechercherJeuParNom(this.jeu.getText());
 		} catch (SQLException e) {
 			System.out.println("Jeu inconnu : "+this.jeu.getText());
-			jeu = null;
+			return;
 		}
 		Invitation inv = new Invitation(-1, new Date(), "en attente", this.app.getClient(), j2, jeu);
 		try {
@@ -122,7 +122,15 @@ public class BorderInvitations extends PageJoueur {
 		try {
 			this.app.getInvitationBD().majInvitation(inv);
 		} catch (SQLException e) {
-			System.out.println("Impossible de mettre à jour l'invitation n°"+inv.getId());
+			System.out.println("Impossible de mettre à jour l'invitation n°"+inv.getId()+" : "+e.getMessage());
+			return;
+		}
+
+		try {
+			Partie p = new Partie(-1, new Date(), 0, "", inv.getJeu(), inv.getJoueur1(), 0, inv.getJoueur2(), 0);
+			this.app.getPartieBD().creerPartie(p);
+		} catch (SQLException e) {
+			System.out.println("Impossible de créer la partie : "+e.getMessage());
 		}
 	}
 
