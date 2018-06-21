@@ -278,6 +278,37 @@ public class Mastermind extends application.Jeu{
         return null;
     }
 
+    private VBox boxCouleur(){
+        VBox res=new VBox(5);
+        res.setPadding(new Insets(10,10,10,10));
+
+        Circle pionOrange= new Circle(10,Color.ORANGE);
+
+        Circle pionBleu= new Circle(10,Color.BLUE);
+
+        Circle pionVert= new Circle(10,Color.GREEN);
+
+        Circle pionJaune= new Circle(10,Color.YELLOW);
+
+        Circle pionRouge= new Circle(10,Color.RED);
+
+        Circle pionViolet= new Circle(10,Color.PURPLE);
+
+        GridPane barrePion = new GridPane();
+        barrePion.setPadding(new Insets(1,1,1,1));
+        barrePion.add(pionViolet,0,0);
+        barrePion.add(pionOrange,0,1);
+        barrePion.add(pionJaune,0,2);
+        barrePion.add(pionVert,0,3);
+        barrePion.add(pionBleu,0,4);
+        barrePion.add(pionRouge,0,5);
+
+        res.getChildren().add(barrePion);
+
+        return res;
+    }
+
+
     /**
     * @return une VBox contenant les radio boutons permettant de changer la couleurs des pions de la combinaison à tester
     */
@@ -298,8 +329,6 @@ public class Mastermind extends application.Jeu{
 
         SliderCouleur sliderNiveau = new SliderCouleur(val);
         sliderNiveau.valueProperty().addListener((observable, oldValue, newValue) -> {
-          System.out.println(sliderNiveau.getValue());
-          System.out.println("Slider Value Changed (newValue: " + newValue.intValue() + ")");
           this.changementCouleur(sliderNiveau);
         });
         boutonNiveau.add(sliderNiveau,0,0);
@@ -310,7 +339,6 @@ public class Mastermind extends application.Jeu{
     }
 
     public void changementCouleur(SliderCouleur sc){
-      System.out.println("test");
       if (sc.getValPion()==0){
       if ((int)sc.getValue()==0){
         this.getATester().getP1().setFill(Color.RED);
@@ -423,9 +451,9 @@ public class Mastermind extends application.Jeu{
         res.getChildren().add(this.choixCouleurDuPion2(1));
         res.getChildren().add(this.choixCouleurDuPion2(2));
         res.getChildren().add(this.choixCouleurDuPion2(3));
-
         this.historique = new Label();
 
+        res.getChildren().add(this.boxCouleur());
         res.getChildren().add(historique);
         res.getChildren().add(this.tester);
         this.interfaceChoix=res;
