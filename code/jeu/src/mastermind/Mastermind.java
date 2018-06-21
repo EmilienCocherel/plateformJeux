@@ -30,11 +30,11 @@ import application.*;
 import static javafx.scene.control.Alert.AlertType.CONFIRMATION;
 
 public class Mastermind extends application.Jeu{
-    private JoueurMastermind joueur;
+    private JoueurMastermind joueur, joueur2;
     private int id;
     private ArrayList<Combinaison> combis;
     private Combinaison aTester;
-    private Manche manche;
+    private Manche manche, mancheAutre;
     private Stage stage;
     private Label historique;
     private Scene scene;
@@ -56,6 +56,10 @@ public class Mastermind extends application.Jeu{
         this.joueur=new JoueurMastermind(idJoueur);
         this.idJoueurJ1=joueur1.getIdentifiant();
         this.idJoueurJ2=joueur2.getIdentifiant();
+		if (idJoueur == this.idJoueurJ2)
+			this.joueur2 = new JoueurMastermind(this.idJoueurJ1);
+		else
+			this.joueur2 = new JoueurMastermind(this.idJoueurJ2);
         this.combis=new ArrayList<>();
         this.combis.add(new Combinaison(new Pion(),new Pion(),new Pion(),new Pion()));
         this.combis.get(0).shuffle();
@@ -65,9 +69,13 @@ public class Mastermind extends application.Jeu{
         this.combis.get(2).shuffle();
         this.aTester = new Combinaison();
         this.joueur.nouvelleManche(new Manche(this.combis.get(0),this, this.joueur,0));
+        this.joueur2.nouvelleManche(new Manche(this.combis.get(0),this, this.joueur,0));
         this.manche=this.joueur.getMancheCourante();
+		this.mancheAutre = this.joueur2.getMancheCourante();
         this.manche.initCombiParTour();
         this.manche.initResParTour();
+        this.mancheAutre.initCombiParTour();
+        this.mancheAutre.initResParTour();
         this.initgridPaneCentre();
         this.getEtat(idJoueur);
     }
@@ -115,17 +123,21 @@ public class Mastermind extends application.Jeu{
 		JSONArray combinaisons = (JSONArray) json.get("combinaisons");
         if (this.joueur.getIdentifiant()==this.idJoueurJ1){
             this.joueur.fromJson((JSONObject) json.get("joueur1"));
+			this.joueur2.fromJson((JSONObject) json.get("joueur2"));
+			this.manche.fromJson((JSONObject) json.get("manche1"));
+			this.mancheAutre.fromJson((JSONObject) json.get("manche2"));
         }
         else{
             this.joueur.fromJson((JSONObject) json.get("joueur2"));
+			this.joueur2.fromJson((JSONObject) json.get("joueur1"));
+			this.manche.fromJson((JSONObject) json.get("manche2"));
+			this.mancheAutre.fromJson((JSONObject) json.get("manche1"));
         }
         if (id != null){
             this.id = id.intValue();
         }
         if (tour != null)
             this.manche.setNbCoup(tour.intValue());
-
-		this.manche.fromJson((JSONObject) json.get("manche"));
 
 		for (int i=0; i < combinaisons.size(); i++) {
 			this.combis.get(i).fromJson((JSONObject) combinaisons.get(i));
@@ -139,16 +151,23 @@ public class Mastermind extends application.Jeu{
 			combinaisons.add(combi.toJson());
 		obj.put("combinaisons", combinaisons);
 
-		obj.put("manche", this.manche.toJson());
 
         obj.put("id", this.id);
         if(this.joueur.getIdentifiant()==this.idJoueurJ1){
             obj.put("joueur1", this.joueur.toJson());
+			obj.put("joueur2", this.joueur2.toJson());
             obj.put("tourJ1", this.manche.getNbCoup());
+			obj.put("manche1", this.manche.toJson());
+            obj.put("tourJ2", this.mancheAutre.getNbCoup());
+			obj.put("manche2", this.mancheAutre.toJson());
         }
         else{
             obj.put("joueur2", this.joueur.toJson());
+			obj.put("joueur1", this.joueur2.toJson());
             obj.put("tourJ2", this.manche.getNbCoup());
+			obj.put("manche2", this.manche.toJson());
+            obj.put("tourJ1", this.mancheAutre.getNbCoup());
+			obj.put("manche1", this.mancheAutre.toJson());
         }
         return obj;
     }
