@@ -68,40 +68,39 @@ public class BorderRapport extends PageAdmin {
                 new PropertyValueFactory<Rapport, String>("titreRapport"));
 
         TableColumn<Rapport,String> auteur = new TableColumn("Auteur");
-        auteur.setMinWidth(200);
+        auteur.setMinWidth(160);
         auteur.setCellValueFactory(
                 new PropertyValueFactory<Rapport, String>("joueur"));
 
         TableColumn<Rapport,String> sujet = new TableColumn("Sujet");
-        sujet.setMinWidth(400);
+        sujet.setMinWidth(150);
         sujet.setCellValueFactory(
                 new PropertyValueFactory<Rapport, String>("sujetRapport"));
 
         TableColumn<Rapport,String> datePub = new TableColumn("Date Publication");
-        datePub.setMinWidth(400);
+        datePub.setMinWidth(230);
         datePub.setCellValueFactory(
                 new PropertyValueFactory<Rapport, String>("dateRapport"));
 
 
         table.setItems(this.data);
-        // for (ListeJeux jeux : table.getItems()){
-        //   String nomJ = jeux.getNom();
-        //   List<Integer> nombreColonne = new ArrayList<>();
-        //   for (int i=1; i<(table.getItems().size()); i++){
-        //     nombreColonne.add(i);
-        //   }
-        //   // System.out.println(table.getFocusModel().getFocusedCell().getTableColumn());
-        //   // if (nombreColonne.contains(table.getFocusModel().getFocusedCell().getColumn())){
-        //   //   System.out.println("dans le if");
-        //     // try{
-        //       // ActionAccesFicheJeu actionAffiche = new ActionAccesFicheJeu(jeux,this.jeuBD,this.appli,this.table);
-        //       // afficheFiche.setOnAction(actionAffiche);
-        //     // }
-        //     // catch(SQLException e){
-        //     //   System.out.println("Erreur sql");
-        //     // }
-        //   // }
-        // }
+        for (Rapport jeux : table.getItems()){
+          String nomJ = jeux.getNom();
+          List<Integer> nombreColonne = new ArrayList<>();
+          for (int i=1; i<(table.getItems().size()); i++){
+            nombreColonne.add(i);
+          }
+          // System.out.println(table.getFocusModel().getFocusedCell().getTableColumn());
+          // if (nombreColonne.contains(table.getFocusModel().getFocusedCell().getColumn())){
+          //   System.out.println("dans le if");
+            try{
+              ActionAccesFicheJeu actionAffiche = new ActionAccesFicheJeu(jeux,this.jeuBD,this.appli,this.table);
+              afficheFiche.setOnAction(actionAffiche);
+            }
+            catch(SQLException e){
+              System.out.println("Erreur sql");
+            }
+          }
         table.getColumns().addAll(titre, auteur, sujet, datePub);
         this.setCenter(table);
     }

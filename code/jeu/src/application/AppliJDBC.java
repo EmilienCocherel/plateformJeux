@@ -39,6 +39,7 @@ public class AppliJDBC extends Application {
     private BorderPane laBase;
 	private Joueur client;
     private BorderFicheJeu borderficheJeu;
+    private BorderRapport rapport;
 
     public void init() {
         try {
@@ -66,9 +67,10 @@ public class AppliJDBC extends Application {
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion,this);
-		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
-		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
+		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
+		    this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
         this.borderficheJeu     = null;
+        this.rapport = null;
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
         message.setAlignment(Pos.CENTER);
@@ -198,8 +200,8 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new BorderRapport(this,this.rapportBD));
     }
 
-    public void passerEnModeRapportLire(){
-        this.laBase.setCenter(new BorderLireRapport(this));
+    public void passerEnModeRapportLire(Rapport rapport){
+        this.laBase.setCenter(new BorderLireRapport(this,rapport));
     }
 
     public void passerEnModeRapportRediger(){

@@ -77,7 +77,7 @@ public class Rapport {
         return this.idJo;
     }
 
-    public String getNomJoueur() {
+    public String getJoueur() {
       return this.joueur;
     }
 
