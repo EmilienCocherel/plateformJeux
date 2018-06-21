@@ -10,10 +10,14 @@ public class SliderCouleur extends Slider{
     super();
     this.setMin(0);
     this.setMax(5);
-    this.setShowTickLabels(false);
-    this.setShowTickMarks(false);
     this.setBlockIncrement(1);
     this.setOrientation(Orientation.VERTICAL);
+    this.setMajorTickUnit(1);
+    this.setMinorTickCount(1);
+    //this.setMajorTickSpacing(1);
+    //this.setMinorTickSpacing(1);
+    //this.setPaintTicks(true);
+    //this.setPaintLabels(true);
     this.valPion= val;
   }
 
