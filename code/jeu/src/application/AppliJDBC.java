@@ -307,6 +307,10 @@ public class AppliJDBC extends Application {
 		return this.invitationBD;
 	}
 
+	public PartieBD getPartieBD() {
+		return this.partieBD;
+	}
+
     public FicheRapport getFicheRapport(){
       return ficheRapport;
     }
