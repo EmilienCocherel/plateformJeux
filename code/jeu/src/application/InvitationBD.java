@@ -83,6 +83,7 @@ public class InvitationBD {
 		ps.setInt(3, inv.getJoueur1().getIdentifiant());
 		ps.setInt(4, inv.getJoueur2().getIdentifiant());
 		ps.setInt(5, inv.getJeu().getIdJeu());
+		ps.setInt(6, inv.getId());
 		ps.executeUpdate();
 	}
 
