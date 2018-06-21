@@ -8,11 +8,13 @@ public class ConnexionMySQL{
 	Connection mysql=null;
         boolean connecte=false;
     public ConnexionMySQL() throws ClassNotFoundException{
+			System.out.println("Constructeur connexion mysql : "+this.mysql);
 			Class.forName("com.mysql.jdbc.Driver");
     }
 
 		public void connecter(String nomServeur, String nomBase, String nomLogin, String motDePasse) throws SQLException {
 			this.mysql = DriverManager.getConnection("jdbc:mysql://"+nomServeur+":3306/"+nomBase,nomLogin, motDePasse);
+			System.out.println("Connecter "+this.mysql);
 			this.connecte=true;
 		}
 

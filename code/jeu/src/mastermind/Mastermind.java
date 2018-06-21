@@ -13,13 +13,15 @@ import javafx.scene.shape.Circle;
 import javafx.scene.control.Alert;
 import javafx.scene.text.Text;
 import javafx.scene.text.Font;
+<<<<<<< HEAD
 import javafx.scene.control.Slider;
 import javafx.scene.shape.Circle;
+=======
+>>>>>>> Projet/master
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
-
 
 import org.json.simple.*;
 import org.json.simple.parser.JSONParser;
@@ -39,24 +41,24 @@ public class Mastermind extends application.Jeu{
     private Label historique;
     private Scene scene;
     private HBox interfaceChoix;
-    //private VBox historiqueCombinaison;
-    private GridPane gridPaneCentre;
+    private VBox historiqueCombinaison;
+    private VBox historiqueCombinaisonCentre;
+    private VBox historiqueCombinaisonDroite;
     private application.Partie partie;
     private int idJoueurJ1;
     private int idJoueurJ2;
     private application.PartieBD partieBD;
-	private Button tester;
 
     private BorderPane laBase;
 
     public Mastermind(){}
 
     @Override
-    public void jouerCoup(int idPartie, int joueur, Object partage){
+    public void jouerCoup(int idPartie, int joueur){
     }
 
     @Override
-    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2, Object partage){
+    public void creerPartie(int idJeu, int idJoueur1, int idJoueur2){
     }
 
     @Override
@@ -76,10 +78,10 @@ public class Mastermind extends application.Jeu{
         this.manche=this.joueur.getMancheCourante();
         this.manche.initCombiParTour();
         this.manche.initResParTour();
-		//this.initHistoriqueCombinaison();
-        this.initgridPaneCentre();
+		this.initHistoriqueCombinaison();
+        this.initHistoriqueCombinaisonCentre();
+        this.initHistoriqueCombinaisonDroite();
         this.getEtat(idJoueur);
-		this.setEtat();
     }
 
     @Override
@@ -195,13 +197,13 @@ public class Mastermind extends application.Jeu{
                 info.setContentText("La manche est terminé vous avez perdu \n La solution était: "+solution+"\n passer à la prochaine manche ?");
             }
             Optional<ButtonType> result = info.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
                 this.aTester = new Combinaison();
                 this.initInterfaceChoix();
-                //this.initHistoriqueCombinaison();
-                this.initgridPaneCentre();
+                this.initHistoriqueCombinaison();
+                this.initHistoriqueCombinaisonCentre();
+                this.initHistoriqueCombinaisonDroite();
                 this.laScene();
-				this.setEtat();
-            if (result.isPresent() && result.get() == ButtonType.OK) {
                 stage.setScene(this.scene);
             }
             else{
@@ -214,6 +216,7 @@ public class Mastermind extends application.Jeu{
                 info.setHeaderText("La Partie est terminé");
                 info.setContentText("Vous avez remporté la dernière manche!");
                 info.showAndWait();
+                stage.close();
             }
             else{
                 Alert info = new Alert(CONFIRMATION);
@@ -221,9 +224,8 @@ public class Mastermind extends application.Jeu{
                 String solution = precedent.getCombi().toString();
                 info.setContentText("Vous avez perdu la dernière Manche \n La solution était: "+solution);
                 info.showAndWait();
+                stage.close();
             }
-			PartieFinie p = new PartieFinie(this);
-			this.stage.setScene(p.getScene());
         }
     }
 
@@ -244,10 +246,6 @@ public class Mastermind extends application.Jeu{
     public int getId() {
         return id;
     }
-
-	public int getIdJoueur1() {
-		return this.idJoueurJ1;
-	}
 
     public void setId(int id) {
         this.id = id;
@@ -332,6 +330,7 @@ public class Mastermind extends application.Jeu{
         return res;
     }
 
+<<<<<<< HEAD
     private VBox choixCouleurDuPion2(int val){
         VBox res=new VBox(5);
         res.setPadding(new Insets(10,10,10,10));
@@ -395,12 +394,15 @@ public class Mastermind extends application.Jeu{
         return res;
     }
 
+=======
+>>>>>>> Projet/master
     /**
      * initialise l'interface de choix de couleur des pions de la combinaison à tester
      */
     private void initInterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
+<<<<<<< HEAD
 
         Button brestart = new Button("Tester");
         brestart.setStyle("-fx-background-color:\n"+
@@ -421,6 +423,17 @@ public class Mastermind extends application.Jeu{
         res.getChildren().add(this.choixCouleurDuPion2(2));
         res.getChildren().add(this.choixCouleurDuPion2(3));
 
+=======
+        Button brestart = new Button("tester");
+        ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
+        brestart.setOnAction(actionTester);
+        res.getChildren().add(brestart);
+        res.setBackground(new Background(new BackgroundFill(Color.GRAY,null,null)));
+        res.getChildren().add(this.choixCouleurDuPion(0));
+        res.getChildren().add(this.choixCouleurDuPion(1));
+        res.getChildren().add(this.choixCouleurDuPion(2));
+        res.getChildren().add(this.choixCouleurDuPion(3));
+>>>>>>> Projet/master
         this.historique = new Label();
 
         res.getChildren().add(this.boxCouleur());
@@ -432,31 +445,32 @@ public class Mastermind extends application.Jeu{
     /**
      * initialise l'interface des combinaisons déjà tester par l'utilisateur
      */
-//    private void initHistoriqueCombinaison(){
-//        VBox res=new VBox(5);
-//        res.setAlignment(Pos.CENTER);
-//        for(int i =0; i<this.manche.getCombiParTour().size();i++){
-//            Combinaison combi = this.manche.getCombiParTour().get(i);
-//            HBox box = new HBox();
-//            box.getChildren().add(combi.getP1());
-//            box.getChildren().add(combi.getP2());
-//            box.getChildren().add(combi.getP3());
-//            box.getChildren().add(combi.getP4());
-//            Resultat resultat = this.manche.getResParTour().get(i);
-//            for (Circle cercle :resultat.getPionsRes()){
-//                box.getChildren().add(cercle);
-//            }
-//            res.getChildren().add(box);
-//        }
-//        this.historiqueCombinaison=res;
-//    }
-
-
-    private void initgridPaneCentre(){
-        GridPane res = new GridPane();
+    private void initHistoriqueCombinaison(){
+        VBox res=new VBox(5);
+        res.setAlignment(Pos.CENTER);
         for(int i =0; i<this.manche.getCombiParTour().size();i++){
             Combinaison combi = this.manche.getCombiParTour().get(i);
             HBox box = new HBox();
+            box.getChildren().add(combi.getP1());
+            box.getChildren().add(combi.getP2());
+            box.getChildren().add(combi.getP3());
+            box.getChildren().add(combi.getP4());
+            Resultat resultat = this.manche.getResParTour().get(i);
+//            for (Circle cercle :resultat.getPionsRes()){
+//                box.getChildren().add(cercle);
+//            }
+            res.getChildren().add(box);
+        }
+        this.historiqueCombinaison=res;
+    }
+
+    private void initHistoriqueCombinaisonCentre(){
+        VBox res=new VBox(5);
+        res.setAlignment(Pos.CENTER);
+        for(int i =0; i<this.manche.getCombiParTour().size();i++){
+            Combinaison combi = this.manche.getCombiParTour().get(i);
+            HBox box = new HBox();
+<<<<<<< HEAD
             box.setPadding(new Insets(5,20,5,10));
 
             HBox box2 = new HBox();
@@ -464,22 +478,42 @@ public class Mastermind extends application.Jeu{
             Label tour = new Label("Tour "+(i+1)+" : ");
             box2.getChildren().add(tour);
 
+=======
+>>>>>>> Projet/master
             box.getChildren().add(combi.getP1());
             box.getChildren().add(combi.getP2());
             box.getChildren().add(combi.getP3());
             box.getChildren().add(combi.getP4());
-;
+            Resultat resultat = this.manche.getResParTour().get(i);
+            res.getChildren().add(box);
+        }
+        this.historiqueCombinaisonCentre=res;
+    }
+
+    private void initHistoriqueCombinaisonDroite(){
+        VBox res=new VBox(5);
+        res.setAlignment(Pos.CENTER_LEFT);
+        for(int i =0; i<this.manche.getCombiParTour().size();i++){
+            Combinaison combi = this.manche.getCombiParTour().get(i);
+            HBox box = new HBox();
+            box.setPadding(new Insets(10, 10, 10, 10));
+            Label tour = new Label("Tour "+(i+1)+": \n");
+            box.getChildren().add(tour);
 
             Resultat resultat = this.manche.getResParTour().get(i);
             for (Circle cercle :resultat.getPionsRes()){
-                box2.getChildren().add(cercle);
+                box.getChildren().add(cercle);
             }
 
-            res.add(box,0,i);
-            res.add(box2,1,i);
+            res.getChildren().add(box);
+
         }
+<<<<<<< HEAD
         this.gridPaneCentre = res;
         this.gridPaneCentre.setMaxSize(320,420);
+=======
+        this.historiqueCombinaisonDroite=res;
+>>>>>>> Projet/master
 
     }
 
@@ -520,7 +554,12 @@ public class Mastermind extends application.Jeu{
       private void laScene(){
           BorderPane cont = new BorderPane();
           cont.setTop(this.barreMenus());
+<<<<<<< HEAD
           cont.setCenter(this.gridPaneCentre);
+=======
+          cont.setCenter(this.historiqueCombinaisonCentre);
+          cont.setRight(this.historiqueCombinaisonDroite);
+>>>>>>> Projet/master
           cont.setBottom(this.interfaceChoix);
           cont.setBackground(new Background(new BackgroundFill(Color.rgb(197, 208, 234),null,null)));
           this.scene = new Scene(cont,500,600);
@@ -535,23 +574,19 @@ public class Mastermind extends application.Jeu{
         this.aTester.getP2().setFill(this.aTester.getCouleurP2());
         this.aTester.getP3().setFill(this.aTester.getCouleurP3());
         this.aTester.getP4().setFill(this.aTester.getCouleurP4());
-		this.tester.setDisable(this.aTester.getCouleurP1().equals(Color.WHITE) ||
-				this.aTester.getCouleurP2().equals(Color.WHITE) ||
-				this.aTester.getCouleurP3().equals(Color.WHITE) ||
-				this.aTester.getCouleurP4().equals(Color.WHITE));
-	}
+      }
 
-	/**
-	* lance le jeu
-	*/
-	@Override
-	public void run(){
-		this.stage = new Stage();
-		stage.setTitle("Mastermind");
-		this.initInterfaceChoix();
-		this.laScene();
-		stage.setScene(this.scene);
-		stage.show();
-		this.majAffichage();
-	}
-}
+      /**
+       * lance le jeu
+       */
+       @Override
+       public void run(){
+          this.stage = new Stage();
+          stage.setTitle("Mastermind");
+          this.initInterfaceChoix();
+          this.laScene();
+          stage.setScene(this.scene);
+          stage.show();
+          this.majAffichage();
+       }
+    }
