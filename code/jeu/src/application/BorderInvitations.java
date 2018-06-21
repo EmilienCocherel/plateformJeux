@@ -63,6 +63,7 @@ public class BorderInvitations extends PageJoueur {
 		lu.setCellValueFactory(new PropertyValueFactory("date"));
 
 		this.trecues.getColumns().setAll(date, objet, lu);
+        this.trecues.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         recues.add(this.titlePageJouer("Reçues"), 0, 0);
         recues.add(this.trecues,0,1);
@@ -95,6 +96,7 @@ public class BorderInvitations extends PageJoueur {
 		lu.setCellValueFactory(new PropertyValueFactory("date"));
 
 		this.tenvoyees.getColumns().setAll(date, objet, lu);
+        this.tenvoyees.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         envoyees.add(this.titlePageJouer("Envoyées"), 1, 0);
         envoyees.add(this.tenvoyees, 1, 1);

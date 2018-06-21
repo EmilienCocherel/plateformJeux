@@ -151,7 +151,7 @@ public class PartieBD {
 			Date debutPa = res.getTimestamp("debutPa");
 			String etatPartie = res.getString("etatPartie");
 
-			liste.add(new Partie(idPa, debutPa, numEtape, etatPartie, jeu, joueur1, score1, joueur2, score2));
+			liste.add(new Partie(idPa, debutPa, numEtape, etatPartie, jeu, joueur1, score1, joueur2, score2, joueur));
 		}
 		res.close();
 		return liste;
