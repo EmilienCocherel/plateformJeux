@@ -155,6 +155,8 @@ public class BorderInvitations extends PageJoueur {
 		} catch (SQLException e) {
 			System.out.println("Impossible de créer la partie : "+e.getMessage());
 		}
+
+		this.trecues.getItems().remove(inv);
 	}
 
 	public void refuser() {

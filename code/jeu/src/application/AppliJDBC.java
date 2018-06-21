@@ -27,9 +27,9 @@ public class AppliJDBC extends Application {
     private JeuBD jeuBD;
     private JoueurBD joueurBD;
     private RapportBD rapportBD;
-	private PartieBD partieBD;
-	private MessageBD messageBD;
-	private InvitationBD invitationBD;
+  	private PartieBD partieBD;
+  	private MessageBD messageBD;
+  	private InvitationBD invitationBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -38,7 +38,7 @@ public class AppliJDBC extends Application {
     private GridInscrire inscrire;
     private ControleurConnexion cc;
     private BorderPane laBase;
-	private Joueur client;
+  	private Joueur client;
     private BorderFicheJeu borderficheJeu;
 
     public void init() {
@@ -67,9 +67,9 @@ public class AppliJDBC extends Application {
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
         this.rapportBD    = new RapportBD(this.Connexion);
-		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
-		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
-		this.invitationBD = new InvitationBD(this.Connexion, this.jeuBD, this.joueurBD);
+    		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
+    		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
+    		this.invitationBD = new InvitationBD(this.Connexion, this.jeuBD, this.joueurBD);
         this.borderficheJeu     = null;
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
@@ -174,6 +174,22 @@ public class AppliJDBC extends Application {
 
     public void passerEnModeFicheDeJeu(JeuProfil profil){
       this.laBase.setCenter(new BorderFicheJeu(this,profil));
+    }
+
+    public void passerEnModeProfilUtilisateur(){
+      this.laBase.setCenter(new BorderProfilUtilisateur(this));
+    }
+
+    public void passerEnModeChgmntInfo(){
+      this.laBase.setCenter(new BorderChgmntInfo(this));
+    }
+
+    public void passerEnModeConsulterStatsJeux(){
+      this.laBase.setCenter(new BorderConsutlerStatsJeux(this));
+    }
+
+    public void passerEnModeConsulterStatsAdversaire(){
+      this.laBase.setCenter(new BorderConsulterStatsAdversaire(this));
     }
 
 
