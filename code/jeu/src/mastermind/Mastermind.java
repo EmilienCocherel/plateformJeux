@@ -401,18 +401,6 @@ public class Mastermind extends application.Jeu{
     private void initInterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
-<<<<<<< HEAD
-        this.tester = new Button("Tester");
-        ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
-        this.tester.setOnAction(actionTester);
-		this.tester.setDisable(true);
-        res.getChildren().add(this.tester);
-        res.setBackground(new Background(new BackgroundFill(Color.LAVENDER,null,null)));
-        res.getChildren().add(this.choixCouleurDuPion(0));
-        res.getChildren().add(this.choixCouleurDuPion(1));
-        res.getChildren().add(this.choixCouleurDuPion(2));
-        res.getChildren().add(this.choixCouleurDuPion(3));
-=======
 
         Button brestart = new Button("Tester");
         brestart.setStyle("-fx-background-color:\n"+
@@ -433,7 +421,6 @@ public class Mastermind extends application.Jeu{
         res.getChildren().add(this.choixCouleurDuPion2(2));
         res.getChildren().add(this.choixCouleurDuPion2(3));
 
->>>>>>> Quentin/master
         this.historique = new Label();
 
         res.getChildren().add(this.boxCouleur());
