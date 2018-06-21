@@ -111,7 +111,7 @@ public class PartieBD {
 		return liste;
 	}
 
-	public List<Partie> listeDesPartiesDuJoueurActuelleEnCours(Joueur joueur,AppliJDBC app) throws SQLException {
+	public List<Partie> listeDesPartiesDuJoueurActuelEnCours(Joueur joueur,AppliJDBC app) throws SQLException {
 		List<Partie> liste = new ArrayList<>();
 		PreparedStatement ps = laConnexion.prepareStatement("Select * from PARTIE where idJo1 = ? or idJo2 = ? and numEtape = 0");
 		ps.setInt(1, joueur.getIdentifiant());
@@ -128,7 +128,7 @@ public class PartieBD {
 			Date debutPa = res.getTimestamp("debutPa");
 			String etatPartie = res.getString("etatPartie");
 
-			liste.add(new Partie(idPa, debutPa, numEtape, etatPartie, jeu, joueur1, score1, joueur2, score2));
+			liste.add(new Partie(idPa, debutPa, numEtape, etatPartie, jeu, joueur1, score1, joueur2, score2, joueur));
 		}
 		res.close();
 		return liste;
