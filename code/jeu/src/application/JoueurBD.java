@@ -205,6 +205,33 @@ public class JoueurBD {
 		s.executeUpdate("Delete from JOUEUR where idJo =" + num);
 	}
 
+	void mettreAJourMonProfilJoueur(Joueur j) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, admin = ? where idJo =" + j.getIdentifiant());
+		ps.setString(1,j.getPseudo());
+		ps.setString(2,j.getMotdepasse());
+		ps.setString(3,j.getSexe() + "");
+		String abo = "N";
+		if (j.isAbonne()){
+			abo = "O";
+		}
+		ps.setString(4,abo);
+		ps.setInt(5,j.getNiveau());
+		ps.setBytes(6,j.getAvatar());
+		ps.setString(7,j.getEmailJo());
+		String actif = "N";
+		if (j.isActive()){
+			actif = "O";
+		}
+		ps.setString(8,actif);
+		String estAdmin = "N";
+		if (j.isAdmin()){
+			estAdmin = "O";
+		}
+		ps.setString(9, estAdmin);
+		ps.executeUpdate();
+
+  }
+
 
   void majJoueur(Joueur j) throws SQLException{
 		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, admin = ? where idJo =" + j.getIdentifiant());
