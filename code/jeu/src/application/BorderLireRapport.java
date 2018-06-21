@@ -10,6 +10,7 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.control.Label;
+import java.sql.SQLException;
 import javafx.stage.Stage;
 
 public class BorderLireRapport extends PageAdmin {
@@ -18,11 +19,13 @@ public class BorderLireRapport extends PageAdmin {
     private Label auteur,objet,sujet,date;
     private TextArea tMessage;
     private Rapport rapp;
+    private JoueurBD joueurBD;
 
-    BorderLireRapport(AppliJDBC app,Rapport rap){
+    BorderLireRapport(AppliJDBC app,Rapport rap,JoueurBD joueurBD){
         super();
         this.app = app;
         this.rapp = rap;
+        this.joueurBD = joueurBD;
 
         GridPane grid = new GridPane();
 
@@ -35,13 +38,17 @@ public class BorderLireRapport extends PageAdmin {
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setPadding(new Insets(0, 20, 0, 20));
         this.setMaxSize(800, 700);
+        try {
+          this.auteur = labelTypePageAdmin((this.joueurBD.rechercherJoueurParNum(this.rapp.getIdJo())).getPseudo());
+        }
+        catch(SQLException e){
+          this.auteur = labelTypePageAdmin("Problème non joueur");
+        }
+        this.objet = labelTypePageAdmin(this.rapp.getTitreRapport());
+        this.sujet = labelTypePageAdmin(""+this.rapp.getSujetRapport());
+        this.date = labelTypePageAdmin(this.rapp.getDateRapport());
 
-        this.auteur = labelTypePageAdmin();
-        this.objet = labelTypePageAdmin();
-        this.sujet = labelTypePageAdmin();
-        this.date = labelTypePageAdmin();
-
-        this.tMessage = new TextArea();
+        this.tMessage = new TextArea(this.rapp.getContenuRapport());
         tMessage.setMinSize(500, 400);
         tMessage.setEditable(false);
 

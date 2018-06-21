@@ -15,12 +15,12 @@ import java.util.Optional;
 public class ActionAccesRapport implements EventHandler<ActionEvent> {
 
 	private ListeJeux jeux;
-	private JeuProfil jeuProfil;
-	private JeuBD accesBD;
+	private Rapport jeuProfil;
+	private RapportBD accesBD;
 	private AppliJDBC appli;
 	private TableView table;
 
-	public ActionAccesRapport(ListeJeux jeux, JeuBD accesBD, AppliJDBC appli,TableView table) throws SQLException{
+	public ActionAccesRapport(Rapport rapport, RapportBD accesBD, AppliJDBC appli,TableView table) throws SQLException{
 	    this.jeux = jeux ;
 			this.jeuProfil = null;
 			this.accesBD = accesBD;
@@ -31,8 +31,8 @@ public class ActionAccesRapport implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent actionEvent) {
 			try{
-				this.jeuProfil = this.accesBD.rechercherJeuParNom(((Rapport)this.table.getSelectionModel().getSelectedItem()).getNom());
-				this.appli.passerEnModeFicheDeJeu(this.jeuProfil);
+				this.jeuProfil = this.accesBD.rechercherRapportParNum(((Rapport)this.table.getSelectionModel().getSelectedItem()).getIdRapport());
+				this.appli.passerEnModeRapportLire(this.jeuProfil);
 			}
 			catch(SQLException e){
 				System.out.println(e);

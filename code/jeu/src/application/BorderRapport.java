@@ -28,7 +28,7 @@ public class BorderRapport extends PageAdmin {
   private ObservableList<Rapport> data;
   private JeuProfil jeuProfil;
   private String nomDuJeu;
-  private ListeJeux jeux;
+  // private ListeJeux actionRapport;
   private TableView<Rapport> table;
 
     public BorderRapport(AppliJDBC app,RapportBD bd){
@@ -40,7 +40,7 @@ public class BorderRapport extends PageAdmin {
         bAccueil.setOnAction(event -> this.app.passerEnModeAccueil());
 
         Button bLire = this.buttonTypePageAdmin("Lire");
-        bLire.setOnAction(event -> this.app.passerEnModeRapportLire());
+        // bLire.setOnAction(event -> this.app.passerEnModeRapportLire());
 
         this.setBackground(new Background(new BackgroundFill(Color.rgb(53, 56, 61), new CornerRadii(5, false), Insets.EMPTY)));
         this.setPadding(new Insets(0,20,0,20));
@@ -84,8 +84,7 @@ public class BorderRapport extends PageAdmin {
 
 
         table.setItems(this.data);
-        for (Rapport jeux : table.getItems()){
-          String nomJ = jeux.getNom();
+        for (Rapport rapp : table.getItems()){
           List<Integer> nombreColonne = new ArrayList<>();
           for (int i=1; i<(table.getItems().size()); i++){
             nombreColonne.add(i);
@@ -94,8 +93,8 @@ public class BorderRapport extends PageAdmin {
           // if (nombreColonne.contains(table.getFocusModel().getFocusedCell().getColumn())){
           //   System.out.println("dans le if");
             try{
-              ActionAccesFicheJeu actionAffiche = new ActionAccesFicheJeu(jeux,this.jeuBD,this.appli,this.table);
-              afficheFiche.setOnAction(actionAffiche);
+              ActionAccesRapport actionRapport = new ActionAccesRapport(rapp,this.bd,this.app,this.table);
+              bLire.setOnAction(actionRapport);
             }
             catch(SQLException e){
               System.out.println("Erreur sql");

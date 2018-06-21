@@ -67,16 +67,10 @@ public class AppliJDBC extends Application {
         this.ficheResultat= new FicheResultat(this);
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
-<<<<<<< HEAD
         this.rapportBD    = new RapportBD(this.Connexion,this);
-		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
-		    this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
-=======
-        this.rapportBD    = new RapportBD(this.Connexion);
     		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
     		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
     		this.invitationBD = new InvitationBD(this.Connexion, this.jeuBD, this.joueurBD);
->>>>>>> projet/test
         this.borderficheJeu     = null;
         this.rapport = null;
         this.message      = new Label("Vous n'êtes pas connecté");
@@ -229,7 +223,7 @@ public class AppliJDBC extends Application {
     }
 
     public void passerEnModeRapportLire(Rapport rapport){
-        this.laBase.setCenter(new BorderLireRapport(this,rapport));
+        this.laBase.setCenter(new BorderLireRapport(this,rapport,this.joueurBD));
     }
 
     public void passerEnModeRapportRediger(){
