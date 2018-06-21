@@ -60,6 +60,6 @@ public class BorderPartieHistorique extends PageJoueur{
 		vainqueur.setCellValueFactory(new PropertyValueFactory("vainqueur"));
 
 		tableau.getColumns().setAll(date, objet, lu, vainqueur);
-        this.setCenter(this.tableauTypePageJouer("Jeu","Adversaire","Date début partie","Date fin partie","Vainqueur"));
+        this.setCenter(this.tableau);
     }
 }
