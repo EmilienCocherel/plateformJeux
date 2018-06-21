@@ -6,6 +6,7 @@ import javafx.scene.shape.Circle;
 
 import java.util.Map;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Pion extends Circle{
   private Map<String, Color> couleurs = new HashMap<String, Color>() {{
@@ -18,14 +19,20 @@ public class Pion extends Circle{
   }};
 
   public Pion(Paint couleur){
-    this.setRadius(10.0);
+    this.setRadius(15.0);
     this.setFill(couleur);
   }
 
   public Pion(String coul) {
-	this.setRadius(10.0);
-	this.setCouleur(coul);
+    this.setRadius(15.0);
+	  this.setCouleur(coul);
   }
+
+  public Pion() {
+  	this.setRadius(15.0);
+  	this.setFill(Color.RED);
+  }
+
 
   //    Getter et Setter
 
@@ -33,10 +40,35 @@ public class Pion extends Circle{
     return this.getFill();
   }
 
-	public void setCouleur(String coul) {
-		if (this.couleurs.containsKey(coul))
-			this.setFill(this.couleurs.get(coul));
+  public void setCouleur(String coul) {
+  	if (this.couleurs.containsKey(coul)){
+		this.setFill(this.couleurs.get(coul));
 	}
+  }
+
+  public void sufffleColor(){
+	  Random random = new Random();
+	  int val = random.nextInt(5);
+	  if (val ==0){
+	  	this.setFill(Color.RED);
+	  }
+	  if (val ==1){
+		  this.setFill(Color.BLUE);
+	  }
+	  if (val ==2){
+		  this.setFill(Color.GREEN);
+	  }
+	  if (val ==3){
+		  this.setFill(Color.YELLOW);
+	  }
+	  if (val ==4){
+		  this.setFill(Color.PURPLE);
+	  }
+	  if (val ==5){
+		  this.setFill(Color.ORANGE);
+	  }
+  }
+
 
 
   @Override

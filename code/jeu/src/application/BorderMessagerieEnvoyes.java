@@ -9,33 +9,21 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 import javafx.scene.control.ButtonBar;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.cell.PropertyValueFactory;
+import java.sql.SQLException;
+import java.util.Date;
 
-public class BorderMessagerieEnvoyes extends PageJoueur{
+public class BorderMessagerieEnvoyes extends AbstractMessagerie {
+    public BorderMessagerieEnvoyes(AppliJDBC appli) {
+        super(appli);
 
-    private AppliJDBC appli;
+		TableColumn<Message,String> auteur = new TableColumn<>("Destinataire");
+		auteur.setCellValueFactory(new PropertyValueFactory("nomJoueur1"));
 
-    public BorderMessagerieEnvoyes(AppliJDBC appli){
-
-        super();
-        this.appli = appli;
-
-        Button recus = this.buttonTypePageJoueur("Reçus");
-        recus.setOnAction(event -> this.appli.passerEnModeMessagerieRecus());
-
-        Button envoyes = this.buttonTypePageJoueur("Envoyés");
-        envoyes.setOnAction(event -> this.appli.passerEnModeMessagerieEnvoyes());
-
-        Button supprimer = this.buttonTypePageJoueur("Supprimer");
-        supprimer.setOnAction(event -> this.appli.passerEnModeMessagerieRecus());
-
-        Button redigerMessage = this.buttonTypePageJoueur("Rédiger un nouveau message");
-        redigerMessage.setOnAction(event -> this.appli.passerEnModeRedigerMessage());
-
-        this.setStyle("-fx-background-color: transparent;");
-        this.setMaxSize(800, 700);
-
-        this.setTop(this.buttonBarTypePageJoueur(recus,envoyes));
-        this.setCenter(this.tableauTypePageJouer("Destinataire","Objet","Date"));
-        this.setBottom(this.buttonBarTypePageJoueur(supprimer, redigerMessage));
+		tableau.getColumns().add(auteur);
     }
 }

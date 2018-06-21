@@ -82,6 +82,24 @@ public class JoueurBD {
 		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
 	}
 
+	Joueur rechercherJoueurParEmail(String email) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("Select * from JOUEUR where emailJo =?");
+		ps.setString(1, email);
+		ResultSet res = ps.executeQuery();
+		res.next();
+		int numJ = res.getInt("idJo");
+		String nomJ = res.getString("pseudo");
+		String mdp = res.getString("motdepasse");
+		String sexe = res.getString("sexe");
+		boolean abo = res.getString("abonne").equals("O");
+		int level = res.getInt("niveau");
+		byte[] image = res.getBytes("avatar");
+		boolean actif = res.getString("activeJo").equals("O");
+		boolean admin = res.getString("admin").equals("O");
+		res.close();
+		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
+	}
+
 	boolean joueurDejaInscrit(String nom) throws SQLException {
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+nom+'"');
@@ -186,6 +204,33 @@ public class JoueurBD {
 		s.executeUpdate("Delete from MESSAGE where idUt2 =" + num);
 		s.executeUpdate("Delete from JOUEUR where idJo =" + num);
 	}
+
+	void mettreAJourMonProfilJoueur(Joueur j) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("Update JOUEUR set pseudo = ?,motdepasse = ?, sexe = ?, abonne = ?,	niveau = ?,	avatar = ?, emailJo = ?, activeJo = ?, admin = ? where idJo =" + j.getIdentifiant());
+		ps.setString(1,j.getPseudo());
+		ps.setString(2,j.getMotdepasse());
+		ps.setString(3,j.getSexe() + "");
+		String abo = "N";
+		if (j.isAbonne()){
+			abo = "O";
+		}
+		ps.setString(4,abo);
+		ps.setInt(5,j.getNiveau());
+		ps.setBytes(6,j.getAvatar());
+		ps.setString(7,j.getEmailJo());
+		String actif = "N";
+		if (j.isActive()){
+			actif = "O";
+		}
+		ps.setString(8,actif);
+		String estAdmin = "N";
+		if (j.isAdmin()){
+			estAdmin = "O";
+		}
+		ps.setString(9, estAdmin);
+		ps.executeUpdate();
+
+  }
 
 
   void majJoueur(Joueur j) throws SQLException{

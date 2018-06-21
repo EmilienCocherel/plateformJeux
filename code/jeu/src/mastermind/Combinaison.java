@@ -83,7 +83,12 @@ public class Combinaison {
         this.p4.setFill(couleur);
     }
 
-
+    public void shuffle(){
+	    this.p1.sufffleColor();
+        this.p2.sufffleColor();
+        this.p3.sufffleColor();
+        this.p4.sufffleColor();
+    }
 
     @Override
     public boolean equals(Object o){

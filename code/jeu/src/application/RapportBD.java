@@ -5,8 +5,10 @@ import java.util.ArrayList;
 
 public class RapportBD {
 	ConnexionMySQL laConnexion;
-	RapportBD(ConnexionMySQL laConnexion){
+	AppliJDBC app;
+	RapportBD(ConnexionMySQL laConnexion,AppliJDBC app){
 		this.laConnexion=laConnexion;
+		this.app = app;
 	}
 
 	// recherche nombre de rapport au total
@@ -35,7 +37,7 @@ public class RapportBD {
 
 	Rapport rechercherRapportParSujet(int sujet) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JEU where sujetRapport =" + sujet);
+		ResultSet res = s.executeQuery("Select * from RAPPORT where sujetRapport =" + sujet);
 		res.next();
 		int idRapport = res.getInt("idRapport");
 		String dateRapport = res.getString("dateRapport");
@@ -45,6 +47,24 @@ public class RapportBD {
 		int sujetRapport = res.getInt("sujetRapport");
 		res.close();
 		return new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo);
+  }
+
+	ArrayList<Rapport> rechercherRapport() throws SQLException{
+		Statement s = laConnexion.createStatement();
+		ResultSet res = s.executeQuery("Select * from RAPPORT");
+		ArrayList<Rapport> rapport = new ArrayList<>();
+		while(res.next()){
+			int idRapport = res.getInt("idRapport");
+			String dateRapport = res.getString("dateRapport");
+			String titreRapport = res.getString("titreRapport");
+			String contenuRapport = res.getString("contenuRapport");
+			int idJo = res.getInt("idJo");
+			int sujetRapport = res.getInt("sujetRapport");
+			String joueur = this.app.getClient().getPseudo();
+			rapport.add(new Rapport(idRapport, dateRapport, titreRapport, sujetRapport, contenuRapport, idJo,joueur));
+		}
+		res.close();
+		return rapport;
   }
 
 	public int creerRapport(Rapport r) throws SQLException{
@@ -58,6 +78,18 @@ public class RapportBD {
 		ps.setInt(6,r.getIdJo());
 		ps.executeUpdate();
 		return numRap;
+	}
+
+	public void creerRapportVoid(Rapport r) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("insert into RAPPORT values (?,?,?,?,?,?)");
+		int numRap = this.maxNumRapport() + 1;
+		ps.setInt(1,numRap);
+		ps.setString(2,r.getDateRapport());
+		ps.setString(3,r.getTitreRapport());
+		ps.setInt(4,r.getSujetRapport());
+		ps.setString(5,r.getContenuRapport());
+		ps.setInt(6,r.getIdJo());
+		ps.executeUpdate();
 	}
 
   // public void majJeu(JeuProfil j) throws SQLException{

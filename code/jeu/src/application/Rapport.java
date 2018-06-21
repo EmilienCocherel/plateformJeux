@@ -12,8 +12,18 @@ public class Rapport {
     private int sujetRapport;
     private String contenuRapport;
     private int idJo;
+    private String joueur;
 
 
+    public Rapport(int idRapport, String dateRapport, String titreRapport, int sujetRapport, String contenuRapport, int idJo,String joueur) {
+        this.idRapport = idRapport;
+        this.dateRapport = dateRapport;
+        this.sujetRapport = sujetRapport;
+        this.titreRapport = titreRapport;
+        this.contenuRapport = contenuRapport;
+        this.idJo = idJo;
+        this.joueur = joueur;
+    }
     public Rapport(int idRapport, String dateRapport, String titreRapport, int sujetRapport, String contenuRapport, int idJo) {
         this.idRapport = idRapport;
         this.dateRapport = dateRapport;
@@ -65,6 +75,10 @@ public class Rapport {
 
     public int getIdJo() {
         return this.idJo;
+    }
+
+    public String getJoueur() {
+      return this.joueur;
     }
 
     public void setIdJo(int id) {
