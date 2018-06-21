@@ -45,13 +45,15 @@ public class JoueurMastermind extends application.Joueur {
      * Mettre à jour les variables par rapport au JSONObject donné
      */
     public void fromJson(JSONObject json){
-        Long id = (Long) json.get("id"),
-                score = (Long) json.get("score");
-        if (id != null){
-            this.identifiant = id.intValue();
-        }
-        if (score != null){
-            this.score = score.intValue();
-        }
+		if (json != null) {
+			Long id = (Long) json.get("id"),
+					score = (Long) json.get("score");
+			if (id != null){
+				this.identifiant = id.intValue();
+			}
+			if (score != null){
+				this.score = score.intValue();
+			}
+		}
     }
 }
