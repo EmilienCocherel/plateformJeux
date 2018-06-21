@@ -25,7 +25,7 @@ public class Partie {
 	}
 
 	public Partie(int id, Date debut, int numEtape, String etat, JeuProfil jeu,
-			Joueur joueur1, int score1, Joueur joueur2, int score2,Joueur joueur) throws SQLException {
+			Joueur joueur1, int score1, Joueur joueur2, int score2, Joueur joueur) throws SQLException {
 		this.id = id;
 		this.debut = debut;
 		this.numEtape = numEtape;
@@ -35,8 +35,7 @@ public class Partie {
 		this.score1 = score1;
 		this.joueur2 = joueur2;
 		this.score2 = score2;
-		this.app = app;
-		// this.joueur = this.app.getClient();
+		this.joueur = joueur;
 	}
 
 	public int getId() {
@@ -75,6 +74,17 @@ public class Partie {
 		return this.score2;
 	}
 
+	public String getAdversaire() {
+		if (this.joueur1.getIdentifiant() == this.joueur.getIdentifiant())
+			return this.joueur2.getPseudo();
+		else
+			return this.joueur1.getPseudo();
+	}
+
+	public String getNomJeu() {
+		return this.jeu.getNomJeu();
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -110,11 +120,4 @@ public class Partie {
 	public void setScore2(int score2) {
 		this.score2 = score2;
 	}
-
-	public AppliJDBC getApp(){
-		return this.app;
-	}
-	// public Joueur getClientAct(){
-	// 	return this.joueur;
-	// }
 }
