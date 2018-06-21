@@ -35,7 +35,7 @@ public class Partie {
 		this.score1 = score1;
 		this.joueur2 = joueur2;
 		this.score2 = score2;
-		this.app = app;
+		// this.app = app;
 		// this.joueur = this.app.getClient();
 	}
 
@@ -111,9 +111,9 @@ public class Partie {
 		this.score2 = score2;
 	}
 
-	public AppliJDBC getApp(){
-		return this.app;
-	}
+	// public AppliJDBC getApp(){
+	// 	return this.app;
+	// }
 	// public Joueur getClientAct(){
 	// 	return this.joueur;
 	// }

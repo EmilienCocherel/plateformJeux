@@ -60,6 +60,18 @@ public class RapportBD {
 		return numRap;
 	}
 
+	public void creerRapportVoid(Rapport r) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("insert into RAPPORT values (?,?,?,?,?,?)");
+		int numRap = this.maxNumRapport() + 1;
+		ps.setInt(1,numRap);
+		ps.setString(2,r.getDateRapport());
+		ps.setString(3,r.getTitreRapport());
+		ps.setInt(4,r.getSujetRapport());
+		ps.setString(5,r.getContenuRapport());
+		ps.setInt(6,r.getIdJo());
+		ps.executeUpdate();
+	}
+
   // public void majJeu(JeuProfil j) throws SQLException{
 	// 	PreparedStatement ps = laConnexion.prepareStatement("Update JEU set nomJeu = ?,regleJeu = ?, jarJeu = ?, activeJeu = ?,	idTy = ? where idJeu =" + j.getIdJeu());
 	// 	ps.setString(1,j.getNomJeu());

@@ -203,7 +203,7 @@ public class AppliJDBC extends Application {
     }
 
     public void passerEnModeRapportRediger(){
-        this.laBase.setCenter(new BorderRedigerRapport(this));
+        this.laBase.setCenter(new BorderRedigerRapport(this,this.rapportBD));
     }
 
     public void passerEnModeStats(){
