@@ -1,5 +1,7 @@
 package mastermind;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.geometry.Orientation;
@@ -162,7 +164,10 @@ public class Mastermind extends application.Jeu{
     //   }
     //}
 
-    public void finPartie(){}
+    public void fermer(){
+        this.setEtat();
+        this.stage.close();
+    }
 
 
       /**
@@ -494,30 +499,22 @@ public class Mastermind extends application.Jeu{
     private MenuBar barreMenus() {
         MenuBar res = new MenuBar();
         Menu game = new Menu("Partie"),
-                player = new Menu("Joueur"),
                 help = new Menu("Aide");
-//        EventHandler<ActionEvent> game_handler= new GameMenuAction(this.puissance4, this),
-//                player_handler = new PlayerMenuAction(this.puissance4),
-//                help_handler = new HelpMenuAction(this.puissance4);
+        EventHandler<ActionEvent> game_handler= new ActionMenuJeu(this),
+                help_handler = new ActionMenuAide(this);
         game.getItems().addAll(
                 new MenuItem("Quitter"),
-                new MenuItem("Abandonner"),
-                new MenuItem("Tableau des scores")
-        );
-        player.getItems().addAll(
-                new MenuItem("Information adversaire"),
-                new MenuItem("Envoyer message")
+                new MenuItem("Score")
         );
         help.getItems().addAll(
-                new MenuItem("Aide")
+                new MenuItem("Tutoriel"),
+                new MenuItem("A propos")
                 );
-//        for (MenuItem item : game.getItems())
-//            item.setOnAction(game_handler);
-//        for (MenuItem item : player.getItems())
-//            item.setOnAction(player_handler);
-//        for (MenuItem item : help.getItems())
-//            item.setOnAction(help_handler);
-        res.getMenus().addAll(game, player, help);
+        for (MenuItem item : game.getItems())
+            item.setOnAction(game_handler);
+        for (MenuItem item : help.getItems())
+            item.setOnAction(help_handler);
+        res.getMenus().addAll(game, help);
         return res;
     }
 
