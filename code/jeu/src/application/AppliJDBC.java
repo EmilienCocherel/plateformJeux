@@ -107,6 +107,10 @@ public class AppliJDBC extends Application {
         stage.show();
     }
 
+    public void setFicheJoueur(FicheJoueur fj){
+      this.ficheJoueur=fj;
+    }
+
     public BorderPane getLaBase(){
       return this.laBase;
     }

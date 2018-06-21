@@ -20,8 +20,7 @@ import javafx.scene.control.CheckBox;
 public class GridInscrire extends PageConnexion{
 
     private AppliJDBC appli;
-    private TextField nom,email;
-    private PasswordField mdp,confMdp;
+    private TextField nom,email,mdp,confMdp;
     private CheckBox condiUse;
     private Node sInscrireNode;
     private Button sInscrireButton;
@@ -42,8 +41,8 @@ public class GridInscrire extends PageConnexion{
 
         this.nom = new TextField("TestNom");
         this.email = new TextField("TestPrenom");
-        this.mdp = new PasswordField();
-        this.confMdp = new PasswordField();
+        this.mdp = new TextField("");
+        this.confMdp = new TextField("");
         this.error = this.labelType("");
         this.condiUse = this.checkBoxType("J'accepte les termes d'utilisations");
         this.sInscrireNode = this.buttonType("Créer mon compte");
@@ -93,8 +92,8 @@ public class GridInscrire extends PageConnexion{
         Boolean res = true;
         boolean mailInvalide = false;
         String sauvegardeMail = this.getEmail().getText();
-        // String sauvegardeMdp = this.getMdp().getText();
-        // String sauvegardeConfMdp = this.getConfMdp().getText();
+        String sauvegardeMdp = this.getMdp().getText();
+        String sauvegardeConfMdp = this.getConfMdp().getText();
         String sauvegardePseudo = this.getNom().getText();
         if (!this.verifierPseudoDejaInscrit()){
           this.getChildren().remove(this.nom);
@@ -117,8 +116,8 @@ public class GridInscrire extends PageConnexion{
               this.getChildren().remove(this.error);
               this.getChildren().remove(this.mdp);
               this.getChildren().remove(this.confMdp);
-              this.add(this.mdp = new PasswordField(),1,3);
-              this.add(this.confMdp = new PasswordField(),1,4);
+              this.add(this.mdp = new TextField(sauvegardeMdp),1,3);
+              this.add(this.confMdp = new TextField(sauvegardeConfMdp),1,4);
               res = false;
               if (this.condiUse.isSelected()){
                 this.getChildren().remove(this.error);
