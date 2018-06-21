@@ -153,6 +153,7 @@ public class ApplicationAJEL extends ButtonBar{
         invitations.setOnAction(event -> this.app.passerEnModeInvitations());
         amis.setOnAction(event -> this.app.passerEnModeMesAmis());
         messagerie.setOnAction(event -> this.app.passerEnModeMessagerieRecus());
+        compte.setOnAction(event -> this.app.passerEnModeProfilUtilisateur());
         seDeconnecter.setOnAction(event -> this.app.passerEnModeConnexion());
 
         this.bar.getChildren().add(menu);

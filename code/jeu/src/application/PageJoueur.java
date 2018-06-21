@@ -10,6 +10,8 @@ import javafx.scene.paint.Stop;
 import javafx.scene.text.Font;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonBar;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 public abstract class PageJoueur extends BorderPane{
 
@@ -46,6 +48,18 @@ public abstract class PageJoueur extends BorderPane{
 
     }
 
+    public Label labelGrosPageJoueur(String nom) {
+
+        Font fontGros = new Font("Arial", 25);
+        Label label = new Label(nom);
+        label.setTextFill(Color.rgb(196, 196, 196));
+        label.setAlignment(Pos.CENTER);
+        label.setPadding(new Insets(10, 0, 10, 10));
+        label.setFont(fontGros);
+
+        return label;
+    }
+
     public CheckBox checkBoxTypePageJoueur(String nom) {
 
         CheckBox cb = new CheckBox(nom);
@@ -53,6 +67,31 @@ public abstract class PageJoueur extends BorderPane{
         cb.setPadding(new Insets(10, 0, 10, 10));
 
         return cb;
+    }
+
+    public HBox imageTypePageJoueur(){
+
+      Image test = new Image("application/inconnu.png");
+
+      ImageView iv1 = new ImageView();
+      iv1.setImage(test);
+      iv1.setFitWidth(200);
+      iv1.setFitHeight(200);
+      iv1.setPreserveRatio(true);
+      iv1.setSmooth(true);
+      iv1.setCache(true);
+
+      Button imageClicable = new Button();
+      imageClicable.setGraphic(iv1);
+      imageClicable.setStyle("-fx-background-color: transparent;");
+
+      HBox res = new HBox();
+      res.getChildren().add(imageClicable);
+      res.setStyle("-fx-background-color: transparent;");
+      res.setPadding(new Insets(75, 75, 10, 50));
+
+
+      return res;
     }
 
     public Hyperlink lienTypePageJoueur(String nom) {
@@ -82,6 +121,16 @@ public abstract class PageJoueur extends BorderPane{
         hbox.setPadding(new Insets(10, 50, 10, 50));
 
         return hbox;
+    }
+
+    public HBox hboxTypePageJoueur(String nom, Button b){
+      HBox hbox = new HBox();
+      Label label = this.labelTypePageJoueur(nom);
+
+      hbox.getChildren().addAll(label, b);
+      hbox.setPadding(new Insets(10, 50, 10, 50));
+
+      return hbox;
     }
 
     public VBox vboxTypePageJoueur(String nom, TextField textfield){
@@ -116,8 +165,6 @@ public abstract class PageJoueur extends BorderPane{
         hbox.setPadding(new Insets(10, 50, 10, 50));
 
         return hbox;
-
-
 
     }
 

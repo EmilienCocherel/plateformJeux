@@ -89,7 +89,7 @@ public class Matrice<T> {
 		List<T> res = new ArrayList<>();
 		int x = colonne, y = ligne;
 		while (y < this.getNbLignes() && x < this.getNbColonnes()) {
-			res.add(this.get(x, y));
+			res.add(this.get(y, x));
 			x++;
 			y++;
 		}

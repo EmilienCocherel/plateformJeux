@@ -135,7 +135,7 @@ public class BorderInvitations extends PageJoueur {
 		try {
 			this.app.getInvitationBD().creerInvitation(inv);
 		} catch (SQLException e) {
-			System.out.println("Impossible d'envoyer l'invitation.");
+			System.out.println("Impossible d'envoyer l'invitation."+e.getMessage());
 		}
 	}
 

@@ -35,7 +35,7 @@ public class RapportBD {
 
 	Rapport rechercherRapportParSujet(int sujet) throws SQLException{
 		Statement s = laConnexion.createStatement();
-		ResultSet res = s.executeQuery("Select * from JEU where sujetRapport =" + sujet);
+		ResultSet res = s.executeQuery("Select * from RAPPORT where sujetRapport =" + sujet);
 		res.next();
 		int idRapport = res.getInt("idRapport");
 		String dateRapport = res.getString("dateRapport");
