@@ -104,4 +104,22 @@ public class InvitationBD {
 		System.out.println(liste);
 		return liste;
 	}
+
+	public List<Invitation> listeInvitationsEnvoyeesEnAttente(Joueur joueur) throws SQLException {
+		List<Invitation> liste = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement("Select * from INVITATION where idJo = ? and etatInv = 'E'");
+		ps.setInt(1, joueur.getIdentifiant());
+		ResultSet res = ps.executeQuery();
+		while (res.next()) {
+			int idInv = res.getInt("idInv");
+			Date dateInv = res.getTimestamp("dateInv");
+			Joueur joueur1 = this.joueurBD.rechercherJoueurParNum(res.getInt("idJo1"));
+			JeuProfil jeu = this.jeuBD.rechercherJeuParNum(res.getInt("idJeu"));
+
+			liste.add(new Invitation(idInv, dateInv, "en attente", joueur, joueur1, jeu));
+		}
+		res.close();
+		System.out.println(liste);
+		return liste;
+	}
 }

@@ -75,8 +75,29 @@ public class BorderInvitations extends PageJoueur {
 		this.pseudo = new TextField();
 		this.jeu = new TextField();
 
+		this.tenvoyees = new TableView<>();
+		ObservableList<Invitation> liste2;
+		try {
+			liste2 = FXCollections.observableList(
+					this.app.getInvitationBD().listeInvitationsEnvoyeesEnAttente(
+						this.app.getClient()
+						));
+		} catch (SQLException ex) {
+			liste2 = FXCollections.emptyObservableList();
+		}
+		tenvoyees.setItems(liste2);
+
+		date = new TableColumn<>("Jeu");
+		date.setCellValueFactory(new PropertyValueFactory("nomJeu"));
+		objet = new TableColumn<>("Joueur");
+		objet.setCellValueFactory(new PropertyValueFactory("nomJoueur2"));
+		lu = new TableColumn<>("Date");
+		lu.setCellValueFactory(new PropertyValueFactory("date"));
+
+		this.tenvoyees.getColumns().setAll(date, objet, lu);
+
         envoyees.add(this.titlePageJouer("Envoyées"), 1, 0);
-        envoyees.add(this.tableauTypePageJouer("Jeu", "Joueur", "Date"), 1, 1);
+        envoyees.add(this.tenvoyees, 1, 1);
         envoyees.add(this.titlePageJouer("Inviter des amis"), 1, 2);
         envoyees.add(this.hboxTypePageJoueur("Ami : ", this.pseudo), 1, 3);
         envoyees.add(this.hboxTypePageJoueur("Jeu : ", this.jeu),1, 4);
