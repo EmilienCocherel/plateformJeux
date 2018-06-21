@@ -27,7 +27,8 @@ public class BorderProfilUtilisateur extends PageJoueur {
         gInfo.add(this.labelTypePageJoueur(this.verifierNiveau()), 1, 1);
         gInfo.add(this.labelGrosPageJoueur("Premium :"), 0, 2);
         gInfo.add(this.labelTypePageJoueur(this.verifierAbo()), 1, 2);
-        gInfo.add(this.labelGrosPageJoueur("Sexe :"), 0, 2);
+        gInfo.add(this.labelGrosPageJoueur("Sexe :"), 0, 3);
+        gInfo.add(this.labelTypePageJoueur(this.verifierSexe()), 1, 3);
 
         gInfo.setPadding(new Insets(75, 0, 0, 50));
 
@@ -72,10 +73,11 @@ public class BorderProfilUtilisateur extends PageJoueur {
     }
 
     public String verifierSexe(){
-      if (this.app.getClient().getSexe().equals("M")){
+      String sexeJoueur = this.app.getClient().getSexe() + "";
+      if (sexeJoueur.equals("M")){
         this.sexe = "Homme";
       }
-      else if(this.app.getClient().getSexe().equals("F")){
+      else if(sexeJoueur.equals("F")){
         this.sexe = "Femme";
       }
       else{
