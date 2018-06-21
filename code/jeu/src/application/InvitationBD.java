@@ -89,7 +89,7 @@ public class InvitationBD {
 
 	public List<Invitation> listeInvitationsRecuesEnAttente(Joueur joueur) throws SQLException {
 		List<Invitation> liste = new ArrayList<>();
-		PreparedStatement ps = laConnexion.prepareStatement("Select * from INVITATION where idJo = ? and etatInv = 'E'");
+		PreparedStatement ps = laConnexion.prepareStatement("Select * from INVITATION where idJo1 = ? and etatInv = 'E'");
 		ps.setInt(1, joueur.getIdentifiant());
 		ResultSet res = ps.executeQuery();
 		while (res.next()) {
