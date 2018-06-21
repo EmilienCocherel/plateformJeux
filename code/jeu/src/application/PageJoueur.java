@@ -40,9 +40,11 @@ public abstract class PageJoueur extends BorderPane{
     public Label labelTypePageJoueur(String nom) {
 
         Label label = new Label(nom);
-        label.setTextFill(Color.rgb(196, 196, 196));
+        Font fonttitre = new Font("Arial", 25);
+        label.setTextFill(Color.rgb(179, 71, 91));
         label.setAlignment(Pos.CENTER);
-        label.setPadding(new Insets(10, 0, 10, 10));
+        label.setPadding(new Insets(10, 20, 10, 20));
+        label.setFont(fonttitre);
 
         return label;
 
