@@ -9,6 +9,7 @@ public class Partie {
 	private String etat;
 	private JeuProfil jeu;
 	private Joueur joueur1, joueur2;
+	private Joueur joueur;
 
 	public Partie(int id, Date debut, int numEtape, String etat, JeuProfil jeu,
 			Joueur joueur1, int score1, Joueur joueur2, int score2) throws SQLException {
@@ -21,6 +22,21 @@ public class Partie {
 		this.score1 = score1;
 		this.joueur2 = joueur2;
 		this.score2 = score2;
+	}
+
+	public Partie(int id, Date debut, int numEtape, String etat, JeuProfil jeu,
+			Joueur joueur1, int score1, Joueur joueur2, int score2,Joueur joueur) throws SQLException {
+		this.id = id;
+		this.debut = debut;
+		this.numEtape = numEtape;
+		this.etat = etat;
+		this.jeu = jeu;
+		this.joueur1 = joueur1;
+		this.score1 = score1;
+		this.joueur2 = joueur2;
+		this.score2 = score2;
+		this.app = app;
+		// this.joueur = this.app.getClient();
 	}
 
 	public int getId() {
@@ -94,4 +110,11 @@ public class Partie {
 	public void setScore2(int score2) {
 		this.score2 = score2;
 	}
+
+	public AppliJDBC getApp(){
+		return this.app;
+	}
+	// public Joueur getClientAct(){
+	// 	return this.joueur;
+	// }
 }
