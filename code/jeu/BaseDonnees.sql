@@ -134,7 +134,7 @@ ENGINE=InnoDB DEFAULT CHARSET=latin1;
 DROP TABLE IF EXISTS RAPPORT;
 CREATE TABLE RAPPORT (
   idRapport decimal(6,0),
-  dateRapport datetime,
+  dateRapport varchar(40),
   titreRapport varchar(100),
   sujetRapport decimal(65),
   contenuRapport text,
