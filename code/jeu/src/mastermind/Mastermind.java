@@ -329,6 +329,12 @@ public class Mastermind extends application.Jeu{
       if ((int)sc.getValue()==3){
         this.getATester().getP1().setFill(Color.YELLOW);
       }
+      if ((int)sc.getValue()==4){
+        this.getATester().getP1().setFill(Color.PURPLE);
+      }
+      if ((int)sc.getValue()==5){
+        this.getATester().getP1().setFill(Color.ORANGE);
+      }
      }
 
      if (sc.getValPion()==1){
@@ -343,6 +349,12 @@ public class Mastermind extends application.Jeu{
       }
       if ((int)sc.getValue()==3){
         this.getATester().getP2().setFill(Color.YELLOW);
+      }
+      if ((int)sc.getValue()==4){
+        this.getATester().getP2().setFill(Color.PURPLE);
+      }
+      if ((int)sc.getValue()==5){
+        this.getATester().getP2().setFill(Color.ORANGE);
       }
      }
 
@@ -359,6 +371,12 @@ public class Mastermind extends application.Jeu{
       if ((int)sc.getValue()==3){
         this.getATester().getP3().setFill(Color.YELLOW);
       }
+      if ((int)sc.getValue()==4){
+          this.getATester().getP3().setFill(Color.PURPLE);
+      }
+      if ((int)sc.getValue()==5){
+          this.getATester().getP3().setFill(Color.ORANGE);
+      }
      }
 
      if (sc.getValPion()==3){
@@ -373,6 +391,12 @@ public class Mastermind extends application.Jeu{
       }
       if ((int)sc.getValue()==3){
         this.getATester().getP4().setFill(Color.YELLOW);
+      }
+      if ((int)sc.getValue()==4){
+          this.getATester().getP4().setFill(Color.PURPLE);
+      }
+      if ((int)sc.getValue()==5){
+          this.getATester().getP4().setFill(Color.ORANGE);
       }
      }
      this.majAffichage();
