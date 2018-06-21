@@ -63,7 +63,7 @@ public abstract class AbstractMessagerie extends PageJoueur {
 		tableau.getColumns().setAll(date, objet, lu);
 
         tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		//tableau.getOnMouseClicked(event -> lireMessage());
+		tableau.setOnMouseClicked(event -> this.lireMessage());
 
         this.setTop(this.buttonBarTypePageJoueur(recus,envoyes));
         this.setCenter(tableau);
@@ -75,5 +75,10 @@ public abstract class AbstractMessagerie extends PageJoueur {
 	}
 	public AppliJDBC getAppli() {
 		return this.appli;
+	}
+
+	public void lireMessage() {
+		Message m = (Message) this.getTableau().getSelectionModel().getSelectedItem();
+		this.appli.passerEnModeLireMessage(m);
 	}
 }

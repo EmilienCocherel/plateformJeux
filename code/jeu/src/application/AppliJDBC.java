@@ -29,6 +29,7 @@ public class AppliJDBC extends Application {
     private RapportBD rapportBD;
 	private PartieBD partieBD;
 	private MessageBD messageBD;
+	private InvitationBD invitationBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -68,6 +69,7 @@ public class AppliJDBC extends Application {
         this.rapportBD    = new RapportBD(this.Connexion);
 		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
 		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
+		this.invitationBD = new InvitationBD(this.Connexion, this.jeuBD, this.joueurBD);
         this.borderficheJeu     = null;
         this.message      = new Label("Vous n'êtes pas connecté");
         message.setFont(Font.font(24));
@@ -162,6 +164,10 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new BorderRedigerMessage(this));
     }
 
+    public void passerEnModeLireMessage(Message message){
+        this.laBase.setCenter(new BorderLireMessage(this, message));
+    }
+
     public void passerEnModePartieHistorique(){
         this.laBase.setCenter(new BorderPartieHistorique(this));
     }
@@ -187,7 +193,7 @@ public class AppliJDBC extends Application {
     }
 
    public void passerEnModeGererJeux(){
-        this.laBase.setCenter(new BorderGererJeux(this));
+        this.laBase.setCenter(new BorderGererJeux(this,this.jeuBD));
    }
 
     public void passerEnModeCompte(){
@@ -296,13 +302,18 @@ public class AppliJDBC extends Application {
     public FicheJeu getFicheJeu(){
       return ficheJeu;
     }
-    public PartieBD getPartieBD(){
-      return partieBD;
-    }
 
     public RapportBD getRapportBD(){
       return rapportBD;
     }
+
+	public InvitationBD getInvitationBD() {
+		return this.invitationBD;
+	}
+
+	public PartieBD getPartieBD() {
+		return this.partieBD;
+	}
 
     public FicheRapport getFicheRapport(){
       return ficheRapport;
