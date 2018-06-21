@@ -178,6 +178,36 @@ public class PartieBD {
 		return liste;
 	}
 
+	public List<JeuProfil> listeJeuFiniJoueur(Joueur joueur) throws SQLException {
+		List<JeuProfil> res = new ArrayList<>();
+		PreparedStatement ps = laConnexion.prepareStatement("select distinct idJeu from PARTIE where (idJo2 = ? or idJo2 = ?) and numEtape = 1");
+		ps.setInt(1, joueur.getIdentifiant());
+		ps.setInt(2, joueur.getIdentifiant());
+		ResultSet rs = ps.executeQuery();
+		while (rs.next()) {
+			res.add(this.jeuBD.rechercherJeuParNum(rs.getInt("idJeu")));
+		}
+		return res;
+	}
+
+	public List<Statistique> listeStatsParJeu(Joueur joueur) throws SQLException {
+		List<JeuProfil> jeux = this.listeJeuFiniJoueur(joueur);
+		List<Statistique> res = new ArrayList<>();
+		PreparedStatement victoires = laConnexion.prepareStatement(
+				"select count(idPa) from PARTIE where idJeu = ? and numEtape = 1 and ((idJo1 = ? and score1 > score2) or (idJo2 = ? and score2 > score1))");
+		victoires.setInt(2, joueur.getIdentifiant());
+		victoires.setInt(3, joueur.getIdentifiant());
+		ResultSet rs;
+		long pourcentVictoire, scoreMoyen;
+		for (JeuProfil jeu : jeux) {
+			rs = victoires.executeQuery();
+			rs.next();
+			pourcentVictoire = rs.getLong(1);
+			res.add(new Statistique(jeu, pourcentVictoire));
+		}
+		return res;
+	}
+
 	public void majEtat(int idPa, String etatPartie) throws SQLException {
 		PreparedStatement ps = laConnexion.prepareStatement("update PARTIE set etatPartie = ? where idPa = ?");
 		ps.setString(1, etatPartie);
