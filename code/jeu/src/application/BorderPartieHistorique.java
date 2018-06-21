@@ -60,6 +60,7 @@ public class BorderPartieHistorique extends PageJoueur{
 		vainqueur.setCellValueFactory(new PropertyValueFactory("vainqueur"));
 
 		tableau.getColumns().setAll(date, objet, lu, vainqueur);
+        tableau.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         this.setCenter(this.tableau);
     }
 }
