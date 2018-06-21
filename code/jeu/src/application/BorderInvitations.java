@@ -135,5 +135,12 @@ public class BorderInvitations extends PageJoueur {
 	}
 
 	public void refuser() {
+		Invitation inv = this.trecues.getSelectionModel().getSelectedItem();
+		inv.setEtat("refusée");
+		try {
+			this.app.getInvitationBD().majInvitation(inv);
+		} catch (SQLException e) {
+			System.out.println("Impossible de mettre à jour l'invitation n°"+inv.getId()+" : "+e.getMessage());
+		}
 	}
 }
