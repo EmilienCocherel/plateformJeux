@@ -2,8 +2,6 @@ package connect4;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Set;
-import java.util.HashSet;
 
 public class Matrice<T> {
     private List<List<T>> tableau;
@@ -89,7 +87,7 @@ public class Matrice<T> {
 		List<T> res = new ArrayList<>();
 		int x = colonne, y = ligne;
 		while (y < this.getNbLignes() && x < this.getNbColonnes()) {
-			res.add(this.get(x, y));
+			res.add(this.get(y, x));
 			x++;
 			y++;
 		}

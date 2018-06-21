@@ -27,8 +27,9 @@ public class AppliJDBC extends Application {
     private JeuBD jeuBD;
     private JoueurBD joueurBD;
     private RapportBD rapportBD;
-	private PartieBD partieBD;
-	private MessageBD messageBD;
+  	private PartieBD partieBD;
+  	private MessageBD messageBD;
+  	private InvitationBD invitationBD;
     private ConnexionMySQL Connexion;
     private Scene scene;
     private ApplicationAJEL ApplicationAJEL;
@@ -37,7 +38,7 @@ public class AppliJDBC extends Application {
     private GridInscrire inscrire;
     private ControleurConnexion cc;
     private BorderPane laBase;
-	private Joueur client;
+  	private Joueur client;
     private BorderFicheJeu borderficheJeu;
     private BorderRapport rapport;
 
@@ -66,9 +67,16 @@ public class AppliJDBC extends Application {
         this.ficheResultat= new FicheResultat(this);
         this.jeuBD        = new JeuBD(this.Connexion);
         this.joueurBD     = new JoueurBD(this.Connexion);
+<<<<<<< HEAD
         this.rapportBD    = new RapportBD(this.Connexion,this);
 		    this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
 		    this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
+=======
+        this.rapportBD    = new RapportBD(this.Connexion);
+    		this.partieBD     = new PartieBD(this.Connexion, this.jeuBD, this.joueurBD);
+    		this.messageBD    = new MessageBD(this.Connexion, this.joueurBD);
+    		this.invitationBD = new InvitationBD(this.Connexion, this.jeuBD, this.joueurBD);
+>>>>>>> projet/test
         this.borderficheJeu     = null;
         this.rapport = null;
         this.message      = new Label("Vous n'êtes pas connecté");
@@ -164,12 +172,32 @@ public class AppliJDBC extends Application {
         this.laBase.setCenter(new BorderRedigerMessage(this));
     }
 
+    public void passerEnModeLireMessage(Message message){
+        this.laBase.setCenter(new BorderLireMessage(this, message));
+    }
+
     public void passerEnModePartieHistorique(){
         this.laBase.setCenter(new BorderPartieHistorique(this));
     }
 
     public void passerEnModeFicheDeJeu(JeuProfil profil){
       this.laBase.setCenter(new BorderFicheJeu(this,profil));
+    }
+
+    public void passerEnModeProfilUtilisateur(){
+      this.laBase.setCenter(new BorderProfilUtilisateur(this));
+    }
+
+    public void passerEnModeChgmntInfo(){
+      this.laBase.setCenter(new BorderChgmntInfo(this));
+    }
+
+    public void passerEnModeConsulterStatsJeux(){
+      this.laBase.setCenter(new BorderConsutlerStatsJeux(this));
+    }
+
+    public void passerEnModeConsulterStatsAdversaire(){
+      this.laBase.setCenter(new BorderConsulterStatsAdversaire(this));
     }
 
 
@@ -298,13 +326,18 @@ public class AppliJDBC extends Application {
     public FicheJeu getFicheJeu(){
       return ficheJeu;
     }
-    public PartieBD getPartieBD(){
-      return partieBD;
-    }
 
     public RapportBD getRapportBD(){
       return rapportBD;
     }
+
+	public InvitationBD getInvitationBD() {
+		return this.invitationBD;
+	}
+
+	public PartieBD getPartieBD() {
+		return this.partieBD;
+	}
 
     public FicheRapport getFicheRapport(){
       return ficheRapport;
