@@ -78,6 +78,7 @@ public class Mastermind extends application.Jeu{
         this.mancheAutre.initResParTour();
         this.initgridPaneCentre();
         this.getEtat(idJoueur);
+		this.setEtat();
     }
 
     @Override
