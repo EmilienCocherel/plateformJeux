@@ -217,7 +217,7 @@ public abstract class PageAdmin extends BorderPane{
 
     public HBox imageTypePageAdmin(){
 
-        Image test = new Image("inconnu.png");
+        Image test = new Image("application/inconnu.png");
 
         ImageView iv1 = new ImageView();
         iv1.setImage(test);

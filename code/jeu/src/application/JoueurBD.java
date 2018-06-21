@@ -82,6 +82,24 @@ public class JoueurBD {
 		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
 	}
 
+	Joueur rechercherJoueurParEmail(String email) throws SQLException{
+		PreparedStatement ps = laConnexion.prepareStatement("Select * from JOUEUR where emailJo =?");
+		ps.setString(1, email);
+		ResultSet res = ps.executeQuery();
+		res.next();
+		int numJ = res.getInt("idJo");
+		String nomJ = res.getString("pseudo");
+		String mdp = res.getString("motdepasse");
+		String sexe = res.getString("sexe");
+		boolean abo = res.getString("abonne").equals("O");
+		int level = res.getInt("niveau");
+		byte[] image = res.getBytes("avatar");
+		boolean actif = res.getString("activeJo").equals("O");
+		boolean admin = res.getString("admin").equals("O");
+		res.close();
+		return new Joueur(numJ, nomJ, mdp, sexe.charAt(0), abo, level, image, email, actif, admin);
+	}
+
 	boolean joueurDejaInscrit(String nom) throws SQLException {
 		Statement s = laConnexion.createStatement();
 		ResultSet res = s.executeQuery("Select * from JOUEUR where pseudo =" + '"'+nom+'"');

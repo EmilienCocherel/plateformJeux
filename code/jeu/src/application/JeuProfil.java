@@ -65,7 +65,14 @@ public class JeuProfil {
     public int getIdType() {
         return this.idType;
     }
-
+    public String getIdString(){
+      if (this.idType == 1){
+        return "Tour par tour";
+      }
+      else{
+        return "Instantané";
+      }
+    }
     public void setIdType(int id) {
         this.idType = id;
     }
