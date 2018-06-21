@@ -15,6 +15,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.Font;
 import javafx.scene.control.Slider;
 
+
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Optional;
@@ -43,7 +44,7 @@ public class Mastermind extends application.Jeu{
     private int idJoueurJ1;
     private int idJoueurJ2;
     private application.PartieBD partieBD;
-
+    private Button tester;
     private BorderPane laBase;
 
     public Mastermind(){}
@@ -514,6 +515,9 @@ public class Mastermind extends application.Jeu{
         this.aTester.getP2().setFill(this.aTester.getCouleurP2());
         this.aTester.getP3().setFill(this.aTester.getCouleurP3());
         this.aTester.getP4().setFill(this.aTester.getCouleurP4());
+        if (!this.aTester.getP1().getFill().equals(Color.WHITE) && !this.aTester.getP2().getFill().equals(Color.WHITE) && !this.aTester.getP3().getFill().equals(Color.WHITE) && !this.aTester.getP4().getFill().equals(Color.WHITE)){
+          this.tester.setDisable(false);
+        }
       }
 
       /**
