@@ -11,13 +11,14 @@ import javafx.scene.image.Image;
 public class BorderProfilUtilisateur extends PageJoueur {
 
     AppliJDBC app;
-    String levelJoueur, estabo;
+    String levelJoueur, estabo, sexe;
 
     public BorderProfilUtilisateur(AppliJDBC app){
         super();
         this.app = app;
         this.levelJoueur = "";
         this.estabo = "";
+        this.sexe = "";
 
         GridPane gInfo = new GridPane();
         gInfo.add(this.labelGrosPageJoueur("Pseudo :"), 0, 0);
@@ -26,6 +27,7 @@ public class BorderProfilUtilisateur extends PageJoueur {
         gInfo.add(this.labelTypePageJoueur(this.verifierNiveau()), 1, 1);
         gInfo.add(this.labelGrosPageJoueur("Premium :"), 0, 2);
         gInfo.add(this.labelTypePageJoueur(this.verifierAbo()), 1, 2);
+        gInfo.add(this.labelGrosPageJoueur("Sexe :"), 0, 2);
 
         gInfo.setPadding(new Insets(75, 0, 0, 50));
 
@@ -69,11 +71,28 @@ public class BorderProfilUtilisateur extends PageJoueur {
       return this.estabo;
     }
 
+    public String verifierSexe(){
+      if (this.app.getClient().getSexe().equals("M")){
+        this.sexe = "Homme";
+      }
+      else if(this.app.getClient().getSexe().equals("F")){
+        this.sexe = "Femme";
+      }
+      else{
+        this.sexe = "Autre";
+      }
+      return this.sexe;
+    }
+
     public String getNiveau(){
       return this.levelJoueur;
     }
 
     public String getAbo(){
       return this.estabo;
+    }
+
+    public String getSexe(){
+      return this.sexe;
     }
 }
