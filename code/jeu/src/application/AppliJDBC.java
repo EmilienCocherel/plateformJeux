@@ -302,9 +302,6 @@ public class AppliJDBC extends Application {
     public FicheJeu getFicheJeu(){
       return ficheJeu;
     }
-    public PartieBD getPartieBD(){
-      return partieBD;
-    }
 
     public RapportBD getRapportBD(){
       return rapportBD;
