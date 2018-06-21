@@ -93,6 +93,7 @@ public class GridConnexion extends PageConnexion{
             // this.email.isResizable(false);
             if (this.verifierMDPInvalide()){
               if (this.verifierJoueurActif()){
+				this.appli.setClient(this.appli.getJoueurBD().rechercherJoueurParEmail(sauvegardeMail));
                 if(this.verifierAdmin()){
                   this.appli.passerEnModeAccueil();
                   res = true;
@@ -126,7 +127,6 @@ public class GridConnexion extends PageConnexion{
             this.add(this.error,1,7);
           }
         }
-		this.appli.setClient(this.appli.getJoueurBD().rechercherJoueurParEmail(sauvegardeMail));
         return res;
     }
 
