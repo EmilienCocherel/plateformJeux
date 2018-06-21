@@ -403,11 +403,19 @@ public class Mastermind extends application.Jeu{
     private void initInterfaceChoix(){
         HBox res=new HBox(5);
         res.setAlignment(Pos.CENTER);
-
-        Button brestart = new Button("tester");
+        this.tester = new Button("Tester");
+        this.tester.setStyle("-fx-background-color:\n"+
+                "#c3c4c4,\n"+
+                "linear-gradient(#d6d6d6 50%, white 100%),\n"+
+                "radial-gradient(center 50% -40%, radius 200%, #e6e6e6 45%, rgba(230,230,230,0) 50%);\n"+
+        "-fx-background-radius: 30;\n"+
+        "-fx-background-insets: 0,1,1;\n"+
+        "-fx-text-fill: black;\n"+
+        "-fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 3, 0.0 , 0 , 1);\n");
 
         ActionTester actionTester = new ActionTester(this,this.joueur.getMancheCourante());
-        brestart.setOnAction(actionTester);
+        this.tester.setOnAction(actionTester);
+		    this.tester.setDisable(true);
 
         res.setBackground(new Background(new BackgroundFill(Color.rgb(68, 87, 133),null,null)));
         res.getChildren().add(this.choixCouleurDuPion2(0));
@@ -418,7 +426,7 @@ public class Mastermind extends application.Jeu{
         this.historique = new Label();
 
         res.getChildren().add(historique);
-        res.getChildren().add(brestart);
+        res.getChildren().add(this.tester);
         this.interfaceChoix=res;
     }
 
