@@ -22,3 +22,5 @@ pensez à ajouter en tant que membre de votre fork les autres membres du groupe 
 git fetch mettre_nom_du_remote
 
 git merge nom_du_remote/master
+
+Emilien
